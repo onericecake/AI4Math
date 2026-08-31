@@ -1,0 +1,6 @@
+{
+  "id": "two_mul_even",
+  "imports": ["Mathlib"],
+  "statement": "theorem two_mul_even (n : ℕ) : Even (2 * n)"
+}
+

@@ -1,0 +1,4 @@
+{"id":"two_mul_even","imports":["Mathlib"],"statement":"theorem two_mul_even (n : ℕ) : Even (2 * n)"}
+{"id":"square_nonneg","imports":["Mathlib"],"statement":"theorem square_nonneg (x : ℝ) : 0 ≤ x ^ 2"}
+{"id":"add_zero_demo","imports":["Mathlib"],"statement":"theorem add_zero_demo (n : ℕ) : n + 0 = n"}
+
