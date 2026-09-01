@@ -13,7 +13,8 @@ that a journal will accept a paper.
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -e '.[dev]'
+python -m pip install --upgrade pip
+python -m pip install -e '.[dev]'
 ```
 
 With an API key, the matcher uses the OpenAI model configured by
