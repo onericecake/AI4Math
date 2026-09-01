@@ -1,0 +1,12 @@
+The journal catalog fixtures were normalized from metadata made available by
+zbMATH Open (https://zbmath.org/serials/ and its public API).
+
+This snapshot was retrieved on 2026-09-01 and is provided for testing the
+journal-matching prototype. Journal names, identifiers, URLs, and article
+metadata remain subject to the source provider's terms and may change. Check
+the current zbMATH Open API and legal terms before redistributing or using the
+data in production:
+https://zbmath.org/about/ and https://zbmath.org/static/zbmath.org/legal/api-terms.html
+
+The catalog is not an endorsement of any journal and does not encode editorial
+acceptance decisions.
