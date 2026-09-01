@@ -165,12 +165,18 @@ class JournalMatcher:
         )
 
     def _profile_from_json(self, value: Mapping[str, Any], broad_items: Iterable[Any]) -> ArticleProfile:
-        broad_values = value.get("broad_fields", list(broad_items))
+        fallback_broad_values = list(broad_items)
+        broad_values = value.get("broad_fields", [])
         broad: List[MSCClassification] = []
         for item in broad_values:
             parsed = self._classification(item, str(item.get("role", "secondary")) if isinstance(item, Mapping) else "secondary")
             if parsed:
                 broad.append(parsed)
+        if not broad:
+            for item in fallback_broad_values:
+                parsed = self._classification(item, str(item.get("role", "secondary")) if isinstance(item, Mapping) else "secondary")
+                if parsed:
+                    broad.append(parsed)
         primary = self._classification(value.get("primary_msc"), "primary")
         secondary: List[MSCClassification] = []
         for item in value.get("secondary_msc", []):

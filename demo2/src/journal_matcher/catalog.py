@@ -10,7 +10,7 @@ from __future__ import annotations
 import json
 import sqlite3
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple, Union
 
 from .msc import normalize_msc_code
 from .schemas import JournalCandidate, JournalFieldProfile, RepresentativeArticle
@@ -64,12 +64,14 @@ CREATE INDEX IF NOT EXISTS idx_article_msc_code ON article_msc(msc_code);
 """
 
 
-def _msc_prefixes(code: str) -> set:
+def _msc_prefixes(code: str) -> Tuple[str, ...]:
     normalized = normalize_msc_code(code)
-    prefixes = {normalized, normalized[:2]}
+    prefixes = [normalized]
     if len(normalized) == 5 and "-" not in normalized:
-        prefixes.add(normalized[:3])
-    return prefixes
+        prefixes.append(normalized[:3])
+    if normalized[:2] not in prefixes:
+        prefixes.append(normalized[:2])
+    return tuple(prefixes)
 
 
 class JournalCatalog:
@@ -185,16 +187,27 @@ class JournalCatalog:
             for prefix in prefixes:
                 matches = self.connection.execute(
                     """SELECT j.*, s.msc_prefix, s.article_count FROM journals j JOIN journal_msc_stats s ON j.journal_id=s.journal_id
-                    WHERE j.active=1 AND s.msc_prefix=? ORDER BY s.article_count DESC LIMIT ?""",
+                    WHERE j.active=1 AND s.msc_prefix=? ORDER BY s.article_count DESC, j.name, j.journal_id LIMIT ?""",
                     (prefix, limit),
                 ).fetchall()
                 for row in matches:
                     journal_id = str(row["journal_id"])
+                    tier = "broad-field" if len(prefix) == 2 else ("exact-subfield" if prefix == code else "subfield")
                     if journal_id not in rows:
-                        tier = "exact-subfield" if prefix == code else ("subfield" if len(prefix) == 3 else "broad-field")
                         rows[journal_id] = {"row": row, "tier": tier, "codes": set()}
+                    elif {"exact-subfield": 0, "subfield": 1, "broad-field": 2}[tier] < {"exact-subfield": 0, "subfield": 1, "broad-field": 2}[rows[journal_id]["tier"]]:
+                        rows[journal_id]["row"] = row
+                        rows[journal_id]["tier"] = tier
                     rows[journal_id]["codes"].add(prefix)
-        ordered = sorted(rows.values(), key=lambda item: ({"exact-subfield": 0, "subfield": 1, "broad-field": 2}[item["tier"]], -int(item["row"]["article_count"])))
+        ordered = sorted(
+            rows.values(),
+            key=lambda item: (
+                {"exact-subfield": 0, "subfield": 1, "broad-field": 2}[item["tier"]],
+                -int(item["row"]["article_count"]),
+                str(item["row"]["name"]).casefold(),
+                str(item["row"]["journal_id"]),
+            ),
+        )
         return [self._candidate(item["row"], item["tier"], sorted(item["codes"])) for item in ordered[:limit]]
 
     def _candidate(self, row: sqlite3.Row, tier: str, codes: List[str]) -> JournalCandidate:
