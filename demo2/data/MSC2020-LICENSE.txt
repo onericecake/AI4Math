@@ -1,0 +1,10 @@
+MSC2020 data in msc2020.json and msc2020.sample.json is derived from the
+official MSC2020 CSV published at https://msc2020.org/.
+
+MSC2020 is jointly published by Mathematical Reviews and zbMATH under the
+Creative Commons Attribution-NonCommercial-ShareAlike license. See:
+https://msc2020.org/ and https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+Keep this notice and the original source attribution when redistributing the
+data. The journal catalog files are separate project data and have their own
+source and licensing requirements.
