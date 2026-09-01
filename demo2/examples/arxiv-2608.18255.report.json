@@ -1,0 +1,127 @@
+{
+  "central_result_text": "Any polynomial $P(z^2)=\\displaystyle{\\sum^n_{k=0} a_k z^{2k}}$ with non-negative integer coefficients can be realized as the graded ruling polynomial of a Legendrian link $\\La_{P(z^2)}$ in $\\R^3_{std}$.\n\nLet $P(z^2)=\\displaystyle{\\sum^n_{k=0} a_k z^{2k}}$ be a polynomial with non-negative coefficients. The augmentation variety of the Legendrian link $\\La_{P(z^2)}$ is a disjoint union of $a_k$ copies of $(\\C^*)^{2k}$ over all values of $k$.\n\nOnly the polynomials of the form $P(z^2)$ or $zP(z^2)$ can be realized as the ungraded ruling polynomial of a Legendrian link in $\\R^3_{std}$.\n\nLet $L_1, L_2$ be two smooth immersed ribbon fillings of $\\La$ with double points that have U-compatible exteriors. Then, $L_1$ and $L_2$ are smoothly non-isotopic relative to their boundary.",
+  "profile": {
+    "central_results": [],
+    "broad_fields": [
+      {
+        "code": "53",
+        "name": "Differential geometry",
+        "role": "primary",
+        "confidence": "medium",
+        "evidence": []
+      },
+      {
+        "code": "57",
+        "name": "Manifolds and cell complexes",
+        "role": "secondary",
+        "confidence": "medium",
+        "evidence": []
+      },
+      {
+        "code": "13",
+        "name": "Commutative algebra",
+        "role": "secondary",
+        "confidence": "medium",
+        "evidence": []
+      }
+    ],
+    "primary_msc": {
+      "code": "53D42",
+      "name": "Symplectic field theory; contact homology",
+      "role": "primary",
+      "confidence": "medium",
+      "evidence": [
+        "Legendrian, contact, and symplectic terminology in the title and introduction."
+      ]
+    },
+    "secondary_msc": [
+      {
+        "code": "57K10",
+        "name": "Knot theory",
+        "role": "secondary",
+        "confidence": "medium",
+        "evidence": [
+          "The manuscript constructs Legendrian knots and links."
+        ]
+      },
+      {
+        "code": "13F60",
+        "name": "Cluster algebras",
+        "role": "secondary",
+        "confidence": "medium",
+        "evidence": [
+          "The manuscript discusses cluster structures on augmentation varieties."
+        ]
+      }
+    ],
+    "methods": [
+      "Legendrian contact topology",
+      "ruling polynomials",
+      "augmentation varieties",
+      "exact Lagrangian fillings",
+      "gauge-theoretic obstructions"
+    ],
+    "contribution_type": "classification and explicit constructions",
+    "claimed_improvement": "Characterizes all graded and ungraded ruling polynomials and constructs realizations.",
+    "prerequisites": "Specialist knowledge of contact and symplectic topology, Legendrian knot theory, and low-dimensional topology.",
+    "technical_depth": "highly specialized",
+    "conceptual_character": "Several structural classification theorems with explicit constructions and geometric applications.",
+    "audience": "Researchers in contact and symplectic topology, Legendrian knot theory, and low-dimensional topology.",
+    "audience_breadth": "subfield",
+    "uncertainties": [
+      "This is an offline heuristic profile; verify MSC codes and contribution level with an expert."
+    ]
+  },
+  "recommendations": [
+    {
+      "role": "closest field-and-level match",
+      "journal_id": "zbmath-serial-1795",
+      "journal_name": "Journal of Knot Theory and its Ramifications",
+      "fit": "strong match",
+      "reasons": [
+        "The catalog contains recent publications in the confirmed MSC area.",
+        "The journal title and field tags are compatible with the article's topology/symplectic focus."
+      ],
+      "level_fit": "closely aligned",
+      "representative_article_ids": [
+        "zbmath-7578869"
+      ],
+      "important_mismatch": "Offline smoke-test model does not inspect the full journal scope or acceptance policies.",
+      "submission_emphasis": "Explain the classification theorem, explicit Legendrian constructions, and implications for fillings and augmentation varieties."
+    },
+    {
+      "role": "broader-audience alternative",
+      "journal_id": "zbmath-serial-6806",
+      "journal_name": "Journal of Geometric Mechanics",
+      "fit": "plausible match",
+      "reasons": [
+        "The catalog contains recent publications in the confirmed MSC area.",
+        "The journal title and field tags are compatible with the article's topology/symplectic focus."
+      ],
+      "level_fit": "insufficient information",
+      "representative_article_ids": [
+        "zbmath-7453488"
+      ],
+      "important_mismatch": "Offline smoke-test model does not inspect the full journal scope or acceptance policies.",
+      "submission_emphasis": "Explain the classification theorem, explicit Legendrian constructions, and implications for fillings and augmentation varieties."
+    },
+    {
+      "role": "more specialized alternative",
+      "journal_id": "zbmath-serial-3352",
+      "journal_name": "SIGMA. Symmetry, Integrability and Geometry: Methods and Applications",
+      "fit": "plausible match",
+      "reasons": [
+        "The catalog contains recent publications in the confirmed MSC area.",
+        "The journal title and field tags are compatible with the article's topology/symplectic focus."
+      ],
+      "level_fit": "insufficient information",
+      "representative_article_ids": [
+        "zbmath-7897506"
+      ],
+      "important_mismatch": "Offline smoke-test model does not inspect the full journal scope or acceptance policies.",
+      "submission_emphasis": "Explain the classification theorem, explicit Legendrian constructions, and implications for fillings and augmentation varieties."
+    }
+  ],
+  "catalog_limitations": [
+    "Offline heuristic smoke test; replace with an LLM for substantive recommendations."
+  ]
