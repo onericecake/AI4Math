@@ -24,6 +24,25 @@ class ErrorParserTests(unittest.TestCase):
         self.assertEqual(feedback.category, ErrorCategory.UNSOLVED_GOALS)
         self.assertIn("⊢ x = x", feedback.goal)
 
+    def test_parses_unknown_tactic_as_tactic_failure(self):
+        feedback = LeanErrorParser().parse(
+            result("Main.lean:4:3: error: unknown tactic\n⊢ True")
+        )
+        self.assertEqual(feedback.category, ErrorCategory.TACTIC_FAILURE)
+
+    def test_includes_all_reported_goals(self):
+        feedback = LeanErrorParser().parse(
+            result(
+                "error: unsolved goals\n"
+                "case left\n"
+                "⊢ p\n\n"
+                "case right\n"
+                "⊢ q"
+            )
+        )
+        self.assertIn("⊢ p", feedback.goal)
+        self.assertIn("⊢ q", feedback.goal)
+
     def test_timeout_wins_over_text(self):
         feedback = LeanErrorParser().parse(result("unknown identifier", timed_out=True))
         self.assertEqual(feedback.category, ErrorCategory.TIMEOUT)

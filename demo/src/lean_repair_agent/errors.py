@@ -16,8 +16,8 @@ _CATEGORY_PATTERNS = (
     (ErrorCategory.SYNTAX_ERROR, re.compile(r"unexpected token|unexpected end of input|parser error|invalid syntax", re.I)),
     (ErrorCategory.UNKNOWN_IDENTIFIER, re.compile(r"unknown identifier|invalid field notation|unknown constant", re.I)),
     (ErrorCategory.TYPE_MISMATCH, re.compile(r"type mismatch|application type mismatch|failed to synthesize|has type\s+.+but is expected", re.I | re.S)),
+    (ErrorCategory.TACTIC_FAILURE, re.compile(r"unknown tactic|tactic ['\"`]?.+?['\"`]? failed|tactic .* failed|linarith failed|omega could not prove|simp made no progress", re.I)),
     (ErrorCategory.UNSOLVED_GOALS, re.compile(r"unsolved goals?|no goals to be solved", re.I)),
-    (ErrorCategory.TACTIC_FAILURE, re.compile(r"tactic ['\"`]?.+?['\"`]? failed|tactic .* failed|linarith failed|omega could not prove|simp made no progress", re.I)),
 )
 
 
@@ -60,8 +60,8 @@ class LeanErrorParser:
         if not lines:
             return "Lean exited unsuccessfully without diagnostics."
         error_index = next((i for i, line in enumerate(lines) if "error:" in line.lower()), 0)
-        selected: List[str] = lines[error_index : error_index + 8]
-        return "\n".join(selected)[:3000]
+        selected: List[str] = lines[error_index : error_index + 40]
+        return "\n".join(selected)[:6000]
 
     @staticmethod
     def _goal(output: str) -> Optional[str]:
@@ -69,9 +69,12 @@ class LeanErrorParser:
         starts = [i for i, line in enumerate(lines) if re.search(r"(?:^|\s)⊢\s", line)]
         if not starts:
             return None
-        start = starts[0]
-        collected = lines[max(0, start - 6) : start + 2]
-        return "\n".join(line.rstrip() for line in collected).strip()[:2000]
+        chunks = []
+        for index, start in enumerate(starts):
+            end = starts[index + 1] if index + 1 < len(starts) else len(lines)
+            collected = lines[max(0, start - 6) : end]
+            chunks.append("\n".join(line.rstrip() for line in collected).strip())
+        return "\n\n".join(chunk for chunk in chunks if chunk)[:6000]
 
     @staticmethod
     def _excerpt(source: str, line: Optional[int], radius: int = 2) -> Optional[str]:
@@ -84,4 +87,3 @@ class LeanErrorParser:
             "{0:>4} | {1}".format(index + 1, lines[index])
             for index in range(start, end)
         )
-

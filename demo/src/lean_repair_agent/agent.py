@@ -115,10 +115,82 @@ class MathAgent:
 def normalize_proof(text: str) -> str:
     """Remove common presentation wrappers without rewriting Lean code."""
 
-    value = text.strip()
+    # Keep leading spaces until indentation normalization has seen the first
+    # line; ``str.strip()`` would erase the shared offset from that line and
+    # make nested bullet bodies impossible to recover correctly.
+    value = text.strip("\r\n")
     fence = re.fullmatch(r"```(?:lean\d*|lean)?\s*\n?(.*?)```", value, re.I | re.S)
     if fence:
-        value = fence.group(1).strip()
-    if re.match(r"^by(?:\s|$)", value):
-        value = re.sub(r"^by(?:\s*\n|\s+)", "", value, count=1).strip()
-    return value
+        value = fence.group(1).strip("\r\n")
+    by_prefix = re.match(r"^[ \t]*by(?:[ \t]*\n|[ \t]+)", value)
+    if by_prefix:
+        value = value[by_prefix.end() :]
+    return _normalize_indentation(value)
+
+
+def _normalize_indentation(value: str) -> str:
+    """Normalize proof-body indentation while preserving nested Lean blocks.
+
+    Models often return a proof body formatted as if it still followed ``by``:
+    the first tactic starts at column zero, while later top-level tactics are
+    indented by two spaces. The renderer adds declaration-level indentation,
+    so retaining that offset can turn sibling tactics into invalid syntax.
+    """
+
+    lines = value.splitlines()
+    if len(lines) < 2:
+        return value.strip()
+
+    nonblank = [line for line in lines if line.strip()]
+    if not nonblank:
+        return value
+
+    # First handle output where every line shares a common formatting offset.
+    common = min(len(line) - len(line.lstrip()) for line in nonblank)
+    had_common_offset = bool(common)
+    if common:
+        lines = [line[common:] if line.strip() else "" for line in lines]
+
+    # If the first body line is already at column zero, later lines may still
+    # carry the indentation they would have had beneath ``by``. Remove only
+    # that minimum trailing offset, preserving deeper branch indentation.
+    first_nonblank = next((index for index, line in enumerate(lines) if line.strip()), None)
+    if (
+        not had_common_offset
+        and first_nonblank is not None
+        and not lines[first_nonblank].startswith((" ", "\t"))
+        and not _starts_nested_tactic_block(lines[first_nonblank].strip())
+    ):
+        trailing = [
+            len(line) - len(line.lstrip())
+            for line in lines[first_nonblank + 1 :]
+            if line.strip()
+        ]
+        if trailing and min(trailing) >= 2:
+            offset = min(trailing)
+            for index in range(first_nonblank + 1, len(lines)):
+                if lines[index].strip():
+                    lines[index] = lines[index][offset:]
+                else:
+                    lines[index] = ""
+
+    return "\n".join(lines).strip()
+
+
+def _starts_nested_tactic_block(line: str) -> bool:
+    """Return whether following tactics conventionally stay indented."""
+
+    return (
+        line.endswith(" with")
+        or line.startswith((
+            "all_goals",
+            "any_goals",
+            "case ",
+            "case' ",
+            "conv",
+            "focus",
+            "repeat",
+            "solve",
+        ))
+        or line.startswith("first |")
+    )

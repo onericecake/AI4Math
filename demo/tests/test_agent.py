@@ -88,3 +88,21 @@ class AgentTests(unittest.TestCase):
 
     def test_normalize_proof_removes_fence_and_by(self):
         self.assertEqual(normalize_proof("```lean\nby\n  rfl\n```"), "rfl")
+
+    def test_normalize_proof_removes_body_offset_but_keeps_nested_indent(self):
+        value = """  rcases h with ⟨k, rfl⟩
+    refine ⟨k, ?_⟩
+      ring"""
+        self.assertEqual(
+            normalize_proof(value),
+            """rcases h with ⟨k, rfl⟩
+  refine ⟨k, ?_⟩
+    ring""",
+        )
+
+    def test_normalize_proof_preserves_tactic_branch_indentation(self):
+        value = """induction n with
+  | zero => simp
+  | succ n ih =>
+    simp [ih]"""
+        self.assertEqual(normalize_proof(value), value)

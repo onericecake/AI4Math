@@ -22,6 +22,7 @@ def generation_prompt(problem: LeanProblem) -> str:
 
 Rules:
 - Return only tactics to place after `by`.
+- Start every top-level tactic at column 0; indent only nested branches or bullet bodies.
 - Use the listed imports.
 - Do not use `sorry`, `admit`, or introduce axioms.
 - The result must compile as written.
@@ -42,6 +43,7 @@ Theorem:
 def retry_prompt(problem: LeanProblem, previous_proof: str) -> str:
     return """The previous Lean 4 proof did not compile. Try a different proof.
 Return only the new proof body, without `by`, Markdown, or prose.
+- Start every top-level tactic at column 0; indent only nested branches or bullet bodies.
 
 Theorem:
 {statement}
@@ -54,6 +56,7 @@ Previous proof:
 def raw_feedback_prompt(problem: LeanProblem, previous_proof: str, raw_output: str) -> str:
     return """Repair this Lean 4 proof using the compiler output.
 Return only the complete replacement proof body, without `by`, Markdown, or prose.
+- Start every top-level tactic at column 0; indent only nested branches or bullet bodies.
 
 Theorem:
 {statement}
@@ -78,6 +81,7 @@ def structured_feedback_prompt(
     return """Repair only what is needed in this Lean 4 proof. Return the complete
 replacement proof body and nothing else. Do not include `by`, Markdown, prose,
 `sorry`, `admit`, or new axioms.
+- Start every top-level tactic at column 0; indent only nested branches or bullet bodies.
 
 Theorem:
 {statement}
@@ -106,4 +110,3 @@ Previous proof:
         excerpt=feedback.source_excerpt or "not available",
         proof=previous_proof,
     )
-
