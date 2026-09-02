@@ -22,6 +22,17 @@ proof repair over naive retrying or raw compiler output?**
 most two repairs. This makes the reported result directly interpretable as
 Pass@3.
 
+### Proof output and diagnostics
+
+The agent accepts model responses wrapped in Markdown fences or an optional
+outer `by`, then normalizes the proof before rendering it into the theorem.
+Shared leading indentation is removed while indentation inside tactic
+branches and bullets is preserved, so generated top-level tactics should
+start at column 0. Structured feedback reports the primary compiler message,
+source location, all detected goals, and the relevant source excerpt.
+Unknown tactics are classified as tactic failures so retries receive focused
+repair guidance.
+
 ## Setup
 
 You need Python 3.9+, an OpenAI API key, and a Lean 4 project with Mathlib.
@@ -99,11 +110,12 @@ where the indented proof body should go:
 }
 ```
 
-## Test without an API key or Lean
+## Run offline tests (no API key or Lean required)
 
 ```bash
 PYTHONPATH=src python3 -m unittest discover -s tests -v
 ```
 
-The tests use fake model and compiler adapters, so they exercise the complete
-repair loop without network access or a local Lean installation.
+The 18 tests use fake model and compiler adapters, so they exercise the
+complete repair loop—including proof normalization and structured error
+parsing—without network access or a local Lean installation.
