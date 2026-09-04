@@ -1,6 +1,11 @@
 import json
 
-from journal_matcher.catalog import JournalCatalog
+from journal_matcher.catalog import JournalCatalog, _msc_prefixes
+
+
+def test_msc_prefixes_are_specific_first_and_deterministic():
+    assert _msc_prefixes("05C35") == ("05C35", "05C", "05")
+    assert _msc_prefixes("05") == ("05",)
 
 
 def test_import_rebuilds_msc_statistics_and_finds_candidates(tmp_path):

@@ -10,7 +10,7 @@ from __future__ import annotations
 import json
 import sqlite3
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple, Union
 
 from .msc import normalize_msc_code
 from .schemas import JournalCandidate, JournalFieldProfile, RepresentativeArticle
@@ -66,12 +66,14 @@ CREATE INDEX IF NOT EXISTS idx_article_msc_code ON article_msc(msc_code);
 """
 
 
-def _msc_prefixes(code: str) -> set:
+def _msc_prefixes(code: str) -> Tuple[str, ...]:
     normalized = normalize_msc_code(code)
-    prefixes = {normalized, normalized[:2]}
+    prefixes = [normalized]
     if len(normalized) == 5 and "-" not in normalized:
-        prefixes.add(normalized[:3])
-    return prefixes
+        prefixes.append(normalized[:3])
+    if normalized[:2] not in prefixes:
+        prefixes.append(normalized[:2])
+    return tuple(prefixes)
 
 
 class JournalCatalog:
