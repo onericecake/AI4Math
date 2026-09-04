@@ -24,7 +24,12 @@ class ExtractedManuscript:
     abstract: str = ""
     introduction: str = ""
     sections: List[str] = field(default_factory=list)
+    # Section bodies keep the analysis context from being reduced to a list of
+    # headings.  ``sections`` remains for backwards compatibility with the
+    # original public API.
+    section_contents: List[Dict[str, Any]] = field(default_factory=list)
     theorems: List[TheoremRecord] = field(default_factory=list)
+    proofs: List[Dict[str, str]] = field(default_factory=list)
     conclusion: str = ""
     bibliography: List[Dict[str, str]] = field(default_factory=list)
 
@@ -60,6 +65,7 @@ class ArticleProfile:
     conceptual_character: str = "unknown"
     audience: str = "unknown"
     audience_breadth: str = "unknown"
+    keywords: List[str] = field(default_factory=list)
     uncertainties: List[str] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -94,6 +100,12 @@ class JournalCandidate:
     official_url: Optional[str] = None
     scope_summary: str = ""
     representative_articles: List[RepresentativeArticle] = field(default_factory=list)
+    article_count: int = 0
+    matching_share: float = 0.0
+    technical_level: str = "unknown"
+    audience_breadth: str = "unknown"
+    match_score: float = 0.0
+    level_distance: Optional[int] = None
 
     def to_dict(self) -> Dict[str, Any]:
         value = asdict(self)
@@ -129,6 +141,7 @@ class Recommendation:
     representative_article_ids: List[str] = field(default_factory=list)
     important_mismatch: str = ""
     submission_emphasis: str = ""
+    match_score: float = 0.0
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)

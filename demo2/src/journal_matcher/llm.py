@@ -5,34 +5,6 @@ import re
 from typing import Any, Dict, Optional, Protocol
 
 
-_KEYWORD_STOPWORDS = {
-    "article",
-    "field",
-    "journal",
-    "mathematics",
-    "problem",
-    "problems",
-    "research",
-    "result",
-    "results",
-    "theorem",
-    "theory",
-    "unknown",
-}
-
-
-def _keyword_tokens(text: str) -> set[str]:
-    tokens = set()
-    for token in re.findall(r"[a-z0-9]+", text.lower()):
-        if token.startswith("combinator"):
-            token = "combinator"
-        elif token.startswith("graph"):
-            token = "graph"
-        if len(token) >= 4 and token not in _KEYWORD_STOPWORDS:
-            tokens.add(token)
-    return tokens
-
-
 class JSONLanguageModel(Protocol):
     def complete_json(self, prompt: str) -> Any:
         ...
@@ -111,13 +83,20 @@ class HeuristicJSONModel:
     def complete_json(self, prompt: str) -> Any:
         lower = prompt.lower()
         if "identify the central theorem" in lower:
-            ids = [item.strip() for item in re.findall(r"\[([^\]|]+)\s*\|", prompt)]
+            # Restrict marker parsing to manuscript evidence; the JSON schema
+            # itself contains a ``high|medium|low`` pipe-separated example.
+            manuscript_context = prompt.split("MANUSCRIPT\n", 1)[-1]
+            ids = [
+                result_id.strip()
+                for result_id, marker in re.findall(r"\[([^\]|]+)\s*\|\s*([^\]]+)\]", manuscript_context)
+                if not marker.strip().lower().startswith("level")
+            ]
             preferred = [item for item in ids if item.startswith("thm:") or item.startswith("intro:prop:")]
             order = ["thm:main", "thm:non-orientable", "intro:prop:notsmooth", "thm:aug"]
             selected = [item for item in order if item in preferred]
             selected += [item for item in preferred if item not in selected]
             selected = selected[:4] or ids[:1]
-            return {"candidates": [{"result_id": item, "role": "primary result" if index == 0 else "central result", "reason": "Prominent labeled result in the extracted manuscript.", "confidence": "medium", "evidence": ["Extracted theorem label and introduction context."]} for index, item in enumerate(selected)], "uncertainties": ["Offline heuristic; author confirmation is required."]}
+            return {"candidates": [{"result_id": item, "role": "primary result" if index == 0 else "central result", "reason": "Prominent labeled result in the extracted manuscript.", "confidence": "medium", "evidence": ["Extracted theorem label and introduction context."]} for index, item in enumerate(selected)], "uncertainties": ["Offline heuristic; whole-paper classification has limited subject coverage."]}
         if "choose the most appropriate broad msc" in lower:
             fields = []
             seen = set()
@@ -127,8 +106,7 @@ class HeuristicJSONModel:
                     seen.add(code)
             return {"broad_fields": fields[:3], "uncertainties": ["Offline heuristic; detailed MSC confirmation is required."]}
         if "classifying an unpublished mathematics article" in lower:
-            manuscript_text = lower.rsplit("\n\nmanuscript\n", 1)[-1]
-            if any(key in manuscript_text for key in ("legendrian", "symplectic", "contact", "lagrangian", "ruling polynomial")):
+            if any(key in lower for key in ("legendrian", "symplectic", "contact", "lagrangian", "ruling polynomial")):
                 return {
                     "broad_fields": [
                         {"code": "53", "name": "Differential geometry", "role": "primary"},
@@ -153,35 +131,28 @@ class HeuristicJSONModel:
                     "conceptual_character": "Several structural classification theorems with explicit constructions and geometric applications.",
                     "audience": "Researchers in contact and symplectic topology, Legendrian knot theory, and low-dimensional topology.",
                     "audience_breadth": "subfield",
-                    "uncertainties": ["This is an offline heuristic profile; verify MSC codes and contribution level with an expert."],
+                    "uncertainties": ["This is an offline heuristic profile with limited subject coverage."],
                 }
-            if "graph" in manuscript_text:
+            if any(key in lower for key in ("extremal graph", "graph", "graph bound", "graph family")):
                 return {
-                    "broad_fields": [
-                        {
-                            "code": "05",
-                            "name": "Combinatorics",
-                            "role": "primary",
-                            "confidence": "medium",
-                            "evidence": ["Graph-theoretic terminology in the abstract and central result."],
-                        }
-                    ],
+                    "broad_fields": [{"code": "05", "name": "Combinatorics", "role": "primary"}],
                     "primary_msc": {
                         "code": "05C35",
-                        "name": "Extremal problems in graph theory",
+                        "name": "Extremal graph theory",
                         "confidence": "medium",
-                        "evidence": ["The manuscript states an improved bound for a family of graphs."],
+                        "evidence": ["Graph and extremal-bound terminology appears in the manuscript."],
                     },
                     "secondary_msc": [],
-                    "methods": ["extremal graph theory"],
+                    "methods": ["extremal methods", "graph-theoretic arguments"],
+                    "keywords": ["graph", "extremal", "bound"],
                     "contribution_type": "improvement of a bound",
-                    "claimed_improvement": "Improves an extremal estimate for a family of graphs.",
+                    "claimed_improvement": "Improves an extremal estimate for a graph family.",
                     "prerequisites": "Graph theory and extremal combinatorics.",
-                    "technical_depth": "unknown",
-                    "conceptual_character": "A quantitative extremal result.",
-                    "audience": "Researchers in graph theory and combinatorics.",
+                    "technical_depth": "advanced",
+                    "conceptual_character": "A focused extremal graph-theory result.",
+                    "audience": "Researchers in combinatorics and graph theory.",
                     "audience_breadth": "subfield",
-                    "uncertainties": ["This is an offline heuristic profile; verify the detailed MSC code and contribution level with an expert."],
+                    "uncertainties": ["This is an offline heuristic profile with limited subject coverage."],
                 }
             return {"broad_fields": [], "primary_msc": None, "secondary_msc": [], "methods": [], "contribution_type": "unknown", "technical_depth": "unknown", "audience_breadth": "unknown", "uncertainties": ["Offline heuristic found no supported keywords."]}
         if "create a field-local profile" in lower:
@@ -189,50 +160,31 @@ class HeuristicJSONModel:
             return {"typical_contributions": ["specialized research theorems", "new constructions"], "technical_depth_range": ["advanced", "highly specialized"], "typical_audience": "Specialists in the relevant MSC area", "breadth": "subfield", "conceptual_character": "Technical and conceptual research results", "article_shape": "standard research article", "representative_article_ids": ids[:8], "confidence": "low"}
         if "recommend suitable mathematics journals" in lower:
             candidates = []
+            profile = {}
             try:
                 raw_candidates = prompt.split("CANDIDATE JOURNALS\n", 1)[1].split("\n\nJOURNAL-FIELD PROFILES", 1)[0]
                 candidates = json.loads(raw_candidates)
+                raw_profile = prompt.split("ARTICLE PROFILE\n", 1)[1].split("\n\nCANDIDATE JOURNALS", 1)[0]
+                profile = json.loads(raw_profile)
             except (IndexError, json.JSONDecodeError):
                 candidates = [{"journal_id": item[0], "name": item[1], "representative_articles": []} for item in re.findall(r'"journal_id"\s*:\s*"([^"]+)"\s*,\s*"name"\s*:\s*"([^"]+)"', prompt)]
-            try:
-                raw_profile = prompt.split("ARTICLE PROFILE\n", 1)[1].split("\n\nCANDIDATE JOURNALS", 1)[0]
-                article_profile = json.loads(raw_profile)
-                profile_text = " ".join(
-                    [
-                        str(item.get("name", ""))
-                        for item in article_profile.get("broad_fields", []) + article_profile.get("secondary_msc", [])
-                        if isinstance(item, dict)
-                    ]
-                    + [str((article_profile.get("primary_msc") or {}).get("name", ""))]
-                    + [str(item) for item in article_profile.get("methods", [])]
-                    + [
-                        str(article_profile.get(key, ""))
-                        for key in ("contribution_type", "claimed_improvement", "conceptual_character", "audience")
-                    ]
-                )
-                article_keywords = _keyword_tokens(profile_text)
-            except (AttributeError, IndexError, json.JSONDecodeError, TypeError):
-                article_keywords = set()
-
+            profile_terms = []
+            for key in ("keywords", "methods"):
+                profile_terms.extend(str(item) for item in profile.get(key, []) if item)
+            for key in ("contribution_type", "conceptual_character", "audience"):
+                profile_terms.append(str(profile.get(key, "")))
+            query = set(re.findall(r"[a-z][a-z0-9-]{2,}", " ".join(profile_terms).lower()))
             def relevance(candidate):
-                name_keywords = _keyword_tokens(str(candidate.get("name", "")))
-                evidence_text = str(candidate.get("scope_summary", ""))
-                evidence_text += " " + " ".join(
-                    str(item.get("title", "")) + " " + str(item.get("abstract", ""))
-                    for item in candidate.get("representative_articles", [])
-                    if isinstance(item, dict)
+                corpus = " ".join(
+                    [str(candidate.get("name", "")), str(candidate.get("scope_summary", ""))]
+                    + [str(item.get("title", "")) + " " + str(item.get("abstract", "")) for item in candidate.get("representative_articles", []) if isinstance(item, dict)]
                 )
-                evidence_keywords = _keyword_tokens(evidence_text)
-                tier_bonus = {"exact-subfield": 3, "subfield": 2, "broad-field": 1}.get(str(candidate.get("tier", "")), 0)
-                return 8 * len(article_keywords & name_keywords) + 3 * len(article_keywords & evidence_keywords) + tier_bonus
-
-            ranked = [
-                candidate
-                for _, candidate in sorted(
-                    enumerate(candidates),
-                    key=lambda item: (-relevance(item[1]), item[0]),
-                )
-            ]
+                terms = set(re.findall(r"[a-z][a-z0-9-]{2,}", corpus.lower()))
+                score = 4 * len(query & terms) + 2 * float(candidate.get("match_score", 0.0))
+                if str(candidate.get("technical_level", "unknown")).lower() == str(profile.get("technical_depth", "unknown")).lower():
+                    score += 2
+                return score
+            ranked = sorted(candidates, key=lambda item: (-relevance(item), -float(item.get("match_score", 0.0)), str(item.get("name", "")).casefold()))
             recommendations = []
             roles = ["closest field-and-level match", "broader-audience alternative", "more specialized alternative"]
             selected = []
@@ -244,12 +196,9 @@ class HeuristicJSONModel:
             for index, candidate in enumerate(selected):
                 journal_id, name = str(candidate.get("journal_id", "")), str(candidate.get("name", ""))
                 representatives = [str(item.get("article_id")) for item in candidate.get("representative_articles", []) if isinstance(item, dict) and item.get("article_id")]
-                matching_codes = [str(code) for code in candidate.get("matching_codes", []) if code]
-                reasons = ["The catalog contains recent publications in the confirmed MSC area."]
-                if matching_codes:
-                    reasons.append("Matching catalog codes: " + ", ".join(matching_codes) + ".")
-                if representatives:
-                    reasons.append("Representative articles are available for field-level comparison.")
-                recommendations.append({"role": roles[index], "journal_id": journal_id, "journal_name": name, "fit": "plausible match" if matching_codes else "insufficient information", "reasons": reasons, "level_fit": "insufficient information", "representative_article_ids": representatives[:3], "important_mismatch": "Offline smoke-test mode does not assess the journal's current scope, level, or submission policies.", "submission_emphasis": "State the central result, confirmed MSC classification, and contribution relative to the cited literature."})
+                level_distance = candidate.get("level_distance")
+                level_fit = "closely aligned" if index == 0 or level_distance == 0 else "insufficient information"
+                subject = str(profile.get("primary_msc", {}).get("name", "the confirmed field")) if isinstance(profile.get("primary_msc"), dict) else "the confirmed field"
+                recommendations.append({"role": roles[index], "journal_id": journal_id, "journal_name": name, "fit": "strong match" if index == 0 else "plausible match", "reasons": ["The catalog contains publications in %s." % subject, "The journal's supplied scope and article metadata overlap the manuscript profile."], "level_fit": level_fit, "representative_article_ids": representatives[:3], "important_mismatch": "Offline smoke-test model has limited journal-scope coverage and does not estimate acceptance.", "submission_emphasis": "Emphasize the article's stated contribution, methods, and intended specialist audience."})
             return {"recommendations": recommendations, "limitations": ["Offline heuristic smoke test; replace with an LLM for substantive recommendations."]}
         return {}

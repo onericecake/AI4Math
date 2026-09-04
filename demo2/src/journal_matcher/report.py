@@ -46,6 +46,7 @@ def render_markdown(report: MatchReport) -> str:
                 "",
                 "Role: " + item.role,
                 "Level fit: " + item.level_fit,
+                "Ranking score (relative): " + ("%.3f" % item.match_score if item.match_score else "Unavailable"),
                 "Why: " + (" ".join(item.reasons) or "No reasons returned."),
                 "Important mismatch: " + (item.important_mismatch or "None recorded."),
                 "Submission emphasis: " + (item.submission_emphasis or "None recorded."),

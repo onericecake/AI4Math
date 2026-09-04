@@ -35,7 +35,7 @@ def build_parser() -> argparse.ArgumentParser:
     catalog = commands.add_parser("catalog", help="Manage the local journal catalog")
     catalog_commands = catalog.add_subparsers(dest="catalog_command", required=True)
     import_json = catalog_commands.add_parser("import-json", help="Import normalized journal/article metadata")
-    import_json.add_argument("source", type=Path)
+    import_json.add_argument("source", type=Path, nargs="+", help="One or more normalized catalog JSON files to merge")
     import_json.add_argument("--database", type=Path, default=Path("data/journal_catalog.sqlite"))
     counts = catalog_commands.add_parser("counts", help="Show catalog counts")
     counts.add_argument("--database", type=Path, default=Path("data/journal_catalog.sqlite"))
@@ -64,7 +64,10 @@ def _select_result_ids(matcher: JournalMatcher, manuscript, args: argparse.Names
     if not selected and args.central_text:
         return []
     if not selected:
-        raise ValueError("no central result selected; use --central-result or add a theorem environment")
+        # A manuscript can be a survey, computational article, or simply use
+        # prose instead of theorem environments.  Whole-paper classification
+        # does not require selecting a central theorem.
+        return []
     return selected
 
 
@@ -113,7 +116,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     try:
         if args.command == "catalog" and args.catalog_command == "import-json":
             with JournalCatalog(args.database) as catalog:
-                print(json.dumps({"journals_imported": catalog.import_json(args.source), "counts": catalog.counts()}, indent=2))
+                imported = sum(catalog.import_json(source) for source in args.source)
+                print(json.dumps({"journals_imported": imported, "sources": len(args.source), "counts": catalog.counts()}, indent=2))
             return 0
         if args.command == "catalog" and args.catalog_command == "counts":
             with JournalCatalog(args.database) as catalog:

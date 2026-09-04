@@ -13,8 +13,7 @@ that a journal will accept a paper.
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -e '.[dev]'
+pip install -e '.[dev]'
 ```
 
 With an API key, the matcher uses the OpenAI model configured by
@@ -33,13 +32,23 @@ journal-match catalog import-json data/catalog.example.json \
   --database /tmp/journal-catalog.sqlite
 ```
 
+Multiple normalized source files can be merged in one import. Journals are
+deduplicated by ISSN-L and articles by DOI when those identifiers are present:
+
+```bash
+journal-match catalog import-json data/zbmath.json data/openalex.json \
+  --database /tmp/journal-catalog.sqlite
+```
+
 Keep the source notices in `data/MSC2020-LICENSE.txt` and
 `data/JOURNAL-CATALOG-NOTICE.txt` with the fixtures.
 
 ## Analyze an article
 
-The initial MVP accepts LaTeX source (`.tex` or `.latex`). It intentionally
-does not require a full TeX compiler.
+The matcher accepts LaTeX source (`.tex` or `.latex`), including local
+`\\input`/`\\include` files. It retains section and proof evidence and ranks
+journals using subject, audience, technical-level, and evidence signals. It
+intentionally does not require a full TeX compiler.
 
 ```bash
 journal-match analyze examples/manuscript.tex \
@@ -77,4 +86,3 @@ The included smoke-test output is in
 ```bash
 PYTHONPATH=src python -m pytest -q
 ```
-
