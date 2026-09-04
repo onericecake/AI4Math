@@ -37,7 +37,7 @@ Multiple normalized source files can be merged in one import. Journals are
 deduplicated by ISSN-L and articles by DOI when those identifiers are present:
 
 ```bash
-journal-match catalog import-json data/zbmath.json data/openalex.json \
+journal-match catalog import-json path/to/zbmath.json path/to/openalex.json \
   --database /tmp/journal-catalog.sqlite
 ```
 
