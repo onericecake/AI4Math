@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import List, Optional
 
 from .catalog import JournalCatalog
+from .evaluation import evaluate_rankings
 from .latex_extract import extract_manuscript
 from .llm import HeuristicJSONModel, OpenAIJSONModel
 from .msc import MSCTaxonomy, default_taxonomy, normalize_msc_code
@@ -39,6 +40,11 @@ def build_parser() -> argparse.ArgumentParser:
     import_json.add_argument("--database", type=Path, default=Path("data/journal_catalog.sqlite"))
     counts = catalog_commands.add_parser("counts", help="Show catalog counts")
     counts.add_argument("--database", type=Path, default=Path("data/journal_catalog.sqlite"))
+
+    evaluate = commands.add_parser("evaluate", help="Score saved journal rankings against independent labels")
+    evaluate.add_argument("cases", type=Path, help="JSON object with a cases list")
+    evaluate.add_argument("--k", type=int, default=3)
+    evaluate.add_argument("--output", type=Path)
     return parser
 
 
@@ -72,20 +78,36 @@ def _select_result_ids(matcher: JournalMatcher, manuscript, args: argparse.Names
 
 
 def _confirm_classification(profile, taxonomy: MSCTaxonomy, args: argparse.Namespace):
+    def confirmed(code: str, role: str) -> MSCClassification:
+        code = normalize_msc_code(code)
+        entry = taxonomy.get(code)
+        if entry is None or len(code) != 5:
+            raise ValueError("expected a detailed MSC code in the loaded taxonomy: %s" % code)
+        return MSCClassification(code, entry.name, role, "author-confirmed")
+
+    changed = False
     if args.primary_msc:
-        entry = taxonomy.get(args.primary_msc)
-        profile.primary_msc = MSCClassification(normalize_msc_code(args.primary_msc), entry.name if entry else "", "primary", "author-confirmed")
+        profile.primary_msc = confirmed(args.primary_msc, "primary")
+        changed = True
     elif not args.yes:
         shown = profile.primary_msc.code if profile.primary_msc else "unknown"
         answer = input("Primary MSC code [%s] (Enter to keep): " % shown).strip()
         if answer:
-            entry = taxonomy.get(answer)
-            profile.primary_msc = MSCClassification(normalize_msc_code(answer), entry.name if entry else "", "primary", "author-confirmed")
+            profile.primary_msc = confirmed(answer, "primary")
+            changed = True
     if args.secondary_msc:
         profile.secondary_msc = [
-            MSCClassification(normalize_msc_code(code), taxonomy.get(code).name if taxonomy.get(code) else "", "secondary", "author-confirmed")
+            confirmed(code, "secondary")
             for code in args.secondary_msc
         ]
+        changed = True
+    if changed:
+        # Remove stale broad-field proposals after the author's correction.
+        detailed = ([profile.primary_msc] if profile.primary_msc else []) + profile.secondary_msc
+        broad_codes = list(dict.fromkeys(item.code[:2] for item in detailed))
+        profile.broad_fields = [MSCClassification(code, taxonomy.get(code).name if taxonomy.get(code) else "",
+                               "primary" if index == 0 else "secondary", "author-confirmed")
+                               for index, code in enumerate(broad_codes)]
     return profile
 
 
@@ -114,6 +136,17 @@ def run_analysis(args: argparse.Namespace) -> int:
 def main(argv: Optional[List[str]] = None) -> int:
     args = build_parser().parse_args(argv)
     try:
+        if args.command == "evaluate":
+            data = json.loads(args.cases.read_text(encoding="utf-8"))
+            if not isinstance(data, dict):
+                raise ValueError("evaluation JSON must be an object with a cases list")
+            result = evaluate_rankings(data.get("cases"), args.k)
+            output = json.dumps(result, ensure_ascii=False, indent=2)
+            if args.output:
+                args.output.parent.mkdir(parents=True, exist_ok=True)
+                args.output.write_text(output + "\n", encoding="utf-8")
+            print(output)
+            return 0
         if args.command == "catalog" and args.catalog_command == "import-json":
             with JournalCatalog(args.database) as catalog:
                 imported = sum(catalog.import_json(source) for source in args.source)

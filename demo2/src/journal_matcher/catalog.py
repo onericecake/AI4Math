@@ -10,7 +10,7 @@ from __future__ import annotations
 import json
 import sqlite3
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple, Union
+from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Set, Tuple, Union
 
 from .msc import normalize_msc_code
 from .schemas import JournalCandidate, JournalFieldProfile, RepresentativeArticle
@@ -89,6 +89,13 @@ class JournalCatalog:
         for column in ("technical_level", "audience_breadth"):
             if column not in columns:
                 self.connection.execute("ALTER TABLE journals ADD COLUMN %s TEXT DEFAULT 'unknown'" % column)
+        for table, column, default in (
+            ("journal_msc_stats", "source", "imported"),
+            ("journal_field_profiles", "cache_key", ""),
+        ):
+            columns = {str(row[1]) for row in self.connection.execute("PRAGMA table_info(%s)" % table)}
+            if column not in columns:
+                self.connection.execute("ALTER TABLE %s ADD COLUMN %s TEXT DEFAULT '%s'" % (table, column, default))
         self.connection.commit()
 
     def close(self) -> None:
@@ -193,31 +200,43 @@ class JournalCatalog:
         for index, code in enumerate(value.get("msc_codes", [])):
             self.connection.execute("INSERT OR IGNORE INTO article_msc(article_id,msc_code,is_primary) VALUES(?,?,?)", (article_id, normalize_msc_code(str(code)), 1 if index == 0 else 0))
 
-    def set_stat(self, journal_id: str, prefix: str, count: int, share: float = 0.0) -> None:
+    def set_stat(self, journal_id: str, prefix: str, count: int, share: float = 0.0, source: str = "imported") -> None:
+        if count < 0 or not 0 <= share <= 1:
+            raise ValueError("MSC statistics require a nonnegative count and a share between 0 and 1")
         self.connection.execute(
-            "INSERT OR REPLACE INTO journal_msc_stats(journal_id,msc_prefix,article_count,share) VALUES(?,?,?,?)",
-            (journal_id, normalize_msc_code(prefix), count, share),
+            """INSERT INTO journal_msc_stats(journal_id,msc_prefix,article_count,share,source) VALUES(?,?,?,?,?)
+            ON CONFLICT(journal_id,msc_prefix) DO UPDATE SET
+            article_count=excluded.article_count, share=excluded.share, source=excluded.source
+            WHERE excluded.source='imported' OR journal_msc_stats.source='derived'""",
+            (journal_id, normalize_msc_code(prefix), count, share, source),
         )
 
     def rebuild_statistics(self) -> None:
-        """Compute exact/3-character/2-digit MSC coverage from article records."""
+        """Count distinct articles per prefix, preserving provider aggregates.
 
-        self.connection.execute("DELETE FROM journal_msc_stats")
+        A small local sample must not erase full-corpus statistics on a later
+        import. Legacy aggregates have unknown provenance and are preserved.
+        """
+
+        self.connection.execute("DELETE FROM journal_msc_stats WHERE source='derived'")
         rows = self.connection.execute(
-            "SELECT a.journal_id, m.msc_code, COUNT(*) AS n FROM articles a JOIN article_msc m ON a.article_id=m.article_id WHERE lower(a.article_type) LIKE '%research%' AND lower(a.title) NOT LIKE '%republication%' AND lower(a.title) NOT LIKE '%obituary%' AND lower(a.title) NOT LIKE '%in memoriam%' GROUP BY a.journal_id,m.msc_code"
+            "SELECT a.journal_id, a.article_id, m.msc_code FROM articles a JOIN article_msc m ON a.article_id=m.article_id WHERE lower(a.article_type) LIKE '%research%' AND lower(a.title) NOT LIKE '%republication%' AND lower(a.title) NOT LIKE '%obituary%' AND lower(a.title) NOT LIKE '%in memoriam%' AND lower(a.title) NOT LIKE '%the life and work%'"
         ).fetchall()
-        total_rows = self.connection.execute("SELECT journal_id, COUNT(*) FROM articles WHERE lower(article_type) LIKE '%research%' AND lower(title) NOT LIKE '%republication%' AND lower(title) NOT LIKE '%obituary%' AND lower(title) NOT LIKE '%in memoriam%' GROUP BY journal_id").fetchall()
-        counts: Dict[tuple[str, str], int] = {}
+        total_rows = self.connection.execute("SELECT journal_id, COUNT(*) FROM articles WHERE lower(article_type) LIKE '%research%' AND lower(title) NOT LIKE '%republication%' AND lower(title) NOT LIKE '%obituary%' AND lower(title) NOT LIKE '%in memoriam%' AND lower(title) NOT LIKE '%the life and work%' GROUP BY journal_id").fetchall()
+        counts: Dict[tuple[str, str], Set[str]] = {}
         totals: Dict[str, int] = {str(row[0]): int(row[1]) for row in total_rows}
         for row in rows:
-            journal_id, code, count = str(row[0]), str(row[1]), int(row[2])
+            journal_id, article_id, code = str(row[0]), str(row[1]), str(row[2])
             prefixes = _msc_prefixes(code)
             for prefix in prefixes:
-                counts[(journal_id, prefix)] = counts.get((journal_id, prefix), 0) + count
-        for (journal_id, prefix), count in counts.items():
-            self.set_stat(journal_id, prefix, count, count / max(totals.get(journal_id, 1), 1))
+                counts.setdefault((journal_id, prefix), set()).add(article_id)
+        for (journal_id, prefix), article_ids in counts.items():
+            count = len(article_ids)
+            self.set_stat(journal_id, prefix, count, count / max(totals.get(journal_id, 1), 1), source="derived")
 
-    def find_candidates(self, msc_codes: Sequence[str], limit: int = 24) -> List[JournalCandidate]:
+    def find_candidates(self, msc_codes: Sequence[str], limit: Optional[int] = 24) -> List[JournalCandidate]:
+        if limit is not None and limit <= 0:
+            return []
         codes = [normalize_msc_code(str(code)) for code in msc_codes if code]
         if not codes:
             return []
@@ -227,12 +246,15 @@ class JournalCatalog:
             for prefix in prefixes:
                 matches = self.connection.execute(
                     """SELECT j.*, s.msc_prefix, s.article_count, s.share FROM journals j JOIN journal_msc_stats s ON j.journal_id=s.journal_id
-                    WHERE j.active=1 AND s.msc_prefix=? ORDER BY s.article_count DESC LIMIT ?""",
-                    (prefix, limit),
+                    WHERE j.active=1 AND s.msc_prefix=? AND s.article_count>0
+                    ORDER BY s.article_count DESC, j.journal_id""",
+                    (prefix,),
                 ).fetchall()
                 for row in matches:
                     journal_id = str(row["journal_id"])
-                    tier = "exact-subfield" if prefix == code else ("subfield" if len(prefix) == 3 else "broad-field")
+                    # Specificity belongs to the matched code, regardless of
+                    # whether the query explicitly included its broad parent.
+                    tier = "exact-subfield" if len(prefix) == 5 else ("subfield" if len(prefix) == 3 else "broad-field")
                     if journal_id not in rows:
                         rows[journal_id] = {"row": row, "tier": tier, "codes": set()}
                     else:
@@ -264,11 +286,12 @@ class JournalCatalog:
             matching_codes=codes,
             official_url=row["official_url"],
             scope_summary=str(row["scope_summary"] or ""),
-            representative_articles=self.representative_articles(str(row["journal_id"]), max(codes, key=len) if codes else "", 8),
+            representative_articles=self.representative_articles(str(row["journal_id"]), str(row["msc_prefix"]), 8),
             article_count=int(row["article_count"] or 0),
             matching_share=float(row["share"] or 0.0),
             technical_level=str(row["technical_level"] or "unknown"),
             audience_breadth=str(row["audience_breadth"] or "unknown"),
+            evidence_msc_prefix=str(row["msc_prefix"]),
         )
 
     def representative_articles(self, journal_id: str, msc_prefix: str, limit: int = 8) -> List[RepresentativeArticle]:
@@ -297,20 +320,22 @@ class JournalCatalog:
             for row in rows
         ]
 
-    def get_field_profile(self, journal_id: str, msc_prefix: str) -> Optional[JournalFieldProfile]:
-        row = self.connection.execute("SELECT profile_json FROM journal_field_profiles WHERE journal_id=? AND msc_prefix=?", (journal_id, msc_prefix)).fetchone()
+    def get_field_profile(self, journal_id: str, msc_prefix: str, cache_key: Optional[str] = None) -> Optional[JournalFieldProfile]:
+        row = self.connection.execute("SELECT profile_json, cache_key FROM journal_field_profiles WHERE journal_id=? AND msc_prefix=?", (journal_id, msc_prefix)).fetchone()
         if not row:
+            return None
+        if cache_key is not None and row["cache_key"] != cache_key:
             return None
         value = json.loads(row[0])
         return JournalFieldProfile(journal_id=journal_id, msc_prefix=msc_prefix, **value)
 
-    def save_field_profile(self, profile: JournalFieldProfile, generated_at: str = "") -> None:
+    def save_field_profile(self, profile: JournalFieldProfile, generated_at: str = "", cache_key: str = "") -> None:
         value = profile.to_dict().copy()
         value.pop("journal_id", None)
         value.pop("msc_prefix", None)
         self.connection.execute(
-            "INSERT OR REPLACE INTO journal_field_profiles(journal_id,msc_prefix,profile_json,generated_at) VALUES(?,?,?,?)",
-            (profile.journal_id, profile.msc_prefix, json.dumps(value, ensure_ascii=False), generated_at),
+            "INSERT OR REPLACE INTO journal_field_profiles(journal_id,msc_prefix,profile_json,generated_at,cache_key) VALUES(?,?,?,?,?)",
+            (profile.journal_id, profile.msc_prefix, json.dumps(value, ensure_ascii=False), generated_at, cache_key),
         )
         self.connection.commit()
 

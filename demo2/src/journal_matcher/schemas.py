@@ -106,6 +106,8 @@ class JournalCandidate:
     audience_breadth: str = "unknown"
     match_score: float = 0.0
     level_distance: Optional[int] = None
+    evidence_msc_prefix: str = ""
+    score_components: Dict[str, float] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         value = asdict(self)
@@ -142,6 +144,9 @@ class Recommendation:
     important_mismatch: str = ""
     submission_emphasis: str = ""
     match_score: float = 0.0
+    official_url: Optional[str] = None
+    representative_articles: List[RepresentativeArticle] = field(default_factory=list)
+    score_components: Dict[str, float] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -153,6 +158,7 @@ class MatchReport:
     profile: ArticleProfile
     recommendations: List[Recommendation]
     catalog_limitations: List[str] = field(default_factory=list)
+    ranked_candidates: List[JournalCandidate] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -160,4 +166,5 @@ class MatchReport:
             "profile": self.profile.to_dict(),
             "recommendations": [item.to_dict() for item in self.recommendations],
             "catalog_limitations": self.catalog_limitations,
+            "ranked_candidates": [item.to_dict() for item in self.ranked_candidates],
         }

@@ -1,0 +1,17 @@
+{
+  "description": "Synthetic metric demonstration only; these are fictional journal IDs, not validation of matching quality.",
+  "cases": [
+    {
+      "paper_id": "synthetic-graph-paper",
+      "relevant_journal_ids": ["specialist-a", "general-b"],
+      "candidate_journal_ids": ["specialist-a", "general-b", "irrelevant-c"],
+      "ranked_journal_ids": ["irrelevant-c", "specialist-a", "general-b"]
+    },
+    {
+      "paper_id": "synthetic-abstention",
+      "relevant_journal_ids": ["specialist-d"],
+      "candidate_journal_ids": [],
+      "ranked_journal_ids": []
+    }
+  ]
+}

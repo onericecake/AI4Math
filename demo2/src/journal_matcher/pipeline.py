@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import datetime as _datetime
+import hashlib
 import math
 import re
 from dataclasses import replace
@@ -15,6 +16,15 @@ from .prompts import (
     central_results_prompt,
     journal_field_profile_prompt,
     journal_match_prompt,
+)
+from .schemas import (
+    ArticleProfile,
+    ExtractedManuscript,
+    JournalCandidate,
+    JournalFieldProfile,
+    MSCClassification,
+    MatchReport,
+    Recommendation,
 )
 
 
@@ -51,15 +61,15 @@ def _tokens(value: str) -> set[str]:
 
 def _level_range(values: Iterable[Any]) -> List[int]:
     return sorted({_LEVELS[level] for value in values if (level := _normalize_level(value)) != "unknown"})
-from .schemas import (
-    ArticleProfile,
-    ExtractedManuscript,
-    JournalCandidate,
-    JournalFieldProfile,
-    MSCClassification,
-    MatchReport,
-    Recommendation,
-)
+
+
+def _strings(value: Any) -> List[str]:
+    return [item for item in value if isinstance(item, str) and item.strip()] if isinstance(value, list) else []
+
+
+def _evidence_ids(value: Any, candidate: JournalCandidate) -> List[str]:
+    known = {item.article_id for item in candidate.representative_articles}
+    return list(dict.fromkeys(item for item in _strings(value) if item in known))
 
 
 class JournalMatcher:
@@ -77,7 +87,7 @@ class JournalMatcher:
         valid_ids = {item.result_id for item in manuscript.theorems}
         candidates = []
         for item in value.get("candidates", []):
-            if isinstance(item, Mapping) and (not valid_ids or str(item.get("result_id", "")) in valid_ids):
+            if isinstance(item, Mapping) and str(item.get("result_id", "")) in valid_ids:
                 candidates.append(dict(item))
         return {"candidates": candidates, "uncertainties": list(value.get("uncertainties", []))}
 
@@ -86,6 +96,10 @@ class JournalMatcher:
         value = self.model.complete_json(broad_msc_prompt(manuscript, context, central_result_ids, central_result_text))
         if not isinstance(value, Mapping):
             raise ValueError("broad MSC response must be a JSON object")
+        for item in value.get("broad_fields", []):
+            classification = self._classification(item, "secondary")
+            if classification and len(classification.code) != 2:
+                raise ValueError("broad MSC classification must use two-digit codes")
         return dict(value)
 
     def build_profile(
@@ -117,6 +131,16 @@ class JournalMatcher:
         if not isinstance(value, Mapping):
             raise ValueError("article profile response must be a JSON object")
         profile = self._profile_from_json(value, broad_items)
+        # The matching prompt consumes the profile, not the original manuscript.
+        # Carry confirmed statements forward instead of trusting an optional
+        # model field that the profile response schema does not request.
+        selected_ids = set(central_result_ids)
+        profile.central_results = [
+            {"result_id": item.result_id, "statement": item.statement}
+            for item in manuscript.theorems if item.result_id in selected_ids
+        ]
+        if not profile.central_results and central_result_text:
+            profile.central_results = [{"result_id": "author-supplied", "statement": central_result_text}]
         if not profile.keywords:
             source = " ".join(
                 [manuscript.title, manuscript.abstract, manuscript.introduction]
@@ -126,12 +150,17 @@ class JournalMatcher:
         return profile
 
     def candidates(self, profile: ArticleProfile, limit: int = 24) -> List[JournalCandidate]:
+        if limit <= 0:
+            return []
         codes = []
         if profile.primary_msc:
             codes.append(profile.primary_msc.code)
         codes.extend(item.code for item in profile.secondary_msc)
         codes.extend(item.code for item in profile.broad_fields)
-        return self.catalog.find_candidates(codes, limit=limit)
+        # Rank the entire MSC pool before the expensive model profiling stage.
+        # A volume-only top-24 cutoff otherwise hides smaller relevant venues.
+        pool = self.catalog.find_candidates(codes, limit=None)
+        return self.rank_candidates(profile, pool, [])[:limit]
 
     def rank_candidates(
         self,
@@ -176,25 +205,31 @@ class JournalMatcher:
             for article in candidate.representative_articles:
                 corpus.update(_tokens(article.title + " " + article.abstract))
             lexical_score = len(query & corpus) / max(len(query), 1)
-            evidence_count = max(candidate.article_count, len(candidate.representative_articles))
+            # Registry totals establish coverage, not the amount of readable
+            # evidence actually available to the model for judging level.
+            evidence_count = len(candidate.representative_articles)
             evidence_score = min(1.0, math.log1p(evidence_count) / math.log1p(20))
             confidence = confidence_scores.get(field.confidence if field else "low", 0.45)
-            score = (
-                0.30 * tier_scores.get(candidate.tier, 0.4)
-                + 0.28 * depth_score
-                + 0.14 * breadth_score
-                + 0.16 * lexical_score
-                + 0.07 * evidence_score
-                + 0.05 * confidence
-            )
-            ranked.append(replace(candidate, match_score=round(score, 4), level_distance=level_distance))
+            components = {
+                "msc_specificity": 0.30 * tier_scores.get(candidate.tier, 0.4),
+                "technical_depth": 0.28 * depth_score,
+                "audience_breadth": 0.14 * breadth_score,
+                "text_overlap": 0.16 * lexical_score,
+                "available_evidence": 0.07 * evidence_score,
+                "profile_confidence": 0.05 * confidence,
+            }
+            ranked.append(replace(candidate, match_score=round(sum(components.values()), 4),
+                                  score_components=components, level_distance=level_distance))
         return sorted(ranked, key=lambda item: (-item.match_score, item.name.casefold(), item.journal_id))
 
     def profile_journals(self, profile: ArticleProfile, candidates: Sequence[JournalCandidate]) -> List[JournalFieldProfile]:
         prefix = profile.primary_msc.code if profile.primary_msc else (profile.broad_fields[0].code if profile.broad_fields else "")
         profiles: List[JournalFieldProfile] = []
         for candidate in candidates:
-            cached = self.catalog.get_field_profile(candidate.journal_id, prefix) if prefix else None
+            prompt = journal_field_profile_prompt(profile, candidate)
+            model_identity = "%s.%s:%s" % (type(self.model).__module__, type(self.model).__qualname__, getattr(self.model, "model", ""))
+            cache_key = hashlib.sha256(("field-profile-v2\n" + model_identity + "\n" + prompt).encode("utf-8")).hexdigest()
+            cached = self.catalog.get_field_profile(candidate.journal_id, prefix, cache_key) if prefix else None
             if cached:
                 profiles.append(cached)
                 continue
@@ -207,26 +242,31 @@ class JournalMatcher:
                     confidence="low",
                 )
             else:
-                value = self.model.complete_json(journal_field_profile_prompt(profile, candidate))
+                value = self.model.complete_json(prompt)
                 if not isinstance(value, Mapping):
                     raise ValueError("journal field profile response must be a JSON object")
                 field_profile = JournalFieldProfile(
                     journal_id=candidate.journal_id,
                     msc_prefix=prefix,
-                    typical_contributions=list(value.get("typical_contributions", [])),
-                    technical_depth_range=list(value.get("technical_depth_range", [])),
+                    typical_contributions=_strings(value.get("typical_contributions")),
+                    technical_depth_range=_strings(value.get("technical_depth_range")),
                     typical_audience=str(value.get("typical_audience", "unknown")),
                     breadth=str(value.get("breadth", "unknown")),
                     conceptual_character=str(value.get("conceptual_character", "unknown")),
                     article_shape=str(value.get("article_shape", "unknown")),
-                    representative_article_ids=list(value.get("representative_article_ids", [])),
+                    representative_article_ids=_evidence_ids(value.get("representative_article_ids"), candidate),
                     confidence=str(value.get("confidence", "medium")),
                 )
                 if not field_profile.technical_depth_range and _normalize_level(candidate.technical_level) != "unknown":
                     field_profile.technical_depth_range = [candidate.technical_level]
                 if field_profile.breadth == "unknown":
                     field_profile.breadth = _normalize_breadth(candidate.audience_breadth)
-            self.catalog.save_field_profile(field_profile, _datetime.datetime.utcnow().isoformat() + "Z")
+                if not field_profile.representative_article_ids or not any(
+                    article.abstract.strip() for article in candidate.representative_articles
+                    if article.article_id in field_profile.representative_article_ids
+                ):
+                    field_profile.confidence = "low"
+            self.catalog.save_field_profile(field_profile, _datetime.datetime.utcnow().isoformat() + "Z", cache_key)
             profiles.append(field_profile)
         return profiles
 
@@ -235,18 +275,23 @@ class JournalMatcher:
         # A dozen evidence-backed candidates keeps the prompt small while
         # leaving enough alternatives for broad or interdisciplinary papers.
         ranked_candidates = ranked_candidates[:12]
+        if not ranked_candidates:
+            return MatchReport(central_result_text, profile, [], ["The catalog contains no journals with MSC evidence for the confirmed area."])
+        known = {candidate.journal_id: candidate for candidate in ranked_candidates}
+        fields = {item.journal_id: item for item in field_profiles if item.journal_id in known}
         value = self.model.complete_json(
             journal_match_prompt(
                 profile,
                 [candidate.to_dict() for candidate in ranked_candidates],
-                [item.to_dict() for item in field_profiles],
+                [item.to_dict() for item in fields.values()],
             )
         )
-        known = {candidate.journal_id: candidate for candidate in ranked_candidates}
         rank_index = {candidate.journal_id: index for index, candidate in enumerate(ranked_candidates)}
         recommendations: List[Recommendation] = []
+        validation_notes: List[str] = []
         seen = set()
-        for item in value.get("recommendations", []) if isinstance(value, Mapping) else []:
+        proposals = value.get("recommendations", []) if isinstance(value, Mapping) else []
+        for item in proposals if isinstance(proposals, list) else []:
             if not isinstance(item, Mapping):
                 continue
             journal_id = str(item.get("journal_id", ""))
@@ -254,22 +299,52 @@ class JournalMatcher:
                 continue
             seen.add(journal_id)
             candidate = known[journal_id]
+            evidence_ids = _evidence_ids(item.get("representative_article_ids"), candidate)
+            if evidence_ids != _strings(item.get("representative_article_ids", [])):
+                validation_notes.append("%s: removed unknown, duplicate, or other-journal article citations." % candidate.name)
+            fit = str(item.get("fit", "insufficient information"))
+            if fit not in {"strong match", "plausible match", "weak match", "insufficient information"}:
+                fit = "insufficient information"
+            field = fields.get(journal_id)
+            if not evidence_ids:
+                fit = "insufficient information"
+                validation_notes.append("%s: no valid article citations support this recommendation; subject coverage alone does not establish editorial fit." % candidate.name)
+            elif fit == "strong match" and (
+                candidate.level_distance != 0 or not field or field.confidence != "high"
+                or not any(article.abstract.strip() for article in candidate.representative_articles if article.article_id in evidence_ids)
+            ):
+                fit = "plausible match"
+                validation_notes.append("%s: strong-fit claim reduced because level or article evidence is limited." % candidate.name)
+            level_fit = str(item.get("level_fit", "insufficient information"))
+            if level_fit not in {"closely aligned", "narrower than typical", "broader than typical", "technically different", "insufficient information"}:
+                level_fit = "insufficient information"
+            if candidate.level_distance is None or not evidence_ids or not field or field.confidence == "low":
+                level_fit = "insufficient information"
+            elif level_fit == "closely aligned" and candidate.level_distance != 0:
+                level_fit = "technically different"
             recommendations.append(
                 Recommendation(
                     role=str(item.get("role", "")),
                     journal_id=journal_id,
                     journal_name=candidate.name,
-                    fit=str(item.get("fit", "insufficient information")),
-                    reasons=[str(reason) for reason in item.get("reasons", [])],
-                    level_fit=str(item.get("level_fit", "insufficient information")),
-                    representative_article_ids=[str(article_id) for article_id in item.get("representative_article_ids", [])],
+                    fit=fit,
+                    reasons=_strings(item.get("reasons", [])),
+                    level_fit=level_fit,
+                    representative_article_ids=evidence_ids,
                     important_mismatch=str(item.get("important_mismatch", "")),
                     submission_emphasis=str(item.get("submission_emphasis", "")),
                     match_score=candidate.match_score,
+                    official_url=candidate.official_url,
+                    representative_articles=[article for article in candidate.representative_articles if article.article_id in evidence_ids],
+                    score_components=candidate.score_components,
                 )
             )
         recommendations.sort(key=lambda item: rank_index.get(item.journal_id, len(rank_index)))
+        recommendations = recommendations[:3]
         for index, item in enumerate(recommendations):
+            if item.fit == "insufficient information":
+                item.role = "subject-only lead; editorial fit unverified"
+                continue
             if index == 0:
                 item.role = "closest field-and-level match"
                 continue
@@ -277,27 +352,31 @@ class JournalMatcher:
             breadth = _BREADTHS.get(_normalize_breadth(candidate.audience_breadth), 0)
             article_breadth = _BREADTHS.get(_normalize_breadth(profile.audience_breadth), 0)
             item.role = "broader-audience alternative" if candidate.tier == "broad-field" or breadth > article_breadth else "more specialized alternative"
-        limitations = [str(item) for item in value.get("limitations", [])] if isinstance(value, Mapping) else ["The matching model returned no usable recommendations."]
-        if not ranked_candidates:
-            limitations.append("The catalog contains no journals with recent evidence for the confirmed MSC area.")
-        else:
-            usable_articles = sum(
-                1
-                for candidate in ranked_candidates
-                for article in candidate.representative_articles
-                if article.title and (article.abstract or article.msc_codes)
-            )
-            if usable_articles < min(3, len(ranked_candidates)):
-                limitations.append("Journal level ranking is based on sparse article evidence for this field.")
-        return MatchReport(central_result_text=central_result_text, profile=profile, recommendations=recommendations, catalog_limitations=limitations)
+        limitations = _strings(value.get("limitations", [])) if isinstance(value, Mapping) else []
+        limitations.extend(validation_notes)
+        limitations.append("Ranking scores use uncalibrated heuristic weights; they are not probabilities of acceptance or editorial suitability.")
+        if not recommendations:
+            limitations.append("The matching model returned no usable recommendations.")
+        usable_articles = sum(
+            1
+            for candidate in ranked_candidates
+            for article in candidate.representative_articles
+            if article.title and article.abstract.strip()
+        )
+        if usable_articles < min(3, len(ranked_candidates)):
+            limitations.append("Journal level ranking is based on sparse article evidence for this field.")
+        return MatchReport(central_result_text=central_result_text, profile=profile, recommendations=recommendations, catalog_limitations=limitations, ranked_candidates=ranked_candidates)
 
-    @staticmethod
-    def _classification(value: Any, role: str) -> Optional[MSCClassification]:
+    def _classification(self, value: Any, role: str) -> Optional[MSCClassification]:
         if not isinstance(value, Mapping) or not value.get("code"):
             return None
+        code = normalize_msc_code(str(value["code"]))
+        entry = self.taxonomy.get(code)
+        if entry is None:
+            raise ValueError("MSC code %s is not in the loaded taxonomy" % code)
         return MSCClassification(
-            code=normalize_msc_code(str(value.get("code", ""))),
-            name=str(value.get("name", "")),
+            code=code,
+            name=entry.name,
             role=role,
             confidence=str(value.get("confidence", "medium")),
             evidence=[str(item) for item in value.get("evidence", [])],
@@ -313,12 +392,16 @@ class JournalMatcher:
             parsed = self._classification(item, str(item.get("role", "secondary")) if isinstance(item, Mapping) else "secondary")
             if parsed:
                 broad.append(parsed)
+        if any(len(item.code) != 2 for item in broad):
+            raise ValueError("broad MSC classification must use two-digit codes")
         primary = self._classification(value.get("primary_msc"), "primary")
         secondary: List[MSCClassification] = []
         for item in value.get("secondary_msc", []):
             parsed = self._classification(item, "secondary")
             if parsed:
                 secondary.append(parsed)
+        if any(len(item.code) != 5 for item in ([primary] if primary else []) + secondary):
+            raise ValueError("primary and secondary MSC classifications must use detailed five-character codes")
         return ArticleProfile(
             central_results=list(value.get("central_results", [])),
             broad_fields=broad,

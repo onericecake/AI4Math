@@ -82,6 +82,13 @@ class HeuristicJSONModel:
 
     def complete_json(self, prompt: str) -> Any:
         lower = prompt.lower()
+        # Taxonomy option descriptions are not manuscript evidence. With the
+        # complete taxonomy, matching against the whole prompt classifies an
+        # arbitrary article as geometry just because an option says "contact".
+        manuscript_lower = prompt.split("MANUSCRIPT\n", 1)[-1].lower()
+        def has_keyword(keyword: str) -> bool:
+            # "graph" must not match the BIBLIOGRAPHY evidence heading.
+            return re.search(r"\b" + re.escape(keyword) + r"s?\b", manuscript_lower) is not None
         if "identify the central theorem" in lower:
             # Restrict marker parsing to manuscript evidence; the JSON schema
             # itself contains a ``high|medium|low`` pipe-separated example.
@@ -101,12 +108,12 @@ class HeuristicJSONModel:
             fields = []
             seen = set()
             for key, (code, name) in self._BROAD.items():
-                if key in lower and code not in seen:
+                if has_keyword(key) and code not in seen:
                     fields.append({"code": code, "name": name, "role": "primary" if not fields else "secondary", "confidence": "medium", "evidence": ["Keyword evidence in extracted manuscript."]})
                     seen.add(code)
             return {"broad_fields": fields[:3], "uncertainties": ["Offline heuristic; detailed MSC confirmation is required."]}
         if "classifying an unpublished mathematics article" in lower:
-            if any(key in lower for key in ("legendrian", "symplectic", "contact", "lagrangian", "ruling polynomial")):
+            if any(has_keyword(key) for key in ("legendrian", "symplectic", "contact", "lagrangian", "ruling polynomial")):
                 return {
                     "broad_fields": [
                         {"code": "53", "name": "Differential geometry", "role": "primary"},
@@ -133,7 +140,7 @@ class HeuristicJSONModel:
                     "audience_breadth": "subfield",
                     "uncertainties": ["This is an offline heuristic profile with limited subject coverage."],
                 }
-            if any(key in lower for key in ("extremal graph", "graph", "graph bound", "graph family")):
+            if any(has_keyword(key) for key in ("extremal graph", "graph", "graph bound", "graph family")):
                 return {
                     "broad_fields": [{"code": "05", "name": "Combinatorics", "role": "primary"}],
                     "primary_msc": {

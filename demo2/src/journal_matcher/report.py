@@ -47,6 +47,7 @@ def render_markdown(report: MatchReport) -> str:
                 "Role: " + item.role,
                 "Level fit: " + item.level_fit,
                 "Ranking score (relative): " + ("%.3f" % item.match_score if item.match_score else "Unavailable"),
+                "Score components (weighted): " + (", ".join("%s=%.3f" % (key, value) for key, value in item.score_components.items()) or "Unavailable"),
                 "Why: " + (" ".join(item.reasons) or "No reasons returned."),
                 "Important mismatch: " + (item.important_mismatch or "None recorded."),
                 "Submission emphasis: " + (item.submission_emphasis or "None recorded."),
@@ -54,6 +55,12 @@ def render_markdown(report: MatchReport) -> str:
                 "",
             ]
         )
+        if item.official_url:
+            lines.extend(["Journal website: " + item.official_url, ""])
+        for article in item.representative_articles:
+            lines.append("- %s (%s), %s. %s" % (article.title, article.year or "year unknown", article.article_id, article.source_url or ("https://doi.org/" + article.doi if article.doi else "No source link supplied.")))
+        if item.representative_articles:
+            lines.append("")
     if report.catalog_limitations:
         lines.extend(["## Limitations", ""])
         lines.extend("- " + item for item in report.catalog_limitations)
