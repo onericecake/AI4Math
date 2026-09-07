@@ -1,0 +1,34 @@
+[
+  {
+    "before": "output/journal-matcher-upgrade/verified/hybrid",
+    "after": "output/journal-matcher-top3/verified/pilot-hybrid",
+    "all_rankings_preserved": true
+  },
+  {
+    "before": "output/journal-matcher-top3/validation-old",
+    "after": "output/journal-matcher-top3/verified/validation-hybrid",
+    "all_rankings_preserved": true
+  },
+  {
+    "before": "output/journal-matcher-top3/pilot-v1",
+    "after": "output/journal-matcher-top3/verified/pilot-focused",
+    "all_rankings_preserved": true
+  },
+  {
+    "before": "output/journal-matcher-top3/validation-new",
+    "after": "output/journal-matcher-top3/verified/validation-focused",
+    "all_rankings_preserved": true
+  },
+  {
+    "ablation": "pilot-no-title",
+    "cases": 12,
+    "unchanged_top3_order": 12,
+    "unchanged_ranking100": 7
+  },
+  {
+    "ablation": "pilot-shuffled",
+    "cases": 12,
+    "unchanged_top3_order": 12,
+    "unchanged_ranking100": 12
+  }
+]

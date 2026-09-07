@@ -1,0 +1,7 @@
+{
+  "openalex_harvest.py": "1f35236b6fc25544e558c4a040f5ba5c629e58ced88470022b7e8bf23f2ab975",
+  "venue_learning.py": "a46a9ff2185a33100457b2d5ade54abf0f497ed32e3676f6e53b872a7ee46941",
+  "venue_experiment.py": "5bfdcb570d77b0c9ba4fc294ea884aa1f45ece4b465efedcf78baaaacc6370bf",
+  "corpus.py": "bf86e260e13f5de0babb9804b016563d0ebc60c12dd964e8f4fa717ad684f184",
+  "retrieval.py": "ebbc1918d91a7888c085f860a25ffca47db870c75e1fba032de85df359e96bdf"
+}

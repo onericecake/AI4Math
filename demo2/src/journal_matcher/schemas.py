@@ -67,6 +67,7 @@ class ArticleProfile:
     audience_breadth: str = "unknown"
     keywords: List[str] = field(default_factory=list)
     uncertainties: List[str] = field(default_factory=list)
+    retrieval_text: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
         value = asdict(self)
@@ -86,6 +87,11 @@ class RepresentativeArticle:
     doi: Optional[str] = None
     source_url: Optional[str] = None
     article_type: str = "research article"
+    introduction: str = ""
+    central_results: List[Dict[str, Any]] = field(default_factory=list)
+    authors: List[str] = field(default_factory=list)
+    license: str = ""
+    license_url: str = ""
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -108,6 +114,11 @@ class JournalCandidate:
     level_distance: Optional[int] = None
     evidence_msc_prefix: str = ""
     score_components: Dict[str, float] = field(default_factory=dict)
+    retrieval_scores: Dict[str, float] = field(default_factory=dict)
+    retrieval_sources: List[str] = field(default_factory=list)
+    scope_url: Optional[str] = None
+    scope_breadth: str = "unknown"
+    editorial_evidence: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         value = asdict(self)

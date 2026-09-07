@@ -1,0 +1,294 @@
+[
+  {
+    "paper_id": "p01",
+    "title": "Many equiprojective polytopes",
+    "arxiv_id": "2307.11366",
+    "doi": "10.1007/s00454-024-00681-7"
+  },
+  {
+    "paper_id": "p02",
+    "title": "Diameter estimates for graph associahedra",
+    "arxiv_id": "2106.16130",
+    "doi": "10.1007/s00026-022-00598-z"
+  },
+  {
+    "paper_id": "p03",
+    "title": "Effective upper bounds on the number of resonance in potential scattering",
+    "arxiv_id": "2209.06079",
+    "doi": "10.1112/mtk.70000"
+  },
+  {
+    "paper_id": "p04",
+    "title": "Observables on multisymplectic manifolds and higher Courant algebroids",
+    "arxiv_id": "2209.05836",
+    "doi": "10.1142/S0219199725500063"
+  },
+  {
+    "paper_id": "p05",
+    "title": "HODLR$d$D: A new Black-box fast algorithm for $N$-body problems in $d$-dimensions with guaranteed error bounds",
+    "arxiv_id": "2209.05819",
+    "doi": "10.1016/j.jcp.2024.112786"
+  },
+  {
+    "paper_id": "p06",
+    "title": "Artin Twin Primes",
+    "arxiv_id": "2010.15988",
+    "doi": "10.1016/j.jnt.2022.10.006"
+  },
+  {
+    "paper_id": "p07",
+    "title": "A limit law for the most favorite point of simple random walk on a regular tree",
+    "arxiv_id": "2111.09513",
+    "doi": "10.1214/23-AOP1644"
+  },
+  {
+    "paper_id": "p08",
+    "title": "Fröberg's Theorem, vertex splittability and higher independence complexes",
+    "arxiv_id": "2311.02430",
+    "doi": "10.1216/jca.2024.16.391"
+  },
+  {
+    "paper_id": "p09",
+    "title": "A note on knot Floer homology of satellite knots with (1,1)-patterns",
+    "arxiv_id": "2207.01787",
+    "doi": "10.2140/agt.2025.25.3271"
+  },
+  {
+    "paper_id": "p10",
+    "title": "A feasible method for general convex low-rank SDP problems",
+    "arxiv_id": "2312.07908",
+    "doi": "10.1137/23M1561464"
+  },
+  {
+    "paper_id": "p11",
+    "title": "Well-posedness and stability for a class of fourth-order nonlinear parabolic equations",
+    "arxiv_id": "2308.08398",
+    "doi": "10.1016/j.jde.2024.01.038"
+  },
+  {
+    "paper_id": "p12",
+    "title": "A supervised deep learning method for nonparametric density estimation",
+    "arxiv_id": "2306.10471",
+    "doi": "10.1214/24-EJS2332"
+  },
+  {
+    "paper_id": "v01",
+    "title": "The Wehrheim-Woodward category of linear canonical relations between \\(G\\)-spaces",
+    "doi": "10.3842/SIGMA.2024.101"
+  },
+  {
+    "paper_id": "v02",
+    "title": "Simple \\(\\mathcal{D}\\)-module components of local cohomology modules",
+    "doi": "10.1016/j.jalgebra.2018.09.005"
+  },
+  {
+    "paper_id": "v03",
+    "title": "Early developments in geometric measure theory",
+    "doi": "10.1512/iumj.2020.69.8229"
+  },
+  {
+    "paper_id": "v04",
+    "title": "A note on second derivative estimates for Monge-Ampère-type equations",
+    "doi": "10.1515/ans-2022-0036"
+  },
+  {
+    "paper_id": "v05",
+    "title": "Remarks on affine Springer fibres",
+    "doi": "10.21915/BIMAS.2020101"
+  },
+  {
+    "paper_id": "v06",
+    "title": "Extended physics-informed neural networks (XPINNs): a generalized space-time domain decomposition based deep learning framework for nonlinear partial differential equations",
+    "doi": "10.4208/cicp.OA-2020-0164"
+  },
+  {
+    "paper_id": "v07",
+    "title": "Opérateurs hypofermés",
+    "doi": "10.7900/jot.2023nov13.2451"
+  },
+  {
+    "paper_id": "v08",
+    "title": "Boundary unique continuation on \\(C^1\\)-Dini domains and the size of the singular set",
+    "doi": "10.1007/s00205-022-01771-7"
+  },
+  {
+    "paper_id": "v09",
+    "title": "A Teichmüller space for negatively curved surfaces",
+    "doi": "10.1112/plms.12502"
+  },
+  {
+    "paper_id": "v10",
+    "title": "The legacy of the Cartwright-Littlewood collaboration",
+    "doi": "10.1112/jlms.70377"
+  },
+  {
+    "paper_id": "v11",
+    "title": "Carleson measure estimates and \\(\\varepsilon\\)-approximation for bounded harmonic functions, without Ahlfors regularity assumptions",
+    "doi": "10.4171/RMI/1288"
+  },
+  {
+    "paper_id": "v12",
+    "title": "On tau-functions for the KdV hierarchy",
+    "doi": "10.1007/s00029-021-00620-x"
+  },
+  {
+    "paper_id": "v13",
+    "title": "\\textit{IP}-systems and recurrence in ergodic theory: an update",
+    "doi": "10.1007/s11856-022-2435-y"
+  },
+  {
+    "paper_id": "v14",
+    "title": "Graphical enumeration and stained glass windows. I: Rectangular grids",
+    "doi": "10.5281/zenodo.10687774"
+  },
+  {
+    "paper_id": "v15",
+    "title": "Heat expansion and zeta",
+    "doi": "10.1007/s43034-024-00358-5"
+  },
+  {
+    "paper_id": "v16",
+    "title": "Discrete quantitative nodal theorem",
+    "doi": "10.37236/9944"
+  },
+  {
+    "paper_id": "v17",
+    "title": "On absolute algebraic geometry the affine case",
+    "doi": "10.1016/j.aim.2021.107909"
+  },
+  {
+    "paper_id": "v18",
+    "title": "Mapping properties of Fourier transforms",
+    "doi": "10.4171/ZAA/1697"
+  },
+  {
+    "paper_id": "v19",
+    "title": "Riemann-Roch for \\(\\overline{\\operatorname{Spec}\\mathbb{Z}}\\)",
+    "doi": "10.1016/j.bulsci.2023.103293"
+  },
+  {
+    "paper_id": "v20",
+    "title": "A remark on calibrations and Lie groups",
+    "doi": "10.4310/PAMQ.2023.v19.n6.a2"
+  },
+  {
+    "paper_id": "v21",
+    "title": "Moment maps, nonlinear PDE and stability in mirror symmetry. I: Geodesics",
+    "doi": "10.1007/s40818-021-00100-7"
+  },
+  {
+    "paper_id": "v22",
+    "title": "Quasi-cyclic modules and coregular sequences",
+    "doi": "10.1007/s00209-020-02676-5"
+  },
+  {
+    "paper_id": "v23",
+    "title": "Compact graphings",
+    "doi": "10.1007/s10474-019-01010-8"
+  },
+  {
+    "paper_id": "v24",
+    "title": "Zeros of characters",
+    "doi": "10.4171/LEM/1095"
+  },
+  {
+    "paper_id": "online01",
+    "title": "Cylinders in canonical del Pezzo fibrations",
+    "doi": "10.5802/aif.3573"
+  },
+  {
+    "paper_id": "online02",
+    "title": "Triple operator version of the Golden-Thompson inequality for traces on von Neumann algebras",
+    "doi": "10.5802/aif.3575"
+  },
+  {
+    "paper_id": "online03",
+    "title": "Wild monodromy of the Fifth Painlevé equation and its action on wild character variety: an approach of confluence",
+    "doi": "10.5802/aif.3579"
+  },
+  {
+    "paper_id": "online04",
+    "title": "Circumcenter extension of Moebius maps to $\\mathrm{CAT}(-1)$ spaces",
+    "doi": "10.5802/aif.3582"
+  },
+  {
+    "paper_id": "online05",
+    "title": "The Intrinsic Normal Cone for Artin Stacks",
+    "doi": "10.5802/aif.3583"
+  },
+  {
+    "paper_id": "online06",
+    "title": "Doubly transitive lines II: Almost simple symmetries",
+    "doi": "10.5802/alco.324"
+  },
+  {
+    "paper_id": "online07",
+    "title": "Simplicial resolutions of powers of square-free monomial ideals",
+    "doi": "10.5802/alco.325"
+  },
+  {
+    "paper_id": "online08",
+    "title": "On intersections and stable intersections of tropical hypersurfaces",
+    "doi": "10.5802/alco.327"
+  },
+  {
+    "paper_id": "online09",
+    "title": "Toric varieties with ample tangent bundle",
+    "doi": "10.5802/alco.328"
+  },
+  {
+    "paper_id": "online10",
+    "title": "Combinatorics of the Delta conjecture at $q=-1$",
+    "doi": "10.5802/alco.329"
+  },
+  {
+    "paper_id": "online11",
+    "title": "Values of $E$-functions are not Liouville numbers",
+    "doi": "10.5802/jep.249"
+  },
+  {
+    "paper_id": "online12",
+    "title": "On the polygonal Faber-Krahn inequality",
+    "doi": "10.5802/jep.250"
+  },
+  {
+    "paper_id": "online13",
+    "title": "Hyperbola method on toric varieties",
+    "doi": "10.5802/jep.251"
+  },
+  {
+    "paper_id": "online14",
+    "title": "Invariant submanifolds of conformal symplectic dynamics",
+    "doi": "10.5802/jep.252"
+  },
+  {
+    "paper_id": "online15",
+    "title": "Purity and quasi-split torsors over Prüfer bases",
+    "doi": "10.5802/jep.253"
+  },
+  {
+    "paper_id": "online16",
+    "title": "A Beilinson–Bernstein Theorem for Twisted Arithmetic Differential Operators on the Formal Flag Variety",
+    "doi": "10.5802/jtnb.1272"
+  },
+  {
+    "paper_id": "online17",
+    "title": "Extensions of mod $p$ representations of division algebras",
+    "doi": "10.5802/jtnb.1273"
+  },
+  {
+    "paper_id": "online18",
+    "title": "Sur la fonction Delta de Hooley associée à des caractères",
+    "doi": "10.5802/jtnb.1274"
+  },
+  {
+    "paper_id": "online19",
+    "title": "On discrepancy, intrinsic Diophantine approximation, and spectral gaps",
+    "doi": "10.5802/jtnb.1275"
+  },
+  {
+    "paper_id": "online20",
+    "title": "Étude du graphe divisoriel 5",
+    "doi": "10.5802/jtnb.1276"
+  }
+]

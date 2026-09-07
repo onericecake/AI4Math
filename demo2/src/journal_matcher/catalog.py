@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence, Set, Tuple, Union
 
 from .msc import normalize_msc_code
+from .corpus import identifiers, normalize_doi, normalize_date, eligible_research
 from .schemas import JournalCandidate, JournalFieldProfile, RepresentativeArticle
 
 
@@ -63,6 +64,16 @@ CREATE TABLE IF NOT EXISTS journal_field_profiles (
 );
 CREATE INDEX IF NOT EXISTS idx_journal_msc_prefix ON journal_msc_stats(msc_prefix);
 CREATE INDEX IF NOT EXISTS idx_article_msc_code ON article_msc(msc_code);
+CREATE INDEX IF NOT EXISTS idx_articles_journal ON articles(journal_id);
+CREATE TABLE IF NOT EXISTS article_identifiers (
+    identifier TEXT PRIMARY KEY,
+    article_id TEXT NOT NULL REFERENCES articles(article_id)
+);
+CREATE TABLE IF NOT EXISTS text_embeddings (
+    cache_key TEXT PRIMARY KEY,
+    vector_json TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_article_identifiers_article ON article_identifiers(article_id);
 """
 
 
@@ -83,6 +94,7 @@ class JournalCatalog:
         self.connection = sqlite3.connect(str(self.path))
         self.connection.row_factory = sqlite3.Row
         self._journal_aliases: Dict[str, str] = {}
+        self.revision = 0
         self.connection.executescript(SCHEMA)
         # Keep databases created by earlier demo versions usable.
         columns = {str(row[1]) for row in self.connection.execute("PRAGMA table_info(journals)")}
@@ -92,10 +104,15 @@ class JournalCatalog:
         for table, column, default in (
             ("journal_msc_stats", "source", "imported"),
             ("journal_field_profiles", "cache_key", ""),
+            ("articles", "metadata_json", "{}"),
+            ("journals", "metadata_json", "{}"),
         ):
             columns = {str(row[1]) for row in self.connection.execute("PRAGMA table_info(%s)" % table)}
             if column not in columns:
                 self.connection.execute("ALTER TABLE %s ADD COLUMN %s TEXT DEFAULT '%s'" % (table, column, default))
+        for row in self.connection.execute("SELECT * FROM articles WHERE article_id NOT IN (SELECT article_id FROM article_identifiers)").fetchall():
+            for key in identifiers(dict(row)):
+                self.connection.execute("INSERT OR IGNORE INTO article_identifiers VALUES (?,?)", (key, row["article_id"]))
         self.connection.commit()
 
     def close(self) -> None:
@@ -111,6 +128,10 @@ class JournalCatalog:
         data = json.loads(Path(path).read_text(encoding="utf-8"))
         if not isinstance(data, Mapping):
             raise ValueError("catalog JSON must be an object")
+        with self.connection:
+            return self._import_data(data)
+
+    def _import_data(self, data: Mapping[str, Any]) -> int:
         journals = data.get("journals", [])
         for journal in journals:
             self.upsert_journal(journal)
@@ -120,11 +141,12 @@ class JournalCatalog:
             self.rebuild_statistics()
         for stat in data.get("journal_msc_stats", []):
             journal_id = self._journal_aliases.get(str(stat["journal_id"]), str(stat["journal_id"]))
-            self.set_stat(journal_id, stat["msc_prefix"], int(stat.get("article_count", 0)), float(stat.get("share", 0)))
-        self.connection.commit()
+            self.set_stat(journal_id, stat["msc_prefix"], int(stat.get("article_count", 0)), float(stat.get("share", 0)), source=str(stat.get("source", "imported")))
         return len(journals)
 
     def upsert_journal(self, value: Mapping[str, Any]) -> None:
+        value = {k: v for k, v in value.items() if v is not None}
+        self.revision += 1
         incoming_id = str(value.get("journal_id") or value.get("id") or value.get("issn_l") or value["name"])
         journal_id = incoming_id
         issn_l = str(value.get("issn_l") or "").strip()
@@ -134,6 +156,10 @@ class JournalCatalog:
                 journal_id = str(existing[0])
         self._journal_aliases[incoming_id] = journal_id
         existing = self.connection.execute("SELECT * FROM journals WHERE journal_id=?", (journal_id,)).fetchone()
+        if existing:
+            previous = dict(existing)
+            previous["article_types"] = json.loads(previous["article_types"])
+            value = {**previous, **value}
         technical_level = str(value.get("technical_level", "unknown"))
         audience_breadth = str(value.get("audience_breadth", "unknown"))
         if existing:
@@ -163,22 +189,57 @@ class JournalCatalog:
                 value.get("last_verified"),
             ),
         )
+        metadata = json.loads(existing["metadata_json"] or "{}") if existing else {}
+        metadata.update({key: item for key, item in value.items() if item is not None and key != "metadata_json"})
+        self.connection.execute("UPDATE journals SET metadata_json=? WHERE journal_id=?", (json.dumps(metadata, ensure_ascii=False), journal_id))
 
     def upsert_article(self, value: Mapping[str, Any]) -> None:
+        value = {k: v for k, v in value.items() if v is not None}
+        self.revision += 1
         journal_id = self._journal_aliases.get(str(value["journal_id"]), str(value["journal_id"]))
-        doi = str(value.get("doi") or "").strip()
+        if not self.connection.execute("SELECT 1 FROM journals WHERE journal_id=?", (journal_id,)).fetchone():
+            raise ValueError("Article references an unknown journal: " + journal_id)
+        doi = normalize_doi(value.get("doi"))
         article_id = str(value.get("article_id") or value.get("id") or doi or value["title"])
-        if doi:
-            existing = self.connection.execute("SELECT article_id FROM articles WHERE lower(doi)=lower(?)", (doi,)).fetchone()
+        keys = identifiers(value)
+        matched_ids = set()
+        for key in keys:
+            # Titles are used for conservative benchmark exclusion, but are
+            # not sufficient to merge database records: distinct papers can
+            # legitimately have identical titles.
+            if key.startswith("title:"):
+                continue
+            existing = self.connection.execute("SELECT article_id FROM article_identifiers WHERE identifier=?", (key,)).fetchone()
             if existing:
-                article_id = str(existing[0])
+                matched_ids.add(str(existing[0]))
+        if self.connection.execute("SELECT 1 FROM articles WHERE article_id=?", (article_id,)).fetchone():
+            matched_ids.add(article_id)
+        if matched_ids:
+            article_id = min(matched_ids)
+        # A DOI/preprint bridge can connect two previously imported records.
+        # Merge their aliases and MSC data instead of retaining duplicate work.
+        merged_codes, merged_metadata = [], {}
+        availability = {"available_date": [], "metadata_available_date": []}
+        for duplicate_id in sorted(matched_ids):
+            row = self.connection.execute("SELECT * FROM articles WHERE article_id=?", (duplicate_id,)).fetchone()
+            previous_metadata = json.loads(row["metadata_json"] or "{}")
+            merged_metadata.update(previous_metadata)
+            for field in availability:
+                if previous_metadata.get(field):
+                    availability[field].append(normalize_date(previous_metadata[field]))
+            keys.update(identifiers(dict(row)))
+            merged_codes.extend(str(r[0]) for r in self.connection.execute("SELECT msc_code FROM article_msc WHERE article_id=? ORDER BY is_primary DESC,msc_code", (duplicate_id,)))
+            if duplicate_id != article_id:
+                self.connection.execute("UPDATE articles SET abstract=CASE WHEN length(abstract)<length(?) THEN ? ELSE abstract END WHERE article_id=?", (row["abstract"], row["abstract"], article_id))
+                self.connection.execute("UPDATE article_identifiers SET article_id=? WHERE article_id=?", (article_id, duplicate_id))
+                self.connection.execute("DELETE FROM article_msc WHERE article_id=?", (duplicate_id,))
+                self.connection.execute("DELETE FROM articles WHERE article_id=?", (duplicate_id,))
         existing_article = self.connection.execute("SELECT * FROM articles WHERE article_id=?", (article_id,)).fetchone()
+        doi = doi or (normalize_doi(existing_article["doi"]) if existing_article else "")
         title = str(value.get("title", "")) or (str(existing_article["title"]) if existing_article else "")
         abstract = str(value.get("abstract", "")) or (str(existing_article["abstract"]) if existing_article else "")
         year = value.get("year") if value.get("year") is not None else (existing_article["year"] if existing_article else None)
-        article_type = str(value.get("article_type", "research article"))
-        if article_type == "research article" and existing_article and existing_article["article_type"]:
-            article_type = str(existing_article["article_type"])
+        article_type = str(value.get("article_type") or (existing_article["article_type"] if existing_article else "research article"))
         source_url = value.get("source_url") or (existing_article["source_url"] if existing_article else None)
         self.connection.execute(
             """INSERT INTO articles(article_id,journal_id,doi,title,abstract,year,article_type,source_url)
@@ -197,10 +258,24 @@ class JournalCatalog:
             ),
         )
         self.connection.execute("DELETE FROM article_msc WHERE article_id=?", (article_id,))
-        for index, code in enumerate(value.get("msc_codes", [])):
+        # Explicit nonempty corrections replace stale MSC assignments. A
+        # provider with no MSC data must not erase existing classifications.
+        selected_codes = list(value.get("msc_codes", [])) or merged_codes
+        for index, code in enumerate(dict.fromkeys(selected_codes)):
             self.connection.execute("INSERT OR IGNORE INTO article_msc(article_id,msc_code,is_primary) VALUES(?,?,?)", (article_id, normalize_msc_code(str(code)), 1 if index == 0 else 0))
+        merged_metadata.update({key: item for key, item in value.items() if item is not None and item != "" and item != [] and key != "metadata_json"})
+        for field, dates in availability.items():
+            if value.get(field):
+                dates.append(normalize_date(value[field]))
+            if dates:
+                merged_metadata[field] = max(dates)
+        merged_metadata["identity_keys"] = sorted(keys | set(merged_metadata.get("identity_keys", [])))
+        self.connection.execute("UPDATE articles SET metadata_json=? WHERE article_id=?", (json.dumps(merged_metadata, ensure_ascii=False), article_id))
+        for key in merged_metadata["identity_keys"]:
+            self.connection.execute("INSERT OR REPLACE INTO article_identifiers VALUES (?,?)", (key, article_id))
 
     def set_stat(self, journal_id: str, prefix: str, count: int, share: float = 0.0, source: str = "imported") -> None:
+        self.revision += 1
         if count < 0 or not 0 <= share <= 1:
             raise ValueError("MSC statistics require a nonnegative count and a share between 0 and 1")
         self.connection.execute(
@@ -234,7 +309,7 @@ class JournalCatalog:
             count = len(article_ids)
             self.set_stat(journal_id, prefix, count, count / max(totals.get(journal_id, 1), 1), source="derived")
 
-    def find_candidates(self, msc_codes: Sequence[str], limit: Optional[int] = 24) -> List[JournalCandidate]:
+    def find_candidates(self, msc_codes: Sequence[str], limit: Optional[int] = 24, include_articles: bool = True) -> List[JournalCandidate]:
         if limit is not None and limit <= 0:
             return []
         codes = [normalize_msc_code(str(code)) for code in msc_codes if code]
@@ -276,9 +351,10 @@ class JournalCatalog:
                 str(item["row"]["journal_id"]),
             ),
         )
-        return [self._candidate(item["row"], item["tier"], sorted(item["codes"])) for item in ordered[:limit]]
+        return [self._candidate(item["row"], item["tier"], sorted(item["codes"]), include_articles) for item in ordered[:limit]]
 
-    def _candidate(self, row: sqlite3.Row, tier: str, codes: List[str]) -> JournalCandidate:
+    def _candidate(self, row: sqlite3.Row, tier: str, codes: List[str], include_articles: bool = True) -> JournalCandidate:
+        metadata = json.loads(row["metadata_json"] or "{}")
         return JournalCandidate(
             journal_id=str(row["journal_id"]),
             name=str(row["name"]),
@@ -286,12 +362,15 @@ class JournalCatalog:
             matching_codes=codes,
             official_url=row["official_url"],
             scope_summary=str(row["scope_summary"] or ""),
-            representative_articles=self.representative_articles(str(row["journal_id"]), str(row["msc_prefix"]), 8),
+            representative_articles=self.representative_articles(str(row["journal_id"]), str(row["msc_prefix"]), 8) if include_articles else [],
             article_count=int(row["article_count"] or 0),
             matching_share=float(row["share"] or 0.0),
             technical_level=str(row["technical_level"] or "unknown"),
             audience_breadth=str(row["audience_breadth"] or "unknown"),
             evidence_msc_prefix=str(row["msc_prefix"]),
+            scope_url=row["scope_url"],
+            scope_breadth=metadata.get("scope_breadth", "unknown"),
+            editorial_evidence=metadata.get("editorial_evidence", []),
         )
 
     def representative_articles(self, journal_id: str, msc_prefix: str, limit: int = 8) -> List[RepresentativeArticle]:
@@ -316,6 +395,9 @@ class JournalCatalog:
                 doi=row["doi"],
                 source_url=row["source_url"],
                 article_type=str(row["article_type"] or "research article"),
+                authors=json.loads(row["metadata_json"] or "{}").get("authors", []),
+                license=json.loads(row["metadata_json"] or "{}").get("license", ""),
+                license_url=json.loads(row["metadata_json"] or "{}").get("license_url", ""),
             )
             for row in rows
         ]
@@ -345,3 +427,47 @@ class JournalCatalog:
             "articles": int(self.connection.execute("SELECT COUNT(*) FROM articles").fetchone()[0]),
             "msc_codes": int(self.connection.execute("SELECT COUNT(DISTINCT msc_code) FROM article_msc").fetchone()[0]),
         }
+
+    def export_data(self) -> Dict[str, Any]:
+        """Lossless normalized export, including per-record source provenance."""
+        result: Dict[str, Any] = {"journals": [], "articles": [], "journal_msc_stats": []}
+        codes: Dict[str, List[str]] = {}
+        for row in self.connection.execute("SELECT * FROM article_msc ORDER BY is_primary DESC,msc_code"):
+            codes.setdefault(str(row["article_id"]), []).append(str(row["msc_code"]))
+        for table in ("journals", "articles"):
+            for row in self.connection.execute("SELECT * FROM " + table):
+                columns = dict(row)
+                metadata = json.loads(columns.pop("metadata_json", "{}") or "{}")
+                value = {**metadata, **columns}
+                if table == "journals":
+                    value["article_types"] = json.loads(value["article_types"])
+                else:
+                    value["msc_codes"] = codes.get(value["article_id"], [])
+                result[table].append(value)
+        result["journal_msc_stats"] = [dict(r) for r in self.connection.execute("SELECT * FROM journal_msc_stats")]
+        return result
+
+    def coverage(self) -> Dict[str, Any]:
+        data = self.export_data()
+        by_journal: Dict[str, List[Dict[str, Any]]] = {}
+        for article in data["articles"]:
+            if eligible_research(article):
+                by_journal.setdefault(article["journal_id"], []).append(article)
+        rows = []
+        for journal in data["journals"]:
+            if not journal.get("active", True):
+                continue
+            articles = by_journal.get(journal["journal_id"], [])
+            strata: Dict[str, int] = {}
+            for article in articles:
+                for code in {c[:2] for c in article["msc_codes"]} or {"unknown"}:
+                    key = "%s:%s" % (code, article.get("year") or "unknown")
+                    strata[key] = strata.get(key, 0) + 1
+            rows.append({"journal_id": journal["journal_id"], "name": journal["name"], "articles": len(articles),
+                         "abstracts": sum(bool(a.get("abstract", "").strip()) for a in articles),
+                         "dated_metadata": sum(bool(a.get("metadata_available_date")) for a in articles),
+                         "real_scope": bool(journal["scope_summary"]) and not journal["scope_summary"].startswith("Indexed mathematics journal."),
+                         "msc_year_counts": strata})
+        return {"journals": rows, "totals": {"journals": len(rows), "research_articles": sum(r["articles"] for r in rows),
+                "abstracts": sum(r["abstracts"] for r in rows), "journals_without_articles": sum(r["articles"] == 0 for r in rows),
+                "journals_with_50_abstracts": sum(r["abstracts"] >= 50 for r in rows)}}

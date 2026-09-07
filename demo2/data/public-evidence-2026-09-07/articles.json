@@ -1,0 +1,2346 @@
+[
+  {
+    "article_id": "publisher-10.5802-alco.328",
+    "journal_id": "zbmath-serial-9185",
+    "doi": "10.5802/alco.328",
+    "title": "Toric varieties with ample tangent bundle",
+    "authors": [
+      "Wu, Kuang-Yu"
+    ],
+    "year": 2024,
+    "abstract": "We give a simple combinatorial proof of the toric version of Mori’s theorem that the only smooth projective varieties with ample tangent bundle are the projective spaces {\\mathbb{P}}^{n}.",
+    "msc_codes": [
+      "14M25",
+      "52B20"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "toric varieties, ample tangent bundle",
+    "source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.328/",
+    "article_type": "research article",
+    "available_date": "2024-02-22",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.328/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "b9de85c04bfc2a53fe529ab85af0b063e98468cb4201716bd3de8605d36824d4",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "14M25",
+      "52B20"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-aif.3573",
+    "journal_id": "zbmath-serial-311",
+    "doi": "10.5802/aif.3573",
+    "title": "Cylinders in canonical del Pezzo fibrations",
+    "authors": [
+      "Sawahara, Masatomo"
+    ],
+    "year": 2024,
+    "abstract": "Cylinders in projective varieties play an important role in connection with unipotent group actions on certain affine algebraic varieties. The previous work due to Dubouloz and Kishimoto deals with the condition for a del Pezzo fibration to contain a vertical cylinder.\nIn the present work, as a generalization in the sense of singularities, we shall determine the condition under which a del Pezzo fibration with canonical singularities admits a vertical cylinder by means of degree and type of singularities found on the corresponding to the generic fiber.\nLes cylindres dans les variétés projectives jouent un rôle important compte tenu du lien avec les actions de groupe unipotentes sur certaines variétés algébriques affines. Le travail précédent d’après Dubouloz et Kishimoto considère la condition avec laquelle une fibration de del Pezzo contient un cylindre vertical.\nDans le travail présent, en tant que généralisation au niveau des singularités, nous déterminerons la condition sous laquelle une fibration de del Pezzo ayant des singularités canoniques admet un cylindre vertical tout en observant le degré et le type des singularités qui se trouvent sur la fibre générique correspondante.",
+    "msc_codes": [
+      "14C20",
+      "14E30",
+      "14J17",
+      "14J26",
+      "14J45",
+      "14R25"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Del Pezzo fibration, Cylinder, Generic fiber, Du Val singularity",
+    "source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3573/",
+    "article_type": "research article",
+    "available_date": "2024-05-17",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3573/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "81fcd5264e118d497ecf23965fd6542efe1bf6d8af4551d41b185aa2ef9dfca6",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "14C20",
+      "14E30",
+      "14J17",
+      "14J26",
+      "14J45",
+      "14R25"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-ahl.197",
+    "journal_id": "zbmath-serial-9591",
+    "doi": "10.5802/ahl.197",
+    "title": "On the existence of logarithmic and orbifold jet differentials",
+    "authors": [
+      "Campana, Frédéric",
+      "Darondeau, Lionel",
+      "Demailly, Jean-Pierre",
+      "Rousseau, Erwan"
+    ],
+    "year": 2024,
+    "abstract": "We introduce the concept of directed orbifold, namely triples (X,V,D) formed by a directed algebraic or analytic variety (X,V), and a ramification divisor D, where V is a coherent subsheaf of the tangent bundle {T}_{X}. In this context, we introduce an algebra of orbifold jet differentials and their sections.\nThese jet sections can be seen as algebraic differential operators acting on germs of curves, with meromorphic coefficients, whose poles are supported by D and multiplicities are bounded by the ramification indices of the components of D. We estimate precisely the curvature tensor of the corresponding directed structure V\\langle D\\rangle in the general orbifold case – with a special attention to the compact case D=0 and to the logarithmic situation where the ramification indices are infinite.\nUsing holomorphic Morse inequalities on the tautological line bundle of the projectivized orbifold Green–Griffiths bundle, we finally obtain effective sufficient conditions for the existence of global orbifold jet differentials.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "Projective variety ,  directed variety ,  orbifold ,  ramification divisor ,  entire curve ,  jet differential ,  Green–Griffiths conjecture ,  algebraic differential operator ,  holomorphic Morse inequalities ,  Chern curvature ,  Chern form",
+    "source_url": "https://ahl.centre-mersenne.org/item/AHL_2024__7__1_0/",
+    "article_type": "research article",
+    "available_date": "2024-12-31",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://annales.lebesgue.fr/index.php/AHL/about/faq",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "year (conservative year-end)",
+    "source_snapshot_sha256": "61d3b6b0064beb64663ce25a2e648506a0efb54a334333e7865442a260136a6c",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-ahl.66",
+    "journal_id": "zbmath-serial-9591",
+    "doi": "10.5802/ahl.66",
+    "title": "The random walk penalised by its range in dimensions $d\\ge 3$",
+    "authors": [
+      "Berestycki, Nathanaël",
+      "Cerf, Raphaël"
+    ],
+    "year": 2021,
+    "abstract": "We study a self-attractive random walk such that each trajectory of length N is penalised by a factor proportional to exp(-|{R}_{N}\\left|\\right), where {R}_{N} is the set of sites visited by the walk. We show that the range of such a walk is close to a solid Euclidean ball of radius approximately {\\rho }_{d}{N}^{1/(d+2)}, for some explicit constant {\\rho }_{d}>0. This proves a conjecture of Bolthausen [Bol94] who obtained this result in the case d=2.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "Random walk ,  Faber–Krahn ,  large deviations",
+    "source_url": "https://ahl.centre-mersenne.org/item/AHL_2021__4__1_0/",
+    "article_type": "research article",
+    "available_date": "2021-12-31",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://annales.lebesgue.fr/index.php/AHL/about/faq",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "year (conservative year-end)",
+    "source_snapshot_sha256": "2fccc73cff287bf530ca5522fbd3a56a24f5ff5697639abebf077f1e9062bcf8",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-ahl.67",
+    "journal_id": "zbmath-serial-9591",
+    "doi": "10.5802/ahl.67",
+    "title": "High frequency limits for invariant Ruelle densities",
+    "authors": [
+      "Guillarmou, Colin",
+      "Hilgert, Joachim",
+      "Weich, Tobias"
+    ],
+    "year": 2021,
+    "abstract": "We establish an equidistribution result for Ruelle resonant states on compact locally symmetric spaces of rank 1. More precisely, we prove that among the first band Ruelle resonances there is a density one subsequence such that the respective products of resonant and co-resonant states converge weakly to the Liouville measure.\nWe prove this result by establishing an explicit quantum-classical correspondence between eigenspaces of the scalar Laplacian and the resonant states of the first band of Ruelle resonances, which also leads to a new description of Patterson–Sullivan distributions.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "Ruelle resonances ,  quantum ergodicity ,  semi-classical measures",
+    "source_url": "https://ahl.centre-mersenne.org/item/AHL_2021__4__81_0/",
+    "article_type": "research article",
+    "available_date": "2021-12-31",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://annales.lebesgue.fr/index.php/AHL/about/faq",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "year (conservative year-end)",
+    "source_snapshot_sha256": "472dd14ab53a4971f27bd9fb191af15dd3257a9156ef8cb1f5162750a0488802",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-ahl.68",
+    "journal_id": "zbmath-serial-9591",
+    "doi": "10.5802/ahl.68",
+    "title": "The volume of simplices in high-dimensional Poisson–Delaunay tessellations",
+    "authors": [
+      "Gusakova, Anna",
+      "Thäle, Christoph"
+    ],
+    "year": 2021,
+    "abstract": "Typical weighted random simplices {Z}_{\\mu }, \\mu \\in (-2,\\infty ), in a Poisson–Delaunay tessellation in {ℝ}^{n} are considered, where the weight is given by the (\\mu +1)st power of the volume. As special cases this includes the typical (\\mu =-1) and the usual volume-weighted (\\mu =0) Poisson–Delaunay simplex. By proving sharp bounds on cumulants it is shown that the logarithmic volume of {Z}_{\\mu } satisfies a central limit theorem in high dimensions, that is, as n\\to \\infty .\nIn addition, rates of convergence are provided. In parallel, concentration inequalities as well as moderate deviations are studied. The set-up allows the weight \\mu =\\mu \\left(n\\right) to depend on the dimension n as well. A number of special cases are discussed separately. For fixed \\mu also mod-\\varphi convergence and the large deviations behaviour of the logarithmic volume of {Z}_{\\mu } are investigated.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "Berry–Esseen bound ,  central limit theorem ,  cumulants ,  high dimensions ,  mod-$\\phi $ convergence ,  moderate deviations ,  large deviations ,  random simplex ,  Poisson–Delaunay tessellation ,  stochastic geometry",
+    "source_url": "https://ahl.centre-mersenne.org/item/AHL_2021__4__121_0/",
+    "article_type": "research article",
+    "available_date": "2021-12-31",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://annales.lebesgue.fr/index.php/AHL/about/faq",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "year (conservative year-end)",
+    "source_snapshot_sha256": "9fee722685781de020d674de4d14318760eb0640f4db8d8d7556b4fee516ab50",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-ahl.69",
+    "journal_id": "zbmath-serial-9591",
+    "doi": "10.5802/ahl.69",
+    "title": "Split Canonical Relations",
+    "authors": [
+      "Cattaneo, Alberto",
+      "Contreras, Ivan"
+    ],
+    "year": 2021,
+    "abstract": "A Lagrangian subspace L of a weak symplectic vector space is called split Lagrangian if it has an isotropic (hence Lagrangian) complement. When the symplectic structure is strong, it is sufficient for L to have a closed complement, which can then be moved to become isotropic. The purpose of this note is to develop the theory of compositions and reductions of split canonical relations for symplectic vector spaces.\nWe give conditions on a coisotropic subspace C of a weak symplectic space V which imply that the induced canonical relation {L}_{C} from V to C/{C}^{\\omega } is split, and, from these, we find sufficient conditions for split canonical relations to compose well. We prove that the canonical relations arising in the Poisson sigma model from the Lagrangian field theoretical approach are split, giving a description of symplectic groupoids integrating Poisson manifolds in terms of split canonical relations.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "Canonical relations ,  symplectic reduction ,  Poisson sigma model ,  symplectic groupoids",
+    "source_url": "https://ahl.centre-mersenne.org/item/AHL_2021__4__155_0/",
+    "article_type": "research article",
+    "available_date": "2021-12-31",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://annales.lebesgue.fr/index.php/AHL/about/faq",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "year (conservative year-end)",
+    "source_snapshot_sha256": "7ed16c17b49fd60dbd2512aadc594c84011a81ecf3fc54bd8a4aa3f8724623b8",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-ahl.70",
+    "journal_id": "zbmath-serial-9591",
+    "doi": "10.5802/ahl.70",
+    "title": "Local geometry of random geodesics on negatively curved surfaces",
+    "authors": [
+      "Athreya, Jayadev",
+      "Lalley, Steve",
+      "Sapir, Jenya",
+      "Wroten, Matthew"
+    ],
+    "year": 2021,
+    "abstract": "We show that the tessellation of a compact, negatively curved surface induced by a long random geodesic segment, when properly scaled, looks locally like a Poisson line process. This implies that the global statistics of the tessellation – for instance, the fraction of triangles – approach those of the limiting Poisson line process.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "self-intersection ,  random tessellation ,  geodesic ,  hyperbolic surface ,  Poisson line process",
+    "source_url": "https://ahl.centre-mersenne.org/item/AHL_2021__4__187_0/",
+    "article_type": "research article",
+    "available_date": "2021-12-31",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://annales.lebesgue.fr/index.php/AHL/about/faq",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "year (conservative year-end)",
+    "source_snapshot_sha256": "54622880f32b59dde2dd476c13358d56816f5a8232714221cf84432b277b958e",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-ahl.194",
+    "journal_id": "zbmath-serial-9591",
+    "doi": "10.5802/ahl.194",
+    "title": "Landau levels on a compact manifold",
+    "authors": [
+      "Charles, Laurent"
+    ],
+    "year": 2024,
+    "abstract": "We consider a magnetic Laplacian on a compact manifold, with a constant non-degenerate magnetic field. In the large field limit, it is known that the eigenvalues are grouped in clusters, the corresponding sums of eigenspaces being called the Landau levels. The first level has been studied in-depth as a natural generalization of the Kähler quantization.\nThe current paper is devoted to the higher levels: we compute their dimensions as Riemann–Roch numbers, study the associated Toeplitz algebras and prove that each level is isomorphic with a quantization twisted by a convenient auxiliary bundle.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "Magnetic Laplacian ,  Landau level ,  Toeplitz operator ,  Ladder operator ,  Riemann–Roch number",
+    "source_url": "https://ahl.centre-mersenne.org/item/AHL_2024__7__69_0/",
+    "article_type": "research article",
+    "available_date": "2024-12-31",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://annales.lebesgue.fr/index.php/AHL/about/faq",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "year (conservative year-end)",
+    "source_snapshot_sha256": "5c170f4333eddfa9b757c221c020b1989884b9c955677dab0167737ca370b1ae",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-ahl.195",
+    "journal_id": "zbmath-serial-9591",
+    "doi": "10.5802/ahl.195",
+    "title": "Voronoi cells in random split trees",
+    "authors": [
+      "Drewitz, Alexander",
+      "Heydenreich, Markus",
+      "Mailler, Cécile"
+    ],
+    "year": 2024,
+    "abstract": "We study the sizes of the Voronoi cells of k uniformly chosen vertices in a random split tree of size n. We prove that, for n large, the largest of these k Voronoi cells contains most of the vertices, while the sizes of the remaining ones are essentially all of order nexp(-\\mathrm{const}\\sqrt{logn}).\nThis “winner-takes-all” phenomenon persists if we modify the definition of the Voronoi cells by (a) introducing random edge lengths (with suitable moment assumptions), and (b) assigning different “influence” parameters (called “speeds” in the paper) to each of the k vertices.\nOur findings are in contrast to corresponding results on random uniform trees and on the continuum random tree, where it is known that the vector of the relative sizes of the k Voronoi cells is asymptotically uniformly distributed on the (k-1)-dimensional simplex.\nTwo intermediary steps in the proof of our main result may be of independent interest because of the information they give on the typical shape of large random split trees: we prove convergence in probability of their “profile”, and we prove asymptotic results for the size of fringe trees (trees rooted at an ancestor of a uniform random node).",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "Random split trees ,  Voronoi cells in graphs ,  competition processes ,  profile ,  fringe trees",
+    "source_url": "https://ahl.centre-mersenne.org/item/AHL_2024__7__123_0/",
+    "article_type": "research article",
+    "available_date": "2024-12-31",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://annales.lebesgue.fr/index.php/AHL/about/faq",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "year (conservative year-end)",
+    "source_snapshot_sha256": "4065954ee63c63befea6d7c93bc6efaaac8b6a83038031c59f6d6b883bad43d8",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-ahl.196",
+    "journal_id": "zbmath-serial-9591",
+    "doi": "10.5802/ahl.196",
+    "title": "Besov spaces and random walks on a hyperbolic group: boundary traces and reflecting extensions of Dirichlet forms",
+    "authors": [
+      "Mathieu, Pierre",
+      "Tokushige, Yuki"
+    ],
+    "year": 2024,
+    "abstract": "We show the existence of a trace process at infinity for random walks on hyperbolic groups of conformal dimension <2 and relate it to the existence of a reflected random walk. To do so, we employ the theory of Dirichlet forms which connects the theory of symmetric Markov processes to functional analytic perspectives.\nWe introduce a family of Besov spaces associated to random walks and prove that they are isomorphic to some of the Besov spaces constructed from the co-homology of the group studied in Bourdon–Pajot (2003). We also study the regularity of harmonic measures of random walks on hyperbolic groups using the potential theory associated to Dirichlet forms.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "Random walks ,  Dirichlet forms ,  Besov spaces ,  hyperbolic groups ,  local times",
+    "source_url": "https://ahl.centre-mersenne.org/item/AHL_2024__7__161_0/",
+    "article_type": "research article",
+    "available_date": "2024-12-31",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://annales.lebesgue.fr/index.php/AHL/about/faq",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "year (conservative year-end)",
+    "source_snapshot_sha256": "6bf572d46bcb4e94dd1fa8c30173b9cd9267d49eb11585ef3a6fe14ef3d5bb3b",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-ahl.198",
+    "journal_id": "zbmath-serial-9591",
+    "doi": "10.5802/ahl.198",
+    "title": "A Zero Lyapunov Exponent in Genus $3$ Implies the Eierlegende Wollmilchsau",
+    "authors": [
+      "Aulicino, David",
+      "Benirschke, Frederik",
+      "Norton, Chaya"
+    ],
+    "year": 2024,
+    "abstract": "We prove that the closed orbit of the Eierlegende Wollmilchsau is the only {\\text{SL}}_{2}\\left(ℝ\\right)-orbit closure in genus three with a zero Lyapunov exponent in its Kontsevich–Zorich spectrum. The result recovers previous partial results in this direction by Bainbridge–Habegger–Möller and the first named author. The main new contribution is the identification of the differentials in the Hodge bundle corresponding to the Forni subspace in terms of the degenerations of the surface.\nWe use this description of the differentials in the Forni subspace to evaluate them on absolute homology curves and apply the jump problem from the work of Hu and the third named author to the differentials near the boundary of the orbit closure. This results in a simple geometric criterion that excludes the existence of a Forni subspace.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "Teichmüller geodesic flow ,  Kontsevich-Zorich cocycle ,  Abelian differentials ,  translation surfaces ,  Lyapunov exponents ,  period matrices ,  variational formulas",
+    "source_url": "https://ahl.centre-mersenne.org/item/AHL_2024__7__207_0/",
+    "article_type": "research article",
+    "available_date": "2024-12-31",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://annales.lebesgue.fr/index.php/AHL/about/faq",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "year (conservative year-end)",
+    "source_snapshot_sha256": "b8e72f403fb3fb2f854be086b9752ee3df13b0f074c884d4b7188b7a5c04999a",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-aif.3399",
+    "journal_id": "zbmath-serial-311",
+    "doi": "10.5802/aif.3399",
+    "title": "On the rationality of quadric surface bundles",
+    "authors": [
+      "Paulsen, Matthias"
+    ],
+    "year": 2021,
+    "abstract": "For any standard quadric surface bundle over {\\mathbb{P}}^{2}, we show that the locus of rational fibres is dense in the moduli space.\n\nPour tout faisceau de surface quadrique standard sur {\\mathbb{P}}^{2}, nous montrons que le lieu des fibres rationnelles est dense dans l’espace des modules.",
+    "msc_codes": [
+      "14E08",
+      "14D07",
+      "13H10",
+      "14J35",
+      "14M25"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Hodge loci, rationality problem, quadric surface bundles",
+    "source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3399/",
+    "article_type": "research article",
+    "available_date": "2021-06-07",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3399/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "a1dc7dc5f01c3f8fdfd43e4a437625f9b28565e27cb33cab0bd71d3460951774",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "14E08",
+      "14D07",
+      "13H10",
+      "14J35",
+      "14M25"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-aif.3393",
+    "journal_id": "zbmath-serial-311",
+    "doi": "10.5802/aif.3393",
+    "title": "Stratified spaces and synthetic Ricci curvature bounds",
+    "authors": [
+      "Bertrand, Jérôme",
+      "Ketterer, Christian",
+      "Mondello, Ilaria",
+      "Richard, Thomas"
+    ],
+    "year": 2021,
+    "abstract": "We prove that a compact stratified space satisfies the Riemannian curvature-dimension condition \\mathrm{RCD}(K,N) if and only if its Ricci tensor is bounded below by K\\in ℝ on the regular set, the cone angle along the stratum of codimension two is smaller than or equal to 2\\pi and its dimension is at most equal to N.\nThis gives a new wide class of geometric examples of metric measure spaces satisfying the \\mathrm{RCD}(K,N) curvature-dimension condition, including for instance spherical suspensions, orbifolds, Kähler–Einstein manifolds with a divisor, Einstein manifolds with conical singularities along a curve. We also obtain new analytic and geometric results on stratified spaces, such as Bishop–Gromov volume inequality, Laplacian comparison, Lévy–Gromov isoperimetric inequality.\nOur result also implies a similar characterization of compact stratified spaces carrying a lower curvature bound in the sense of Alexandrov.\nNous prouvons qu’un espace stratifié compact satisfait la condition de courbure-dimension riemannienne \\mathrm{RCD}(K,N) si et seulement si son tenseur de Ricci est borné inférieurement par K\\in ℝ dans le lieu régulier, l’angle des cônes le long de la strate de codimension deux est inférieur ou égal à 2\\pi et sa dimension est au plus égale à N.\nCeci donne lieu à une large classe de nouveaux exemples d’espaces métriques mesurés satisfaisant la condition de courbure-dimension \\mathrm{RCD}(K,N), qui inclut notamment les suspensions sphériques, les orbifolds, les variétés de Kähler–Einstein avec un diviseur, les variétés d’Einstein avec des singularités le long d’une courbe.\nNous obtenons aussi de nouveaux résultats analytiques et géométriques sur les espaces stratifiés, comme l’inégalité volumique de Bishop–Gromov, le théorème de comparaison pour le Laplacien de la distance, l’inégalité isopérimétrique de Lévy–Gromov. Notre résultat implique en outre une caractérisation similaire des espaces stratifiés compacts de courbure minorée au sens d’Alexandrov.",
+    "msc_codes": [
+      "53C21",
+      "54E50"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Curvature-dimension condition, stratified spaces, Ricci curvature lower bounds",
+    "source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3393/",
+    "article_type": "research article",
+    "available_date": "2021-06-07",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3393/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "1f645960ee70d65015555951fd728397453882d6ac40f39e25a481d9be4543dc",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "53C21",
+      "54E50"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-aif.3348",
+    "journal_id": "zbmath-serial-311",
+    "doi": "10.5802/aif.3348",
+    "title": "Fixed-point spectrum for group actions by affine isometries on $L_{p}$-spaces",
+    "authors": [
+      "Lavy, Omer",
+      "Olivier, Baptiste"
+    ],
+    "year": 2021,
+    "abstract": "The fixed-point spectrum of a locally compact second countable group G on {\\ell }_{p} is defined to be the set of p\\ge 1 such that every action by affine isometries of G on {\\ell }_{p} admits a fixed-point. We show that this set is either empty, or is equal to a set of one of the following forms: [1,{p}_{c}[, [1,{p}_{c}[\\setminus \\left\\{2\\right\\} for some 1\\le {p}_{c}\\le \\infty , or [1,{p}_{c}], [1,{p}_{c}]\\setminus \\left\\{2\\right\\} for some 1\\le {p}_{c}<\\infty .\nThis result is closely related to a conjecture of C. Drutu which asserts that the fixed-point spectrum is connected for isometric actions on {L}_{p}(0,1).\nMore generally, we study the topological properties of the fixed-point spectrum on {L}_{p}(X,\\mu ) for general measure spaces (X,\\mu ), and show partial results toward the conjecture for actions on {L}_{p}(0,1).\nIn particular, we prove that the spectrum associated with actions with linear part \\pi is either empty, or an interval of the form [1,{p}_{c}] ({p}_{c}\\ge 1) or [1,\\infty [, whenever \\pi is an orthogonal representation associated to a measure-preserving ergodic action on a finite measure space (X,\\mu ).\nLe spectre des points fixes d’un groupe localement compact à base dénombrable G est défini comme l’ensemble des p\\ge 1 tels que chaque action par isométries affines de G sur {\\ell }_{p} admet un point fixe. Nous montrons que cet ensemble est soit vide, soit peut s’écrire sous une des formes suivantes : [1,{p}_{c}[, [1,{p}_{c}[\\setminus \\left\\{2\\right\\} pour un certain 1\\le {p}_{c}\\le \\infty , ou [1,{p}_{c}], [1,{p}_{c}]\\setminus \\left\\{2\\right\\} pour un certain 1\\le {p}_{c}<\\infty .\nCe résultat est en lien étroit avec la conjecture de C. Drutu affirmant que le spectre des points fixes est un ensemble connexe pour les actions isométriques sur {L}_{p}(0,1).\nPlus généralement, nous étudions les propriétés topologiques du spectre des points fixes sur {L}_{p}(X,\\mu ) pour des espaces mesurés arbitraires (X,\\mu ), et nous montrons des résultats partiels dans le sens de la conjecture pour les actions sur {L}_{p}(0,1).\nEn particulier, nous prouvons que le spectre associé aux actions dont la partie linéaire est \\pi est soit vide, soit un intervalle de la forme [1,{p}_{c}] ({p}_{c}\\ge 1) ou [1,\\infty [, dès que \\pi est une représentation orthogonale associée à une action ergodique préservant la mesure sur un espace mesuré (X,\\mu ) de mesure finie.",
+    "msc_codes": [
+      "22D10",
+      "22D12"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Groups with property $(T)$, orthogonal representations on $L_p$-spaces",
+    "source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3348/",
+    "article_type": "research article",
+    "available_date": "2021-06-07",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3348/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "4fc051cccbff5051502476c496601332abec94d09d450f65dd1b604ceb279d41",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "22D10",
+      "22D12"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-aif.3402",
+    "journal_id": "zbmath-serial-311",
+    "doi": "10.5802/aif.3402",
+    "title": "Transcendental versions in ${{\\protect \\mathbb{C}}}^n$ of the Nagata conjecture",
+    "authors": [
+      "Nivoche, Stéphanie"
+    ],
+    "year": 2021,
+    "abstract": "The Nagata Conjecture is one of the most intriguing open problems in the area of curves in the plane. It is easily stated. Namely, it predicts that the smallest degree d of a plane curve passing through r\\ge 10 general points in the projective plane {\\mathbb{P}}^{2} with multiplicities at least l at every point, satisfies the inequality d>\\sqrt{r}·l. This conjecture has been proven by M. Nagata in 1959, if r is a perfect square greater than 9.\nUp to now, it remains open for every non-square r\\ge 10, after more than a half century of attention by many researchers.\nIn this paper, we formulate new transcendental versions of this conjecture coming from pluripotential theory and which are equivalent to a version in {ℂ}^{n} of the Nagata Conjecture.\nLa conjecture de Nagata est l’un des problèmes ouverts les plus intriguants dans le domaine des courbes du plan complexe. Elle s’énonce simplement. En effet, elle affirme que le plus petit degré d d’une courbe plane passant par r\\ge 10 points généraux dans le plan projectif {\\mathbb{P}}^{2} avec des multiplicités au moins l en chaque point, satisfait l’inégalité d>\\sqrt{r}·l. Cette conjecture a été vérifiée par M. Nagata en 1959, si r est un carré parfait strictement supérieur à 9.\nJusqu’à présent, elle est restée ouverte pour tout entier r\\ge 10 non carré, après plus d’un demi-siècle d’attention de la part de nombreux chercheurs.\nDans cet article, nous formulons de nouvelles versions transcendentales de cette conjecture issues de la théorie du pluripotentiel, et qui sont équivalentes à une version dans {ℂ}^{n} de la conjecture Nagata.",
+    "msc_codes": [
+      "14H50",
+      "32U10",
+      "32U25",
+      "32U35",
+      "32U40",
+      "32W20"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Nagata conjecture, pluripotential theory, pluricomplex Green function",
+    "source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3402/",
+    "article_type": "research article",
+    "available_date": "2021-06-07",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3402/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "6c0ec2409744639c5ee42114045f75baff52fd893ab8c190b557e03c6c8800ce",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "14H50",
+      "32U10",
+      "32U25",
+      "32U35",
+      "32U40",
+      "32W20"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-aif.3392",
+    "journal_id": "zbmath-serial-311",
+    "doi": "10.5802/aif.3392",
+    "title": "$p^r$-Selmer companion modular forms",
+    "authors": [
+      "Jha, Somnath",
+      "Majumdar, Dipramit",
+      "Shekhar, Sudhanshu"
+    ],
+    "year": 2021,
+    "abstract": "The study of n-Selmer groups of elliptic curves over number fields in recent past has led to the discovery of some deep results in the arithmetic of elliptic curves. Given two elliptic curves {E}_{1} and {E}_{2} over a number field K, Mazur–Rubin have defined them to be n-Selmer companion if for every quadratic character \\chi of K, the n-Selmer groups of {E}_{1}^{\\chi } and {E}_{2}^{\\chi } over K are isomorphic.\nGiven a prime p, they have given sufficient conditions for two elliptic curves to be {p}^{r}-Selmer companion in terms of mod-{p}^{r} congruences between the curves. We discuss an analogue of this for Bloch–Kato {p}^{r}-Selmer groups of modular forms. We compare the Bloch–Kato Selmer group of a modular form respectively with the Greenberg Selmer group when the modular form is p-ordinary and with the signed Selmer groups of Lei–Loeffler–Zerbes when the modular form is non-ordinary at p.\nWe also indicate the relation between our results and the well-known congruence results for the special values of the corresponding L-functions due to Vatsal.\nL’étude de groupes n-Selmer de courbes elliptiques sur des corps de nombres algébriques dans un passé récent a conduit à la découverte de certains résultats profonds en arithmétique des courbes elliptiques. Étant données deux courbes elliptiques {E}_{1} et {E}_{2} sur un corps de nombres algébriques K, Mazur–Rubin les a définies comme n-Selmer compagnon si pour chaque caractère quadratique \\chi de K, les groupes n-Selmer de {E}_{1}^{\\chi } et {E}_{2}^{\\chi } sur K sont isomorphes.\nÉtant donné un nombre premier p, ils ont donné des conditions suffisantes pour que deux courbes elliptiques soient des compagnons {p}^{r}-Selmer en termes de congruences mod-{p}^{r} entre les courbes. Nous discutons d’un analogue de ce résultat pour les groupes {p}^{r}-Bloch–Kato Selmer de formes modulaires.\nNous comparons le groupe Bloch–Kato Selmer d’une forme modulaire respectivement avec le groupe Greenberg Selmer lorsque la forme modulaire est p-ordinaire et avec les groupes de Selmer signés de Lei–Loeffler–Zerbes lorsque la forme modulaire est non ordinaire en p. Nous relions aussi nos résultats de congruence bien connus pour les valeurs spéciales des fonctions L correspondantes dues à Vatsal.",
+    "msc_codes": [
+      "11F33",
+      "11R23",
+      "11R34",
+      "11S25",
+      "11G40"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "residual Bloch–Kato Selmer group, congruence of modular forms",
+    "source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3392/",
+    "article_type": "research article",
+    "available_date": "2021-06-07",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3392/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "20a642ca712b308d3094227c85babd9069cfaaba19425a6093bf2a8ec8de7937",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "11F33",
+      "11R23",
+      "11R34",
+      "11S25",
+      "11G40"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-aif.3575",
+    "journal_id": "zbmath-serial-311",
+    "doi": "10.5802/aif.3575",
+    "title": "Triple operator version of the Golden-Thompson inequality for traces on von Neumann algebras",
+    "authors": [
+      "Randrianantoanina, Narcisse"
+    ],
+    "year": 2024,
+    "abstract": "We provide a generalization of Lieb’s triple matrix extension of the Golden–Thompson inequality from matrix algebras to the setting of traces on finite von Neumann algebras. More precisely, assume that ℳ is a finite von Neumann algebra equipped with a tracial state \\tau . If 1\\le p,q\\le \\infty with 1/p+1/q=1, it is shown that whenever a, b, and c are self-adjoint \\tau -measurable operators satisfying a\\in ℳ, {e}^{b}\\in {L}_{p}(ℳ,\\tau ), and {e}^{c}\\in {L}_{q}(ℳ,\\tau ), then the following inequality holds:\n\\tau \\left({e}^{a+b+c}\\right)\\le {\\int }_{0}^{\\infty }\\tau \\left({e}^{c/2}{({e}^{-a}+t\\mathbf{1})}^{-1}{e}^{b}{({e}^{-a}+t\\mathbf{1})}^{-1}{e}^{c/2}\\right)\\phantom{\\rule{0.166667em}{0ex}}\\mathrm{d}t  |\n\nwhere \\mathbf{1} denotes the identity in ℳ. We also present other results related to the Wigner–Yanase–Dyson–Lieb concavity in the context of general tracial state.\nWe use the above version of the Golden–Thompson inequality for three operators to prove an extension of the Prokhorov arcsinh inequality to noncommutative martingales in general noncommutative probability spaces.\nNous prouvons une géneralisation de l’extension de Lieb à trois matrices de l’inégalité de Golden–Thompson de l’algèbre des matrices à des traces associés à des algèbres de von Neumann finies. Plus précisément, supposons que ℳ est une algèbre de von Neumann finie munie d’un état tracé \\tau . Soient 1\\le p,q\\le \\infty tels que 1/p+1/q=1.\nAlors pour tout a, b, et c opérateurs auto-adjoints et \\tau -mesurables satisfaisant a\\in ℳ, {e}^{b}\\in {L}_{p}(ℳ,\\tau ), et {e}^{c}\\in {L}_{q}(ℳ,\\tau ), on a l’inégalité suivante :\n\\tau \\left({e}^{a+b+c}\\right)\\le {\\int }_{0}^{\\infty }\\tau \\left({e}^{c/2}{({e}^{-a}+t\\mathbf{1})}^{-1}{e}^{b}{({e}^{-a}+t\\mathbf{1})}^{-1}{e}^{c/2}\\right)\\phantom{\\rule{0.166667em}{0ex}}\\mathrm{d}t  |\n\noù \\mathbf{1} denote l’identité de ℳ. Nous présentons également d’autres résultats liés à Wigner–Yanase–Dyson–Lieb concavité dans le contexte général d’état tracé.\nNous utilisons la version ci-dessus de l’inégalité de Golden–Thompson pour trois opérateurs pour demontrer une extension de inégalité arcsinh de Prokhorov aux martingales non commutatives dans des espaces de probabilité non commutatif.",
+    "msc_codes": [
+      "46L51",
+      "46L53",
+      "15A16",
+      "47A60",
+      "15A15"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Trace inequalities, von Neumann algebras, noncommutative martingales",
+    "source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3575/",
+    "article_type": "research article",
+    "available_date": "2024-05-17",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3575/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "11f3209ad4f3950387bcc2379e90312acf408954c1fd10e502718640b8374b90",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "46L51",
+      "46L53",
+      "15A16",
+      "47A60",
+      "15A15"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-aif.3582",
+    "journal_id": "zbmath-serial-311",
+    "doi": "10.5802/aif.3582",
+    "title": "Circumcenter extension of Moebius maps to $\\mathrm{CAT}(-1)$ spaces",
+    "authors": [
+      "Biswas, Kingshook"
+    ],
+    "year": 2024,
+    "abstract": "Given a Moebius homeomorphism f:\\partial X\\to \\partial Y between boundaries of proper, geodesically complete \\mathrm{CAT}(-1) spaces X,Y, we describe an extension \\widehat{f}:X\\to Y of f, called the circumcenter map of f, which is constructed using circumcenters of expanding sets. The extension \\widehat{f} is shown to coincide with the (1,log2)-quasi-isometric extension constructed in a previous paper of the author, and is locally 1/2-Holder continuous.\nWhen X,Y are complete, simply connected manifolds with sectional curvatures K satisfying -{b}^{2}\\le K\\le -1 for some b\\ge 1 then the extension \\widehat{f}:X\\to Y is a (1,(1-\\frac{1}{b})log2)-quasi-isometry, and is surjective. Circumcenter extension of Moebius maps is natural with respect to composition with isometries.\nSoit X,Y des \\mathrm{CAT}(-1) espaces propres et géoésiquement complètes, et soit f:\\partial X\\to \\partial Y un homéomorphisme qui préserve le birapport. Nous décrivons une extension \\widehat{f}:X\\to Y de f, que nous appelons l’extension circoncentre de f, et qu’on construit à l’aide des circoncentres des ensembles agrandissants. On montre que l’extension \\widehat{f} coincide avec l’extension (1,log2)-quasi-isométrique déjà construit par l’auteur dans un article précédent.\nQuand X,Y sont des variétés riemanniennes simplement connexes à courbures dans l’interval [-{b}^{2},-1], l’extension \\widehat{f}:X\\to Y est un (1,(1-\\frac{1}{b})log2)-quasi-isométrie surjectif. L’extension circoncentre est naturelle par rapport à composition avec des isométries.",
+    "msc_codes": [
+      "51F30"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "$\\mathrm{CAT}(-1)$ space, Moebius map, circumcenter.",
+    "source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3582/",
+    "article_type": "research article",
+    "available_date": "2024-05-17",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3582/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "d6d41396e397963ff6a933f7bcac390d4659853007a753501b766082ec7dfb5f",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "51F30"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-aif.3583",
+    "journal_id": "zbmath-serial-311",
+    "doi": "10.5802/aif.3583",
+    "title": "The Intrinsic Normal Cone for Artin Stacks",
+    "authors": [
+      "Aranha, Dhyan",
+      "Pstrągowski, Piotr"
+    ],
+    "year": 2024,
+    "abstract": "We extend the construction of the normal cone of a closed embedding of schemes to any locally morphism of finite type of higher Artin stacks and show that in the Deligne-Mumford case our construction recovers the relative intrinsic normal cone of Behrend and Fantechi. We characterize our extension as the unique one satisfying a short list of axioms, and use it to construct the deformation to the normal cone.\nAs an application of our methods, we associate to any morphism of Artin stacks equipped with a choice of a global perfect obstruction theory a relative virtual fundamental class in the Chow group of Kresch.\nNous étendons la construction du cône normal d’une immersion fermée de schémas à tout morphisme localement de type fini de champs d’Artin supérieurs et montrons que dans le cas de Deligne-Mumford notre construction retrouve le cône normal intrinsèque relatif de Behrend et Fantechi. Nous caractérisons notre extension comme l’unique satisfaisant une courte liste d’axiomes, et l’utilisons pour construire la déformation du cône normal.\nComme application de nos méthodes, nous associons à tout morphisme de champs d’Artin muni d’un choix d’une théorie d’obstruction parfaite globale une classe fondamentale virtuelle relative dans le groupe de Chow de Kresch.",
+    "msc_codes": [
+      "14C15"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Moduli space, normal cone, deformation theory, Artin stack, Chow group",
+    "source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3583/",
+    "article_type": "research article",
+    "available_date": "2024-05-17",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3583/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "caa80be464fd1bd8138f01344ee4143b8c843f105058cbad5efd0e49cb85b4f6",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "14C15"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-aif.3579",
+    "journal_id": "zbmath-serial-311",
+    "doi": "10.5802/aif.3579",
+    "title": "Wild monodromy of the Fifth Painlevé equation and its action on wild character variety: an approach of confluence",
+    "authors": [
+      "Klimeš, Martin"
+    ],
+    "year": 2024,
+    "abstract": "The article studies the nonlinear Stokes phenomenon at the irregular singularity of the Fifth Painlevé equation from the point of view of confluence from the Sixth Painlevé equation. This approach is developed separately on both sides of the Riemann–Hilbert correspondence.\nOn the side of the Painlevé–Okamoto foliation, the relation between the nonlinear monodromy group of Painlevé VI and the “nonlinear wild monodromy pseudogroup” of Painlevé V (the pseudogroup generated by nonlinear Stokes operators and nonlinear exponential torus) is explained.\nOn the side of the associated linear isomonodromic problems, the “wild” character variety (the space of the linear monodromy and Stokes data) of Painlevé V is constructed through a birational transformation from the one of Painlevé VI. Explicit formulas for the action of the “nonlinear wild monodromy” of Painlevé V on its character variety are then obtained by transporting the description of the action of the nonlinear monodromy of Painlevé VI on its character variety to that of Painlevé V.\nL’article étudie le phénomène de Stokes non linéaire à la singularité irrégulière de la Cinquième équation de Painlevé du point de vue de la confluence à partir de la Sixième équation de Painlevé. Cette approche est développée séparément des deux côtés de la correspondance de Riemann–Hilbert.\nDu côté du feuilletage de Painlevé–Okamoto, la relation entre le groupe de monodromie non-linéaire de Painlevé VI et le « pseudogroupe de monodromie sauvage non-linéaire » de Painlevé V (le pseudogroupe engendré par les opérateurs de Stokes non-linéaires et le tore exponentiel non-linéaire) est expliquée.\nDu côté des problèmes isomonodromiques linéaires associés, la variété de caractères « sauvages » (l’espace de la monodromie linéaire et des données de Stokes) de Painlevé V est construite par une transformation birationnelle à partir de celle de Painlevé VI.\nOn obtient alors des formules explicites de l’action de la « monodromie sauvage non-linéaire » de Painlevé V sur sa variété de caractères en transportant la description de l’action de la monodromie non-linéaire de Painlevé VI sur sa variété de caractères à celle de Painlevé V.",
+    "msc_codes": [
+      "34M40",
+      "34M55",
+      "34M56"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Painlevé equations, wild character variety, confluence, nonlinear Stokes phenomenon",
+    "source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3579/",
+    "article_type": "research article",
+    "available_date": "2024-05-17",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://aif.centre-mersenne.org/articles/10.5802/aif.3579/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "bca9e70a0047f9e95a4ea3589fa46ed297dc5a79b3f4d22bc0c1e3532cbecc08",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "34M40",
+      "34M55",
+      "34M56"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-alco.149",
+    "journal_id": "zbmath-serial-9185",
+    "doi": "10.5802/alco.149",
+    "title": "Random generation with cycle type restrictions",
+    "authors": [
+      "Eberhard, Sean",
+      "Garzoni, Daniele"
+    ],
+    "year": 2021,
+    "abstract": "We study random generation in the symmetric group when cycle type restrictions are imposed. Given \\pi ,{\\pi }^{\\prime }\\in {S}_{n}, we prove that \\pi and a random conjugate of {\\pi }^{\\prime } are likely to generate at least {A}_{n} provided only that \\pi and {\\pi }^{\\prime } have not too many fixed points and not too many 2-cycles.\nAs an application, we investigate the following question: For which positive integers m should we expect two random elements of order m to generate {A}_{n}? Among other things, we give a positive answer for any m having any divisor d in the range 3\\le d\\le o\\left({n}^{1/2}\\right).",
+    "msc_codes": [
+      "20B30",
+      "20P05"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "symmetric group, random generation.",
+    "source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.149/",
+    "article_type": "research article",
+    "available_date": "2021-02-16",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.149/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "687077452bbe131b966d8fd5fe5e45c99b42fd7a1b641620aa8d9a1b5ac3d98e",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "20B30",
+      "20P05"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-alco.150",
+    "journal_id": "zbmath-serial-9185",
+    "doi": "10.5802/alco.150",
+    "title": "Plethysms of symmetric functions and representations of $\\protect \\mathrm{SL}_2({\\protect \\bf C})$",
+    "authors": [
+      "Paget, Rowena",
+      "Wildon, Mark"
+    ],
+    "year": 2021,
+    "abstract": "Let {\\nabla }^{\\lambda } denote the Schur functor labelled by the partition \\lambda and let E be the natural representation of {\\mathrm{SL}}_{2}\\left(\\mathbf{C}\\right). We make a systematic study of when there is an isomorphism {\\nabla }^{\\lambda }{\\mathrm{Sym}}^{\\ell }\\phantom{\\rule{-0.166667em}{0ex}}E\\cong {\\nabla }^{\\mu }{\\mathrm{Sym}}^{m}\\phantom{\\rule{-0.166667em}{0ex}}E of representations of {\\mathrm{SL}}_{2}\\left(\\mathbf{C}\\right).\nGeneralizing earlier results of King and Manivel, we classify all such isomorphisms when \\lambda and \\mu are conjugate partitions and when one of \\lambda or \\mu is a rectangle. We give a complete classification when \\lambda and \\mu each have at most two rows or columns or is a hook partition and a partial classification when \\ell =m.\nAs a corollary of a more general result on Schur functors labelled by skew partitions we also determine all cases when {\\nabla }^{\\lambda }{\\mathrm{Sym}}^{\\ell }\\phantom{\\rule{-0.166667em}{0ex}}E is irreducible. The methods used are from representation theory and combinatorics; in particular, we make explicit the close connection with MacMahon’s enumeration of plane partitions, and prove a new q-binomial identity in this setting.",
+    "msc_codes": [
+      "05E05",
+      "05E10",
+      "20C30",
+      "22E46",
+      "22E47"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Plethysm, Hermite Reciprocity, Hook Content Formula",
+    "source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.150/",
+    "article_type": "research article",
+    "available_date": "2021-02-16",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.150/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "1c80d905ea40b17a3ddf3bd4aabee64716e57f86e1cfbabaa31730a07e260ffe",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "05E05",
+      "05E10",
+      "20C30",
+      "22E46",
+      "22E47"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-alco.151",
+    "journal_id": "zbmath-serial-9185",
+    "doi": "10.5802/alco.151",
+    "title": "Higher discrete homotopy groups of graphs",
+    "authors": [
+      "Lutz, Bob"
+    ],
+    "year": 2021,
+    "abstract": "This paper studies a discrete homotopy theory for graphs introduced by Barcelo et al. We prove two main results. First we show that if G is a graph containing no 3- or 4-cycles, then the n th discrete homotopy group {A}_{n}\\left(G\\right) is trivial for all n\\ge 2.\nSecond we exhibit for each n\\ge 1 a natural homomorphism \\psi :{A}_{n}\\left(G\\right)\\to {\\mathscr{H}}_{n}\\left(G\\right), where {\\mathscr{H}}_{n}\\left(G\\right) is the n th discrete cubical singular homology group, and an infinite family of graphs G for which {\\mathscr{H}}_{n}\\left(G\\right) is nontrivial and \\psi is surjective. It follows that for each n\\ge 1 there are graphs G for which {A}_{n}\\left(G\\right) is nontrivial.",
+    "msc_codes": [
+      "05C99",
+      "55Q99"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Discrete homotopy, discrete singular cubical homology, $A$-theory, Hurewicz theorem",
+    "source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.151/",
+    "article_type": "research article",
+    "available_date": "2021-02-16",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.151/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "8100ad6b46b5c3f51209f963f21b4b15f9fa32862900dce2d717b1617fd00a7e",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "05C99",
+      "55Q99"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-alco.152",
+    "journal_id": "zbmath-serial-9185",
+    "doi": "10.5802/alco.152",
+    "title": "Quivers and moduli spaces of pointed curves of genus zero",
+    "authors": [
+      "Blume, Mark",
+      "Hille, Lutz"
+    ],
+    "year": 2021,
+    "abstract": "We construct moduli spaces of representations of quivers over arbitrary schemes and show how moduli spaces of pointed curves of genus zero like the Grothendieck–Knudsen moduli spaces {\\overline{M}}_{0,n} and the Losev–Manin moduli spaces {\\overline{L}}_{n} can be interpreted as inverse limits of moduli spaces of representations of certain bipartite quivers. We also investigate the case of more general Hassett moduli spaces {\\overline{M}}_{0,a} of weighted pointed stable curves of genus zero.",
+    "msc_codes": [
+      "14D22",
+      "14D23",
+      "14H10",
+      "14L24",
+      "14M25",
+      "16G20"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Moduli spaces, quiver representations, geometric invariant theory, algebraic stacks, root systems.",
+    "source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.152/",
+    "article_type": "research article",
+    "available_date": "2021-02-16",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.152/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "561d8cca70f359f6a5aab7cd123eed86b87d25f98b5b6d73da7ab200033fa2b6",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "14D22",
+      "14D23",
+      "14H10",
+      "14L24",
+      "14M25",
+      "16G20"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-alco.153",
+    "journal_id": "zbmath-serial-9185",
+    "doi": "10.5802/alco.153",
+    "title": "Irreducible representations of the symmetric groups from slash homologies of $p$-complexes",
+    "authors": [
+      "Chan, Aaron",
+      "Wong, William"
+    ],
+    "year": 2021,
+    "abstract": "In the 40s, Mayer introduced a construction of (simplicial) p-complex by using the unsigned boundary map and taking coefficients of chains modulo p. We look at such a p-complex associated to an (n-1)-simplex; in which case, this is also a p-complex of representations of the symmetric group of rank n — specifically, of permutation modules associated to two-row compositions. In this article, we calculate the so-called slash homology — a homology theory introduced by Khovanov and Qi — of such a p-complex.\nWe show that every non-trivial slash homology group appears as an irreducible representation associated to two-row partitions, and how this calculation leads to a basis of these irreducible representations given by the so-called p-standard tableaux.",
+    "msc_codes": [
+      "20C30"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Modular representation, symmetric group, permutation module, $p$-complex, slash cohomology, $p$-standard tableau.",
+    "source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.153/",
+    "article_type": "research article",
+    "available_date": "2021-02-16",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.153/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "3cff065a962d43d715d150f7a213364e689ccdff467c20604c8d906356e7452b",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "20C30"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-alco.327",
+    "journal_id": "zbmath-serial-9185",
+    "doi": "10.5802/alco.327",
+    "title": "On intersections and stable intersections of tropical hypersurfaces",
+    "authors": [
+      "Ren, Yue"
+    ],
+    "year": 2024,
+    "abstract": "We prove that every connected component of an intersection of tropical hypersurfaces contains a point of their stable intersection unless that stable intersection is empty. This is done by studying algebraic hypersurfaces that tropicalize to them and the tropicalization of their intersection.",
+    "msc_codes": [
+      "14T10",
+      "14T15"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "tropical geometry, tropical hypersurfaces, stable intersections.",
+    "source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.327/",
+    "article_type": "research article",
+    "available_date": "2024-02-22",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.327/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "6198ccbfeaba3163ca0a04ed748bc1f63832d5bbcf1b380baa513bef913e674a",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "14T10",
+      "14T15"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-alco.329",
+    "journal_id": "zbmath-serial-9185",
+    "doi": "10.5802/alco.329",
+    "title": "Combinatorics of the Delta conjecture at $q=-1$",
+    "authors": [
+      "Corteel, Sylvie",
+      "Josuat-Vergès, Matthieu",
+      "Vanden Wyngaerd, Anna"
+    ],
+    "year": 2024,
+    "abstract": "In the context of the shuffle theorem, many classical integer sequences appear with a natural refinement by two statistics q and t: for example the Catalan and Schröder numbers. In particular, the bi-graded Hilbert series of diagonal harmonics is a q,t-analog of {(n+1)}^{n-1} (and can be written in terms of symmetric functions via the nabla operator).\nThe motivation for this work is the observation that at q=-1, this q,t-analog becomes a t-analog of Euler numbers, a famous integer sequence that counts alternating permutations. We prove this observation via a more general statement, that involves the Delta operator on symmetric functions (on one side), and new combinatorial statistics on permutations involving peaks and valleys (on the other side).\nAn important tool are the schedule numbers of a parking function first introduced by Hicks; and expanded upon by Haglund and Sergel. Other empirical observations suggests that non negativity at q=-1 holds in far greater generality.",
+    "msc_codes": [
+      "05A05",
+      "05A30",
+      "05E05"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Delta conjecture, Macdonald polynomials, permutations, schedule numbers",
+    "source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.329/",
+    "article_type": "research article",
+    "available_date": "2024-02-22",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.329/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "70ea2ad441b202a0b823d930b5dc3e530869952fdd7fd8f6a69b8c89f5b5d2f6",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "05A05",
+      "05A30",
+      "05E05"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-alco.324",
+    "journal_id": "zbmath-serial-9185",
+    "doi": "10.5802/alco.324",
+    "title": "Doubly transitive lines II: Almost simple symmetries",
+    "authors": [
+      "Iverson, Joseph W.",
+      "Mixon, Dustin G."
+    ],
+    "year": 2024,
+    "abstract": "We study lines through the origin of finite-dimensional complex vector spaces that enjoy a doubly transitive automorphism group. This paper classifies those lines that exhibit almost simple symmetries. We introduce a general recipe involving Schur covers to recover doubly transitive lines from their automorphism group.\nCombining our results with recent work on the affine case by Dempwolff and Kantor [13], we deduce a classification of all linearly dependent doubly transitive lines in real or complex space.",
+    "msc_codes": [
+      "52C35",
+      "05E18",
+      "20B25",
+      "20B20"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "equiangular lines, doubly transitive, roux, Higman pair, equiangular tight frame",
+    "source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.324/",
+    "article_type": "research article",
+    "available_date": "2024-02-22",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.324/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "28e9737a8d1d20e0807673519929ed8b98bed8fd7dc6e88b36d544bd22c645ea",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "52C35",
+      "05E18",
+      "20B25",
+      "20B20"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-alco.325",
+    "journal_id": "zbmath-serial-9185",
+    "doi": "10.5802/alco.325",
+    "title": "Simplicial resolutions of powers of square-free monomial ideals",
+    "authors": [
+      "Cooper, Susan M.",
+      "El Khoury, Sabine",
+      "Faridi, Sara",
+      "Mayes-Tang, Sarah",
+      "Morey, Susan",
+      "Şega, Liana M.",
+      "Spiroff, Sandra"
+    ],
+    "year": 2024,
+    "abstract": "The Taylor resolution is almost never minimal for powers of monomial ideals, even in the square-free case. In this paper we introduce a smaller resolution for each power of any square-free monomial ideal, which depends only on the number of generators of the ideal. More precisely, for every pair of fixed integers r and q, we construct a simplicial complex that supports a free resolution of the {r}^{th} power of any square-free monomial ideal with q generators.\nThe resulting resolution is significantly smaller than the Taylor resolution, and is minimal for special cases. Considering the relations on the generators of a fixed ideal allows us to further shrink these resolutions. We also introduce a class of ideals called “extremal ideals”, and show that the Betti numbers of powers of all square-free monomial ideals are bounded by Betti numbers of powers of extremal ideals.\nOur results lead to upper bounds on Betti numbers of powers of any square-free monomial ideal that greatly improve the binomial bounds offered by the Taylor resolution.",
+    "msc_codes": [
+      "13D02",
+      "13F55"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "powers of ideals, simplicial complex, Betti numbers, free resolutions, monomial ideals, extremal ideals",
+    "source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.325/",
+    "article_type": "research article",
+    "available_date": "2024-02-22",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://alco.centre-mersenne.org/articles/10.5802/alco.325/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "9d85cbadc85c1020f19925b4bfb01f403bc9e6317a07be99d95b43ac2a0a0d92",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "13D02",
+      "13F55"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jep.140",
+    "journal_id": "zbmath-serial-8533",
+    "doi": "10.5802/jep.140",
+    "title": "On a topological counterpart of regularization for holonomic $\\protect \\mathscr{D}$-modules",
+    "authors": [
+      "Andrea D’Agnolo",
+      "Masaki Kashiwara"
+    ],
+    "year": 2021,
+    "abstract": "On a complex manifold, the embedding of the category of regular holonomic 𝒟-modules into that of holonomic 𝒟-modules has a left quasi-inverse functor ℳ\\to {ℳ}_{\\mathrm{reg}}, called regularization. Recall that {ℳ}_{\\mathrm{reg}} is reconstructed from the de Rham complex of ℳ by the regular Riemann-Hilbert correspondence. Similarly, on a topological space, the embedding of sheaves into enhanced ind-sheaves has a left quasi-inverse functor, called here sheafification.\nRegularization and sheafification are intertwined by the irregular Riemann-Hilbert correspondence. Here, we study some of the properties of the sheafification functor. In particular, we provide a stalk formula for the sheafification of enhanced specialization and microlocalization.\nSur une variété complexe lisse, l’inclusion de la catégorie des 𝒟-modules holonomes réguliers dans celle des 𝒟-modules holonomes admet un foncteur quasi-inverse à gauche ℳ\\to {ℳ}_{\\mathrm{reg}}, appelé régularisation. Rappelons que {ℳ}_{\\mathrm{reg}} est reconstruit à partir du complexe de de Rham de ℳ par la correspondance de Riemann-Hilbert régulière.\nDe même, sur un espace topologique, l’inclusion des faisceaux dans les ind-faisceaux enrichis admet un foncteur quasi-inverse à gauche, qu’on appelle ici faisceautisation. La régularisation et la faisceautisation sont échangées par la correspondance de Riemann-Hilbert irrégulière. Dans ce travail, nous étudions certaines des propriétés du foncteur de faisceautisation.\nEn particulier, nous fournissons une formule qui calcule la fibre du faisceautisé de la spécialisation et de la microlocalisation enrichies.",
+    "msc_codes": [
+      "32C38"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Irregular Riemann-Hilbert correspondence, enhanced perverse sheaves, holonomic D-modules",
+    "source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.140/",
+    "article_type": "research article",
+    "available_date": "2020-11-23",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.140/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "4e673e5043635cf61f3ae30d42e85c0f52aa6fe135e89d7e7cf33b9637b04ddc",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "32C38",
+      "14F05"
+    ],
+    "quarantined_msc_codes": [
+      "14F05"
+    ],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jep.141",
+    "journal_id": "zbmath-serial-8533",
+    "doi": "10.5802/jep.141",
+    "title": "A Legendrian Turaev torsion via generating families",
+    "authors": [
+      "Daniel Álvarez-Gavela",
+      "Kiyoshi Igusa"
+    ],
+    "year": 2021,
+    "abstract": "We introduce a Legendrian invariant built out of the Turaev torsion of generating families. This invariant is defined for a certain class of Legendrian submanifolds of 1-jet spaces, which we call of Euler type. We use our invariant to study mesh Legendrians: a family of 2-dimensional Euler type Legendrian links whose linking pattern is determined by a bicolored trivalent ribbon graph.\nThe Turaev torsion of mesh Legendrians is related to a certain monodromy of handle slides, which we compute in terms of the combinatorics of the graph. As an application, we exhibit pairs of Legendrian links in the 1-jet space of any orientable closed surface which are formally equivalent, cannot be distinguished by any natural Legendrian invariant, yet are not Legendrian isotopic.\nThese examples appeared in a different guise in the work of the second author with J. Klein on pictures for {K}_{3} and the higher Reidemeister torsion of circle bundles.\nNous introduisons un invariant des sous-variétés legendriennes construit à l’aide de fonctions génératrices. Cet invariant est défini pour une certaine classe de sous-variétés legendriennes, que nous appelons de type d’Euler, dans un espace de 1-jets.\nNous utilisons cet invariant pour étudier les mailles legendriennes : une famille de sous-variétés legendriennes de type d’Euler dont le motif d’entrelac est déterminé par un graphe bicolore et trivalent qui est muni d’un ordre cyclique des arêtes concourantes en un même sommet. La torsion de Turaev d’une maille legendrienne est reliée à une certaine monodromie de glissement d’anses, que nous calculons en terme de la combinatoire du graphe.\nComme application, nous exhibons, dans l’espace des 1-jets de toute surface fermée orientable, des paires d’entrelacs legendriens qui sont formellement équivalents, ne peuvent être distingués par aucun invariant legendrien naturel, et pourtant ne sont pas isotopes parmi les variétés legendriennes. Ces exemples sont apparus sous une forme différente dans les travaux du second auteur avec J. Klein sur des dessins pour {K}_{3} et sur la torsion de Reidemeister supérieure de fibrés en cercles.",
+    "msc_codes": [
+      "57R17",
+      "19J10"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Legendrians, Turaev torsion, K-theory",
+    "source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.141/",
+    "article_type": "research article",
+    "available_date": "2020-11-23",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.141/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "ca571b97ab95632702067884533a20963a6ff0a28a69c8448e09ca41dc665b02",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "57R17",
+      "19J10"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jep.142",
+    "journal_id": "zbmath-serial-8533",
+    "doi": "10.5802/jep.142",
+    "title": "The diagonal of the associahedra",
+    "authors": [
+      "Naruki Masuda",
+      "Hugh Thomas",
+      "Andy Tonks",
+      "Bruno Vallette"
+    ],
+    "year": 2021,
+    "abstract": "This paper introduces the first general method to solve the problem of the approximation of the diagonal for face-coherent families of polytopes. We recover the classical cases of the simplices and the cubes and we solve it for the associahedra, also known as Stasheff polytopes. We show that it satisfies an easy-to-state cellular formula.\nFor the first time, we endow a family of realizations of the associahedra (the Loday realizations) with a topological and cellular operad structure; it is shown to be compatible with the diagonal maps.\nCet article introduit pour la première fois une méthode générale permettant de résoudre le problème de l’approximation de la diagonale de familles de polytopes satisfaisant à une propriété de cohérence par faces. On retrouve les cas classiques des simplexes et des cubes et on résout celui des associaèdres, appelés aussi polytopes de Stasheff. On montre que ce dernier cas vérifie une formule cellulaire facile à énoncer.\nPour la première fois, nous munissons une famille de réalisations des associaèdres (celle de Loday) d’une structure d’opérade topologique cellulaire, dont nous montrons qu’elle est compatible avec les diagonales.",
+    "msc_codes": [
+      "52B11",
+      "18M75",
+      "18M70",
+      "06A07"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Associahedra, approximation of the diagonal, operads, fiber polytopes, $\\mathrm{A}_\\infty $-algebras",
+    "source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.142/",
+    "article_type": "research article",
+    "available_date": "2020-12-10",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.142/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "ca8c3bc5f9d3e6b634171cb5a6ba722934a212dc565a04954aeba96f381e7234",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "52B11",
+      "18M75",
+      "18M70",
+      "06A07"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jep.143",
+    "journal_id": "zbmath-serial-8533",
+    "doi": "10.5802/jep.143",
+    "title": "Differential transcendence criteria for second-order linear difference equations and elliptic hypergeometric functions",
+    "authors": [
+      "Carlos E. Arreche",
+      "Thomas Dreyfus",
+      "Julien Roques"
+    ],
+    "year": 2021,
+    "abstract": "We develop general criteria that ensure that any non-zero solution of a given second-order difference equation is differentially transcendental, which apply uniformly in particular cases of interest, such as shift difference equations, q-dilation difference equations, Mahler difference equations, and elliptic difference equations. These criteria are obtained as an application of differential Galois theory for difference equations.\nWe apply our criteria to prove a new result to the effect that most elliptic hypergeometric functions are differentially transcendental.\nDans cet article, nous développons des critères généraux garantissant la transcendance différentielle d’une solution non nulle donnée d’une équation aux différences du deuxième ordre. Ces critères s’appliquent à de nombreuses équations, telles que les équations aux différences finies, les équations aux q-différences, les équations de Mahler, ou encore les équations aux différences elliptiques. Notre approche repose sur la théorie de Galois des équations aux différences.\nEn guise d’application, nous démontrons que la plupart des fonctions hypergéométriques elliptiques sont différentiellement transcendantes.",
+    "msc_codes": [
+      "39A06",
+      "12H05"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Linear difference equations, difference Galois theory, elliptic curves, differential algebra",
+    "source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.143/",
+    "article_type": "research article",
+    "available_date": "2021-01-19",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.143/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "c0f591e2da4fb2d2d65a48878fb8fbd8b800beaae78668d28f9cca0c8e081201",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "39A06",
+      "12H05"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jep.139",
+    "journal_id": "zbmath-serial-8533",
+    "doi": "10.5802/jep.139",
+    "title": "A two-phase problem with Robin conditions on the free boundary",
+    "authors": [
+      "Serena Guarino Lo Bianco",
+      "Domenico Angelo La Manna",
+      "Bozhidar Velichkov"
+    ],
+    "year": 2021,
+    "abstract": "We study for the first time a two-phase free boundary problem in which the solution satisfies a Robin boundary condition. We consider the case in which the solution is continuous across the free boundary and we prove an existence and a regularity result for minimizers of the associated variational problem. Finally, in the appendix, we give an example of a class of Steiner symmetric minimizers.\nNous étudions pour la première fois un problème à frontière libre à deux phases pour lequel la solution satisfait à une condition de Robin au bord. Nous considérons le cas où la solution est continue au bord et nous montrons un résultat d’existence et de régularité pour les minimiseurs du problème variationnel associé. Enfin, nous donnons dans l’appendice un exemple d’une classe de minimiseurs avec une symétrie de Steiner.",
+    "msc_codes": [
+      "35R35",
+      "49Q10"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Free boundary problems, two-phase, Robin boundary conditions, regularity",
+    "source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.139/",
+    "article_type": "research article",
+    "available_date": "2020-11-02",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.139/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "bc5d5ac1ecbcf127b7ae019b7c00c1cdf0d4c57155549874a8f58ef7929ac153",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "35R35",
+      "49Q10"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jep.250",
+    "journal_id": "zbmath-serial-8533",
+    "doi": "10.5802/jep.250",
+    "title": "On the polygonal Faber-Krahn inequality",
+    "authors": [
+      "Beniamin Bogosel",
+      "Dorin Bucur"
+    ],
+    "year": 2024,
+    "abstract": "It has been conjectured by Pólya and Szegö seventy years ago that the planar set which minimizes the first eigenvalue of the Dirichlet-Laplace operator among polygons with n sides and fixed area is the regular polygon. Despite its apparent simplicity, this result has only been proved for triangles and quadrilaterals. In this paper we prove that for each n\\ge 5 the proof of the conjecture can be reduced to a finite number of certified numerical computations.\nMoreover, the local minimality of the regular polygon can be reduced to a single numerical computation. For n=5,6,7,8 we perform this computation and certify the numerical approximation by finite elements, up to machine errors.\nIl y a soixante-dix ans, Pólya et Szegö ont conjecturé que l’ensemble du plan qui minimise la première valeur propre du laplacien avec conditions de Dirichlet au bord parmi les polygones de n côtés et aire fixée est le polygone régulier. Malgré sa simplicité apparente, cette conjecture a été démontrée seulement pour les triangles et les quadrilatères. Dans cet article, nous démontrons que pour chaque n\\ge 5 la preuve de la conjecture peut être réduite à un nombre fini de calculs numériques certifiés.\nEn particulier, la minimalité locale du polygone régulier est réduite à un seul calcul certifié. Pour n=5,6,7,8 nous faisons ce calcul et nous certifions l’approximation par éléments finis, aux erreurs d’arrondi près.",
+    "msc_codes": [
+      "35P15",
+      "49Q10"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Faber-Krahn inequality, polygons, shape optimization, numerical approximations",
+    "source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.250/",
+    "article_type": "research article",
+    "available_date": "2023-12-21",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.250/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "17d2fea222834e7010977d2bc739bfb9758e7a3ecf618d0dd9a47b110a1c63b6",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "35P15",
+      "49Q10"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jep.251",
+    "journal_id": "zbmath-serial-8533",
+    "doi": "10.5802/jep.251",
+    "title": "Hyperbola method on toric varieties",
+    "authors": [
+      "Marta Pieropan",
+      "Damaris Schindler"
+    ],
+    "year": 2024,
+    "abstract": "We develop a very general version of the hyperbola method which extends the known method by Blomer and Brüdern for products of projective spaces to complete smooth split toric varieties. We use it to count Campana points of bounded log-anticanonical height on complete smooth split toric \\mathbb{Q}-varieties with torus invariant boundary. We apply the strong duality principle in linear programming to show the compatibility of our results with the conjectured asymptotic.\nNous développons une version très générale de la méthode de l’hyperbole qui étend la méthode connue de Blomer et Brüdern pour les produits d’espaces projectifs à des variétés toriques complètes, lisses et scindées. Nous l’utilisons pour compter les points de Campana de hauteur log-anticanonique bornée sur des \\mathbb{Q}-variétés toriques complètes, lisses et scindées avec un bord invariant sous l’action du tore.\nNous appliquons le principe de dualité forte en programmation linéaire pour montrer la compatibilité de nos résultats avec l’asymptotique conjecturée.",
+    "msc_codes": [
+      "11P21",
+      "11A25",
+      "11G50",
+      "14G05",
+      "14M25"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Hyperbola method, $m$-full numbers, Campana points, toric varieties",
+    "source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.251/",
+    "article_type": "research article",
+    "available_date": "2023-12-21",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.251/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "881337be4149831d1a3be7c6b48f85eb9105576e95dfc007fccd5789f87c59cb",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "11P21",
+      "11A25",
+      "11G50",
+      "14G05",
+      "14M25"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jep.252",
+    "journal_id": "zbmath-serial-8533",
+    "doi": "10.5802/jep.252",
+    "title": "Invariant submanifolds of conformal symplectic dynamics",
+    "authors": [
+      "Marie-Claude Arnaud",
+      "Jacques Fejoz"
+    ],
+    "year": 2024,
+    "abstract": "We study invariant manifolds of conformal symplectic dynamical systems on a symplectic manifold (ℳ,\\omega ) of dimension \\ge 4. We first prove the \\omega -isotropy of an invariant manifold 𝒩, assuming the entropy of 𝒩 is small with respect to the conformality rate. Next, when (ℳ,\\omega ) is exact and 𝒩 is isotropic, we show that 𝒩 must be exact for some choice of the primitive of \\omega , under the condition that the dynamics acts trivially on the cohomology of degree 1 of 𝒩.\nThe conclusion partially extends if a one-sided orbit of 𝒩 has compact closure. We eventually describe some conditions showing the uniqueness of 𝒩.\nNous étudions les variétés invariantes des systèmes dynamiques conformes symplectiques sur une variété symplectique (ℳ,\\omega ) de dimension \\ge 4. Nous montrons d’abord qu’une variété invariante 𝒩 est \\omega -isotrope, à supposer que l’entropie de la dynamique restreinte soit petite par rapport au taux de conformalité.\nEnsuite, quand (ℳ,\\omega ) est exacte et 𝒩 isotrope, nous montrons que 𝒩 est exacte pour un certain choix de primitive de \\omega , sous la condition que la dynamique agit trivialement sur la cohomologie de degré 1 de 𝒩. La conclusion se généralise partiellement si une demi-orbite de 𝒩 est d’adhérence compacte. Enfin, nous décrivons des conditions montrant l’unicité de 𝒩.",
+    "msc_codes": [
+      "37C05",
+      "37J39"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Conformal symplectic dynamics, isotropy, entropy, exactness, Lagrangian submanifold, invariant manifold",
+    "source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.252/",
+    "article_type": "research article",
+    "available_date": "2024-01-09",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.252/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "f52878f85105216d461b50e95c995f9e708e40b58de8f8e4801cb7ceefc0d729",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "37C05",
+      "37J39",
+      "38A35"
+    ],
+    "quarantined_msc_codes": [
+      "38A35"
+    ],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jep.253",
+    "journal_id": "zbmath-serial-8533",
+    "doi": "10.5802/jep.253",
+    "title": "Purity and quasi-split torsors over Prüfer bases",
+    "authors": [
+      "Ning Guo",
+      "Fei Liu"
+    ],
+    "year": 2024,
+    "abstract": "We establish an analogue of the Zariski–Nagata purity theorem for finite étale covers on smooth schemes over Prüfer rings by demonstrating Auslander’s flatness criterion in this non-Noetherian context. We derive an Auslander–Buchsbaum formula for general local rings, which provides a useful tool for studying the algebraic structures involved in our work. Through the analysis of reflexive sheaves, we prove various purity theorems for torsors under certain group algebraic spaces, such as the reductive ones.\nSpecifically, using results from [EGA IV 4 ] on parafactoriality on smooth schemes over normal bases, we prove the purity for cohomology groups of multiplicative type groups at this level of generality. Subsequently, we leverage the aforementioned purity results to resolve the Grothendieck–Serre conjecture for torsors under a quasi-split reductive group scheme over schemes smooth over Prüfer rings.\nAlong the way, we also prove a version of the Nisnevich purity conjecture for quasi-split reductive group schemes in our Prüferian context, inspired by the recent work of Česnavičius [Čes22b].\nNous établissons un analogue du théorème de pureté de Zariski–Nagata pour les revêtements étales sur les schémas lisses sur les anneaux de Prüfer en démontrant le critère de platitude d’Auslander dans ce contexte non noethérien. Nous dérivons une formule d’Auslander–Buchsbaum pour les anneaux locaux généraux, qui fournit un outil utile pour étudier les structures algébriques impliquées dans notre travail.\nGrâce à l’analyse des faisceaux réflexifs, nous prouvons divers théorèmes de pureté pour les torseurs sous certains espaces algébriques en groupes, notamment ceux qui sont réductifs. En particulier, en utilisant des résultats de [EGA IV 4 ] sur la parafactorialité sur les schémas lisses sur des bases normales, nous prouvons la pureté pour les groupes de cohomologie des groupes de type multiplicatif à ce niveau de généralité.\nEnsuite, nous utilisons les résultats de pureté susmentionnés pour résoudre la conjecture de Grothendieck–Serre pour les torseurs sous un schéma en groupes réductifs quasi-déployés sur des schémas lisses sur des anneaux de Prüfer. Nous prouvons également une version de la conjecture de pureté de Nisnevich pour les schémas en groupes réductifs quasi-déployés dans notre contexte prüferien, inspirée par les travaux récents de Česnavičius [Čes22b].",
+    "msc_codes": [
+      "14F22",
+      "14F20",
+      "14G22",
+      "16K50"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Purity, Zariski–Nagata, Auslander–Buchsbaum, Grothendieck–Serre, vector bundles, principal bundles, Prüfer rings, torsors, homogeneous spaces, group schemes, valuation rings",
+    "source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.253/",
+    "article_type": "research article",
+    "available_date": "2024-01-26",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.253/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "3c1e8fd73f516b03bb7f1c5a7a12513ac7bb5405a08b600c29c1d86cf23b86f6",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "14F22",
+      "14F20",
+      "14G22",
+      "16K50"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jep.249",
+    "journal_id": "zbmath-serial-8533",
+    "doi": "10.5802/jep.249",
+    "title": "Values of $E$-functions are not Liouville numbers",
+    "authors": [
+      "Stéphane Fischler",
+      "Tanguy Rivoal"
+    ],
+    "year": 2024,
+    "abstract": "Shidlovskii has given a linear independence measure of values of E-functions with rational Taylor coefficients at a rational point, not a singularity of the underlying differential system satisfied by these E-functions. Recently, Beukers has proved a qualitative linear independence theorem for the values at an algebraic point of E-functions with arbitrary algebraic Taylor coefficients. In this paper, we obtain an analogue of Shidlovskii’s measure for values of arbitrary E-functions at algebraic points.\nThis enables us to solve a long standing problem by proving that the value of an E-function at an algebraic point is never a Liouville number. We also prove that values at rational points of E-functions with rational Taylor coefficients are linearly independent over \\overline{\\mathbb{Q}} if and only if they are linearly independent over \\mathbb{Q}. Our methods rest upon improvements of results obtained by André and Beukers in the theory of E-operators.\nShidlovskii a donné une mesure d’indépendance linéaire de valeurs de E-fonctions à coefficients de Taylor rationnels en un point rationnel qui n’est pas une singularité du système différentiel sous-jacent vérifié par ces E-fonctions. Récemment, Beukers a prouvé un théorème d’indépendance linéaire qualitatif pour les valeurs en un point algébrique de E-fonctions à coefficients de Taylor algébriques arbitraires.\nDans cet article, nous obtenons un analogue de la mesure de Shidlovskii pour des valeurs de E-fonctions arbitraires en des points algébriques. Cela nous permet de résoudre un problème longtemps ouvert : la valeur d’une E-fonction en un point algébrique n’est jamais un nombre de Liouville.\nNous prouvons également que des valeurs aux points rationnels de E-fonctions à coefficients de Taylor rationnels sont linéairement indépendantes sur \\overline{\\mathbb{Q}} si et seulement si elles sont linéairement indépendantes sur \\mathbb{Q}. Nos méthodes reposent sur des améliorations de résultats obtenus par André et Beukers concernant la théorie des E-opérateurs.",
+    "msc_codes": [
+      "11J82",
+      "11J91"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "$E$-functions, André-Beukers theorems, linear independence measures, irrationality measures, transcendence measures, Liouville numbers, Shidlovskii’s theorem",
+    "source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.249/",
+    "article_type": "research article",
+    "available_date": "2023-12-05",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://jep.centre-mersenne.org/articles/10.5802/jep.249/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "2dd6162b7957c44dc30963f7b27d4923678babb86e8166ce1dbb1d338747ea3c",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "11J82",
+      "11J91"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jtnb.1152",
+    "journal_id": "zbmath-serial-1917",
+    "doi": "10.5802/jtnb.1152",
+    "title": "Primitive roots for Pjateckii-Šapiro primes",
+    "authors": [
+      "Jyothsnaa Sivaraman"
+    ],
+    "year": 2021,
+    "abstract": "For any non-integral positive real number c, any sequence {\\left(\\lfloor {n}^{c}\\rfloor \\right)}_{n} is called a Pjateckii-Šapiro sequence. Given a real number c in the interval \\left(1,\\frac{12}{11}\\right), it is known that the number of primes in this sequence up to x has an asymptotic formula. We would like to use the techniques of Gupta and Murty to study Artin’s problems for such primes.\nWe will prove that even though the set of Pjateckii-Šapiro primes is of density zero for a fixed c, one can show that there exist natural numbers which are primitive roots for infinitely many Pjateckii-Šapiro primes for any fixed c in the interval \\left(1,\\frac{\\sqrt{77}}{7}-\\frac{1}{4}\\right).\nPour tout nombre réel positif non entier c, la suite {\\left(\\lfloor {n}^{c}\\rfloor \\right)}_{n} est appelée suite de Pjateckii-Šapiro. Étant donné un nombre réel c dans l’intervalle \\left(1,\\frac{11}{12}\\right), on a une formule asymptotique pour le nombre de nombres premiers de cette suite qui sont au plus égaux à x. Nous utilisons la méthode de Gupta et Murty pour étudier le problème d’Artin pour ces nombres premiers.\nNous démontrons que, bien que l’ensemble de ces nombres premiers a une densité relative nulle pour c donné, il existe des entiers positifs qui sont des racines primitives pour une infinité de nombres premiers de Pjateckii-Šapiro pour tout c fixé dans l’intervalle \\left(1,\\frac{\\sqrt{77}}{7}-\\frac{1}{4}\\right).",
+    "msc_codes": [
+      "11A07",
+      "11N05",
+      "11N35",
+      "11N36"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Primitive roots, Pjateckii-Šapiro sequence, primes, sieve methods",
+    "source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1152/",
+    "article_type": "research article",
+    "available_date": "2021-05-21",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1152/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "8f91b9c95325632f906a6d4766881aada6c5d35f76adffa925c19570b248a072",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "11A07",
+      "11N05",
+      "11N35",
+      "11N36"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jtnb.1153",
+    "journal_id": "zbmath-serial-1917",
+    "doi": "10.5802/jtnb.1153",
+    "title": "Degree bounds for projective division fields associated to elliptic modules with a trivial endomorphism ring",
+    "authors": [
+      "Alina Carmen Cojocaru",
+      "Nathan Jones"
+    ],
+    "year": 2021,
+    "abstract": "Let k be a global field, let A be a Dedekind domain with \\mathrm{Quot}\\left(A\\right)=k, and let K be a finitely generated field.\nUsing a unified approach for both elliptic curves and Drinfeld modules M that are defined over K and that have a trivial endomorphism ring, with k=\\mathbb{Q}, A=\\mathbb{Z} in the former case and with k a global function field, A its ring of functions regular away from a fixed prime in the latter case, we prove, for any nonzero ideal 𝔞⊲A, best possible estimates in the norm \\left|𝔞\\right| for the degree over K of the subfield of the 𝔞-division field of M fixed by the scalars.\nSoient k un corps global, A un anneau de Dedekind avec \\mathrm{Quot}\\left(A\\right)=k et K un corps de type fini.\nPour les courbes elliptiques et les modules de Drinfeld M définis sur K et ayant un anneau d’endomorphismes trivial (où k=\\mathbb{Q} et A=\\mathbb{Z} dans le premier cas et k est un corps de fonctions global et A son anneau des fonctions régulières en dehors d’un idéal premier fixé dans le second cas), nous nous intéressons au sous-corps engendré par les points de 𝔞-torsion associé à un idéal non nul 𝔞⊲A et à son sous-corps maximal fixé par les automorphismes scalaires.\nEn utilisant une approche unifiée, nous prouvons les meilleures estimations possibles pour le degré de ce dernier corps sur K en termes de la norme \\left|𝔞\\right|.",
+    "msc_codes": [
+      "11G05",
+      "11G09",
+      "11F80"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Elliptic curves, Drinfeld modules, division fields, Galois representations",
+    "source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1153/",
+    "article_type": "research article",
+    "available_date": "2021-05-21",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1153/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "ff2f40de1d2a70138d8745232b035afb127565720deb0b84c61627883ac18a92",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "11G05",
+      "11G09",
+      "11F80"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jtnb.1149",
+    "journal_id": "zbmath-serial-1917",
+    "doi": "10.5802/jtnb.1149",
+    "title": "Moments and One level density of certain unitary families of Hecke $L$-functions",
+    "authors": [
+      "Peng Gao",
+      "Liangyi Zhao"
+    ],
+    "year": 2021,
+    "abstract": "In this paper, we study the moments of central values of certain unitary families of Hecke L-functions of the Gaussian field, and establish quantitative non-vanishing result for their central values. We also establish a one level density result for the low-lying zeros of these families of Hecke L-functions.\nDans cet article, nous étudions les moments des valeurs centrales de certaines familles unitaires de fonctions L de Hecke sur le corps des rationnels de Gauss et prouvons un résultat quantitatif de non-annulation de leurs valeurs centrales. Nous établissons aussi un résultat de densité portant sur les petits zéros dans ces familles de fonctions L de Hecke.",
+    "msc_codes": [
+      "11M41",
+      "11L40"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Hecke $L$-functions, Hecke characters",
+    "source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1149/",
+    "article_type": "research article",
+    "available_date": "2021-05-21",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1149/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "be2ed06387292ed8bc6383996ec59026b57a9b34fb3f04d82f221b537259a7e0",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "11M41",
+      "11L40"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jtnb.1150",
+    "journal_id": "zbmath-serial-1917",
+    "doi": "10.5802/jtnb.1150",
+    "title": "The twisted forms of a semisimple group over an $\\protect \\mathbb{F}_q$-curve",
+    "authors": [
+      "Rony A. Bitan",
+      "Ralf Köhl",
+      "Claudia Schoemann"
+    ],
+    "year": 2021,
+    "abstract": "Let C be a smooth, projective and geometrically connected curve defined over a finite field {𝔽}_{q}. Given a semisimple C-S-group scheme \\underline{G} where S is a finite set of closed points of C, we describe the set of ({𝒪}_{S}-classes of) twisted forms of \\underline{G} in terms of geometric invariants of its fundamental group F\\left(\\underline{G}\\right).\nSoit C une courbe projective, lisse et connexe définie sur un corps fini {𝔽}_{q}. Étant donné un C-S-schéma en groupes semisimples où S est un ensemble fini de points fermés de C, nous décrivons l’ensemble de ({𝒪}_{S}-classes de) formes tordues de \\underline{G} en termes d’invariants géométriques de son groupe fondamental F\\left(\\underline{G}\\right).",
+    "msc_codes": [
+      "11G20",
+      "11G45",
+      "11R29"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Class number, Hasse principle, Tamagawa number, étale cohomology",
+    "source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1150/",
+    "article_type": "research article",
+    "available_date": "2021-05-21",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1150/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "1bb12be993a4cdaee354a8148255c82e9224ecad6497d8bd07e2cbbc9bb099a2",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "11G20",
+      "11G45",
+      "11R29"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jtnb.1151",
+    "journal_id": "zbmath-serial-1917",
+    "doi": "10.5802/jtnb.1151",
+    "title": "Semistable abelian varieties and maximal torsion 1-crystalline submodules",
+    "authors": [
+      "Cody Gunton"
+    ],
+    "year": 2021,
+    "abstract": "Let p be a prime, let K be a discretely valued extension of {\\mathbb{Q}}_{p}, and let {A}_{K} be an abelian K-variety with semistable reduction. Extending work by Kim and Marshall from the case where p>2 and K/{\\mathbb{Q}}_{p} is unramified, we prove an l=p complement of a Galois cohomological formula of Grothendieck for the l-primary part of the Néron component group of {A}_{K}.\nOur proof involves constructing, for each m\\in {\\mathbb{Z}}_{\\ge 0}, a finite flat {𝒪}_{K}-group scheme with generic fiber equal to the maximal 1-crystalline submodule of {A}_{K}\\left[{p}^{m}\\right]. As a corollary, we have a new proof of the Coleman–Iovita monodromy criterion for good reduction of abelian K-varieties.\nSoient p un nombre premier, K une extension de {\\mathbb{Q}}_{p} de valuation discrète, et {A}_{K} une K-variété abélienne à réduction semistable. En étendant les travaux de Kim et Marshall portant sur le cas p>2 et K/{\\mathbb{Q}}_{p} non ramifié, nous prouvons un complément pour l=p à la formule cohomologique de Grothendieck pour la partie l-primaire du groupe des composantes connexes du modèle de Néron de {A}_{K}.\nNotre démonstration consiste à construire, pour chaque m\\in {\\mathbb{Z}}_{\\ge 0}, un schéma en groupes plat et fini sur {𝒪}_{K} dont la fibre générique est isomorphe au sous-module 1-cristallin maximal de {A}_{K}\\left[{p}^{m}\\right]. Comme corollaire, on obtient une nouvelle preuve du critère monodromique de bonne réduction de Coleman–Iovita.",
+    "msc_codes": [
+      "11R33",
+      "11R34",
+      "14K15"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Néron component group, log 1-motive, torsion 1-crystalline representation",
+    "source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1151/",
+    "article_type": "research article",
+    "available_date": "2021-05-21",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1151/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "174f0a148c4356a0063cc082e5abb852713d0e2f5c3372c2a4efd4d7fed20da7",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "11R33",
+      "11R34",
+      "14K15"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jtnb.1276",
+    "journal_id": "zbmath-serial-1917",
+    "doi": "10.5802/jtnb.1276",
+    "title": "Étude du graphe divisoriel 5",
+    "authors": [
+      "Éric Saias"
+    ],
+    "year": 2024,
+    "abstract": "Le graphe divisoriel est le graphe non orienté dont les sommets sont les entiers strictement positifs et deux entiers sont reliés par une arête quand le petit divise le grand. On appelle chaîne de longueur \\ell toute suite finie d’entiers strictement positifs {a}_{1},{a}_{2},...,{a}_{\\ell } deux à deux distincts tels que pour tout i vérifiant 1\\le i<\\ell , {a}_{i} et {a}_{i+1} sont reliés par une arête du graphe divisoriel.\nNotons f\\left(x\\right) la longueur maximum d’une chaîne de la restriction du graphe divisoriel aux entiers inférieurs ou égaux à x. Tenenbaum a donné un procédé constructif, directement transposable sous forme d’algorithme, qui établit l’existence d’une chaîne d’entiers \\le x dont on sait maintenant qu’il fournit la minoration f\\left(x\\right)\\ge (c+o(1\\left)\\right)x/logx avec c=0,07 quand x\\to +\\infty .\nOn donne ici une variante de son procédé constructif qui permet d’obtenir c=0,37 pour la même minoration. On profite de l’occasion pour faire une large part aux mathématiques expérimentales.\nPar ailleurs, on donne également une minoration d’une variante de la fonction f\\left(x\\right), qui permettra de répondre à une question d’Erdős dans un travail ultérieur.\nThe divisor graph is the non oriented graph whose vertices are the positive integers, two vertices being connected by an edge when the smallest one divides the largest one. We call chain of length \\ell any finite sequence of pairwise distinct positive integers {a}_{1},{a}_{2},...,{a}_{\\ell }, such that, for 1\\le i<\\ell , {a}_{i} and {a}_{i+1} are connected by an edge in the divisor graph.\nLet f\\left(x\\right) denote the maximum length of the restriction of the divisor graph to the integers smaller than or equal to x. Tenenbaum has given a constructive procedure, directly transposable in form of an algorithm, which establishes the existence of a chain of integers \\le x, from which the lower bound f\\left(x\\right)\\ge (c+o(1\\left)\\right)x/logx is now known to follow, with c=0,07 when x\\to +\\infty .\nWe give here a variant of his constructive procedure that allows to get a similar lower bound with c=0,37. We take advantage of the opportunity to make a large part to experimental mathematics.\nMoreover, we also give a lower bound of a variant of the function f\\left(x\\right), which will enable us to answer a question of Erdős in a forthcoming paper.",
+    "msc_codes": [
+      "11A05",
+      "05C38"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "",
+    "source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1276/",
+    "article_type": "research article",
+    "available_date": "2024-07-25",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1276/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "a01a7c7d2dcf8c940da6e0996a9ef88758ec557d5d1a9e04ecb93630f4e80434",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "11A05",
+      "05C38"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jtnb.1272",
+    "journal_id": "zbmath-serial-1917",
+    "doi": "10.5802/jtnb.1272",
+    "title": "A Beilinson–Bernstein Theorem for Twisted Arithmetic Differential Operators on the Formal Flag Variety",
+    "authors": [
+      "Andrés Sarrazola-Alzate"
+    ],
+    "year": 2024,
+    "abstract": "Let {\\mathbb{Q}}_{p} be the field of p-adic numbers and 𝔾 a split connected reductive group scheme over {\\mathbb{Z}}_{p}. In this work we will introduce a sheaf of twisted arithmetic differential operators on the formal flag variety of 𝔾, associated to a general character.\nIn particular, we will generalize the results of [21], concerning the {𝒟}^{†}-affinity of the smooth formal flag variety of 𝔾, of certain sheaves of p-adically complete twisted arithmetic differential operators associated to an algebraic character, and the results of [24] concerning the calculation of the global sections.\nSoit {\\mathbb{Q}}_{p} le corps des nombres p-adiques et 𝔾 un schéma en groupes réductif, connexe et déployé sur {\\mathbb{Z}}_{p}. Nous introduirons un faisceau d’opérateurs différentiels arithmétiques tordus sur la variété des drapeaux formelle de 𝔾, associée à un caractère général.\nEn particulier, nous généraliserons les résultats de [21], concernant la {𝒟}^{†}-affinité de la variété des drapeaux formelle lisse de 𝔾, de certains gerbes d’opérateurs différentiels arithmétiques tordus p-adiquement complets, associés à un caractère algébrique, et les résultats de [24] concernant le calcul des sections globales.",
+    "msc_codes": [
+      "22E50",
+      "14L30",
+      "13N10",
+      "32C38"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Formal flag variety, twisted arithmetic differential operators, Beilinson–Bernstein correspondence",
+    "source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1272/",
+    "article_type": "research article",
+    "available_date": "2024-07-25",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1272/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "51b24d0cf50335bd80db757365081a47a4639fec27da787843751d1068d4431d",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "22E50",
+      "14L30",
+      "13N10",
+      "32C38"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jtnb.1273",
+    "journal_id": "zbmath-serial-1917",
+    "doi": "10.5802/jtnb.1273",
+    "title": "Extensions of mod $p$ representations of division algebras",
+    "authors": [
+      "Andrew Keisling",
+      "Dylan Pentland"
+    ],
+    "year": 2024,
+    "abstract": "Let F be a local field over {\\mathbf{Q}}_{p} or {\\mathbf{F}}_{p}\\left(\\phantom{\\rule{-1.66656pt}{0ex}}\\left(t\\right)\\phantom{\\rule{-1.66656pt}{0ex}}\\right), and let D be a central simple division algebra over F of degree d. In the p-adic case, we assume p>de+1 where e is the ramification degree over {\\mathbf{Q}}_{p}; otherwise, we need only assume p and d are coprime.\nFor the subgroup {I}_{1}=1+{\\varpi }_{D}{𝒪}_{D} of {D}^{\\times } we determine the structure of {\\mathrm{H}}^{1}({I}_{1},\\pi ) as a representation of {D}^{\\times }/{I}_{1} for an arbitrary smooth irreducible {\\overline{\\mathbf{F}}}_{p}-representation \\pi of {D}^{\\times }. We use this to compute the group {\\mathrm{Ext}}_{{D}^{\\times }}^{1}(\\pi ,{\\pi }^{\\prime }) for arbitrary smooth irreducible representations \\pi and {\\pi }^{\\prime } of {D}^{\\times }.\nIn the p-adic case, via Poincaré duality we can compute the top cohomology groups and compute the highest degree extensions.\nSoit F un corps local sur {\\mathbf{Q}}_{p} ou {\\mathbf{F}}_{p}\\left(\\phantom{\\rule{-1.66656pt}{0ex}}\\left(t\\right)\\phantom{\\rule{-1.66656pt}{0ex}}\\right) et soit D une algèbre à division centrale simple sur F de degré d. Dans le cas p-adique, on suppose que p>de+1 où e est le degré de ramification sur {\\mathbf{Q}}_{p} ; sinon on suppose seulement que p et d sont premiers entre eux.\nPour le sous-groupe {I}_{1}=1+{\\varpi }_{D}{𝒪}_{D} de {D}^{\\times }, on détermine la structure de {\\mathrm{H}}^{1}({I}_{1},\\pi ) en tant que représentation de {D}^{\\times }/{I}_{1} pour une {\\overline{\\mathbf{F}}}_{p}-représentation lisse irréductible quelconque \\pi de {D}^{\\times }. Nous utilisons ceci pour calculer le groupe {\\mathrm{Ext}}_{{D}^{\\times }}^{1}(\\pi ,{\\pi }^{\\prime }) pour des représentations lisses irréductibles quelconques \\pi et {\\pi }^{\\prime } de {D}^{\\times }.\nDans le cas p-adique, via la dualité de Poincaré, nous pouvons calculer les groupes de cohomologie supérieurs et les extensions de degré maximal.",
+    "msc_codes": [
+      "22E50",
+      "20J06"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "cohomology, representations, extensions, division algebras",
+    "source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1273/",
+    "article_type": "research article",
+    "available_date": "2024-07-25",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1273/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "148660b87d2bc6e68c4cc329244d7653c3202201618a3dd735180e742de63947",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "22E50",
+      "20J06"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jtnb.1274",
+    "journal_id": "zbmath-serial-1917",
+    "doi": "10.5802/jtnb.1274",
+    "title": "Sur la fonction Delta de Hooley associée à des caractères",
+    "authors": [
+      "Alexandre Lartaux"
+    ],
+    "year": 2024,
+    "abstract": "Soit ({f}_{1},{f}_{2}) un couple de fonctions arithmétiques et\n{\\Delta }_{3}(n,{f}_{1},{f}_{2}):=\\underset{\\begin{array}{c}({u}_{1},{u}_{2})\\in {ℝ}^{2}\\\\ ({v}_{1},{v}_{2})\\in {[0,1]}^{2}\\end{array}}{sup}\\left|\\sum _{\\begin{array}{c}{d}_{1}{d}_{2}\\mid n\\\\ {\\mathrm{e}}^{{u}_{i}}<{d}_{i}⩽{\\mathrm{e}}^{{u}_{i}+{v}_{i}}\\end{array}}{f}_{1}\\left({d}_{1}\\right){f}_{2}\\left({d}_{2}\\right)\\right|.  |\nDans cet article, nous fournissons une majoration du moment d’ordre 2 de {\\Delta }_{3}(n,{\\chi }_{1},{\\chi }_{2}) où {\\chi }_{1} et {\\chi }_{2} sont deux caractères de Dirichlet non principaux, en suivant les méthodes développées par La Bretèche et Tenenbaum dans [1]. Cette majoration est un résultat clé pour le comptage asymptotique du nombre d’idéaux de norme fixée, qui sera détaillé dans [4].\n\nLet ({f}_{1},{f}_{2}) a 2-tuple of arithmetic functions and\n{\\Delta }_{3}(n,{f}_{1},{f}_{2}):=\\underset{\\begin{array}{c}({u}_{1},{u}_{2})\\in {ℝ}^{2}\\\\ ({v}_{1},{v}_{2})\\in {[0,1]}^{2}\\end{array}}{sup}\\left|\\sum _{\\begin{array}{c}{d}_{1}{d}_{2}\\mid n\\\\ {\\mathrm{e}}^{{u}_{i}}<{d}_{i}⩽{\\mathrm{e}}^{{u}_{i}+{v}_{i}}\\end{array}}{f}_{1}\\left({d}_{1}\\right){f}_{2}\\left({d}_{2}\\right)\\right|.  |\nIn this paper, we give an upper bound of the second moment of {\\Delta }_{3}(n,{\\chi }_{1},{\\chi }_{2}) when {\\chi }_{1} and {\\chi }_{2} are two non principal Dirichlet characters, following methods developed by La Bretèche and Tenenbaum in [1]. This upper bound is a main step for the asymptotic counting of the number of ideals of norm fixed, which will be developped in [4].",
+    "msc_codes": [
+      "11N37",
+      "11L40",
+      "11N56",
+      "11D45"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "",
+    "source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1274/",
+    "article_type": "research article",
+    "available_date": "2024-07-25",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1274/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "14c17fa256b4af677b31d50ed1a319de3d11fa7e22868ed84a53638989d46675",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "11N37",
+      "11L40",
+      "11N56",
+      "11D45"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.5802-jtnb.1275",
+    "journal_id": "zbmath-serial-1917",
+    "doi": "10.5802/jtnb.1275",
+    "title": "On discrepancy, intrinsic Diophantine approximation, and spectral gaps",
+    "authors": [
+      "Alexander Gorodnik",
+      "Amos Nevo"
+    ],
+    "year": 2024,
+    "abstract": "In the present paper we establish bounds for the size of the spectral gap for group actions on homogeneous spaces. Our approach is based on estimating operator norms of suitable averaging operators, and we develop techniques for establishing both upper and lower bounds for such norms. We shall show that this analytic problem is closely related to the arithmetic problem of establishing bounds on the discrepancy of distribution for rational points on algebraic group varieties.\nAs an application, we show how to establish an effective bound for property \\left(\\tau \\right) of congruence subgroups of arithmetic lattices in algebraic groups which are forms of {\\mathrm{SL}}_{2}, using estimates in intrinsic Diophantine approximation which follow from Heath-Brown’s analysis of rational points on 3-dimensional quadratic surfaces.\nDans le présent article, nous établissons des bornes pour la taille de l’écart spectral pour les actions de groupe sur les espaces homogènes. Notre approche est basée sur l’estimation des normes des opérateurs de moyennage appropriés, et nous développons des techniques pour établir des bornes supérieures et inférieures pour de telles normes.\nNous montrerons que ce problème analytique est étroitement lié au problème arithmétique de l’établissement de bornes sur la divergence de distribution pour les points rationnels sur les variétés de groupes algébriques.\nComme application, nous montrons comment établir une borne effective pour la propriété \\left(\\tau \\right) des sous-groupes de congruence des treillis arithmétiques dans les groupes algébriques qui sont des formes de {\\mathrm{SL}}_{2}, en utilisant des estimations dans l’approximation diophantienne intrinsèque qui découlent de l’analyse de Heath-Brown des points rationnels sur des variétés quadratiques de dimension 3.",
+    "msc_codes": [
+      "22E46",
+      "11F70",
+      "11F72"
+    ],
+    "msc_provenance": "publisher classification; primary/secondary roles unspecified",
+    "keywords": "Semisimple group, discrepancy, spectral gap, Diophantine approximation, automorphic representation",
+    "source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1275/",
+    "article_type": "research article",
+    "available_date": "2024-07-25",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-ND-4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nd/4.0/",
+    "license_source_url": "https://jtnb.centre-mersenne.org/articles/10.5802/jtnb.1275/",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "3cfe86656cc247ec6109e84df5b5e338e9de4b8b3d439a6d140d35e6966ce8a4",
+    "collection_batch": "public-evidence-2026-09-07",
+    "publisher_msc_codes": [
+      "22E46",
+      "11F70",
+      "11F72"
+    ],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en",
+      "fr"
+    ]
+  },
+  {
+    "article_id": "publisher-10.3842-sigma.2021.113",
+    "journal_id": "zbmath-serial-3352",
+    "doi": "10.3842/sigma.2021.113",
+    "title": "Orthogonal Polynomial Stochastic Duality Functions for Multi-Species SEP(2j) and Multi-Species IRW",
+    "authors": [
+      "Zhengye Zhou"
+    ],
+    "year": 2021,
+    "abstract": "We obtain orthogonal polynomial self-duality functions for multi-species version of the symmetric exclusion process (SEP$(2j)$) and the independent random walker process (IRW) on a finite undirected graph. In each process, we have $n$>$1$ species of particles. In addition, we allow up to $2j$ particles to occupy each site in the multi-species SEP$(2j)$.\nThe duality functions for the multi-species SEP$(2j)$ and the multi-species IRW come from unitary intertwiners between different $*$-representations of the special linear Lie algebra $\\mathfrak{sl}_{n+1}$ and the Heisenberg Lie algebra $\\mathfrak{h}_n$, respectively. The analysis leads to multivariate Krawtchouk polynomials as orthogonal duality functions for the multi-species SEP$(2j)$ and homogeneous products of Charlier polynomials as orthogonal duality functions for the multi-species IRW.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "orthogonal duality; multi-species SEP$(2j)$; multi-species IRW.",
+    "source_url": "https://sigma-journal.com/2021/113/",
+    "article_type": "research article",
+    "available_date": "2021-12-26",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://sigma-journal.com/about.html",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "6171776cca88fe119d91dea8d4fd200548adebfe8c61025dd856cdcb1d488244",
+    "collection_batch": "public-evidence-2026-09-07",
+    "arxiv_id": "2110.07042",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.3842-sigma.2021.112",
+    "journal_id": "zbmath-serial-3352",
+    "doi": "10.3842/sigma.2021.112",
+    "title": "Form Factors of the Heisenberg Spin Chain in the Thermodynamic Limit: Dealing with Complex Bethe Roots",
+    "authors": [
+      "Nikolai Kitanine and Giridhar Kulkarni"
+    ],
+    "year": 2021,
+    "abstract": "In this article we study the thermodynamic limit of the form factors of the $XXX$ Heisenberg spin chain using the algebraic Bethe ansatz approach. Our main goal is to express the form factors for the low-lying excited states as determinants of matrices that remain finite dimensional in the thermodynamic limit. We show how to treat all types of the complex roots of the Bethe equations within this framework.\nIn particular we demonstrate that the Gaudin determinant for the higher level Bethe equations arises naturally from the algebraic Bethe ansatz.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "spin chains; form factors; correlation functions; algebraic Bethe ansatz.",
+    "source_url": "https://sigma-journal.com/2021/112/",
+    "article_type": "research article",
+    "available_date": "2021-12-25",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://sigma-journal.com/about.html",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "b768efd85c28ea3b8c1b4a1e26b4d48bd4718b639674e16b795f83675b6cff0e",
+    "collection_batch": "public-evidence-2026-09-07",
+    "arxiv_id": "2105.10244",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.3842-sigma.2021.111",
+    "journal_id": "zbmath-serial-3352",
+    "doi": "10.3842/sigma.2021.111",
+    "title": "Boundary One-Point Function of the Rational Six-Vertex Model with Partial Domain Wall Boundary Conditions: Explicit Formulas and Scaling Properties",
+    "authors": [
+      "Mikhail D. Minin and Andrei G. Pronko"
+    ],
+    "year": 2021,
+    "abstract": "We consider the six-vertex model with the rational weights on an $s\\times N$ square lattice, $s\\leq N$, with partial domain wall boundary conditions. We study the one-point function at the boundary where the free boundary conditions are imposed. For a finite lattice, it can be computed by the quantum inverse scattering method in terms of determinants. In the large $N$ limit, the result boils down to an explicit terminating series in the parameter of the weights.\nUsing the saddle-point method for an equivalent integral representation, we show that as $s$ next tends to infinity, the one-point function demonstrates a step-wise behavior; at the vicinity of the step it scales as the error function. We also show that the asymptotic expansion of the one-point function can be computed from a second-order ordinary differential equation.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "lattice models; domain wall boundary conditions; phase separation; correlation functions; Yang-Baxter algebra.",
+    "source_url": "https://sigma-journal.com/2021/111/",
+    "article_type": "research article",
+    "available_date": "2021-12-25",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://sigma-journal.com/about.html",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "d43ca60f7395352a4aaf88fab723d378bc51c53bb1e8344c40f115618e56e472",
+    "collection_batch": "public-evidence-2026-09-07",
+    "arxiv_id": "2108.06190",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.3842-sigma.2021.110",
+    "journal_id": "zbmath-serial-3352",
+    "doi": "10.3842/sigma.2021.110",
+    "title": "A Composite Order Generalization of Modular Moonshine",
+    "authors": [
+      "Satoru Urano"
+    ],
+    "year": 2021,
+    "abstract": "We introduce a generalization of Brauer character to allow arbitrary finite length modules over discrete valuation rings. We show that the generalized super Brauer character of Tate cohomology is a linear combination of trace functions. Using this result, we find a counterexample to a conjecture of Borcherds about vanishing of Tate cohomology for Fricke elements of the Monster.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "moonshine; modular function; Brauer character; vertex operator algebra.",
+    "source_url": "https://sigma-journal.com/2021/110/",
+    "article_type": "research article",
+    "available_date": "2021-12-24",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://sigma-journal.com/about.html",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "7da10d57af6f76e2d9474dd77d17e73c3ed4095fe86c539645abd31ef8245299",
+    "collection_batch": "public-evidence-2026-09-07",
+    "arxiv_id": "2002.08620",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.3842-sigma.2021.109",
+    "journal_id": "zbmath-serial-3352",
+    "doi": "10.3842/sigma.2021.109",
+    "title": "Scalar Curvatures of Invariant Almost Hermitian Structures on Generalized Flag Manifolds",
+    "authors": [
+      "Lino Grama ^{a} and Ailton R. Oliveira ^{b}"
+    ],
+    "year": 2021,
+    "abstract": "In this paper we study invariant almost Hermitian geometry on generalized flag manifolds. We will focus on providing examples of Kähler like scalar curvature metric, that is, almost Hermitian structures $(g,J)$ satisfying $s=2s_{\\rm C}$, where $s$ is Riemannian scalar curvature and $s_{\\rm C}$ is the Chern scalar curvature.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "curvature of almost Hermitian structures; generalized flag manifolds; Kähler like scalar curvature.",
+    "source_url": "https://sigma-journal.com/2021/109/",
+    "article_type": "research article",
+    "available_date": "2021-12-21",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://sigma-journal.com/about.html",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "2252cbaed51bceccad4cb42ad8cbf21e475c79382438b0bbf935d7c8271fe26a",
+    "collection_batch": "public-evidence-2026-09-07",
+    "arxiv_id": "2107.11455",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.3842-sigma.2024.115",
+    "journal_id": "zbmath-serial-3352",
+    "doi": "10.3842/sigma.2024.115",
+    "title": "On the Higher-Rank Askey-Wilson Algebras",
+    "authors": [
+      "Wanxia Wang and Shilin Yang"
+    ],
+    "year": 2024,
+    "abstract": "In the paper, the algebra $\\mathscr{A}(n)$, which is generated by an upper triangular generating matrix with triple relations, is introduced. It is shown that there exists an isomorphism between the algebra $\\mathscr{A}(n)$ and the higher-rank Askey-Wilson algebra $\\mathfrak{aw}(n)$ introduced by Crampé et al. Furthermore, we establish a series of automorphisms of $\\mathscr{A}(n)$, which satisfy braid group relations and coincide with those in $\\mathfrak{aw}(n)$.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "Askey-Wilson algebra; braid group.",
+    "source_url": "https://sigma-journal.com/2024/115/",
+    "article_type": "research article",
+    "available_date": "2024-12-28",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://sigma-journal.com/about.html",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "38e6bb9ae1da33328d6e0d79b19c96c2fc20f4aad79b9a1b0fd3eb14ef9b3ada",
+    "collection_batch": "public-evidence-2026-09-07",
+    "arxiv_id": "2407.10404",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.3842-sigma.2024.114",
+    "journal_id": "zbmath-serial-3352",
+    "doi": "10.3842/sigma.2024.114",
+    "title": "Real Forms of Holomorphic Hamiltonian Systems",
+    "authors": [
+      "Philip Arathoon ^{a} and Marine Fontaine ^{b}"
+    ],
+    "year": 2024,
+    "abstract": "By complexifying a Hamiltonian system, one obtains dynamics on a holomorphic symplectic manifold. To invert this construction, we present a theory of real forms which not only recovers the original system but also yields different real Hamiltonian systems which share the same complexification. This provides a notion of real forms for holomorphic Hamiltonian systems analogous to that of real forms for complex Lie algebras.\nOur main result is that the complexification of any analytic mechanical system on a Grassmannian admits a real form on a compact symplectic manifold. This produces a 'unitary trick' for Hamiltonian systems which curiously requires an essential use of hyperkähler geometry. We demonstrate this result by finding compact real forms for the simple pendulum, the spherical pendulum, and the rigid body.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "Hamiltonian dynamics; integrable systems; hyperkähler geometry.",
+    "source_url": "https://sigma-journal.com/2024/114/",
+    "article_type": "research article",
+    "available_date": "2024-12-21",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://sigma-journal.com/about.html",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "41251e950ea073d702e68494c5a1de8e9466b65d6c7f8278cc2e3f01c11009d8",
+    "collection_batch": "public-evidence-2026-09-07",
+    "arxiv_id": "2009.10417",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.3842-sigma.2024.113",
+    "journal_id": "zbmath-serial-3352",
+    "doi": "10.3842/sigma.2024.113",
+    "title": "Solutions of Tetrahedron Equation from Quantum Cluster Algebra Associated with Symmetric Butterfly Quiver",
+    "authors": [
+      "Rei Inoue ^{a}, Atsuo Kuniba ^{b}, Xiaoyue Sun ^{c}, Yuji Terashima ^{d} and Junya Yagi ^{e}"
+    ],
+    "year": 2024,
+    "abstract": "We construct a new solution to the tetrahedron equation by further pursuing the quantum cluster algebra approach in our previous works. The key ingredients include a symmetric butterfly quiver attached to the wiring diagrams for the longest element of type $A$ Weyl groups and the implementation of quantum $Y$-variables through the $q$-Weyl algebra. The solution consists of four products of quantum dilogarithms.\nBy exploring both the coordinate and momentum representations, along with their modular double counterparts, our solution encompasses various known three-dimensional (3D) $R$-matrices. These include those obtained by Kapranov-Voevodsky (1994) utilizing the quantized coordinate ring, Bazhanov-Mangazeev-Sergeev (2010) from a quantum geometry perspective, Kuniba-Matsuike-Yoneyama (2023) linked with the quantized six-vertex model, and Inoue-Kuniba-Terashima (2023) associated with the Fock-Goncharov quiver.\nThe 3D $R$-matrix presented in this paper offers a unified perspective on these existing solutions, coalescing them within the framework of quantum cluster algebra.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "tetrahedron equation; quantum cluster algebra; $q$-Weyl algebra.",
+    "source_url": "https://sigma-journal.com/2024/113/",
+    "article_type": "research article",
+    "available_date": "2024-12-21",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://sigma-journal.com/about.html",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "8d929106384cbc6331fdaaec7d0a0edaeb274dcaad09566a9b9b03de99a0d51a",
+    "collection_batch": "public-evidence-2026-09-07",
+    "arxiv_id": "2403.08814",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.3842-sigma.2024.112",
+    "journal_id": "zbmath-serial-3352",
+    "doi": "10.3842/sigma.2024.112",
+    "title": "Tau Functions from Joyce Structures",
+    "authors": [
+      "Tom Bridgeland"
+    ],
+    "year": 2024,
+    "abstract": "We argued in [Proc. Sympos. Pure Math., Vol. 103, American Mathematical Society, Providence, RI, 2021, 1-66, arXiv:1912.06504] that, when a certain sub-exponential growth property holds, the Donaldson-Thomas invariants of a 3-Calabi-Yau triangulated category should give rise to a geometric structure on its space of stability conditions called a Joyce structure. In this paper, we show how to use a Joyce structure to define a generating function which we call the $\\tau$-function.\nWhen applied to the derived category of the resolved conifold, this reproduces the non-perturbative topological string partition function of [J. Differential Geom. 115 (2020), 395-435, arXiv:1703.02776]. In the case of the derived category of the Ginzburg algebra of the A$_2$ quiver, we obtain the Painlevé I $\\tau$-function.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "Donaldson-Thomas invariants; topological string theory; hyperkähler geometry; twistor spaces; Painlevé equations.",
+    "source_url": "https://sigma-journal.com/2024/112/",
+    "article_type": "research article",
+    "available_date": "2024-12-18",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://sigma-journal.com/about.html",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "c0e99360bccbc2b89b017f1fa73f9ee59a7ad0e19013657a0416c046674088e6",
+    "collection_batch": "public-evidence-2026-09-07",
+    "arxiv_id": "2303.07061",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  },
+  {
+    "article_id": "publisher-10.3842-sigma.2024.111",
+    "journal_id": "zbmath-serial-3352",
+    "doi": "10.3842/sigma.2024.111",
+    "title": "Harmonic Metrics for Higgs Bundles of Rank 3 in the Hitchin Section",
+    "authors": [
+      "Hitoshi Fujioka"
+    ],
+    "year": 2024,
+    "abstract": "Given a tuple of holomorphic differentials on a Riemann surface, one can define a Higgs bundle in the Hitchin section and a natural symmetric pairing of the Higgs bundle. We study whether a Higgs bundle of rank 3 in the Hitchin section has a compatible harmonic metric when the spectral curve is a 2-sheeted branched covering of the Riemann surface. In particular, we give a condition for Higgs bundles in the Hitchin section on $\\mathbb{C}$ or $\\mathbb{C}^*$ to have compatible harmonic metrics.",
+    "msc_codes": [],
+    "msc_provenance": "not supplied on retrieved article page",
+    "keywords": "Higgs bundles; Hitchin section; harmonic metrics.",
+    "source_url": "https://sigma-journal.com/2024/111/",
+    "article_type": "research article",
+    "available_date": "2024-12-11",
+    "metadata_available_date": "2026-09-07",
+    "retrieved_on": "2026-09-07",
+    "license": "CC-BY-4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "license_source_url": "https://sigma-journal.com/about.html",
+    "abstract_provenance": "publisher abstract as rendered by web text extraction; includes publisher translations where present; not an AI summary",
+    "text_transformations": "HTML/navigation and citation markup removed; displayed mathematical notation and paragraph breaks retained",
+    "publication_date_precision": "day (published online)",
+    "source_snapshot_sha256": "d8ed354cf632c4dcaa773e18be2138ef531b5e95d912abda0bf67292ab881a88",
+    "collection_batch": "public-evidence-2026-09-07",
+    "arxiv_id": "2403.07258",
+    "publisher_msc_codes": [],
+    "quarantined_msc_codes": [],
+    "abstract_languages": [
+      "en"
+    ]
+  }
+]

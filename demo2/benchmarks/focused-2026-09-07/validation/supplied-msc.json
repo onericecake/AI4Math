@@ -1,0 +1,248 @@
+[
+  {
+    "paper_id": "v01",
+    "msc_codes": [
+      "53D30",
+      "53D20",
+      "18A40"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v02",
+    "msc_codes": [
+      "13A30",
+      "13H15",
+      "14A10",
+      "13D45",
+      "13D02",
+      "14E05"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v03",
+    "msc_codes": [
+      "49-02",
+      "28-02",
+      "01A60",
+      "28A75",
+      "49Q15",
+      "49N60"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v04",
+    "msc_codes": [
+      "35J96",
+      "90B06",
+      "78A05"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v05",
+    "msc_codes": [
+      "17B20",
+      "22E60",
+      "20G05"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v06",
+    "msc_codes": [
+      "65N55",
+      "65M55",
+      "65N21",
+      "35E05",
+      "35E15",
+      "76L05",
+      "74B05",
+      "68T07",
+      "68Q32",
+      "35J05",
+      "35Q35"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v07",
+    "msc_codes": [
+      "47A05",
+      "47B01"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v08",
+    "msc_codes": [
+      "31B05"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v09",
+    "msc_codes": [
+      "53C07",
+      "53C26",
+      "57K20",
+      "57R17",
+      "32D15",
+      "32G15",
+      "32G05",
+      "32V05",
+      "32Q15"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v10",
+    "msc_codes": [
+      "34-03",
+      "34C15",
+      "34E15",
+      "34E17",
+      "37D45",
+      "34C23"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v11",
+    "msc_codes": [
+      "31B05",
+      "28A75"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v12",
+    "msc_codes": [
+      "14N35",
+      "37K10",
+      "53D45",
+      "05A15",
+      "33E15"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v13",
+    "msc_codes": [
+      "37A44",
+      "37A30",
+      "37B20",
+      "37E15",
+      "11B75"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v14",
+    "msc_codes": [
+      "51M04",
+      "05C30",
+      "05C10"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v15",
+    "msc_codes": [
+      "11M06",
+      "41A60",
+      "34B24"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v16",
+    "msc_codes": [
+      "05C50",
+      "05C40",
+      "15A18"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v17",
+    "msc_codes": [
+      "14G40",
+      "14A20",
+      "16Y60",
+      "18N40",
+      "18N50",
+      "19D55",
+      "11R56"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v18",
+    "msc_codes": [
+      "46E35",
+      "41A46",
+      "47B06"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v19",
+    "msc_codes": [
+      "14C40",
+      "14G40",
+      "14H05",
+      "11R56",
+      "13F35",
+      "18N60",
+      "19D55"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v20",
+    "msc_codes": [
+      "53C38",
+      "22E30",
+      "17B20"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v21",
+    "msc_codes": [
+      "58E15",
+      "32Q25",
+      "58E10",
+      "53C22",
+      "53D05"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v22",
+    "msc_codes": [
+      "13D45",
+      "14B15",
+      "14M10"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v23",
+    "msc_codes": [
+      "05C80",
+      "60B10"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  },
+  {
+    "paper_id": "v24",
+    "msc_codes": [
+      "20G05"
+    ],
+    "source": "bundled catalog source-provided MSC"
+  }
+]

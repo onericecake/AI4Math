@@ -14,6 +14,8 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=7.4"]
+semantic = ["sentence-transformers>=3.0"]
+training = ["scikit-learn==1.6.1", "numpy>=1.24,<3"]
 
 [project.scripts]
 journal-match = "journal_matcher.cli:main"

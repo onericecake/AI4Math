@@ -32,6 +32,8 @@ def build_parser() -> argparse.ArgumentParser:
     analyze.add_argument("--secondary-msc", action="append", default=[], help="Confirmed secondary MSC code")
     analyze.add_argument("--yes", action="store_true", help="Accept model proposals without prompts")
     analyze.add_argument("--output-dir", type=Path, default=Path("."))
+    _retrieval_arguments(analyze)
+    analyze.add_argument("--final-limit", type=int, default=24)
 
     catalog = commands.add_parser("catalog", help="Manage the local journal catalog")
     catalog_commands = catalog.add_subparsers(dest="catalog_command", required=True)
@@ -40,12 +42,88 @@ def build_parser() -> argparse.ArgumentParser:
     import_json.add_argument("--database", type=Path, default=Path("data/journal_catalog.sqlite"))
     counts = catalog_commands.add_parser("counts", help="Show catalog counts")
     counts.add_argument("--database", type=Path, default=Path("data/journal_catalog.sqlite"))
+    for name in ("coverage", "export"):
+        command = catalog_commands.add_parser(name)
+        command.add_argument("--database", type=Path, default=Path("data/journal_catalog.sqlite"))
+        command.add_argument("--output", type=Path, required=True)
+    plan = catalog_commands.add_parser("plan", help="Create a balanced journal/year collection plan")
+    plan.add_argument("--source", type=Path, default=Path("data/catalog.example.json"))
+    plan.add_argument("--journals", type=int, default=100)
+    plan.add_argument("--per-journal", type=int, default=200)
+    plan.add_argument("--start-year", type=int, default=2020)
+    plan.add_argument("--end-year", type=int, default=2024)
+    plan.add_argument("--seed", type=int, default=0)
+    plan.add_argument("--output", type=Path, required=True)
+    harvest = catalog_commands.add_parser("harvest-crossref", help="Resume a bounded metadata collection plan")
+    harvest.add_argument("plan", type=Path)
+    harvest.add_argument("--output-dir", type=Path, required=True)
+    harvest.add_argument("--mailto", default="")
+    harvest.add_argument("--require-abstract", action="store_true")
+    openalex = catalog_commands.add_parser("harvest-openalex", help="Resume an ISSN/year OpenAlex abstract collection")
+    openalex.add_argument("plan", type=Path)
+    openalex.add_argument("--output-dir", type=Path, required=True)
+
+    venues = commands.add_parser("train-venues", help="Train observed-venue affinity with frozen publication-year holdouts")
+    venues.add_argument("catalog", type=Path)
+    venues.add_argument("--output-dir", type=Path, required=True)
+    venues.add_argument("--exclude", type=Path, action="append", default=[], help="JSON list of previous benchmark identities to exclude globally")
+    venues.add_argument("--sizes", type=int, nargs="+", default=[1000, 5000, 10000])
+    venues.add_argument("--seed", type=int, default=0)
+    recommend = commands.add_parser("recommend-venues", help="Recommend three venues using a trained title/abstract model")
+    recommend.add_argument("manuscript", type=Path, help="LaTeX manuscript, or JSON with title and abstract")
+    recommend.add_argument("--venue-model", type=Path, required=True, help="Trained model directory")
+    recommend.add_argument("--k", type=int, default=3)
+    recommend.add_argument("--output", type=Path)
 
     evaluate = commands.add_parser("evaluate", help="Score saved journal rankings against independent labels")
     evaluate.add_argument("cases", type=Path, help="JSON object with a cases list")
     evaluate.add_argument("--k", type=int, default=3)
     evaluate.add_argument("--output", type=Path)
+    benchmark = commands.add_parser("benchmark", help="Run the supplied-MSC retrieval benchmark")
+    benchmark.add_argument("--dataset", type=Path, required=True)
+    benchmark.add_argument("--catalog-json", type=Path, default=Path("data/catalog.example.json"))
+    benchmark.add_argument("--msc", type=Path, default=Path("data/msc2020.json"))
+    benchmark.add_argument("--output-dir", type=Path, required=True)
+    benchmark.add_argument("--strict-temporal", action="store_true")
+    benchmark.add_argument("--cutoff")
+    benchmark.add_argument("--without-title", action="store_true")
+    benchmark.add_argument("--mode", choices=("supplied-msc", "openai", "heuristic"), default="supplied-msc")
+    benchmark.add_argument("--model", default=os.environ.get("OPENAI_MODEL", "gpt-5.5"))
+    benchmark.add_argument("--full-text", action="store_true", help="Use explicitly blinded TeX paths from case records")
+    _retrieval_arguments(benchmark)
+    split = commands.add_parser("split-corpus", help="Split paper/version groups chronologically")
+    split.add_argument("source", type=Path)
+    split.add_argument("--train-end", required=True)
+    split.add_argument("--validation-end", required=True)
+    split.add_argument("--output", type=Path, required=True)
+    train = commands.add_parser("train-ranker", help="Train on explicit graded manuscript/journal judgments")
+    train.add_argument("dataset", type=Path)
+    train.add_argument("--output", type=Path, required=True)
+    train.add_argument("--epochs", type=int, default=200)
+    train.add_argument("--seed", type=int, default=0)
     return parser
+
+
+def _retrieval_arguments(parser):
+    parser.add_argument("--retrieval", choices=("hybrid", "focused", "legacy"), default="hybrid",
+                        help="hybrid (default), focused (experimental field-share ranking), or legacy")
+    parser.add_argument("--candidate-limit", type=int, default=50)
+    parser.add_argument("--embedding-model", help="Optional Sentence Transformers model; may download weights")
+    parser.add_argument("--embedding-revision", help="Pinned model commit/revision")
+    parser.add_argument("--reranker", type=Path, help="Trained pairwise ranker JSON")
+
+
+def _retrieval_options(args):
+    from .retrieval import SentenceTransformerEncoder
+    from .rerank import LinearReranker
+    if args.candidate_limit <= 0:
+        raise ValueError("candidate-limit must be positive")
+    if args.retrieval == "legacy" and (args.embedding_model or args.reranker):
+        raise ValueError("Embedding and learned ranking require hybrid or focused retrieval")
+    encoder = SentenceTransformerEncoder(args.embedding_model, args.embedding_revision) if args.embedding_model else None
+    return {"retrieval": args.retrieval, "encoder": encoder,
+            "reranker": LinearReranker.load(args.reranker) if args.reranker else None,
+            "candidate_limit": args.candidate_limit}
 
 
 def _select_result_ids(matcher: JournalMatcher, manuscript, args: argparse.Namespace) -> List[str]:
@@ -118,7 +196,7 @@ def run_analysis(args: argparse.Namespace) -> int:
         print("warning: no complete MSC2020 file was supplied; classification coverage is limited")
     with JournalCatalog(args.catalog) as catalog:
         model = HeuristicJSONModel() if args.offline else OpenAIJSONModel(args.model)
-        matcher = JournalMatcher(model, taxonomy, catalog)
+        matcher = JournalMatcher(model, taxonomy, catalog, **_retrieval_options(args), final_limit=args.final_limit)
         central_ids = _select_result_ids(matcher, manuscript, args)
         central_text = args.central_text or "\n\n".join(item.statement for item in manuscript.theorems if item.result_id in central_ids)
         broad = matcher.classify_broad(manuscript, central_ids, central_text)
@@ -136,6 +214,86 @@ def run_analysis(args: argparse.Namespace) -> int:
 def main(argv: Optional[List[str]] = None) -> int:
     args = build_parser().parse_args(argv)
     try:
+        from .harvest import atomic_json
+        if args.command == "recommend-venues":
+            from .venue_learning import VenueModel
+            if args.manuscript.suffix.lower() == '.json':
+                manuscript = json.loads(args.manuscript.read_text())
+                title, abstract = manuscript.get('title', ''), manuscript.get('abstract', '')
+            else:
+                manuscript = extract_manuscript(args.manuscript)
+                title, abstract = manuscript.title, manuscript.abstract
+            result = VenueModel.load(args.venue_model).recommend(title, abstract, args.k)
+            if args.output:
+                atomic_json(args.output, result)
+            print(json.dumps(result, indent=2, ensure_ascii=False))
+            return 0
+        if args.command == "train-venues":
+            from .venue_experiment import run_venue_experiment
+            excluded = []
+            for source in args.exclude:
+                values = json.loads(source.read_text())
+                if not isinstance(values, list):
+                    raise ValueError('--exclude must contain a JSON list of article identities')
+                excluded.extend(values)
+            result = run_venue_experiment(json.loads(args.catalog.read_text()), args.output_dir, excluded, args.sizes, seed=args.seed)
+            print(json.dumps({'counts': result['frozen']['counts'], 'selection': result['selection'],
+                              'test_hit_at_3': result['selected_test']['hit_at_3'],
+                              'bm25_test_hit_at_3': result['baselines']['bm25_max_article']['hit_at_3']}, indent=2))
+            return 0
+        if args.command == "catalog" and args.catalog_command == "harvest-openalex":
+            from .openalex_harvest import harvest_openalex
+            result = harvest_openalex(json.loads(args.plan.read_text()), args.output_dir)
+            print(json.dumps(result, indent=2))
+            return 0
+        if args.command == "train-ranker":
+            from .rerank import train_ranker
+            ranker = train_ranker(json.loads(args.dataset.read_text()), epochs=args.epochs, seed=args.seed)
+            ranker.save(args.output)
+            print(json.dumps(ranker.metadata, indent=2))
+            return 0
+        if args.command == "split-corpus":
+            from .corpus import temporal_split
+            data = json.loads(args.source.read_text())
+            records = data.get("articles", data.get("rows")) if isinstance(data, dict) else data
+            if not isinstance(records, list):
+                raise ValueError("Expected an article list or an object with articles/rows")
+            result = temporal_split(records, args.train_end, args.validation_end)
+            result = {split: [{**row, "split": split} for row in rows] for split, rows in result.items()}
+            atomic_json(args.output, result)
+            print(json.dumps({name: len(rows) for name, rows in result.items()}))
+            return 0
+        if args.command == "benchmark":
+            from .experiments import benchmark_retrieval
+            cases = json.loads((args.dataset / "cases.json").read_text())
+            for case in cases:
+                if case.get("manuscript_path"):
+                    case["manuscript_path"] = str((args.dataset / case["manuscript_path"]).resolve())
+            factory = (lambda: OpenAIJSONModel(args.model)) if args.mode == "openai" else HeuristicJSONModel if args.mode == "heuristic" else None
+            result = benchmark_retrieval(json.loads(args.catalog_json.read_text()),
+                cases, json.loads((args.dataset / "labels.json").read_text()),
+                json.loads((args.dataset / "supplied-msc.json").read_text()) if (args.dataset / "supplied-msc.json").exists() else [], MSCTaxonomy.from_json(args.msc), args.output_dir,
+                cutoff=args.cutoff, strict_temporal=args.strict_temporal, without_title=args.without_title,
+                model_factory=factory, full_text=args.full_text, **_retrieval_options(args))
+            print(json.dumps(result, indent=2))
+            return 0
+        if args.command == "catalog" and args.catalog_command == "plan":
+            from .harvest import collection_plan
+            result = collection_plan(json.loads(args.source.read_text()), args.journals, args.per_journal, args.start_year, args.end_year, args.seed)
+            atomic_json(args.output, result)
+            print(json.dumps({"journals": len(result["journals"]), "maximum_articles": result["maximum_articles"]}))
+            return 0
+        if args.command == "catalog" and args.catalog_command == "harvest-crossref":
+            from .harvest import CrossrefClient, harvest_crossref
+            result = harvest_crossref(json.loads(args.plan.read_text()), args.output_dir, CrossrefClient(args.mailto), args.require_abstract)
+            print(json.dumps(result, indent=2))
+            return 0
+        if args.command == "catalog" and args.catalog_command in {"coverage", "export"}:
+            with JournalCatalog(args.database) as catalog:
+                result = catalog.coverage() if args.catalog_command == "coverage" else catalog.export_data()
+                atomic_json(args.output, result)
+                print("Wrote " + str(args.output))
+            return 0
         if args.command == "evaluate":
             data = json.loads(args.cases.read_text(encoding="utf-8"))
             if not isinstance(data, dict):

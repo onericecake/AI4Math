@@ -1,0 +1,38 @@
+{
+  "base_sha256": "e09e8ccf63b6bb08021758a0083fec2cd94ff2866b6c756fcea05617e13220d9",
+  "additions_sha256": "3084145e8c72882d5fa2cbda8a4d04946188e0d969849285e76d213d86133a5b",
+  "base_exclusions": {
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 24,
+      "unknown_or_future_date": 0,
+      "non_research": 6
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  "enriched_exclusions": {
+    "retained": 173,
+    "excluded": {
+      "target_duplicate": 44,
+      "unknown_or_future_date": 0,
+      "non_research": 6
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  "target_count": 56,
+  "new_target_count": 20,
+  "all_targets_excluded_from_all_runs": true,
+  "new_reference_article_count": 40,
+  "ranker_training": false,
+  "policy": "Source-data ablation; identical fixed ranking weights; all candidate journals remain eligible.",
+  "limitations": [
+    "Convenience samples; six open-access journals only.",
+    "Current scopes/metadata and undated imported aggregate MSC counts remain: not a historical submission-time simulation.",
+    "Published venue is one observed outcome, not the only suitable journal or an acceptance probability.",
+    "Supplied MSC and abstracts only; no live LLM, proof assessment, or independent expert labels.",
+    "2024 targets excluded across every run; retained 2024 references are from AHL/SIGMA, whose pages lacked MSC.",
+    "Existing 36 cases have already informed development; new 20 are a first-pass diagnostic, not a representative independent test."
+  ]
+}

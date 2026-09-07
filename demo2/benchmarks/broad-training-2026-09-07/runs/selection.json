@@ -1,0 +1,7 @@
+{
+  "protocol_sha256": "db02b9ac6a0df2e578e948651fd1c11ac0f0ba41f54549cd975d3d649a4826fc",
+  "selected_training_articles": 8967,
+  "alpha": 0.0001,
+  "linear_weight": 0.75,
+  "selection_split": "validation"
+}

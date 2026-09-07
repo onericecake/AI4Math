@@ -1,0 +1,222 @@
+[
+  {
+    "paper_id": "online01",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online02",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online03",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online04",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online05",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online06",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online07",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online08",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online09",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online10",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online11",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online12",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online13",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online14",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online15",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online16",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online17",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online18",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online19",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "online20",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  }
+]

@@ -1,0 +1,216 @@
+[
+  {
+    "journal_id": "zbmath-serial-9591",
+    "name": "Annales Henri Lebesgue",
+    "issn_l": "2644-9463",
+    "publisher": "École Normale Supérieure de Rennes (ENS Rennes), Bruz",
+    "official_url": "https://ahl.centre-mersenne.org/",
+    "scope_url": "https://annales.lebesgue.fr/index.php/AHL/about",
+    "scope_summary": "Research in all areas of pure and applied mathematics. The journal emphasizes significant results, clear presentation of ideas and methods, and interest to a broad readership. Work connecting different areas is welcome.",
+    "article_types": [
+      "research article",
+      "survey"
+    ],
+    "active": true,
+    "last_verified": "2026-09-07",
+    "scope_breadth": "generalist",
+    "scope_breadth_provenance": "assistant categorization of the cited public scope; not an independent expert judgment",
+    "technical_level": "unknown",
+    "audience_breadth": "unknown",
+    "registry_available_date": "2026-09-07",
+    "scope_available_date": "2026-09-07",
+    "editorial_evidence": [
+      {
+        "aspect": "audience",
+        "statement": "All mathematical areas are in scope; significance and exposition should engage a wide readership.",
+        "source_url": "https://annales.lebesgue.fr/index.php/AHL/about",
+        "available_date": "2026-09-07",
+        "evidence_type": "public_editorial_policy",
+        "representation": "assistant paraphrase of publisher guidance, not a manuscript-specific assessment"
+      },
+      {
+        "aspect": "article_type",
+        "statement": "Original, particularly well-written surveys can be considered; conference proceedings are not accepted.",
+        "source_url": "https://annales.lebesgue.fr/index.php/AHL/about/faq",
+        "available_date": "2026-09-07",
+        "evidence_type": "public_editorial_policy",
+        "representation": "assistant paraphrase of publisher guidance, not a manuscript-specific assessment"
+      }
+    ]
+  },
+  {
+    "journal_id": "zbmath-serial-311",
+    "name": "Annales de l'Institut Fourier",
+    "issn_l": "0373-0956",
+    "publisher": "Université Joseph Fourier, Grenoble; Association des Annales de l'Institut Fourier, Saint-Martin d'Hères",
+    "official_url": "https://aif.centre-mersenne.org/",
+    "scope_url": "https://aif.centre-mersenne.org/",
+    "scope_summary": "Original mathematical research across all fields of mathematics, in English or French. The journal describes its expected research standard as high-level.",
+    "article_types": [
+      "research article"
+    ],
+    "active": true,
+    "last_verified": "2026-09-07",
+    "scope_breadth": "generalist",
+    "scope_breadth_provenance": "assistant categorization of the cited public scope; not an independent expert judgment",
+    "technical_level": "unknown",
+    "audience_breadth": "unknown",
+    "registry_available_date": "2026-09-07",
+    "scope_available_date": "2026-09-07",
+    "editorial_evidence": [
+      {
+        "aspect": "scope",
+        "statement": "The published scope includes original research in every field of mathematics.",
+        "source_url": "https://aif.centre-mersenne.org/",
+        "available_date": "2026-09-07",
+        "evidence_type": "public_editorial_policy",
+        "representation": "assistant paraphrase of publisher guidance, not a manuscript-specific assessment"
+      }
+    ]
+  },
+  {
+    "journal_id": "zbmath-serial-9185",
+    "name": "Algebraic Combinatorics",
+    "issn_l": "2589-5486",
+    "publisher": "Stichting Mathematics in Open Access (MathOA), Amsterdam",
+    "official_url": "https://alco.centre-mersenne.org/",
+    "scope_url": "https://alco.centre-mersenne.org/",
+    "scope_summary": "Research where algebra and combinatorics interact, including combinatorial representation theory, algebraic geometry, commutative algebra, and related combinatorial structures. The scope is broad within algebraic combinatorics.",
+    "article_types": [
+      "research article"
+    ],
+    "active": true,
+    "last_verified": "2026-09-07",
+    "scope_breadth": "specialist",
+    "scope_breadth_provenance": "assistant categorization of the cited public scope; not an independent expert judgment",
+    "technical_level": "unknown",
+    "audience_breadth": "unknown",
+    "registry_available_date": "2026-09-07",
+    "scope_available_date": "2026-09-07",
+    "editorial_evidence": [
+      {
+        "aspect": "scope",
+        "statement": "The defining scope is active interaction between algebra and combinatorics; covering several topics within this intersection does not imply all-mathematics coverage.",
+        "source_url": "https://alco.centre-mersenne.org/",
+        "available_date": "2026-09-07",
+        "evidence_type": "public_editorial_policy",
+        "representation": "assistant paraphrase of publisher guidance, not a manuscript-specific assessment"
+      }
+    ]
+  },
+  {
+    "journal_id": "zbmath-serial-3352",
+    "name": "SIGMA. Symmetry, Integrability and Geometry: Methods and Applications",
+    "issn_l": "1815-0659",
+    "publisher": "National Academy of Sciences of Ukraine - NAS Ukraine (Natsional'na Akademiya Nauk Ukraïny - NAN Ukraïny), Institute of Mathematics (Instytut Matematyky), Kyïv",
+    "official_url": "https://sigma-journal.com/",
+    "scope_url": "https://sigma-journal.com/about.html",
+    "scope_summary": "Research and reviews in symmetry, integrability, geometry and related mathematical physics: Lie theory, integrable systems, representation theory, special functions, quantum algebras, symplectic and Poisson geometry, algebraic geometry and integrable probability.",
+    "article_types": [
+      "research article",
+      "review"
+    ],
+    "active": true,
+    "last_verified": "2026-09-07",
+    "scope_breadth": "multi-field",
+    "scope_breadth_provenance": "assistant categorization of the cited public scope; not an independent expert judgment",
+    "technical_level": "unknown",
+    "audience_breadth": "unknown",
+    "registry_available_date": "2026-09-07",
+    "scope_available_date": "2026-09-07",
+    "editorial_evidence": [
+      {
+        "aspect": "scope",
+        "statement": "Several related areas of mathematics and mathematical physics are listed, including algebraic geometry, integrable probability and symplectic geometry.",
+        "source_url": "https://sigma-journal.com/about.html",
+        "available_date": "2026-09-07",
+        "evidence_type": "public_editorial_policy",
+        "representation": "assistant paraphrase of publisher guidance, not a manuscript-specific assessment"
+      },
+      {
+        "aspect": "contribution",
+        "statement": "Regular articles should present new original results of significance and interest to the relevant community; the journal also welcomes reviews.",
+        "source_url": "https://sigma-journal.com/about.html",
+        "available_date": "2026-09-07",
+        "evidence_type": "public_editorial_policy",
+        "representation": "assistant paraphrase of publisher guidance, not a manuscript-specific assessment"
+      }
+    ]
+  },
+  {
+    "journal_id": "zbmath-serial-1917",
+    "name": "Journal de Théorie des Nombres de Bordeaux",
+    "issn_l": "1246-7405",
+    "publisher": "Université Bordeaux 1, Institut de Mathématiques de Bordeaux, Talence",
+    "official_url": "https://jtnb.centre-mersenne.org/",
+    "scope_url": "https://jtnb.centre-mersenne.org/",
+    "scope_summary": "Original research in number theory and related topics.",
+    "article_types": [
+      "research article"
+    ],
+    "active": true,
+    "last_verified": "2026-09-07",
+    "scope_breadth": "specialist",
+    "scope_breadth_provenance": "assistant categorization of the cited public scope; not an independent expert judgment",
+    "technical_level": "unknown",
+    "audience_breadth": "unknown",
+    "registry_available_date": "2026-09-07",
+    "scope_available_date": "2026-09-07",
+    "editorial_evidence": [
+      {
+        "aspect": "scope",
+        "statement": "Number theory and connected subjects define the stated scope.",
+        "source_url": "https://jtnb.centre-mersenne.org/",
+        "available_date": "2026-09-07",
+        "evidence_type": "public_editorial_policy",
+        "representation": "assistant paraphrase of publisher guidance, not a manuscript-specific assessment"
+      }
+    ]
+  },
+  {
+    "journal_id": "zbmath-serial-8533",
+    "name": "Journal de l'École Polytechnique -- Mathématiques",
+    "issn_l": "2429-7100",
+    "publisher": "Université Paris-Saclay, École Polytechnique, Palaiseau",
+    "official_url": "https://jep.centre-mersenne.org/",
+    "scope_url": "https://jep.centre-mersenne.org/",
+    "scope_summary": "Original research across pure and applied mathematics, in English or French. The journal uses selective generalist editorial criteria; its referee guidance addresses clarity, originality and interest of results.",
+    "article_types": [
+      "research article"
+    ],
+    "active": true,
+    "last_verified": "2026-09-07",
+    "scope_breadth": "generalist",
+    "scope_breadth_provenance": "assistant categorization of the cited public scope; not an independent expert judgment",
+    "technical_level": "unknown",
+    "audience_breadth": "unknown",
+    "registry_available_date": "2026-09-07",
+    "scope_available_date": "2026-09-07",
+    "editorial_evidence": [
+      {
+        "aspect": "scope",
+        "statement": "All domains of fundamental and applied mathematics are covered.",
+        "source_url": "https://jep.centre-mersenne.org/",
+        "available_date": "2026-09-07",
+        "evidence_type": "public_editorial_policy",
+        "representation": "assistant paraphrase of publisher guidance, not a manuscript-specific assessment"
+      },
+      {
+        "aspect": "contribution",
+        "statement": "Referees are asked to assess clarity of presentation and whether results are new and interesting.",
+        "source_url": "https://jep.centre-mersenne.org/page/instructions-for-referees_en/",
+        "available_date": "2026-09-07",
+        "evidence_type": "public_editorial_policy",
+        "representation": "assistant paraphrase of publisher guidance, not a manuscript-specific assessment"
+      },
+      {
+        "aspect": "editorial_process",
+        "statement": "Author guidance describes strict generalist selection and possible editorial rejection before detailed reports. This is not an acceptance probability.",
+        "source_url": "https://jep.centre-mersenne.org/page/instructions-for-authors_en/",
+        "available_date": "2026-09-07",
+        "evidence_type": "public_editorial_policy",
+        "representation": "assistant paraphrase of publisher guidance, not a manuscript-specific assessment"
+      }
+    ]
+  }
+]

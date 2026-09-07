@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "source_sha256": "d88f9be09c05a9a28dfd0f0b20322de456296b7a53065ded4d35f5cf430f517e",
+  "snapshot_sha256": "ed24fe3c62ae5ef7118e9d674e81211f9cdda2e2d0d8cf352ae6ebaf5f1a0d8b",
+  "exclusions_sha256": "75bdfc692440a49dad7a3615db6a520042181738e728efbae1366a32e9f531e5",
+  "train_end": "2023-12-31",
+  "validation_end": "2024-12-31",
+  "split_sha256": {
+    "train": "330bf7595745e3da5c1e25c551431a56fbd6e2e7ec91e8a8e9023e41ca63e00c",
+    "validation": "93984b6b3af6f2f28f7d5045fe1dbd767b0d37c2a3e7e5d68785ab4bedbdfdca",
+    "test": "ee8944cea63d6fa2455c6fc81ffbd573c648d95ad639c654150891fab93a91d0",
+    "quarantine": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+  },
+  "counts": {
+    "train": 8967,
+    "validation": 979,
+    "test": 991,
+    "quarantine": 0
+  },
+  "audit": {
+    "duplicate_versions_removed": 23,
+    "excluded_previous_benchmark_records": 13
+  },
+  "candidate_journals": 50,
+  "temporal_semantics": "Publication-year holdout using current metadata, not historical submission-time evidence.",
+  "label_semantics": "Observed publication venue, not expert suitability or acceptance probability."
+}

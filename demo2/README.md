@@ -142,3 +142,14 @@ training and evaluation data. When scoring final recommendations, omit entries
 labeled `insufficient information` from `ranked_journal_ids` and report that
 filtering rule with the results. The report's `ranked_candidates` field can supply
 the final shortlist IDs for candidate recall; it is not the full retrieval pool.
+
+## Training across more mathematical fields
+
+The [public-data training workflow](BROAD_TRAINING.md) collects OpenAlex abstracts
+for 50 journals, freezes later-year holdouts and compares nested training sizes.
+`train-venues` learns title/abstract publication-venue affinity; `recommend-venues`
+returns three journals using the saved model without an LLM call. The completed
+collection contains 10,973 articles; 8,967 remain for training after exclusions.
+See the [measured results](benchmarks/broad-training-2026-09-07/REPORT.md).
+This opt-in model has a 50-journal candidate set. It is separate from the graded
+expert-judgment workflow and does not change the default matching behavior.

@@ -1,0 +1,266 @@
+[
+  {
+    "paper_id": "p01",
+    "actual_journal_id": "zbmath-serial-1119",
+    "actual_journal": "Discrete & Computational Geometry",
+    "doi": "10.1007/s00454-024-00681-7",
+    "label_source": "https://arxiv.org/abs/2307.11366",
+    "publication_source": "https://doi.org/10.1007/s00454-024-00681-7"
+  },
+  {
+    "paper_id": "p02",
+    "actual_journal_id": "zbmath-serial-2427",
+    "actual_journal": "Annals of Combinatorics",
+    "doi": "10.1007/s00026-022-00598-z",
+    "label_source": "https://arxiv.org/abs/2106.16130",
+    "publication_source": "https://doi.org/10.1007/s00026-022-00598-z"
+  },
+  {
+    "paper_id": "p03",
+    "actual_journal_id": "zbmath-serial-580",
+    "actual_journal": "Mathematika",
+    "doi": "10.1112/mtk.70000",
+    "label_source": "https://arxiv.org/abs/2209.06079",
+    "publication_source": "https://doi.org/10.1112/mtk.70000"
+  },
+  {
+    "paper_id": "p04",
+    "actual_journal_id": "zbmath-serial-2619",
+    "actual_journal": "Communications in Contemporary Mathematics",
+    "doi": "10.1142/S0219199725500063",
+    "label_source": "https://arxiv.org/abs/2209.05836",
+    "publication_source": "https://doi.org/10.1142/S0219199725500063"
+  },
+  {
+    "paper_id": "p05",
+    "actual_journal_id": "zbmath-serial-127",
+    "actual_journal": "Journal of Computational Physics",
+    "doi": "10.1016/j.jcp.2024.112786",
+    "label_source": "https://arxiv.org/abs/2209.05819",
+    "publication_source": "https://doi.org/10.1016/j.jcp.2024.112786"
+  },
+  {
+    "paper_id": "p06",
+    "actual_journal_id": "zbmath-serial-512",
+    "actual_journal": "Journal of Number Theory",
+    "doi": "10.1016/j.jnt.2022.10.006",
+    "label_source": "https://arxiv.org/abs/2010.15988",
+    "publication_source": "https://doi.org/10.1016/j.jnt.2022.10.006"
+  },
+  {
+    "paper_id": "p07",
+    "actual_journal_id": "zbmath-serial-318",
+    "actual_journal": "The Annals of Probability",
+    "doi": "10.1214/23-AOP1644",
+    "label_source": "https://arxiv.org/abs/2111.09513",
+    "publication_source": "https://doi.org/10.1214/23-AOP1644"
+  },
+  {
+    "paper_id": "p08",
+    "actual_journal_id": "zbmath-serial-6654",
+    "actual_journal": "Journal of Commutative Algebra",
+    "doi": "10.1216/jca.2024.16.391",
+    "label_source": "https://arxiv.org/abs/2311.02430",
+    "publication_source": "https://doi.org/10.1216/jca.2024.16.391"
+  },
+  {
+    "paper_id": "p09",
+    "actual_journal_id": "zbmath-serial-2808",
+    "actual_journal": "Algebraic & Geometric Topology",
+    "doi": "10.2140/agt.2025.25.3271",
+    "label_source": "https://arxiv.org/abs/2207.01787",
+    "publication_source": "https://doi.org/10.2140/agt.2025.25.3271"
+  },
+  {
+    "paper_id": "p10",
+    "actual_journal_id": "zbmath-serial-1796",
+    "actual_journal": "SIAM Journal on Optimization",
+    "doi": "10.1137/23M1561464",
+    "label_source": "https://arxiv.org/abs/2312.07908",
+    "publication_source": "https://doi.org/10.1137/23M1561464"
+  },
+  {
+    "paper_id": "p11",
+    "actual_journal_id": "zbmath-serial-484",
+    "actual_journal": "Journal of Differential Equations",
+    "doi": "10.1016/j.jde.2024.01.038",
+    "label_source": "https://arxiv.org/abs/2308.08398",
+    "publication_source": "https://doi.org/10.1016/j.jde.2024.01.038"
+  },
+  {
+    "paper_id": "p12",
+    "actual_journal_id": "zbmath-serial-6214",
+    "actual_journal": "Electronic Journal of Statistics",
+    "doi": "10.1214/24-EJS2332",
+    "label_source": "https://arxiv.org/abs/2306.10471",
+    "publication_source": "https://doi.org/10.1214/24-EJS2332"
+  },
+  {
+    "paper_id": "v01",
+    "actual_journal_id": "zbmath-serial-3352",
+    "actual_journal": "SIGMA. Symmetry, Integrability and Geometry: Methods and Applications",
+    "doi": "10.3842/SIGMA.2024.101",
+    "label_source": "https://doi.org/10.3842/SIGMA.2024.101"
+  },
+  {
+    "paper_id": "v02",
+    "actual_journal_id": "zbmath-serial-473",
+    "actual_journal": "Journal of Algebra",
+    "doi": "10.1016/j.jalgebra.2018.09.005",
+    "label_source": "https://doi.org/10.1016/j.jalgebra.2018.09.005"
+  },
+  {
+    "paper_id": "v03",
+    "actual_journal_id": "zbmath-serial-451",
+    "actual_journal": "Indiana University Mathematics Journal",
+    "doi": "10.1512/iumj.2020.69.8229",
+    "label_source": "https://doi.org/10.1512/iumj.2020.69.8229"
+  },
+  {
+    "paper_id": "v04",
+    "actual_journal_id": "zbmath-serial-2901",
+    "actual_journal": "Advanced Nonlinear Studies",
+    "doi": "10.1515/ans-2022-0036",
+    "label_source": "https://doi.org/10.1515/ans-2022-0036"
+  },
+  {
+    "paper_id": "v05",
+    "actual_journal_id": "zbmath-serial-3651",
+    "actual_journal": "Bulletin of the Institute of Mathematics. Academia Sinica. New Series",
+    "doi": "10.21915/BIMAS.2020101",
+    "label_source": "https://doi.org/10.21915/BIMAS.2020101"
+  },
+  {
+    "paper_id": "v06",
+    "actual_journal_id": "zbmath-serial-4971",
+    "actual_journal": "Communications in Computational Physics",
+    "doi": "10.4208/cicp.OA-2020-0164",
+    "label_source": "https://doi.org/10.4208/cicp.OA-2020-0164"
+  },
+  {
+    "paper_id": "v07",
+    "actual_journal_id": "zbmath-serial-814",
+    "actual_journal": "Journal of Operator Theory",
+    "doi": "10.7900/jot.2023nov13.2451",
+    "label_source": "https://doi.org/10.7900/jot.2023nov13.2451"
+  },
+  {
+    "paper_id": "v08",
+    "actual_journal_id": "zbmath-serial-37",
+    "actual_journal": "Archive for Rational Mechanics and Analysis",
+    "doi": "10.1007/s00205-022-01771-7",
+    "label_source": "https://doi.org/10.1007/s00205-022-01771-7"
+  },
+  {
+    "paper_id": "v09",
+    "actual_journal_id": "zbmath-serial-628",
+    "actual_journal": "Proceedings of the London Mathematical Society. Third Series",
+    "doi": "10.1112/plms.12502",
+    "label_source": "https://doi.org/10.1112/plms.12502"
+  },
+  {
+    "paper_id": "v10",
+    "actual_journal_id": "zbmath-serial-500",
+    "actual_journal": "Journal of the London Mathematical Society. Second Series",
+    "doi": "10.1112/jlms.70377",
+    "label_source": "https://doi.org/10.1112/jlms.70377"
+  },
+  {
+    "paper_id": "v11",
+    "actual_journal_id": "zbmath-serial-1136",
+    "actual_journal": "Revista Matemática Iberoamericana",
+    "doi": "10.4171/RMI/1288",
+    "label_source": "https://doi.org/10.4171/RMI/1288"
+  },
+  {
+    "paper_id": "v12",
+    "actual_journal_id": "zbmath-serial-2077",
+    "actual_journal": "Selecta Mathematica. New Series",
+    "doi": "10.1007/s00029-021-00620-x",
+    "label_source": "https://doi.org/10.1007/s00029-021-00620-x"
+  },
+  {
+    "paper_id": "v13",
+    "actual_journal_id": "zbmath-serial-115",
+    "actual_journal": "Israel Journal of Mathematics",
+    "doi": "10.1007/s11856-022-2435-y",
+    "label_source": "https://doi.org/10.1007/s11856-022-2435-y"
+  },
+  {
+    "paper_id": "v14",
+    "actual_journal_id": "zbmath-serial-2730",
+    "actual_journal": "Integers",
+    "doi": "10.5281/zenodo.10687774",
+    "label_source": "https://doi.org/10.5281/zenodo.10687774"
+  },
+  {
+    "paper_id": "v15",
+    "actual_journal_id": "zbmath-serial-7080",
+    "actual_journal": "Annals of Functional Analysis",
+    "doi": "10.1007/s43034-024-00358-5",
+    "label_source": "https://doi.org/10.1007/s43034-024-00358-5"
+  },
+  {
+    "paper_id": "v16",
+    "actual_journal_id": "zbmath-serial-2064",
+    "actual_journal": "The Electronic Journal of Combinatorics",
+    "doi": "10.37236/9944",
+    "label_source": "https://doi.org/10.37236/9944"
+  },
+  {
+    "paper_id": "v17",
+    "actual_journal_id": "zbmath-serial-290",
+    "actual_journal": "Advances in Mathematics",
+    "doi": "10.1016/j.aim.2021.107909",
+    "label_source": "https://doi.org/10.1016/j.aim.2021.107909"
+  },
+  {
+    "paper_id": "v18",
+    "actual_journal_id": "zbmath-serial-876",
+    "actual_journal": "Zeitschrift für Analysis und ihre Anwendungen",
+    "doi": "10.4171/ZAA/1697",
+    "label_source": "https://doi.org/10.4171/ZAA/1697"
+  },
+  {
+    "paper_id": "v19",
+    "actual_journal_id": "zbmath-serial-2084",
+    "actual_journal": "Bulletin des Sciences Mathématiques",
+    "doi": "10.1016/j.bulsci.2023.103293",
+    "label_source": "https://doi.org/10.1016/j.bulsci.2023.103293"
+  },
+  {
+    "paper_id": "v20",
+    "actual_journal_id": "zbmath-serial-3646",
+    "actual_journal": "Pure and Applied Mathematics Quarterly",
+    "doi": "10.4310/PAMQ.2023.v19.n6.a2",
+    "label_source": "https://doi.org/10.4310/PAMQ.2023.v19.n6.a2"
+  },
+  {
+    "paper_id": "v21",
+    "actual_journal_id": "zbmath-serial-8522",
+    "actual_journal": "Annals of PDE",
+    "doi": "10.1007/s40818-021-00100-7",
+    "label_source": "https://doi.org/10.1007/s40818-021-00100-7"
+  },
+  {
+    "paper_id": "v22",
+    "actual_journal_id": "zbmath-serial-579",
+    "actual_journal": "Mathematische Zeitschrift",
+    "doi": "10.1007/s00209-020-02676-5",
+    "label_source": "https://doi.org/10.1007/s00209-020-02676-5"
+  },
+  {
+    "paper_id": "v23",
+    "actual_journal_id": "zbmath-serial-963",
+    "actual_journal": "Acta Mathematica Hungarica",
+    "doi": "10.1007/s10474-019-01010-8",
+    "label_source": "https://doi.org/10.1007/s10474-019-01010-8"
+  },
+  {
+    "paper_id": "v24",
+    "actual_journal_id": "zbmath-serial-1573",
+    "actual_journal": "L'Enseignement Mathématique. 2e Série",
+    "doi": "10.4171/LEM/1095",
+    "label_source": "https://doi.org/10.4171/LEM/1095"
+  }
+]

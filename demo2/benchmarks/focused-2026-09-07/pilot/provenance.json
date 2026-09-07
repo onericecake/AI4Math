@@ -1,0 +1,128 @@
+{
+  "retrieved_on": "2026-09-06",
+  "selection": "Convenience sample of 12 publicly accessible mathematical abstracts with independently checked publication venues, one paper per journal; not chosen by model score. No random seed or representative sampling claim.",
+  "labels": [
+    {
+      "paper_id": "p01",
+      "actual_journal_id": "zbmath-serial-1119",
+      "actual_journal": "Discrete & Computational Geometry",
+      "doi": "10.1007/s00454-024-00681-7",
+      "label_source": "https://arxiv.org/abs/2307.11366",
+      "publication_source": "https://doi.org/10.1007/s00454-024-00681-7"
+    },
+    {
+      "paper_id": "p02",
+      "actual_journal_id": "zbmath-serial-2427",
+      "actual_journal": "Annals of Combinatorics",
+      "doi": "10.1007/s00026-022-00598-z",
+      "label_source": "https://arxiv.org/abs/2106.16130",
+      "publication_source": "https://doi.org/10.1007/s00026-022-00598-z"
+    },
+    {
+      "paper_id": "p03",
+      "actual_journal_id": "zbmath-serial-580",
+      "actual_journal": "Mathematika",
+      "doi": "10.1112/mtk.70000",
+      "label_source": "https://arxiv.org/abs/2209.06079",
+      "publication_source": "https://doi.org/10.1112/mtk.70000"
+    },
+    {
+      "paper_id": "p04",
+      "actual_journal_id": "zbmath-serial-2619",
+      "actual_journal": "Communications in Contemporary Mathematics",
+      "doi": "10.1142/S0219199725500063",
+      "label_source": "https://arxiv.org/abs/2209.05836",
+      "publication_source": "https://doi.org/10.1142/S0219199725500063",
+      "verified_source": "https://www.kuleuven.be/wieiswie/en/person/00096206",
+      "note": "arXiv gives 2024; institutional bibliography gives final volume 27(08), 2550006 (2025). Venue and DOI agree."
+    },
+    {
+      "paper_id": "p05",
+      "actual_journal_id": "zbmath-serial-127",
+      "actual_journal": "Journal of Computational Physics",
+      "doi": "10.1016/j.jcp.2024.112786",
+      "label_source": "https://arxiv.org/abs/2209.05819",
+      "publication_source": "https://doi.org/10.1016/j.jcp.2024.112786"
+    },
+    {
+      "paper_id": "p06",
+      "actual_journal_id": "zbmath-serial-512",
+      "actual_journal": "Journal of Number Theory",
+      "doi": "10.1016/j.jnt.2022.10.006",
+      "label_source": "https://arxiv.org/abs/2010.15988",
+      "publication_source": "https://doi.org/10.1016/j.jnt.2022.10.006",
+      "verified_source": "https://www2.karlin.mff.cuni.cz/~zindulka/"
+    },
+    {
+      "paper_id": "p07",
+      "actual_journal_id": "zbmath-serial-318",
+      "actual_journal": "The Annals of Probability",
+      "doi": "10.1214/23-AOP1644",
+      "label_source": "https://arxiv.org/abs/2111.09513",
+      "publication_source": "https://doi.org/10.1214/23-AOP1644"
+    },
+    {
+      "paper_id": "p08",
+      "actual_journal_id": "zbmath-serial-6654",
+      "actual_journal": "Journal of Commutative Algebra",
+      "doi": "10.1216/jca.2024.16.391",
+      "label_source": "https://arxiv.org/abs/2311.02430",
+      "publication_source": "https://doi.org/10.1216/jca.2024.16.391",
+      "verified_source": "https://experts.mcmaster.ca/scholarly-works/3388746",
+      "note": "arXiv omits initial '1' in DOI; corrected using author's institutional publication record."
+    },
+    {
+      "paper_id": "p09",
+      "actual_journal_id": "zbmath-serial-2808",
+      "actual_journal": "Algebraic & Geometric Topology",
+      "doi": "10.2140/agt.2025.25.3271",
+      "label_source": "https://arxiv.org/abs/2207.01787",
+      "publication_source": "https://doi.org/10.2140/agt.2025.25.3271"
+    },
+    {
+      "paper_id": "p10",
+      "actual_journal_id": "zbmath-serial-1796",
+      "actual_journal": "SIAM Journal on Optimization",
+      "doi": "10.1137/23M1561464",
+      "label_source": "https://arxiv.org/abs/2312.07908",
+      "publication_source": "https://doi.org/10.1137/23M1561464",
+      "verified_source": "https://epubs.siam.org/doi/abs/10.1137/23M1561464"
+    },
+    {
+      "paper_id": "p11",
+      "actual_journal_id": "zbmath-serial-484",
+      "actual_journal": "Journal of Differential Equations",
+      "doi": "10.1016/j.jde.2024.01.038",
+      "label_source": "https://arxiv.org/abs/2308.08398",
+      "publication_source": "https://doi.org/10.1016/j.jde.2024.01.038",
+      "verified_source": "https://publications.rwth-aachen.de/record/983883/?ln=en"
+    },
+    {
+      "paper_id": "p12",
+      "actual_journal_id": "zbmath-serial-6214",
+      "actual_journal": "Electronic Journal of Statistics",
+      "doi": "10.1214/24-EJS2332",
+      "label_source": "https://arxiv.org/abs/2306.10471",
+      "publication_source": "https://doi.org/10.1214/24-EJS2332",
+      "verified_source": "https://research.utwente.nl/en/publications/a-supervised-deep-learning-method-for-nonparametric-density-estim/"
+    }
+  ],
+  "rejected_matches": [
+    {
+      "arxiv": "2311.00176",
+      "reason": "Unrelated ChipNeMo paper returned by a mistaken secondary search association."
+    },
+    {
+      "arxiv": "2401.11554",
+      "reason": "Unrelated transfer-learning paper; incorrect institutional search association."
+    }
+  ],
+  "input_policy": "Latest arXiv title and abstract used consistently. Earliest-version checks showed changed titles/content for some papers; this pilot does not simulate original submission-time text.",
+  "backend_status": {
+    "openai_api_key_configured": false,
+    "live_api_run": false,
+    "codex_cli_authenticated": true,
+    "codex_adapter_run": false,
+    "pending": "User's backend selection. No inference results are fabricated."
+  }
+}

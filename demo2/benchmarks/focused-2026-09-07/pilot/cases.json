@@ -1,0 +1,110 @@
+[
+  {
+    "paper_id": "p01",
+    "title": "Many equiprojective polytopes",
+    "abstract": "A $3$-dimensional polytope $P$ is $k$-equiprojective when the projection of $P$ along any line that is not parallel to a facet of $P$ is a polygon with $k$ vertices. In 1968, Geoffrey Shephard asked for a description of all equiprojective polytopes. It has been shown recently that the number of combinatorial types of $k$-equiprojective polytopes is at least linear as a function of $k$. Here, it is shown that there are at least $k^{3k/2+o(k)}$ such combinatorial types as $k$ goes to infinity. This relies on the Goodman--Pollack lower bound on the number of order types and on new constructions of equiprojective polytopes via Minkowski sums.",
+    "input_kind": "title-and-abstract",
+    "source_url": "https://arxiv.org/abs/2307.11366",
+    "arxiv_id": "2307.11366",
+    "version_policy": "latest arXiv abstract retrieved 2026-09-06; retrospective, not submission-time simulation"
+  },
+  {
+    "paper_id": "p02",
+    "title": "Diameter estimates for graph associahedra",
+    "abstract": "Graph associahedra are generalized permutohedra arising as special cases of nestohedra and hypergraphic polytopes. The graph associahedron of a graph $G$ encodes the combinatorics of search trees on $G$, defined recursively by a root $r$ together with search trees on each of the connected components of $G-r$. In particular, the skeleton of the graph associahedron is the rotation graph of those search trees. We investigate the diameter of graph associahedra as a function of some graph parameters. We give a tight bound of $\\Theta(m)$ on the diameter of trivially perfect graph associahedra on $m$ edges. We consider the maximum diameter of associahedra of graphs on $n$ vertices and of given tree-depth, treewidth, or pathwidth, and give lower and upper bounds as a function of these parameters. We also prove that the maximum diameter of associahedra of graphs of pathwidth two is $\\Theta (n\\log n)$. Finally, we give the exact diameter of the associahedra of complete split and of unbalanced complete bipartite graphs.",
+    "input_kind": "title-and-abstract",
+    "source_url": "https://arxiv.org/abs/2106.16130",
+    "arxiv_id": "2106.16130",
+    "version_policy": "latest arXiv abstract retrieved 2026-09-06; retrospective, not submission-time simulation"
+  },
+  {
+    "paper_id": "p03",
+    "title": "Effective upper bounds on the number of resonance in potential scattering",
+    "abstract": "We prove upper bounds on the number of resonances and eigenvalues of Schrödinger operators $-\\Delta+V$ with complex-valued potentials, where $d\\geq 3$ is odd. The novel feature of our upper bounds is that they are \\emph{effective}, in the sense that they only depend on an exponentially weighted norm of V. Our main focus is on potentials in the Lorentz space $L^{(d+1)/2,1/2}$, but we also obtain new results for compactly supported or pointwise decaying potentials. The main technical innovation, possibly of independent interest, are singular value estimates for Fourier-extension type operators. The obtained upper bounds not only recover several known results in a unified way, they also provide new bounds for potentials which are not amenable to previous methods.",
+    "input_kind": "title-and-abstract",
+    "source_url": "https://arxiv.org/abs/2209.06079",
+    "arxiv_id": "2209.06079",
+    "version_policy": "latest arXiv abstract retrieved 2026-09-06; retrospective, not submission-time simulation"
+  },
+  {
+    "paper_id": "p04",
+    "title": "Observables on multisymplectic manifolds and higher Courant algebroids",
+    "abstract": "Let $\\omega$ be a closed, non-degenerate differential form of arbitrary degree. Associated to it there are an $L_{\\infty}$-algebra of observables, and an $L_{\\infty}$-algebra of sections of the higher Courant algebroid twisted by $\\omega$. Our main result is the existence of an $L_{\\infty}$-embedding of the former into the latter. We display explicit formulae for the embedding, involving the Bernoulli numbers. When $\\omega$ is an integral symplectic form, the embedding can be realized geometrically via the prequantization construction, and when $\\omega$ is a 3-form the embedding was found by Rogers in 2010. Further, in the presence of homotopy moment maps, we show that the embedding is compatible with gauge transformations.",
+    "input_kind": "title-and-abstract",
+    "source_url": "https://arxiv.org/abs/2209.05836",
+    "arxiv_id": "2209.05836",
+    "version_policy": "latest arXiv abstract retrieved 2026-09-06; retrospective, not submission-time simulation"
+  },
+  {
+    "paper_id": "p05",
+    "title": "HODLR$d$D: A new Black-box fast algorithm for $N$-body problems in $d$-dimensions with guaranteed error bounds",
+    "abstract": "In this article, we prove new theorems bounding the rank of different sub-matrices arising from these kernel functions. Bounds like these are often useful for analyzing the complexity of various hierarchical matrix algorithms. We also plot the numerical rank growth of different sub-matrices arising out of various kernel functions in $1$D, $2$D, $3$D and $4$D, which, not surprisingly, agrees with the proposed theorems. Another significant contribution of this article is that, using the obtained rank bounds, we also propose a way to extend the notion of \\textbf{\\emph{weak-admissibility}} for hierarchical matrices in higher dimensions. Based on this proposed \\textbf{\\emph{weak-admissibility}} condition, we develop a black-box (kernel-independent) fast algorithm for $N$-body problems, hierarchically off-diagonal low-rank matrix in $d$ dimensions (HODLR$d$D), which can perform matrix-vector products with $\\mathcal{O}(pN \\log (N))$ complexity in any dimension $d$, where $p$ doesn't grow with any power of $N$. More precisely, our theorems guarantee that $p \\in \\mathcal{O} (\\log (N) \\log^d (\\log (N)))$, which implies our HODLR$d$D algorithm scales almost linearly. The $\\texttt{C++}$ implementation with \\texttt{OpenMP} parallelization of the HODLR$d$D is available at \\url{ }. We also discuss the scalability of the HODLR$d$D algorithm and showcase the applicability by solving an integral equation in $4$ dimensions and accelerating the training phase of the support vector machines (SVM) for the data sets with four and five features.",
+    "input_kind": "title-and-abstract",
+    "source_url": "https://arxiv.org/abs/2209.05819",
+    "arxiv_id": "2209.05819",
+    "version_policy": "latest arXiv abstract retrieved 2026-09-06; retrospective, not submission-time simulation"
+  },
+  {
+    "paper_id": "p06",
+    "title": "Artin Twin Primes",
+    "abstract": "We say that a prime number $p$ is an $\\textit{Artin prime}$ for $g$ if $g$ mod $p$ generates the group $(\\mathbb{Z}/p\\mathbb{Z})^{\\times}$. For appropriately chosen integers $d$ and $g$, we present a conjecture for the asymptotic number $\\pi_{d,g}(x)$ of primes $p \\leq x$ such that both $p$ and $p+d$ are Artin primes for $g$. In particular, we identify a class of pairs $(d,g)$ for which $\\pi_{d,g}(x) =0$. Our results suggest that the distribution of Artin prime pairs, amongst the ordinary prime pairs, is largely governed by a Poisson binomial distribution.",
+    "input_kind": "title-and-abstract",
+    "source_url": "https://arxiv.org/abs/2010.15988",
+    "arxiv_id": "2010.15988",
+    "version_policy": "latest arXiv abstract retrieved 2026-09-06; retrospective, not submission-time simulation"
+  },
+  {
+    "paper_id": "p07",
+    "title": "A limit law for the most favorite point of simple random walk on a regular tree",
+    "abstract": "We consider a continuous-time random walk on a regular tree of finite depth and study its favorite points among the leaf vertices. For the walk started from a leaf vertex and stopped upon hitting the root we prove that, in the limit as as the depth of the tree tends to infinity, the suitably scaled and centered maximal time spent at any leaf converges to a randomly-shifted Gumbel law. The random shift is characterized using a derivative-martingale like object associated with square-root local-time process on the tree.",
+    "input_kind": "title-and-abstract",
+    "source_url": "https://arxiv.org/abs/2111.09513",
+    "arxiv_id": "2111.09513",
+    "version_policy": "latest arXiv abstract retrieved 2026-09-06; retrospective, not submission-time simulation"
+  },
+  {
+    "paper_id": "p08",
+    "title": "Fröberg's Theorem, vertex splittability and higher independence complexes",
+    "abstract": "A celebrated theorem of Fröberg gives a complete combinatorial classification of quadratic square-free monomial ideals with a linear resolution. A generalization of this theorem to higher degree square-free monomial ideals is an active area of research. The existence of a linear resolution of such ideals often depends on the field over which the polynomial ring is defined. Hence, it is too much to expect that in the higher degree case a linear resolution can be identified purely using a combinatorial feature of an associated combinatorial structure. However, some classes of ideals having linear resolutions have been identified using combinatorial structures. In the present paper, we use the notion of $r$-independence to construct an $r$-uniform hypergraph from the given graph. We then show that when the underlying graph is co-chordal, the corresponding edge ideal is vertex splittable, a condition stronger than having a linear resolution. We use this result to explicitly compute graded Betti numbers for various graph classes. Finally, we give a different proof for the existence of a linear resolution using the topological notion of $r$-collapsibility.",
+    "input_kind": "title-and-abstract",
+    "source_url": "https://arxiv.org/abs/2311.02430",
+    "arxiv_id": "2311.02430",
+    "version_policy": "latest arXiv abstract retrieved 2026-09-06; retrospective, not submission-time simulation"
+  },
+  {
+    "paper_id": "p09",
+    "title": "A note on knot Floer homology of satellite knots with (1,1)-patterns",
+    "abstract": "We prove that if $P$ is a $(1,1)$-pattern knot, the two inequalities $\\dim \\widehat{HFK} (P(K)) \\geqslant \\dim \\widehat{HFK} (P(U))$ and $\\dim \\widehat{HFK} (P(K)) \\geqslant \\dim \\widehat{HFK} (K)$ hold for the unknot $U\\subset S^3$ and any companion knot $K\\subset S^3$.",
+    "input_kind": "title-and-abstract",
+    "source_url": "https://arxiv.org/abs/2207.01787",
+    "arxiv_id": "2207.01787",
+    "version_policy": "latest arXiv abstract retrieved 2026-09-06; retrospective, not submission-time simulation"
+  },
+  {
+    "paper_id": "p10",
+    "title": "A feasible method for general convex low-rank SDP problems",
+    "abstract": "In this work, we consider the low rank decomposition (SDPR) of general convex semidefinite programming problems (SDP) that contain both a positive semidefinite matrix and a nonnegative vector as variables. We develop a rank-support-adaptive feasible method to solve (SDPR) based on Riemannian optimization. The method is able to escape from a saddle point to ensure its convergence to a global optimal solution for generic constraint vectors. We prove its global convergence and local linear convergence without assuming that the objective function is twice differentiable. Due to the special structure of the low-rank SDP problem, our algorithm can achieve better iteration complexity than existing results for more general smooth nonconvex problems. In order to overcome the degeneracy issues of SDP problems, we develop two strategies based on random perturbation and dual refinement. These techniques enable us to solve some primal degenerate SDP problems efficiently, for example, Lovász theta SDPs. Our work is a step forward in extending the application range of Riemannian optimization approaches for solving SDP problems. Numerical experiments are conducted to verify the efficiency and robustness of our method.",
+    "input_kind": "title-and-abstract",
+    "source_url": "https://arxiv.org/abs/2312.07908",
+    "arxiv_id": "2312.07908",
+    "version_policy": "latest arXiv abstract retrieved 2026-09-06; retrospective, not submission-time simulation"
+  },
+  {
+    "paper_id": "p11",
+    "title": "Well-posedness and stability for a class of fourth-order nonlinear parabolic equations",
+    "abstract": "In this paper we examine well-posedness for a class of fourth-order nonlinear parabolic equation $\\partial_t u + (-\\Delta)^2 u = \\nabla \\cdot F(\\nabla u)$, where $F$ satisfies a cubic growth conditions. We establish existence and uniqueness of the solution for small initial data in local BMO spaces. In the cubic case $F(\\xi) = \\pm \\lvert \\xi \\rvert^2 \\xi$ we also examine the large time behaivour and stability of global solutions for arbitrary and small initial data in VMO, respectively.",
+    "input_kind": "title-and-abstract",
+    "source_url": "https://arxiv.org/abs/2308.08398",
+    "arxiv_id": "2308.08398",
+    "version_policy": "latest arXiv abstract retrieved 2026-09-06; retrospective, not submission-time simulation"
+  },
+  {
+    "paper_id": "p12",
+    "title": "A supervised deep learning method for nonparametric density estimation",
+    "abstract": "Nonparametric density estimation is an unsupervised learning problem. In this work we propose a two-step procedure that casts the density estimation problem in the first step into a supervised regression problem. The advantage is that we can afterwards apply supervised learning methods. Compared to the standard nonparametric regression setting, the proposed procedure creates, however, dependence among the training samples. To derive statistical risk bounds, one can therefore not rely on the well-developed theory for i.i.d. data. To overcome this, we prove an oracle inequality for this specific form of data dependence. As an application, it is shown that under a compositional structure assumption on the underlying density, the proposed two-step method achieves convergence rates that are faster than the standard nonparametric rates. A simulation study illustrates the finite sample performance.",
+    "input_kind": "title-and-abstract",
+    "source_url": "https://arxiv.org/abs/2306.10471",
+    "arxiv_id": "2306.10471",
+    "version_policy": "latest arXiv abstract retrieved 2026-09-06; retrospective, not submission-time simulation"
+  }
+]

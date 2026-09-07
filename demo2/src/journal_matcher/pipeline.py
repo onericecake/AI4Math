@@ -10,6 +10,8 @@ from typing import Any, Dict, Iterable, List, Mapping, Optional, Sequence
 from .catalog import JournalCatalog
 from .llm import JSONLanguageModel
 from .msc import MSCTaxonomy, normalize_msc_code
+from .retrieval import HybridRetriever
+from .rerank import default_contributions
 from .prompts import (
     article_profile_prompt,
     broad_msc_prompt,
@@ -75,10 +77,19 @@ def _evidence_ids(value: Any, candidate: JournalCandidate) -> List[str]:
 class JournalMatcher:
     """Orchestrates extraction outputs, confirmation, classification, and matching."""
 
-    def __init__(self, model: JSONLanguageModel, taxonomy: MSCTaxonomy, catalog: JournalCatalog) -> None:
+    def __init__(self, model: JSONLanguageModel, taxonomy: MSCTaxonomy, catalog: JournalCatalog,
+                 retrieval: str = "hybrid", encoder=None, reranker=None, candidate_limit: int = 50,
+                 final_limit: int = 24) -> None:
+        if retrieval not in {"hybrid", "focused", "legacy"} or candidate_limit <= 0 or final_limit <= 0:
+            raise ValueError("Invalid retrieval mode or shortlist limits")
+        if reranker and (retrieval == "legacy" or reranker.feature_schema_version != (2 if retrieval == "focused" else 1)):
+            raise ValueError("Reranker feature schema does not match the retrieval mode; use its original mode or retrain")
         self.model = model
         self.taxonomy = taxonomy
         self.catalog = catalog
+        self.retriever = HybridRetriever(catalog, encoder, strategy=retrieval) if retrieval != "legacy" else None
+        self.reranker = reranker
+        self.candidate_limit, self.final_limit = candidate_limit, final_limit
 
     def propose_central_results(self, manuscript: ExtractedManuscript) -> Dict[str, Any]:
         value = self.model.complete_json(central_results_prompt(manuscript))
@@ -131,6 +142,7 @@ class JournalMatcher:
         if not isinstance(value, Mapping):
             raise ValueError("article profile response must be a JSON object")
         profile = self._profile_from_json(value, broad_items)
+        profile.retrieval_text = manuscript.title + "\n" + manuscript.abstract
         # The matching prompt consumes the profile, not the original manuscript.
         # Carry confirmed statements forward instead of trusting an optional
         # model field that the profile response schema does not request.
@@ -149,9 +161,15 @@ class JournalMatcher:
             profile.keywords = sorted(_tokens(source))[:80]
         return profile
 
-    def candidates(self, profile: ArticleProfile, limit: int = 24) -> List[JournalCandidate]:
+    def candidates(self, profile: ArticleProfile, limit: Optional[int] = None) -> List[JournalCandidate]:
+        limit = self.candidate_limit if limit is None else limit
         if limit <= 0:
             return []
+        if self.retriever:
+            # Training affects ranking after the union has been retrieved; do
+            # not let a learned score recover only the old MSC candidate pool.
+            pool = self.retriever.retrieve(profile, limit=max(limit, 100))
+            return self.rank_candidates(profile, pool, [])[:limit]
         codes = []
         if profile.primary_msc:
             codes.append(profile.primary_msc.code)
@@ -218,6 +236,11 @@ class JournalMatcher:
                 "available_evidence": 0.07 * evidence_score,
                 "profile_confidence": 0.05 * confidence,
             }
+            if candidate.retrieval_scores:
+                features = candidate.retrieval_scores
+                components = default_contributions({**features, "technical_depth": depth_score, "audience_breadth": breadth_score})
+                if self.reranker:
+                    components = self.reranker.contributions({**features, "technical_depth": depth_score, "audience_breadth": breadth_score})
             ranked.append(replace(candidate, match_score=round(sum(components.values()), 4),
                                   score_components=components, level_distance=level_distance))
         return sorted(ranked, key=lambda item: (-item.match_score, item.name.casefold(), item.journal_id))
@@ -272,11 +295,10 @@ class JournalMatcher:
 
     def match(self, profile: ArticleProfile, candidates: Sequence[JournalCandidate], field_profiles: Sequence[JournalFieldProfile], central_result_text: str = "") -> MatchReport:
         ranked_candidates = self.rank_candidates(profile, candidates, field_profiles)
-        # A dozen evidence-backed candidates keeps the prompt small while
-        # leaving enough alternatives for broad or interdisciplinary papers.
-        ranked_candidates = ranked_candidates[:12]
+        # The final shortlist is configurable independently from retrieval.
+        ranked_candidates = ranked_candidates[:self.final_limit]
         if not ranked_candidates:
-            return MatchReport(central_result_text, profile, [], ["The catalog contains no journals with MSC evidence for the confirmed area."])
+            return MatchReport(central_result_text, profile, [], ["The catalog contains no journals with sufficient subject or text evidence for this query."])
         known = {candidate.journal_id: candidate for candidate in ranked_candidates}
         fields = {item.journal_id: item for item in field_profiles if item.journal_id in known}
         value = self.model.complete_json(
@@ -312,6 +334,9 @@ class JournalMatcher:
             elif fit == "strong match" and (
                 candidate.level_distance != 0 or not field or field.confidence != "high"
                 or not any(article.abstract.strip() for article in candidate.representative_articles if article.article_id in evidence_ids)
+                or (candidate.retrieval_scores and (
+                    sum(bool(article.abstract.strip()) for article in candidate.representative_articles if article.article_id in evidence_ids) < 3
+                    or len({article.year for article in candidate.representative_articles if article.article_id in evidence_ids and article.abstract.strip() and article.year}) < 2))
             ):
                 fit = "plausible match"
                 validation_notes.append("%s: strong-fit claim reduced because level or article evidence is limited." % candidate.name)
@@ -354,7 +379,11 @@ class JournalMatcher:
             item.role = "broader-audience alternative" if candidate.tier == "broad-field" or breadth > article_breadth else "more specialized alternative"
         limitations = _strings(value.get("limitations", [])) if isinstance(value, Mapping) else []
         limitations.extend(validation_notes)
-        limitations.append("Ranking scores use uncalibrated heuristic weights; they are not probabilities of acceptance or editorial suitability.")
+        limitations.append("Ranking scores are uncalibrated relative preferences, not probabilities of acceptance or editorial suitability.")
+        if self.retriever and self.retriever.strategy == "focused":
+            limitations.append("Experimental field-focused ranking improved the development pilot but did not improve top-three hits on the separate validation set.")
+        if self.retriever and self.retriever.encoder is None:
+            limitations.append("Semantic retrieval was not enabled; candidates use MSC, lexical, and available article evidence.")
         if not recommendations:
             limitations.append("The matching model returned no usable recommendations.")
         usable_articles = sum(

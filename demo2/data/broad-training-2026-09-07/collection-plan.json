@@ -1,0 +1,822 @@
+{
+  "schema_version": 1,
+  "journals": [
+    {
+      "journal_id": "zbmath-serial-2531",
+      "name": "Annals of Mathematics. Second Series",
+      "issn_l": "0003-486X",
+      "publisher": "Princeton University, Mathematics Department, Princeton, NJ",
+      "official_url": "https://annals.math.princeton.edu/",
+      "scope_url": "https://zbmath.org/serials/2531",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 11, 14, 53, 57, 37, 32, 20, 22, 35, 58, 30, 55, 46, 42, 05, 47, 60, 28",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "generalist",
+      "collection_scope_group": "generalist"
+    },
+    {
+      "journal_id": "zbmath-serial-465",
+      "name": "Inventiones Mathematicae",
+      "issn_l": "0020-9910",
+      "publisher": "Springer, Berlin/Heidelberg",
+      "official_url": "https://link.springer.com/journal/222/volumes-and-issues",
+      "scope_url": "https://zbmath.org/serials/465",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 14, 11, 53, 57, 32, 20, 37, 22, 35, 58, 55, 17, 13, 30",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "generalist",
+      "collection_scope_group": "generalist"
+    },
+    {
+      "journal_id": "zbmath-serial-554",
+      "name": "Mathematische Annalen",
+      "issn_l": "0025-5831",
+      "publisher": "Springer, Berlin/Heidelberg",
+      "official_url": "https://link.springer.com/journal/208/volumes-and-issues",
+      "scope_url": "https://zbmath.org/serials/554",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 14, 11, 32, 35, 53, 46, 57, 47, 20, 58, 30, 22, 37, 42, 13, 55, 43, 16",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "generalist",
+      "collection_scope_group": "generalist"
+    },
+    {
+      "journal_id": "zbmath-serial-290",
+      "name": "Advances in Mathematics",
+      "issn_l": "0001-8708",
+      "publisher": "Elsevier (Academic Press), San Diego, CA",
+      "official_url": "https://www.sciencedirect.com/journal/advances-in-mathematics/issues",
+      "scope_url": "https://zbmath.org/serials/290",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 14, 53, 20, 05, 35, 11, 46, 16, 18, 17, 37, 32, 57, 52, 58, 55, 22, 13, 47, 28, 60",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "generalist",
+      "collection_scope_group": "generalist"
+    },
+    {
+      "journal_id": "zbmath-serial-411",
+      "name": "Duke Mathematical Journal",
+      "issn_l": "0012-7094",
+      "publisher": "Duke University Press, Durham, NC; University of North Carolina, Chapel Hill, NC",
+      "official_url": "https://projecteuclid.org/journals/duke-mathematical-journal/issues",
+      "scope_url": "https://zbmath.org/serials/411",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 14, 11, 35, 53, 32, 22, 57, 20, 58, 37, 30, 46, 47, 17, 05, 60, 42",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "generalist",
+      "collection_scope_group": "generalist"
+    },
+    {
+      "journal_id": "zbmath-serial-2579",
+      "name": "Journal of the European Mathematical Society (JEMS)",
+      "issn_l": "1435-9855",
+      "publisher": "EMS Press, Berlin",
+      "official_url": "https://ems.press/journals/jems/read",
+      "scope_url": "https://zbmath.org/serials/2579",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 35, 14, 11, 53, 37, 60, 20, 58, 32, 57, 05, 49, 22, 03, 82, 47, 46, 81, 28, 17, 42",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "generalist",
+      "collection_scope_group": "generalist"
+    },
+    {
+      "journal_id": "zbmath-serial-393",
+      "name": "Compositio Mathematica",
+      "issn_l": "0010-437X",
+      "publisher": "Cambridge University Press, Cambridge; London Mathematical Society, London",
+      "official_url": "https://www.cambridge.org/core/journals/compositio-mathematica/all-issues",
+      "scope_url": "https://zbmath.org/serials/393",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 14, 11, 32, 22, 20, 53, 57, 13, 17, 18, 58, 16",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "generalist",
+      "collection_scope_group": "generalist"
+    },
+    {
+      "journal_id": "zbmath-serial-744",
+      "name": "Transactions of the American Mathematical Society",
+      "issn_l": "0002-9947",
+      "publisher": "American Mathematical Society (AMS), Providence, RI",
+      "official_url": "https://www.ams.org/journals/tran/all_issues.html",
+      "scope_url": "https://zbmath.org/serials/744",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 35, 57, 20, 46, 14, 11, 53, 37, 47, 60, 55, 30, 32, 22, 54, 05, 58, 16, 03, 42, 13, 28",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "generalist",
+      "collection_scope_group": "generalist"
+    },
+    {
+      "journal_id": "zbmath-serial-9591",
+      "name": "Annales Henri Lebesgue",
+      "issn_l": "2644-9463",
+      "publisher": "École Normale Supérieure de Rennes (ENS Rennes), Bruz",
+      "official_url": "https://ahl.centre-mersenne.org/item/AHL/",
+      "scope_url": "https://zbmath.org/serials/9591",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 60, 35, 37, 14, 20, 57, 53, 05, 82, 58, 81, 22, 47, 52, 32, 11",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "generalist",
+      "collection_scope_group": "generalist"
+    },
+    {
+      "journal_id": "zbmath-serial-311",
+      "name": "Annales de l'Institut Fourier",
+      "issn_l": "0373-0956",
+      "publisher": "Université Joseph Fourier, Grenoble; Association des Annales de l'Institut Fourier, Saint-Martin d'Hères",
+      "official_url": "https://aif.centre-mersenne.org/journals/AIF/",
+      "scope_url": "https://zbmath.org/serials/311",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 14, 32, 11, 53, 58, 35, 37, 57, 46, 20, 22, 30, 47, 43, 60, 17, 31, 42",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "generalist",
+      "collection_scope_group": "generalist"
+    },
+    {
+      "journal_id": "zbmath-serial-500",
+      "name": "Journal of the London Mathematical Society. Second Series",
+      "issn_l": "0024-6107",
+      "publisher": "John Wiley \\& Sons, Chichester; London Mathematical Society, London",
+      "official_url": "https://londmathsoc.onlinelibrary.wiley.com/loi/14697750",
+      "scope_url": "https://zbmath.org/serials/500",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 20, 11, 46, 14, 47, 05, 16, 57, 35, 30, 53, 37, 60, 13, 03, 58, 32, 55, 28, 17, 54",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "generalist",
+      "collection_scope_group": "generalist"
+    },
+    {
+      "journal_id": "zbmath-serial-1206",
+      "name": "Journal of the American Mathematical Society",
+      "issn_l": "0894-0347",
+      "publisher": "American Mathematical Society (AMS), Providence, RI",
+      "official_url": "https://www.ams.org/journals/jams/all_issues.html",
+      "scope_url": "https://zbmath.org/serials/1206",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 14, 11, 20, 35, 53, 22, 57, 37, 05, 32, 17, 60, 03, 58, 13, 46, 55, 30, 52",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "generalist",
+      "collection_scope_group": "generalist"
+    },
+    {
+      "journal_id": "zbmath-serial-623",
+      "name": "Proceedings of the American Mathematical Society",
+      "issn_l": "0002-9939",
+      "publisher": "American Mathematical Society (AMS), Providence, RI",
+      "official_url": "https://www.ams.org/journals/proc/all_issues.html",
+      "scope_url": "https://zbmath.org/serials/623",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 46, 47, 54, 11, 20, 35, 57, 30, 53, 14, 16, 42, 13, 03, 37, 32, 28, 34, 55, 05, 60, 26",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "generalist",
+      "collection_scope_group": "generalist"
+    },
+    {
+      "journal_id": "zbmath-serial-473",
+      "name": "Journal of Algebra",
+      "issn_l": "0021-8693",
+      "publisher": "Elsevier (Academic Press), San Diego, CA",
+      "official_url": "https://www.sciencedirect.com/journal/journal-of-algebra/issues",
+      "scope_url": "https://zbmath.org/serials/473",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 20, 16, 17, 13, 14, 18, 05",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "algebra_number_theory",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-5004",
+      "name": "Algebra & Number Theory",
+      "issn_l": "1937-0652",
+      "publisher": "Mathematical Sciences Publishers (MSP), Berkeley, CA",
+      "official_url": "http://msp.org/ant",
+      "scope_url": "https://zbmath.org/serials/5004",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 11, 14, 20, 13, 16, 05",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "algebra_number_theory",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-512",
+      "name": "Journal of Number Theory",
+      "issn_l": "0022-314X",
+      "publisher": "Elsevier (Academic Press), San Diego, CA",
+      "official_url": "https://www.sciencedirect.com/journal/journal-of-number-theory/issues",
+      "scope_url": "https://zbmath.org/serials/512",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 11, 14",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "algebra_number_theory",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-1917",
+      "name": "Journal de Théorie des Nombres de Bordeaux",
+      "issn_l": "1246-7405",
+      "publisher": "Université Bordeaux 1, Institut de Mathématiques de Bordeaux, Talence",
+      "official_url": "https://jtnb.centre-mersenne.org/journals/JTNB/",
+      "scope_url": "https://zbmath.org/serials/1917",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 11, 14, 20",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "algebra_number_theory",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-1605",
+      "name": "Linear Algebra and its Applications",
+      "issn_l": "0024-3795",
+      "publisher": "Elsevier (North-Holland), New York, NY",
+      "official_url": "https://www.sciencedirect.com/journal/linear-algebra-and-its-applications/issues",
+      "scope_url": "https://zbmath.org/serials/1605",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 15, 05, 65, 47, 93, 16, 46, 90, 11, 17, 20",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "algebra_number_theory",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-518",
+      "name": "Journal of Pure and Applied Algebra",
+      "issn_l": "0022-4049",
+      "publisher": "Elsevier (North-Holland), Amsterdam",
+      "official_url": "https://www.sciencedirect.com/journal/journal-of-pure-and-applied-algebra/issues",
+      "scope_url": "https://zbmath.org/serials/518",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 16, 13, 20, 18, 14, 55, 17, 11, 57",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "algebra_number_theory",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-9185",
+      "name": "Algebraic Combinatorics",
+      "issn_l": "2589-5486",
+      "publisher": "Stichting Mathematics in Open Access (MathOA), Amsterdam",
+      "official_url": "https://alco.centre-mersenne.org/journals/ALCO",
+      "scope_url": "https://zbmath.org/serials/9185",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 05, 20, 14, 52, 13, 16, 17",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "combinatorics",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-1828",
+      "name": "Journal of Algebraic Combinatorics",
+      "issn_l": "0925-9899",
+      "publisher": "Springer US, New York, NY",
+      "official_url": "https://link.springer.com/journal/10801/volumes-and-issues",
+      "scope_url": "https://zbmath.org/serials/1828",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 05, 20, 13, 14, 51, 17, 52",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "combinatorics",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-69",
+      "name": "Discrete Mathematics",
+      "issn_l": "0012-365X",
+      "publisher": "Elsevier (North-Holland), Amsterdam",
+      "official_url": "https://www.sciencedirect.com/journal/discrete-mathematics/issues",
+      "scope_url": "https://zbmath.org/serials/69",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 05, 11, 94, 68, 51",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "combinatorics",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-480",
+      "name": "Journal of Combinatorial Theory. Series B",
+      "issn_l": "0095-8956",
+      "publisher": "Elsevier (Academic Press), San Diego, CA",
+      "official_url": "https://www.sciencedirect.com/journal/journal-of-combinatorial-theory-series-b/issues",
+      "scope_url": "https://zbmath.org/serials/480",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 05",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "combinatorics",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-485",
+      "name": "Journal of Differential Geometry",
+      "issn_l": "0022-040X",
+      "publisher": "Lehigh University, Bethlehem, PA",
+      "official_url": "https://projecteuclid.org/journals/journal-of-differential-geometry/issues",
+      "scope_url": "https://zbmath.org/serials/485",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 53, 58, 57, 32, 14, 35",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "geometry_topology",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-2395",
+      "name": "Geometry & Topology",
+      "issn_l": "1465-3060",
+      "publisher": "Mathematical Sciences Publishers (MSP), Berkeley, CA; Geometry \\& Topology Publications c/o University of Warwick, Mathematics Institute, Coventry",
+      "official_url": "http://msp.org/gt",
+      "scope_url": "https://zbmath.org/serials/2395",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 57, 53, 14, 20, 55, 32, 37",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "geometry_topology",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-6180",
+      "name": "Journal of Topology",
+      "issn_l": "1753-8416",
+      "publisher": "John Wiley \\& Sons, Chichester; London Mathematical Society, London",
+      "official_url": "https://londmathsoc.onlinelibrary.wiley.com/loi/17538424",
+      "scope_url": "https://zbmath.org/serials/6180",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 57, 55, 20, 53, 14, 18, 19",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "geometry_topology",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-1418",
+      "name": "Geometric and Functional Analysis. GAFA",
+      "issn_l": "1016-443X",
+      "publisher": "Springer International Publishing, Cham",
+      "official_url": "https://link.springer.com/journal/39/volumes-and-issues",
+      "scope_url": "https://zbmath.org/serials/1418",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 53, 58, 37, 57, 11, 20, 35, 32, 46, 22, 30, 60, 14, 05",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "geometry_topology",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-492",
+      "name": "Journal of Functional Analysis",
+      "issn_l": "0022-1236",
+      "publisher": "Elsevier, Amsterdam",
+      "official_url": "https://www.sciencedirect.com/journal/journal-of-functional-analysis/issues",
+      "scope_url": "https://zbmath.org/serials/492",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 46, 47, 35, 60, 58, 22, 42, 43, 81, 53, 30, 32",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "analysis_pde",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-484",
+      "name": "Journal of Differential Equations",
+      "issn_l": "0022-0396",
+      "publisher": "Elsevier (Academic Press), San Diego, CA",
+      "official_url": "https://www.sciencedirect.com/journal/journal-of-differential-equations/issues",
+      "scope_url": "https://zbmath.org/serials/484",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 35, 34, 37, 76, 92, 47, 60",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "analysis_pde",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-1897",
+      "name": "Calculus of Variations and Partial Differential Equations",
+      "issn_l": "0944-2669",
+      "publisher": "Springer, Berlin/Heidelberg",
+      "official_url": "https://link.springer.com/journal/526/volumes-and-issues",
+      "scope_url": "https://zbmath.org/serials/1897",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 35, 49, 53, 58, 76, 74, 46, 26",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "analysis_pde",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-1566",
+      "name": "Communications in Partial Differential Equations",
+      "issn_l": "0360-5302",
+      "publisher": "Taylor \\& Francis, Philadelphia, PA",
+      "official_url": "http://www.tandfonline.com/loi/lpde20",
+      "scope_url": "https://zbmath.org/serials/1566",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 35, 76, 58, 47, 81, 49, 53",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "analysis_pde",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-2184",
+      "name": "The Journal of Fourier Analysis and Applications",
+      "issn_l": "1069-5869",
+      "publisher": "Springer (Birkhäuser), New York, NY",
+      "official_url": "https://link.springer.com/journal/41/volumes-and-issues",
+      "scope_url": "https://zbmath.org/serials/2184",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 42, 46, 35, 47, 94, 43, 65, 41, 60, 28, 22, 44",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "analysis_pde",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-318",
+      "name": "The Annals of Probability",
+      "issn_l": "0091-1798",
+      "publisher": "Institute of Mathematical Statistics (IMS), Beachwood, OH/Bethesda, MD",
+      "official_url": "http://projecteuclid.org/all/euclid.aop",
+      "scope_url": "https://zbmath.org/serials/318",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 60, 82, 62, 35, 05",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "probability_statistics",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-1080",
+      "name": "Probability Theory and Related Fields",
+      "issn_l": "0178-8051",
+      "publisher": "Springer, Berlin/Heidelberg",
+      "official_url": "https://link.springer.com/journal/440/volumes-and-issues",
+      "scope_url": "https://zbmath.org/serials/1080",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 60, 82, 62, 35, 05, 15, 37",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "probability_statistics",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-1642",
+      "name": "Stochastic Processes and their Applications",
+      "issn_l": "0304-4149",
+      "publisher": "Elsevier (North-Holland), Amsterdam",
+      "official_url": "https://www.sciencedirect.com/journal/stochastic-processes-and-their-applications/issues",
+      "scope_url": "https://zbmath.org/serials/1642",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 60, 62, 91, 35, 82",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "probability_statistics",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-2165",
+      "name": "Electronic Journal of Probability",
+      "issn_l": "1083-6489",
+      "publisher": "University of Washington, Department of Mathematics, Seattle, WA; Duke University, Department of Mathematics, Durham, NC",
+      "official_url": "https://projecteuclid.org/all/euclid.ejp",
+      "scope_url": "https://zbmath.org/serials/2165",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 60, 82, 05, 35, 92, 15",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "probability_statistics",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-319",
+      "name": "The Annals of Statistics",
+      "issn_l": "0090-5364",
+      "publisher": "Institute of Mathematical Statistics (IMS), Beachwood, OH/Bethesda, MD",
+      "official_url": "http://projecteuclid.org/all/euclid.aos",
+      "scope_url": "https://zbmath.org/serials/319",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 62, 60",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "probability_statistics",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-6214",
+      "name": "Electronic Journal of Statistics",
+      "issn_l": "1935-7524",
+      "publisher": "Sponsored by Institute of Mathematical Statistics (IMS), Beachwood, OH and Bernoulli Society",
+      "official_url": "https://projecteuclid.org/all/euclid.ejs",
+      "scope_url": "https://zbmath.org/serials/6214",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 62",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "probability_statistics",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-2481",
+      "name": "Journal of the Royal Statistical Society. Series B. Statistical Methodology",
+      "issn_l": "1369-7412",
+      "publisher": "Oxford University Press, Oxford; Royal Statistical Society (RSS), London",
+      "official_url": "https://academic.oup.com/jrsssb/issue",
+      "scope_url": "https://zbmath.org/serials/2481",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 62",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "probability_statistics",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-610",
+      "name": "Numerische Mathematik",
+      "issn_l": "0029-599X",
+      "publisher": "Springer, Berlin/Heidelberg",
+      "official_url": "https://link.springer.com/journal/211/volumes-and-issues",
+      "scope_url": "https://zbmath.org/serials/610",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 65, 35, 41, 76, 34, 74",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "numerical_applied",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-708",
+      "name": "SIAM Journal on Numerical Analysis",
+      "issn_l": "0036-1429",
+      "publisher": "Society for Industrial and Applied Mathematics (SIAM), Philadelphia, PA",
+      "official_url": "http://epubs.siam.org/loi/sjnaam",
+      "scope_url": "https://zbmath.org/serials/708",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 65, 35, 76, 41, 34, 74, 49",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "numerical_applied",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-1843",
+      "name": "SIAM Journal on Scientific Computing",
+      "issn_l": "1064-8275",
+      "publisher": "Society for Industrial and Applied Mathematics (SIAM), Philadelphia, PA",
+      "official_url": "http://epubs.siam.org/loi/sjoce3",
+      "scope_url": "https://zbmath.org/serials/1843",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 65, 35, 76, 68, 49, 90, 15, 60, 62, 74",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "numerical_applied",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-1637",
+      "name": "SIAM Journal on Applied Mathematics",
+      "issn_l": "0036-1399",
+      "publisher": "Society for Industrial and Applied Mathematics (SIAM), Philadelphia, PA",
+      "official_url": "http://epubs.siam.org/loi/smjmap",
+      "scope_url": "https://zbmath.org/serials/1637",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 35, 76, 92, 34, 65, 60, 74, 78, 37, 80, 82, 90, 45",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "numerical_applied",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-1796",
+      "name": "SIAM Journal on Optimization",
+      "issn_l": "1052-6234",
+      "publisher": "Society for Industrial and Applied Mathematics (SIAM), Philadelphia, PA",
+      "official_url": "http://epubs.siam.org/loi/sjope8",
+      "scope_url": "https://zbmath.org/serials/1796",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 90, 65, 49, 68",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "optimization",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-1746",
+      "name": "Mathematical Programming. Series A. Series B",
+      "issn_l": "0025-5610",
+      "publisher": "Springer, Berlin/Heidelberg",
+      "official_url": "https://link.springer.com/journal/10107/volumes-and-issues",
+      "scope_url": "https://zbmath.org/serials/1746",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 90, 65, 49, 68",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "optimization",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-563",
+      "name": "Mathematics of Operations Research",
+      "issn_l": "0364-765X",
+      "publisher": "Institute for Operations Research and the Management Sciences (INFORMS), Catonsville, MD",
+      "official_url": "https://pubsonline.informs.org/loi/moor",
+      "scope_url": "https://zbmath.org/serials/563",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 90, 91, 60, 68, 49",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "optimization",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-515",
+      "name": "Journal of Optimization Theory and Applications",
+      "issn_l": "0022-3239",
+      "publisher": "Springer US, New York, NY",
+      "official_url": "https://link.springer.com/journal/10957/volumes-and-issues",
+      "scope_url": "https://zbmath.org/serials/515",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 90, 49, 93, 65, 91",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "optimization",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-3352",
+      "name": "SIGMA. Symmetry, Integrability and Geometry: Methods and Applications",
+      "issn_l": "1815-0659",
+      "publisher": "National Academy of Sciences of Ukraine - NAS Ukraine (Natsional'na Akademiya Nauk Ukraïny - NAN Ukraïny), Institute of Mathematics (Instytut Matematyky), Kyïv",
+      "official_url": "https://sigma-journal.com/",
+      "scope_url": "https://zbmath.org/serials/3352",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 81, 53, 37, 33, 17, 14, 35, 58, 34, 70, 16, 05, 82, 83, 22, 46, 20, 39",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "mathematical_physics",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-63",
+      "name": "Communications in Mathematical Physics",
+      "issn_l": "0010-3616",
+      "publisher": "Springer, Berlin/Heidelberg",
+      "official_url": "https://link.springer.com/journal/220/volumes-and-issues",
+      "scope_url": "https://zbmath.org/serials/63",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 81, 35, 82, 53, 37, 60, 58, 46, 17, 83, 47, 76",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "mathematical_physics",
+      "collection_scope_group": "specialist_or_multifield"
+    },
+    {
+      "journal_id": "zbmath-serial-2684",
+      "name": "Annales Henri Poincaré",
+      "issn_l": "1424-0637",
+      "publisher": "Springer (Birkhäuser), Basel",
+      "official_url": "https://link.springer.com/journal/23/volumes-and-issues",
+      "scope_url": "https://zbmath.org/serials/2684",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 81, 35, 82, 83, 47, 53, 37, 60, 46, 58, 34",
+      "article_types": [
+        "research article"
+      ],
+      "active": true,
+      "last_verified": "2026-09-01",
+      "collection_field": "mathematical_physics",
+      "collection_scope_group": "specialist_or_multifield"
+    }
+  ],
+  "year_quotas": {
+    "2020": 60,
+    "2021": 60,
+    "2022": 60,
+    "2023": 60,
+    "2024": 20,
+    "2025": 20
+  },
+  "train_end": "2023-12-31",
+  "validation_end": "2024-12-31",
+  "minimum_abstract_words": 35,
+  "maximum_pages_per_job": 10,
+  "maximum_articles": 14000,
+  "selection": "Fixed 50-journal collection design spanning nine strata; equal per-journal/year quotas; earliest eligible publication dates, never citation order.",
+  "scope_group_provenance": "Analyst collection strata based on registry journal identity and scope; not expert manuscript judgments.",
+  "label_semantics": "Observed publication venue only. Alternative journals are unjudged for suitability.",
+  "temporal_semantics": "Publication-year holdout using current metadata snapshots; not a historical submission-time simulation."
+}

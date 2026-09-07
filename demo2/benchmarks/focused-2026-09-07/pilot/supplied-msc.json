@@ -1,0 +1,117 @@
+[
+  {
+    "paper_id": "p01",
+    "msc_codes": [
+      "52B10"
+    ],
+    "provenance": "analyst-assigned from title and abstract; not an author-verified classification",
+    "source_url": "https://arxiv.org/abs/2307.11366"
+  },
+  {
+    "paper_id": "p02",
+    "msc_codes": [
+      "05C12",
+      "52B05"
+    ],
+    "provenance": "analyst-assigned from title and abstract; not an author-verified classification",
+    "source_url": "https://arxiv.org/abs/2106.16130"
+  },
+  {
+    "paper_id": "p03",
+    "msc_codes": [
+      "81U24",
+      "35P25",
+      "35P15"
+    ],
+    "provenance": "author MSC codes on arXiv PDF first page",
+    "source_url": "https://arxiv.org/pdf/2209.06079"
+  },
+  {
+    "paper_id": "p04",
+    "msc_codes": [
+      "53D05",
+      "17B70",
+      "53D17",
+      "53D50"
+    ],
+    "provenance": "author-supplied MSC codes in arXiv metadata",
+    "source_url": "https://arxiv.org/abs/2209.05836"
+  },
+  {
+    "paper_id": "p05",
+    "msc_codes": [
+      "65F55",
+      "65D05",
+      "65R10",
+      "65R20",
+      "65D12"
+    ],
+    "provenance": "author-supplied MSC codes in arXiv metadata",
+    "source_url": "https://arxiv.org/abs/2209.05819"
+  },
+  {
+    "paper_id": "p06",
+    "msc_codes": [
+      "11N05"
+    ],
+    "provenance": "author-supplied MSC codes in arXiv metadata",
+    "source_url": "https://arxiv.org/abs/2010.15988"
+  },
+  {
+    "paper_id": "p07",
+    "msc_codes": [
+      "60G50",
+      "60G70",
+      "05C81"
+    ],
+    "provenance": "author-supplied MSC codes in arXiv metadata",
+    "source_url": "https://arxiv.org/abs/2111.09513"
+  },
+  {
+    "paper_id": "p08",
+    "msc_codes": [
+      "13F55",
+      "05E45"
+    ],
+    "provenance": "author-supplied MSC codes in arXiv metadata",
+    "source_url": "https://arxiv.org/abs/2311.02430"
+  },
+  {
+    "paper_id": "p09",
+    "msc_codes": [
+      "57K18",
+      "57R58"
+    ],
+    "provenance": "author-supplied MSC codes in arXiv metadata",
+    "source_url": "https://arxiv.org/abs/2207.01787"
+  },
+  {
+    "paper_id": "p10",
+    "msc_codes": [
+      "90C06",
+      "90C22",
+      "90C30"
+    ],
+    "provenance": "author-supplied MSC codes in arXiv metadata",
+    "source_url": "https://arxiv.org/abs/2312.07908"
+  },
+  {
+    "paper_id": "p11",
+    "msc_codes": [
+      "35K25",
+      "35K55",
+      "35B35"
+    ],
+    "provenance": "author-supplied MSC codes in arXiv metadata",
+    "source_url": "https://arxiv.org/abs/2308.08398"
+  },
+  {
+    "paper_id": "p12",
+    "msc_codes": [
+      "62G07",
+      "68T07"
+    ],
+    "provenance": "author-supplied MSC codes in arXiv metadata",
+    "source_url": "https://arxiv.org/abs/2306.10471"
+  }
+]

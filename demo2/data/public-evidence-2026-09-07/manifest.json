@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "retrieved_on": "2026-09-07",
+  "collection_method": "Public publisher pages retrieved through web tool; normalized locally; no private API or reviewer participation.",
+  "sampling_rule": "First five eligible research papers in displayed archive order in each of 12 chosen journal/year strata. AHL/JEP use annual volume; AIF/ALCO/JTNB use first issue; SIGMA uses descending article number in annual archive. Skip corrections and benchmark target versions.",
+  "sampling_limitations": "Six accessible open-access journals, three generalist, two specialist and one multi-field (assistant coding of public scope). A convenience sample, not representative of mathematics publishing; equal per-venue quota does not estimate publication frequency.",
+  "label_policy": "Publication venues are observed outcomes only, not graded expert judgments; unobserved venues are not negatives. No training labels fabricated.",
+  "temporal_policy": "Current metadata/policies were observed on 2026-09-07. Historical article years do not backdate metadata. Strict cutoffs before observation exclude this batch.",
+  "baseline_catalog_sha256": "e09e8ccf63b6bb08021758a0083fec2cd94ff2866b6c756fcea05617e13220d9",
+  "volumes": [
+    {
+      "journal_id": "zbmath-serial-9591",
+      "year": 2021,
+      "archive_url": "https://ahl.centre-mersenne.org/item/AHL_2021__4_/",
+      "selected_dois": [
+        "10.5802/ahl.66",
+        "10.5802/ahl.67",
+        "10.5802/ahl.68",
+        "10.5802/ahl.69",
+        "10.5802/ahl.70"
+      ]
+    },
+    {
+      "journal_id": "zbmath-serial-9591",
+      "year": 2024,
+      "archive_url": "https://ahl.centre-mersenne.org/item/AHL_2024__7_/",
+      "selected_dois": [
+        "10.5802/ahl.194",
+        "10.5802/ahl.195",
+        "10.5802/ahl.196",
+        "10.5802/ahl.197",
+        "10.5802/ahl.198"
+      ]
+    },
+    {
+      "journal_id": "zbmath-serial-311",
+      "year": 2021,
+      "archive_url": "https://aif.centre-mersenne.org/issues/AIF_2021__71_1/",
+      "selected_dois": [
+        "10.5802/aif.3348",
+        "10.5802/aif.3392",
+        "10.5802/aif.3393",
+        "10.5802/aif.3399",
+        "10.5802/aif.3402"
+      ]
+    },
+    {
+      "journal_id": "zbmath-serial-311",
+      "year": 2024,
+      "archive_url": "https://aif.centre-mersenne.org/issues/AIF_2024__74_1/",
+      "selected_dois": [
+        "10.5802/aif.3573",
+        "10.5802/aif.3575",
+        "10.5802/aif.3579",
+        "10.5802/aif.3582",
+        "10.5802/aif.3583"
+      ]
+    },
+    {
+      "journal_id": "zbmath-serial-9185",
+      "year": 2021,
+      "archive_url": "https://alco.centre-mersenne.org/issues/ALCO_2021__4_1/",
+      "selected_dois": [
+        "10.5802/alco.149",
+        "10.5802/alco.150",
+        "10.5802/alco.151",
+        "10.5802/alco.152",
+        "10.5802/alco.153"
+      ]
+    },
+    {
+      "journal_id": "zbmath-serial-9185",
+      "year": 2024,
+      "archive_url": "https://alco.centre-mersenne.org/issues/ALCO_2024__7_1/",
+      "selected_dois": [
+        "10.5802/alco.324",
+        "10.5802/alco.325",
+        "10.5802/alco.327",
+        "10.5802/alco.328",
+        "10.5802/alco.329"
+      ]
+    },
+    {
+      "journal_id": "zbmath-serial-3352",
+      "year": 2021,
+      "archive_url": "https://sigma-journal.com/2021/",
+      "selected_dois": [
+        "10.3842/sigma.2021.109",
+        "10.3842/sigma.2021.110",
+        "10.3842/sigma.2021.111",
+        "10.3842/sigma.2021.112",
+        "10.3842/sigma.2021.113"
+      ]
+    },
+    {
+      "journal_id": "zbmath-serial-3352",
+      "year": 2024,
+      "archive_url": "https://sigma-journal.com/2024/",
+      "selected_dois": [
+        "10.3842/sigma.2024.111",
+        "10.3842/sigma.2024.112",
+        "10.3842/sigma.2024.113",
+        "10.3842/sigma.2024.114",
+        "10.3842/sigma.2024.115"
+      ]
+    },
+    {
+      "journal_id": "zbmath-serial-1917",
+      "year": 2021,
+      "archive_url": "https://jtnb.centre-mersenne.org/issues/JTNB_2021__33_1/",
+      "selected_dois": [
+        "10.5802/jtnb.1149",
+        "10.5802/jtnb.1150",
+        "10.5802/jtnb.1151",
+        "10.5802/jtnb.1152",
+        "10.5802/jtnb.1153"
+      ]
+    },
+    {
+      "journal_id": "zbmath-serial-1917",
+      "year": 2024,
+      "archive_url": "https://jtnb.centre-mersenne.org/issues/JTNB_2024__36_1/",
+      "selected_dois": [
+        "10.5802/jtnb.1272",
+        "10.5802/jtnb.1273",
+        "10.5802/jtnb.1274",
+        "10.5802/jtnb.1275",
+        "10.5802/jtnb.1276"
+      ]
+    },
+    {
+      "journal_id": "zbmath-serial-8533",
+      "year": 2021,
+      "archive_url": "https://jep.centre-mersenne.org/volume/JEP_2021__8_/",
+      "selected_dois": [
+        "10.5802/jep.139",
+        "10.5802/jep.140",
+        "10.5802/jep.141",
+        "10.5802/jep.142",
+        "10.5802/jep.143"
+      ]
+    },
+    {
+      "journal_id": "zbmath-serial-8533",
+      "year": 2024,
+      "archive_url": "https://jep.centre-mersenne.org/volume/JEP_2024__11_/",
+      "selected_dois": [
+        "10.5802/jep.249",
+        "10.5802/jep.250",
+        "10.5802/jep.251",
+        "10.5802/jep.252",
+        "10.5802/jep.253"
+      ]
+    }
+  ],
+  "quarantined_msc": [
+    {
+      "doi": "10.5802/jep.140",
+      "codes": [
+        "14F05"
+      ],
+      "reason": "not in bundled MSC2020; original retained, no guessed replacement"
+    },
+    {
+      "doi": "10.5802/jep.252",
+      "codes": [
+        "38A35"
+      ],
+      "reason": "not in bundled MSC2020; original retained, no guessed replacement"
+    }
+  ],
+  "articles": 60,
+  "abstracts": 60,
+  "journals": 6,
+  "articles_with_valid_msc": 40
+}

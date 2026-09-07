@@ -59,6 +59,8 @@ def render_markdown(report: MatchReport) -> str:
             lines.extend(["Journal website: " + item.official_url, ""])
         for article in item.representative_articles:
             lines.append("- %s (%s), %s. %s" % (article.title, article.year or "year unknown", article.article_id, article.source_url or ("https://doi.org/" + article.doi if article.doi else "No source link supplied.")))
+            if article.authors or article.license:
+                lines.append("  " + "; ".join(article.authors) + (". License: %s (%s)." % (article.license, article.license_url) if article.license else ""))
         if item.representative_articles:
             lines.append("")
     if report.catalog_limitations:

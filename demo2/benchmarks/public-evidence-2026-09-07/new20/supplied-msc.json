@@ -1,0 +1,181 @@
+[
+  {
+    "paper_id": "online01",
+    "msc_codes": [
+      "14C20",
+      "14E30",
+      "14J17",
+      "14J26",
+      "14J45",
+      "14R25"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online02",
+    "msc_codes": [
+      "46L51",
+      "46L53",
+      "15A16",
+      "47A60",
+      "15A15"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online03",
+    "msc_codes": [
+      "34M40",
+      "34M55",
+      "34M56"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online04",
+    "msc_codes": [
+      "51F30"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online05",
+    "msc_codes": [
+      "14C15"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online06",
+    "msc_codes": [
+      "52C35",
+      "05E18",
+      "20B25",
+      "20B20"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online07",
+    "msc_codes": [
+      "13D02",
+      "13F55"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online08",
+    "msc_codes": [
+      "14T10",
+      "14T15"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online09",
+    "msc_codes": [
+      "14M25",
+      "52B20"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online10",
+    "msc_codes": [
+      "05A05",
+      "05A30",
+      "05E05"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online11",
+    "msc_codes": [
+      "11J82",
+      "11J91"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online12",
+    "msc_codes": [
+      "35P15",
+      "49Q10"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online13",
+    "msc_codes": [
+      "11P21",
+      "11A25",
+      "11G50",
+      "14G05",
+      "14M25"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online14",
+    "msc_codes": [
+      "37C05",
+      "37J39"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online15",
+    "msc_codes": [
+      "14F22",
+      "14F20",
+      "14G22",
+      "16K50"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online16",
+    "msc_codes": [
+      "22E50",
+      "14L30",
+      "13N10",
+      "32C38"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online17",
+    "msc_codes": [
+      "22E50",
+      "20J06"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online18",
+    "msc_codes": [
+      "11N37",
+      "11L40",
+      "11N56",
+      "11D45"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online19",
+    "msc_codes": [
+      "22E46",
+      "11F70",
+      "11F72"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  },
+  {
+    "paper_id": "online20",
+    "msc_codes": [
+      "11A05",
+      "05C38"
+    ],
+    "provenance": "publisher display order; first valid code used as query primary, original primary/secondary roles unspecified"
+  }
+]

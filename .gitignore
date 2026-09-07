@@ -1,0 +1,12 @@
+.venv/
+.elan/
+*.egg-info/
+lean-project/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+results/
+.env
+/output/journal-training-2026-09-07/

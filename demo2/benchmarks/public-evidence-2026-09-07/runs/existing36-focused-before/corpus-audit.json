@@ -1,0 +1,398 @@
+[
+  {
+    "paper_id": "p01",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "p02",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "p03",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "p04",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "p05",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "p06",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "p07",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "p08",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "p09",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "p10",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "p11",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "p12",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v01",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v02",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v03",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v04",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v05",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v06",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v07",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v08",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v09",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v10",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v11",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v12",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v13",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v14",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v15",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v16",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v17",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v18",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v19",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v20",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v21",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v22",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v23",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  },
+  {
+    "paper_id": "v24",
+    "retained": 133,
+    "excluded": {
+      "target_duplicate": 0,
+      "unknown_or_future_date": 0,
+      "non_research": 0
+    },
+    "cutoff": null,
+    "imported_aggregates_retained": true
+  }
+]

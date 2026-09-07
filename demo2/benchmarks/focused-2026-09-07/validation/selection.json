@@ -1,0 +1,8 @@
+{
+  "seed": 20260906,
+  "policy": "first 24 distinct journals in seeded shuffled eligible records; eligible has DOI, MSC, >=200 abstract characters; no scores used",
+  "source": "demo2/data/catalog.example.json",
+  "source_sha256": "65958250ed3138da5d73b97247c2ad57a105ff567f60160a6b129930a09ef0ea",
+  "selected_cases": 24,
+  "limitation": "held-out articles from the bundled fixture, not an external or temporal validation sample"
+}

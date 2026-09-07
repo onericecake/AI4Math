@@ -1,0 +1,357 @@
+{
+  "k": 3,
+  "case_count": 36,
+  "candidate_recall_case_count": 36,
+  "metrics": {
+    "hit_rate_at_k": 0.19444444444444445,
+    "recall_at_k": 0.19444444444444445,
+    "mrr_at_k": 0.11574074074074073,
+    "ndcg_at_k": 0.1359108127976215,
+    "candidate_recall": 0.6388888888888888,
+    "recommendation_coverage": 1.0
+  },
+  "cases": [
+    {
+      "paper_id": "p01",
+      "hit_rate_at_k": 1.0,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.5,
+      "ndcg_at_k": 0.6309297535714575,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "p02",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "p03",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 0.0
+    },
+    {
+      "paper_id": "p04",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "p05",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "p06",
+      "hit_rate_at_k": 1.0,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 1.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "p07",
+      "hit_rate_at_k": 1.0,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.3333333333333333,
+      "ndcg_at_k": 0.5,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "p08",
+      "hit_rate_at_k": 1.0,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.5,
+      "ndcg_at_k": 0.6309297535714575,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "p09",
+      "hit_rate_at_k": 1.0,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.3333333333333333,
+      "ndcg_at_k": 0.5,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "p10",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "p11",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "p12",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 0.0
+    },
+    {
+      "paper_id": "v01",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "v02",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "v03",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "v04",
+      "hit_rate_at_k": 1.0,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 1.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "v05",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "v06",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "v07",
+      "hit_rate_at_k": 1.0,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 0.5,
+      "ndcg_at_k": 0.6309297535714575,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "v08",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 0.0
+    },
+    {
+      "paper_id": "v09",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 0.0
+    },
+    {
+      "paper_id": "v10",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 0.0
+    },
+    {
+      "paper_id": "v11",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "v12",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "v13",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 0.0
+    },
+    {
+      "paper_id": "v14",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 0.0
+    },
+    {
+      "paper_id": "v15",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 0.0
+    },
+    {
+      "paper_id": "v16",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "v17",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "v18",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 0.0
+    },
+    {
+      "paper_id": "v19",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 0.0
+    },
+    {
+      "paper_id": "v20",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    },
+    {
+      "paper_id": "v21",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 0.0
+    },
+    {
+      "paper_id": "v22",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 0.0
+    },
+    {
+      "paper_id": "v23",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 0.0
+    },
+    {
+      "paper_id": "v24",
+      "hit_rate_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "returned_recommendations": true,
+      "candidate_recall": 1.0
+    }
+  ],
+  "limitations": [
+    "Metrics describe the supplied labels and rankings, not acceptance probability.",
+    "The evaluator cannot verify temporal splits, duplicate exclusion, or label independence."
+  ],
+  "retrieval_recall": {
+    "24": 0.4722222222222222,
+    "50": 0.6388888888888888,
+    "100": 0.75
+  },
+  "bootstrap_hit_at_3": {
+    "low": 0.08333333333333333,
+    "high": 0.3333333333333333,
+    "unit": "manuscript",
+    "method": "percentile bootstrap",
+    "seed": 0,
+    "warning": "Descriptive only; small/all-zero samples can give degenerate intervals. Not a population guarantee."
+  },
+  "mode": "supplied-MSC retrieval diagnostic; not live-LLM or editorial accuracy"
+}
