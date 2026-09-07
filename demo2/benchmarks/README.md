@@ -1,46 +1,53 @@
-# Published-paper benchmarking
+# Benchmark inventory
 
-The [public-evidence ablation](public-evidence-2026-09-07/REPORT.md) adds
-60 online-collected reference records and evaluates 20 new published papers,
-with global exclusion of all 56 old/new targets. It reports both improvements
-on the sampled journals and regressions on the earlier set.
+[Home](../README.md) · [Evaluation guide](../docs/evaluation.md) · [Data inventory](../data/README.md)
 
-The [2026-09-07 top-three experiment](focused-2026-09-07/REPORT.md) ships a frozen
-12-paper development pilot, 24 additional fixture validation papers, per-paper
-predictions and both positive and negative results for `--retrieval focused`.
+These directories preserve dated experiment inputs, reports and audit records.
+They measure different tasks and candidate sets; their percentages are not a
+single journal-matching accuracy score. Historical publication venues provide
+one observed destination, not an exhaustive list of suitable journals.
 
-For the new hybrid retriever, model/full-text runs, strict temporal filtering and
-expert-label exports, use `journal-match benchmark` as documented in
-[the accuracy workflow](../ACCURACY_WORKFLOW.md). The standalone script below
-preserves the original pilot's legacy ranking and 24/12 cutoffs, including when
-run against a newer checkout.
+## Experiments
 
-`../scripts/benchmark_published.py` compares a saved set of article inputs with independently stored publication labels. It records every model prompt and JSON response, the complete MSC pool, the 24 candidates passed to journal profiling, the final 12 candidates, and up to three recommendations. Errors stop the run rather than dropping difficult cases from the denominator.
+| Experiment | Inputs and task | Result and status |
+| --- | --- | --- |
+| [Broad venue training](broad-training-2026-09-07/REPORT.md) | 8,967 train / 979 validation / 991 test articles; title/abstract ranking within 50 journals | Selected model Top-3: 60.0%; BM25: 46.1%. Corpus and weights are generated locally. |
+| [Public-evidence ablation](public-evidence-2026-09-07/REPORT.md) | 36 existing and 20 new targets; supplied-MSC retrieval before/after adding publisher evidence | Hybrid Top-3 improves from 2/20 to 13/20 on new targets and falls from 4/36 to 3/36 on existing targets. |
+| [Focused retrieval](focused-2026-09-07/REPORT.md) | 12 development and 24 fixture validation papers; fixed hybrid/focused weights | Pilot Top-3: 0/12 → 5/12; validation: 3/24 → 2/24. Hybrid remains the default. |
 
-Prepare a dataset directory containing:
+Read each report's protocol, exclusions and limitations before interpreting its
+metrics. Test counts in dated reports describe validation at that time, not the
+current test suite. Raw JSON manifests and predictions retain their original
+provenance, including historical local output paths. Those paths are not files
+required from a fresh checkout.
 
-- `cases.json`: a list of objects with unique `paper_id`, `title`, `abstract`, optional `arxiv_id`, and optional `alternate_titles` for duplicate screening. Source/provenance fields may be included; the model receives only title and abstract.
-- `labels.json`: objects with matching `paper_id`, `actual_journal_id` (catalog ID), `actual_journal`, and optional `doi` and source links. These labels are used for global target exclusion, then joined to predictions after inference.
-- `supplied-msc.json`: objects with `paper_id`, nonempty `msc_codes`, and `provenance`. Used only by the supplied-MSC diagnostic. Distinguish author-provided codes from analyst judgments.
+## Reproduce or extend
 
-From `demo2`, run:
+For a small offline retrieval diagnostic, run from `demo2` after installation:
 
 ```sh
-python scripts/benchmark_published.py --dataset /path/to/dataset --output /path/to/new-run --mode heuristic
-python scripts/benchmark_published.py --dataset /path/to/dataset --output /path/to/new-diagnostic --mode supplied-msc
-python scripts/benchmark_published.py --dataset /path/to/dataset --output /path/to/new-model-run --mode openai --model YOUR_MODEL_ID
+journal-match benchmark \
+  --dataset benchmarks/focused-2026-09-07/pilot \
+  --catalog-json data/catalog.example.json --msc data/msc2020.json \
+  --retrieval hybrid --output-dir results/pilot-hybrid
 ```
 
-OpenAI mode uses the existing `OpenAIJSONModel` adapter and locally configured `OPENAI_API_KEY`. It makes model requests; it does not train or fine-tune a model. Choose and record the model explicitly. Output directories must be new, preventing accidental reuse of stale profiles. `--framework-root` selects a frozen copy of `demo2` to keep benchmarked implementation/data stable while changing the harness.
+Use a new output directory for each run. The focused report includes all
+comparison commands. The public-evidence ablation is reproduced with
+`python scripts/benchmark_public_evidence.py --output-dir results/public-evidence`.
+The [training guide](../docs/training.md) covers recollecting and training the
+50-journal model; live recollection cannot guarantee identical historical metrics.
 
-Additional diagnostic flags:
+For new evaluation sets, prepare:
 
-- `--without-title`: rerun on abstracts alone and compare top-three overlap.
-- `--sample-only`: discard imported MSC aggregate statistics and rebuild coverage from target-excluded example articles only.
-- `--primary-only`: in supplied-MSC mode, remove secondary codes to test field mixing.
+- `cases.json`: list of unique `paper_id`, `title` and `abstract` records; optional
+  duplicate identities, alternate titles and submission dates.
+- `labels.json`: matching `paper_id`, `actual_journal_id`, `actual_journal` and
+  optional DOI/source fields, kept separate from inference text.
+- `supplied-msc.json`: matching `paper_id`, nonempty `msc_codes` and `provenance`
+  for the supplied-MSC diagnostic; distinguish author codes from analyst judgments.
 
-The supplied-MSC mode runs the existing deterministic candidate ranker with subject codes and tokenized title/abstract; technical depth and audience breadth stay unknown. It bypasses model classification, journal profiling, and the final explanatory model. Its three outputs are **subject-only ranking leads**, not validated submission advice. The heuristic mode runs the model interface using the fixed smoke-test backend; it also cannot validate an editorial LLM.
-
-The primary score is whether the historical publication journal occurs among the top three. A paper's actual journal is only one observed suitable destination. Missing it does not prove that every alternative is inappropriate, and finding it does not predict acceptance.
-
-This title/abstract protocol does not test TeX extraction, proof/section processing, or author confirmation of central results. A stronger benchmark must freeze submission-time versions and reference data, keep all versions of a paper in one split, and add expert judgments of several suitable journals. Aggregate provider statistics without document lineage cannot be fully decontaminated; use the sample-only ablation to expose that limitation. Exact DOI/title/arXiv screening cannot rule out unrecognized duplicate versions or LLM pretraining memorization.
+The [evaluation guide](../docs/evaluation.md) describes model/full-text runs,
+strict temporal filtering, expert annotations, saved-ranking metrics and the
+legacy harness. Small frozen fixtures and already-inspected holdouts remain
+useful for regression checks; use a fresh holdout for new model selection.

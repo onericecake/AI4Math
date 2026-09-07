@@ -133,4 +133,4 @@ Coverage depends on available abstracts and a fixed candidate list. Publisher fo
 
 Prioritize missing abstract coverage in sparse journals, richer pre-submission mathematical content and independently sourced editorial scope evidence. Keep such evidence separate from manuscript-specific expert labels. Do not replace the full-registry default based only on this restricted-candidate result.
 
-See [the workflow and reproduction commands](../../BROAD_TRAINING.md). Raw caches, frozen text and model weights are local under `output/journal-training-2026-09-07/`; this report exports metrics, identifiers and predictions without bulk abstracts.
+See [the workflow and reproduction commands](../../docs/training.md). Raw caches, frozen text and model weights are local under `output/journal-training-2026-09-07/`; this report exports metrics, identifiers and predictions without bulk abstracts.

@@ -1,5 +1,7 @@
 # Public journal evidence collected 2026-09-07
 
+[Data inventory](../README.md) · [Ablation report](../../benchmarks/public-evidence-2026-09-07/REPORT.md)
+
 60 additional articles with publisher abstracts, 10 per journal: five from 2021 and five from 2024. 40 articles have usable publisher MSC codes. This adds 60 unique works to the original catalog (163 → 223 articles; 61 → 121 nonempty abstracts). No expert annotation or user data collection is required to use this batch.
 
 The six journals were selected for accessible publisher content and contrasting scopes. This is a small convenience sample, not an estimate of journal subject frequencies. Three are categorized as generalist, two as specialist and one as multi-field, based on the cited public scopes. These categories are assistant interpretations of publisher guidance, not expert assessments of manuscripts.
@@ -18,9 +20,9 @@ From `demo2`, using the existing CLI:
 ```sh
 PYTHONPATH=src python -m journal_matcher catalog import-json \
   data/catalog.example.json data/public-evidence-2026-09-07/catalog.additions.json \
-  --database data/journal_catalog.enriched.sqlite
+  --database results/enriched.sqlite
 PYTHONPATH=src python -m journal_matcher analyze /path/to/manuscript.tex \
-  --catalog data/journal_catalog.enriched.sqlite --msc data/msc2020.json \
+  --catalog results/enriched.sqlite --msc data/msc2020.json \
   --output-dir /path/to/new-report
 ```
 

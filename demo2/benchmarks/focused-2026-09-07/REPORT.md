@@ -108,8 +108,8 @@ journal-match analyze examples/manuscript.tex --catalog results/catalog.sqlite -
 ```
 
 Import the catalog first for the final smoke command, as described in the
-[accuracy workflow](../../ACCURACY_WORKFLOW.md). Use fresh benchmark output
-directories. Each checked-in run under `results/` contains predictions, metrics,
+[catalog guide](../../docs/catalog.md). Use fresh benchmark output
+directories. Each generated run under `results/` contains predictions, metrics,
 exclusion audits and source/input fingerprints. The corpus is the unchanged
 `data/catalog.example.json`.
 

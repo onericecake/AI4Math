@@ -3,8 +3,10 @@
 import argparse
 import hashlib
 import json
+import os
 import shutil
 from pathlib import Path
+from urllib.parse import quote
 
 
 def main():
@@ -13,6 +15,8 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
     source, output = args.experiment, args.output
+    workflow = Path(__file__).resolve().parents[1] / 'docs/training.md'
+    workflow_link = quote(Path(os.path.relpath(workflow, output.resolve())).as_posix())
     summary = json.loads((source / 'summary.json').read_text())
     snapshot = json.loads((source / 'frozen/snapshot.json').read_text())
     journals = {j['journal_id']: j for j in snapshot['journals']}
@@ -75,7 +79,7 @@ def main():
               'More data is useful here only to the extent demonstrated by the fixed learning curve. Publication metadata supplies a single observed venue per work; it cannot reveal all suitable alternatives or the journals that rejected a paper. Generalist journals remain difficult to distinguish from subject text alone.', '',
               'Coverage depends on available abstracts and a fixed candidate list. Publisher formatting, language and publication-era effects may survive text cleaning. DOI/title/work/identical-abstract grouping does not guarantee detection of all rewritten versions, and authors can occur across splits. Future architecture or data changes need another holdout; the reported 2025 set has now been inspected.', '',
               'Prioritize missing abstract coverage in sparse journals, richer pre-submission mathematical content and independently sourced editorial scope evidence. Keep such evidence separate from manuscript-specific expert labels. Do not replace the full-registry default based only on this restricted-candidate result.', '',
-              'See [the workflow and reproduction commands](../../BROAD_TRAINING.md). Raw caches, frozen text and model weights are local under `output/journal-training-2026-09-07/`; this report exports metrics, identifiers and predictions without bulk abstracts.', '']
+              f'See [the workflow and reproduction commands]({workflow_link}). Raw caches, frozen text and model weights remain in the local experiment directory; this report exports metrics, identifiers and predictions without bulk abstracts.', '']
     (output / 'REPORT.md').write_text('\n'.join(lines))
     print(output / 'REPORT.md')
 

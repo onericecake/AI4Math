@@ -6,3 +6,9 @@ __pycache__/
 results/
 .env
 .DS_Store
+build/
+dist/
+.coverage
+htmlcov/
+*.sqlite
+*.sqlite-*

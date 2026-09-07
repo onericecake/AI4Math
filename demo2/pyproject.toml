@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "math-journal-matcher"
 version = "0.1.0"
-description = "A small MSC-aware mathematics journal matching MVP"
+description = "MSC-aware mathematics journal matching and publication-venue experiments"
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [

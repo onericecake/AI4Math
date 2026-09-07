@@ -37,7 +37,7 @@ def test_pipeline_confirms_results_and_matches_field_local_journal(tmp_path):
         catalog.upsert_journal({"journal_id": "j1", "name": "Journal One", "scope_summary": "Combinatorics"})
         catalog.upsert_article({"article_id": "a1", "journal_id": "j1", "title": "Graph theorem", "abstract": "Extremal graph theory", "year": 2025, "msc_codes": ["05C35"]})
         catalog.rebuild_statistics()
-        taxonomy = MSCTaxonomy.from_json("data/msc2020.sample.json")
+        taxonomy = MSCTaxonomy.from_json("data/msc2020.json")
         matcher = JournalMatcher(FakeModel(), taxonomy, catalog)
         manuscript = extract_text(Path("examples/manuscript.tex").read_text(encoding="utf-8"))
         central = matcher.propose_central_results(manuscript)
@@ -53,7 +53,7 @@ def test_pipeline_confirms_results_and_matches_field_local_journal(tmp_path):
 
 def test_pipeline_preserves_valid_broad_classification_when_detail_is_empty(tmp_path):
     with JournalCatalog(tmp_path / "catalog.sqlite") as catalog:
-        taxonomy = MSCTaxonomy.from_json("data/msc2020.sample.json")
+        taxonomy = MSCTaxonomy.from_json("data/msc2020.json")
         matcher = JournalMatcher(EmptyDetailedProfileModel(), taxonomy, catalog)
         manuscript = extract_text(Path("examples/manuscript.tex").read_text(encoding="utf-8"))
         broad = matcher.classify_broad(manuscript, ["thm:main"])
@@ -67,7 +67,7 @@ def test_offline_graph_example_produces_field_neutral_recommendations(tmp_path):
         catalog.upsert_journal({"journal_id": "j1", "name": "Journal of Combinatorics", "scope_summary": "Combinatorics"})
         catalog.upsert_article({"article_id": "a1", "journal_id": "j1", "title": "Graph bounds", "abstract": "Extremal graph theory", "year": 2025, "msc_codes": ["05C35"]})
         catalog.rebuild_statistics()
-        taxonomy = MSCTaxonomy.from_json("data/msc2020.sample.json")
+        taxonomy = MSCTaxonomy.from_json("data/msc2020.json")
         matcher = JournalMatcher(HeuristicJSONModel(), taxonomy, catalog)
         manuscript = extract_text(Path("examples/manuscript.tex").read_text(encoding="utf-8"))
         central = matcher.propose_central_results(manuscript)
@@ -94,7 +94,7 @@ def test_rank_candidates_prefers_matching_technical_level(tmp_path):
             catalog.upsert_journal({"journal_id": journal_id, "name": name})
             catalog.upsert_article({"article_id": journal_id + "-a", "journal_id": journal_id, "title": name, "abstract": "Extremal graph theory", "year": 2025, "msc_codes": ["05C35"]})
         catalog.rebuild_statistics()
-        matcher = JournalMatcher(HeuristicJSONModel(), MSCTaxonomy.from_json("data/msc2020.sample.json"), catalog)
+        matcher = JournalMatcher(HeuristicJSONModel(), MSCTaxonomy.from_json("data/msc2020.json"), catalog)
         profile = ArticleProfile(technical_depth="advanced", audience_breadth="subfield", keywords=["extremal", "graph"])
         candidates = catalog.find_candidates(["05C35"])
         fields = [
@@ -109,7 +109,7 @@ def test_rank_candidates_prefers_matching_technical_level(tmp_path):
 
 def test_whole_paper_path_does_not_require_a_theorem():
     manuscript = extract_text(r"\title{A Prose Article}\section{Introduction}We study graph bounds.")
-    matcher = JournalMatcher(HeuristicJSONModel(), MSCTaxonomy.from_json("data/msc2020.sample.json"), JournalCatalog(":memory:"))
+    matcher = JournalMatcher(HeuristicJSONModel(), MSCTaxonomy.from_json("data/msc2020.json"), JournalCatalog(":memory:"))
     try:
         assert matcher.propose_central_results(manuscript)["candidates"] == []
     finally:

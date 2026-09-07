@@ -1,0 +1,1620 @@
+{
+  "central_result_text": "Every graph in the stated family satisfies the improved bound.",
+  "profile": {
+    "central_results": [
+      {
+        "result_id": "thm:main",
+        "statement": "Every graph in the stated family satisfies the improved bound."
+      }
+    ],
+    "broad_fields": [
+      {
+        "code": "05",
+        "name": "Combinatorics",
+        "role": "primary",
+        "confidence": "medium",
+        "evidence": []
+      }
+    ],
+    "primary_msc": {
+      "code": "05C35",
+      "name": "Extremal problems in graph theory",
+      "role": "primary",
+      "confidence": "medium",
+      "evidence": [
+        "Graph and extremal-bound terminology appears in the manuscript."
+      ]
+    },
+    "secondary_msc": [],
+    "methods": [
+      "extremal methods",
+      "graph-theoretic arguments"
+    ],
+    "contribution_type": "improvement of a bound",
+    "claimed_improvement": "Improves an extremal estimate for a graph family.",
+    "prerequisites": "Graph theory and extremal combinatorics.",
+    "technical_depth": "advanced",
+    "conceptual_character": "A focused extremal graph-theory result.",
+    "audience": "Researchers in combinatorics and graph theory.",
+    "audience_breadth": "subfield",
+    "keywords": [
+      "graph",
+      "extremal",
+      "bound"
+    ],
+    "uncertainties": [
+      "This is an offline heuristic profile with limited subject coverage."
+    ],
+    "retrieval_text": "A Small Extremal Result\nWe improve a bound for a family of graphs."
+  },
+  "recommendations": [
+    {
+      "role": "closest field-and-level match",
+      "journal_id": "zbmath-serial-480",
+      "journal_name": "Journal of Combinatorial Theory. Series B",
+      "fit": "plausible match",
+      "reasons": [
+        "The catalog contains publications in Extremal problems in graph theory.",
+        "The journal's supplied scope and article metadata overlap the manuscript profile."
+      ],
+      "level_fit": "insufficient information",
+      "representative_article_ids": [
+        "zbmath-7923461"
+      ],
+      "important_mismatch": "Offline smoke-test model has limited journal-scope coverage and does not estimate acceptance.",
+      "submission_emphasis": "Emphasize the article's stated contribution, methods, and intended specialist audience.",
+      "match_score": 0.5439,
+      "official_url": "https://www.sciencedirect.com/journal/journal-of-combinatorial-theory-series-b/issues",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-7923461",
+          "title": "The matroid of a graphing",
+          "year": 2024,
+          "abstract": "Graphings are limit objects for bounded-degree graphs. The ``cycle matroid'' of a graphing is defined as a submodular set function, with values in the closed interval \\([0,1]\\). It generalizes the cycle matroid of finite graphs in the following way: For a finite graph \\(G=(V,E)\\), we define the normalized rank function \\(\\rho(X)\\) by \\(\\rho(X)=r(X)/|V|\\), where \\(r(X)\\) is the usual rank function. Let \\(\\mathcal{P}\\) be the partition of the node set \\(V\\) into the connected components of subgraph \\((V,X)\\). For \\(v\\in V\\), let \\(\\mathcal{P}_v\\) denote the partition class containing \\(v\\). Let \\(\\mathfrak{u}\\) be a uniform random node of \\(V\\), then \n\\[\n\\mathcal{E}\\bigg(\\frac{1}{|\\mathcal{P}_{\\mathfrak u}|}\\bigg)=\\frac{|\\mathcal{P}|}{ |V|}=1-\\rho(X).\n\\]\nIn order to extend to the graphing case, let \\(\\mathcal{G}=(J, \\mathcal{B}, E, \\lambda)\\) be a graphing. For every Borel set \\(X\\subseteq E\\), the quadruple \\(\\mathcal{G}^X=(J, \\mathcal{B}, X, \\lambda)\\) is a graphing. We denote the partition of \\(J\\) into the connected components of \\(\\mathcal{G}^X\\) by \\(\\mathcal{P}^X\\), we then define \n\\[\n\\rho(X)=\\rho_{\\mathcal{G}}(X)=1-\\mathcal{E}_{\\mathfrak{u}}\\bigg(\\frac{1}{|V(G_{\\mathfrak{u}^X}|)}\\bigg)=1-\\psi(\\mathcal{P}^X), \\text{ where }\\psi(\\mathcal{P})=\\mathcal{E}\\bigg(\\frac{1}{|\\mathcal{P}_{\\mathfrak{u}}|}\\bigg),\n\\] \nfor \\(\\mathfrak{u}\\) chosen from the distribution \\(\\pi\\). \n\nFurthermore, for every Borel set \\(X\\subseteq E\\), we define the edge measure by \n\\[\n\\eta(X)=\\int_J \\deg_X(u)\\ d\\lambda(u).\n\\]\nThe three major results of the paper are summarized as follows: \n\nTheorem 4.2. The set function \\(\\rho\\) defined on the Borel subset of \\(E\\) is increasing and submodular, and it satisfies the inequalities: \n\\[\n\\frac{1}{1+D}\\eta (X)\\le \\rho (X)\\le \\eta(X).\n\\]\nTheorem 4.4. Let \\(\\mathcal{G}\\) be a hyperfinite graphing and \\(\\mathcal{H}=(J,F)\\), a Borel measurable spanning subforest of \\(G\\), then\n\\[\n\\alpha(X)=\\frac{1}{2} \\eta_{\\mathcal{G}}(X\\cap F)\n\\]\ndefines an extremal maximal minorizing measure on the Borel subsets of \\(E\\). \n\nTheorem 4.6. If \\(G_1, G_2, \\dots\\) is a sequence of finite graphs with all degrees bounded by \\(D\\ge 0\\) locally converging to a graphing \\(\\mathcal{G}=(J, \\mathcal{B}, E, \\lambda)\\), then \\(\\bar \\rho(G_n)\\rightarrow \\bar \\rho(\\mathcal{G})\\) as \\(n\\rightarrow \\infty\\).",
+          "msc_codes": [
+            "05B35",
+            "05C07",
+            "52B40"
+          ],
+          "doi": "10.1016/j.jctb.2024.08.001",
+          "source_url": "https://doi.org/10.1016/j.jctb.2024.08.001",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "score_components": {
+        "primary_msc": 0.28800000000000003,
+        "secondary_msc": 0.0,
+        "lexical": 0.19451654005929994,
+        "semantic": 0.0,
+        "abstract_support": 0.01138351243484765,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      }
+    },
+    {
+      "role": "broader-audience alternative",
+      "journal_id": "zbmath-serial-10410",
+      "journal_name": "Communications of the American Mathematical Society",
+      "fit": "plausible match",
+      "reasons": [
+        "The catalog contains publications in Extremal problems in graph theory.",
+        "The journal's supplied scope and article metadata overlap the manuscript profile."
+      ],
+      "level_fit": "insufficient information",
+      "representative_article_ids": [
+        "zbmath-7856617"
+      ],
+      "important_mismatch": "Offline smoke-test model has limited journal-scope coverage and does not estimate acceptance.",
+      "submission_emphasis": "Emphasize the article's stated contribution, methods, and intended specialist audience.",
+      "match_score": 0.4869,
+      "official_url": "https://www.ams.org/journals/cams/all_issues.html?active=allissues",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-7856617",
+          "title": "The convergence of an alternating series of Erdős, assuming the Hardy-Littlewood prime tuples conjecture",
+          "year": 2024,
+          "abstract": "Let \\(p_n\\) be the \\(n\\)th prime. A problem of Erdős (see, e.g., problem E7 in [\\textit{R. K. Guy}, Unsolved problems in number theory. 2nd ed. New York, NY: Springer-Verlag (1994; Zbl 0805.11001)]) asks whether the alternating series \n\\[\n\\sum_{n=1}^{\\infty}\\frac{(-1)^nn}{p_n} \n\\]\nconverges. The author shows that this is indeed the case, assuming the Hardy-Littlewood prime tuples conjecture in a suitably uniform form.\n\nThe proof proceeds by first reducing matters to showing the convergence of \n\\[\n\\sum_{n=2}^{\\infty}\\frac{(-1)^{\\pi(n)}}{n\\log n},\n\\]\nwhere \\(\\pi(\\cdot)\\) is the prime counting function; this is done by elementary comparison arguments. The author then uses the van der Corput trick to reduce to the expectation estimate \n\\[\n\\mathbf{E}(-1)^{\\pi(\\mathbf{n}+\\lambda\\log x)-\\pi(\\mathbf{n})}\\ll \\frac{1}{\\sqrt{\\lambda}} \n\\]\nfor \\(1\\ll \\lambda\\ll (\\log \\log x)^{4.4}\\), where \\(\\mathbf{n}\\) denotes a random integer drawn from \\([x,x+x^{1-\\varepsilon/2}]\\). The author next uses the Bonferroni inequalities and is left with proving a certain estimate for averages of singular series. This estimate goes beyond what \\textit{P. X. Gallagher}'s method [Mathematika 23, 4--9 (1976; Zbl 0346.10024)] can handle in terms of uniformity, and the author instead proceeds to replace this average of singular series with a corresponding average for a random sieve model of the primes, introduced in [\\textit{W. Banks} et al., Invent. Math. 233, No. 3, 1471--1518 (2023; Zbl 1541.11076)]. This random model turns out to be more manageable to handle, and this eventually leads to the stated result.",
+          "msc_codes": [
+            "11N05",
+            "40A05"
+          ],
+          "doi": "10.1090/cams/29",
+          "source_url": "https://doi.org/10.1090/cams/29",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "score_components": {
+        "primary_msc": 0.22399999999999998,
+        "secondary_msc": 0.0,
+        "lexical": 0.20155241950149252,
+        "semantic": 0.0,
+        "abstract_support": 0.01138351243484765,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      }
+    },
+    {
+      "role": "more specialized alternative",
+      "journal_id": "zbmath-serial-963",
+      "journal_name": "Acta Mathematica Hungarica",
+      "fit": "plausible match",
+      "reasons": [
+        "The catalog contains publications in Extremal problems in graph theory.",
+        "The journal's supplied scope and article metadata overlap the manuscript profile."
+      ],
+      "level_fit": "insufficient information",
+      "representative_article_ids": [
+        "zbmath-7254979",
+        "zbmath-8079172"
+      ],
+      "important_mismatch": "Offline smoke-test model has limited journal-scope coverage and does not estimate acceptance.",
+      "submission_emphasis": "Emphasize the article's stated contribution, methods, and intended specialist audience.",
+      "match_score": 0.4788,
+      "official_url": "https://link.springer.com/journal/10474/volumes-and-issues",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-7254979",
+          "title": "Compact graphings",
+          "year": 2020,
+          "abstract": "A graphing \\(G=(I,\\mathcal{A},E,\\lambda)\\) is a graph on vertex set a standard Borel space \\((I, \\mathcal{A})\\) with \\(\\lambda\\) a probability measure on \\((I,\\mathcal{A})\\). All degrees are assumed bounded by some fixed (and suppressed) number \\(D\\). The edge set \\(E\\subseteq I\\times I\\) is a Borel set avoiding the diagonal and invariant under interchanging the coordinates which has the following additional symmetry property. Defining the edge measure of the graphing for \\(A,B\\in \\mathcal{A}\\) by \\(\\eta(A\\times B)=\\int_{A}\\text{deg}_{B}(x) d\\lambda(x)\\) and extending to Borel sets in the usual way, we have that \\(\\eta(A\\times B)=\\eta(B\\times A)\\). Graphings represent limits of certain graph sequences in a local or local-global sense, and are in a loose sense analogous to graphons, corresponding limit objects for dense graphs. \n\nIn the theory of graphons, an important process is `purification' of a graphon, i.e. converting it into an essentially equivalent graphon which additionally is defined on a compact metric space. The main result of the article under review is to define a compact graphing and to show that every graphing embeds in a well-behaved way in a compact graphing. In detail, if \\(d\\) is a metric such that \\(\\mathcal{A}\\) is the Borel subsets of \\((I,d)\\) we write \\((I,d,E,\\lambda)\\) in lieu of \\((I,\\mathcal{A},E,\\lambda)\\) and say that this graphing is compact if \\((I,d)\\) is a compact metric space and additionally \\(E\\) is a closed subset of \\(I\\times I\\) and for all \\(\\epsilon>0\\) and non-negative integer \\(r\\) there is \\(\\delta>0\\) such that whenever \\(x,y\\in I\\) with \\(d(x,y)<\\delta\\) there is an isomorphism \\(\\phi\\) from \\(B(x,r)\\) to \\(B(y,r)\\) with \\(\\phi(x)=y\\) and such that \\(\\max_{z\\in B(x,r)}d(z,\\phi(z))<\\epsilon\\). \n\nThe appropriate notion of embedding in a nice way is that of being a full subgraphing: graphing \\((I,\\mathcal{A},E,\\lambda)\\) is a full subgraphing of \\((I',\\mathcal{A}', E',\\lambda')\\) if \\(G\\) is a union of connected components of \\(G'\\), \\(I\\) is a Borel subset of \\(I'\\), \\(\\mathcal{A}=\\mathcal{A}' \\cap I\\) and \\(\\lambda '(X)=\\lambda(X\\cap I)\\) for all Borel sets \\(X\\). \n\nThe result is now that every graphing is a full subgraphing of a compact graphing; the proof is quite technical, but the dependence of \\(\\delta\\) on \\(\\epsilon\\) and \\(r\\) is fairly mild. The author notes that in the loosely analogous situation of graphons, there is a ``canonical'' compact graphon locally equivalent to the graphon we started from and asks is an analogous result can be proved here (the argument at present depends on the metric on the underlying set we started with).",
+          "msc_codes": [
+            "05C80",
+            "60B10"
+          ],
+          "doi": "10.1007/s10474-019-01010-8",
+          "source_url": "https://doi.org/10.1007/s10474-019-01010-8",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        },
+        {
+          "article_id": "zbmath-8079172",
+          "title": "Choquet extension of non-monotone submodular setfunctions",
+          "year": 2025,
+          "abstract": "",
+          "msc_codes": [
+            "05C63",
+            "05B35",
+            "28E99",
+            "52B40"
+          ],
+          "doi": "10.1007/s10474-025-01529-z",
+          "source_url": "https://doi.org/10.1007/s10474-025-01529-z",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "score_components": {
+        "primary_msc": 0.28800000000000003,
+        "secondary_msc": 0.0,
+        "lexical": 0.1294462789729649,
+        "semantic": 0.0,
+        "abstract_support": 0.01138351243484765,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      }
+    }
+  ],
+  "catalog_limitations": [
+    "Offline heuristic smoke test; replace with an LLM for substantive recommendations.",
+    "Journal of Combinatorial Theory. Series B: strong-fit claim reduced because level or article evidence is limited.",
+    "Ranking scores are uncalibrated relative preferences, not probabilities of acceptance or editorial suitability.",
+    "Semantic retrieval was not enabled; candidates use MSC, lexical, and available article evidence."
+  ],
+  "ranked_candidates": [
+    {
+      "journal_id": "zbmath-serial-2154",
+      "name": "Boletín de la Sociedad Matemática Mexicana. Third Series",
+      "tier": "broad-field",
+      "matching_codes": [
+        "05"
+      ],
+      "official_url": "https://link.springer.com/journal/40590/volumes-and-issues",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 11, 47, 57, 35, 05, 30, 34, 55, 46, 54, 14, 16, 20, 53, 42, 32, 37, 26, 65, 60, 15, 33, 92, 18, 93",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-7785686",
+          "title": "Algorithm for subelliptic estimates",
+          "year": 2023,
+          "abstract": "",
+          "msc_codes": [
+            "32W05",
+            "32V20"
+          ],
+          "doi": "10.1007/s40590-023-00556-6",
+          "source_url": "https://doi.org/10.1007/s40590-023-00556-6",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "article_count": 116,
+      "matching_share": 0.0494458653026428,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.674,
+      "level_distance": 0,
+      "evidence_msc_prefix": "",
+      "score_components": {
+        "primary_msc": 0.22399999999999998,
+        "secondary_msc": 0.0,
+        "lexical": 0.4,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.7,
+        "secondary_msc": 0.0,
+        "lexical": 1.0,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/2154",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-1070",
+      "name": "Graphs and Combinatorics",
+      "tier": "broad-field",
+      "matching_codes": [
+        "05"
+      ],
+      "official_url": "https://link.springer.com/journal/373/volumes-and-issues",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 05",
+      "representative_articles": [],
+      "article_count": 3152,
+      "matching_share": 0.7654201068479844,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.6024,
+      "level_distance": null,
+      "evidence_msc_prefix": "05",
+      "score_components": {
+        "primary_msc": 0.22399999999999998,
+        "secondary_msc": 0.0,
+        "lexical": 0.3533973996387998,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "technical_depth": 0.015,
+        "audience_breadth": 0.01
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.7,
+        "secondary_msc": 0.0,
+        "lexical": 0.8834934990969994,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/1070",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-541",
+      "name": "Kybernetika",
+      "tier": "subfield",
+      "matching_codes": [
+        "05",
+        "05C"
+      ],
+      "official_url": "http://www.kybernetika.cz/content.html",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 93, 62, 68, 60, 90, 03, 65, 94, 49, 91",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-7332779",
+          "title": "Harmonic analysis of symmetric random graphs.",
+          "year": 2020,
+          "abstract": "Summary: This note attempts to understand graph limits as defined by \\textit{L. Lovász} and \\textit{B. Szegedy} [J. Comb. Theory, Ser. B 96, No. 6, 933--957 (2006; Zbl 1113.05092)] in terms of harmonic analysis on semigroups. This is done by representing probability distributions of random exchangeable graphs as mixtures of characters on the semigroup of unlabeled graphs with node-disjoint union, thereby providing an alternative derivation of de Finetti's theorem for random exchangeable graphs.",
+          "msc_codes": [
+            "60B99",
+            "05C80",
+            "43A35"
+          ],
+          "doi": "10.14736/kyb-2020-6-1081",
+          "source_url": "https://doi.org/10.14736/kyb-2020-6-1081",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "article_count": 1,
+      "matching_share": 1.0,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.6017,
+      "level_distance": 0,
+      "evidence_msc_prefix": "05C",
+      "score_components": {
+        "primary_msc": 0.28800000000000003,
+        "secondary_msc": 0.0,
+        "lexical": 0.2522840515621735,
+        "semantic": 0.0,
+        "abstract_support": 0.01138351243484765,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.9,
+        "secondary_msc": 0.0,
+        "lexical": 0.6307101289054337,
+        "semantic": 0.0,
+        "abstract_support": 0.227670248696953,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/541",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-68",
+      "name": "Discrete Applied Mathematics",
+      "tier": "subfield",
+      "matching_codes": [
+        "05",
+        "05C"
+      ],
+      "official_url": "https://www.sciencedirect.com/journal/discrete-applied-mathematics/issues",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 05, 68, 90",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-7452359",
+          "title": "A PPA parity theorem about trees in a bipartite graph",
+          "year": 2022,
+          "abstract": "",
+          "msc_codes": [
+            "05C70",
+            "05C05",
+            "05C07",
+            "68R10"
+          ],
+          "doi": "10.1016/j.dam.2020.03.064",
+          "source_url": "https://doi.org/10.1016/j.dam.2020.03.064",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "article_count": 1,
+      "matching_share": 1.0,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.5947,
+      "level_distance": 0,
+      "evidence_msc_prefix": "05C",
+      "score_components": {
+        "primary_msc": 0.28800000000000003,
+        "secondary_msc": 0.0,
+        "lexical": 0.2566901319904539,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.9,
+        "secondary_msc": 0.0,
+        "lexical": 0.6417253299761346,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/68",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-10889",
+      "name": "Innovations in Graph Theory",
+      "tier": "broad-field",
+      "matching_codes": [
+        "05"
+      ],
+      "official_url": "https://igt.centre-mersenne.org/journals/IGT/",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 05",
+      "representative_articles": [],
+      "article_count": 22,
+      "matching_share": 0.7857142857142857,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.5776,
+      "level_distance": null,
+      "evidence_msc_prefix": "05",
+      "score_components": {
+        "primary_msc": 0.22399999999999998,
+        "secondary_msc": 0.0,
+        "lexical": 0.3286349458430131,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "technical_depth": 0.015,
+        "audience_breadth": 0.01
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.7,
+        "secondary_msc": 0.0,
+        "lexical": 0.8215873646075328,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/10889",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-494",
+      "name": "Journal of Graph Theory",
+      "tier": "broad-field",
+      "matching_codes": [
+        "05"
+      ],
+      "official_url": "https://onlinelibrary.wiley.com/loi/10970118",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 05",
+      "representative_articles": [],
+      "article_count": 3799,
+      "matching_share": 0.9010910815939279,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.5776,
+      "level_distance": null,
+      "evidence_msc_prefix": "05",
+      "score_components": {
+        "primary_msc": 0.22399999999999998,
+        "secondary_msc": 0.0,
+        "lexical": 0.3286349458430131,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "technical_depth": 0.015,
+        "audience_breadth": 0.01
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.7,
+        "secondary_msc": 0.0,
+        "lexical": 0.8215873646075328,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/494",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-8997",
+      "name": "Theory and Applications of Graphs",
+      "tier": "broad-field",
+      "matching_codes": [
+        "05"
+      ],
+      "official_url": "http://digitalcommons.georgiasouthern.edu/tag/all_issues.html",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 05",
+      "representative_articles": [],
+      "article_count": 136,
+      "matching_share": 0.8831168831168832,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.5776,
+      "level_distance": null,
+      "evidence_msc_prefix": "05",
+      "score_components": {
+        "primary_msc": 0.22399999999999998,
+        "secondary_msc": 0.0,
+        "lexical": 0.3286349458430131,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "technical_depth": 0.015,
+        "audience_breadth": 0.01
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.7,
+        "secondary_msc": 0.0,
+        "lexical": 0.8215873646075328,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/8997",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-2141",
+      "name": "Discussiones Mathematicae. Graph Theory",
+      "tier": "broad-field",
+      "matching_codes": [
+        "05"
+      ],
+      "official_url": "https://www.dmgt.uz.zgora.pl/",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 05",
+      "representative_articles": [],
+      "article_count": 1614,
+      "matching_share": 0.8714902807775379,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.5561,
+      "level_distance": null,
+      "evidence_msc_prefix": "05",
+      "score_components": {
+        "primary_msc": 0.22399999999999998,
+        "secondary_msc": 0.0,
+        "lexical": 0.3071154545797077,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "technical_depth": 0.015,
+        "audience_breadth": 0.01
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.7,
+        "secondary_msc": 0.0,
+        "lexical": 0.7677886364492691,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/2141",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-2402",
+      "name": "Journal of Graph Algorithms and Applications",
+      "tier": "broad-field",
+      "matching_codes": [
+        "05"
+      ],
+      "official_url": "https://jgaa.info/index.php/jgaa/issue/archive",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 05",
+      "representative_articles": [],
+      "article_count": 572,
+      "matching_share": 0.5558794946550049,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.5561,
+      "level_distance": null,
+      "evidence_msc_prefix": "05",
+      "score_components": {
+        "primary_msc": 0.22399999999999998,
+        "secondary_msc": 0.0,
+        "lexical": 0.3071154545797077,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "technical_depth": 0.015,
+        "audience_breadth": 0.01
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.7,
+        "secondary_msc": 0.0,
+        "lexical": 0.7677886364492691,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/2402",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-480",
+      "name": "Journal of Combinatorial Theory. Series B",
+      "tier": "subfield",
+      "matching_codes": [
+        "05",
+        "05C"
+      ],
+      "official_url": "https://www.sciencedirect.com/journal/journal-of-combinatorial-theory-series-b/issues",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 05",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-7923461",
+          "title": "The matroid of a graphing",
+          "year": 2024,
+          "abstract": "Graphings are limit objects for bounded-degree graphs. The ``cycle matroid'' of a graphing is defined as a submodular set function, with values in the closed interval \\([0,1]\\). It generalizes the cycle matroid of finite graphs in the following way: For a finite graph \\(G=(V,E)\\), we define the normalized rank function \\(\\rho(X)\\) by \\(\\rho(X)=r(X)/|V|\\), where \\(r(X)\\) is the usual rank function. Let \\(\\mathcal{P}\\) be the partition of the node set \\(V\\) into the connected components of subgraph \\((V,X)\\). For \\(v\\in V\\), let \\(\\mathcal{P}_v\\) denote the partition class containing \\(v\\). Let \\(\\mathfrak{u}\\) be a uniform random node of \\(V\\), then \n\\[\n\\mathcal{E}\\bigg(\\frac{1}{|\\mathcal{P}_{\\mathfrak u}|}\\bigg)=\\frac{|\\mathcal{P}|}{ |V|}=1-\\rho(X).\n\\]\nIn order to extend to the graphing case, let \\(\\mathcal{G}=(J, \\mathcal{B}, E, \\lambda)\\) be a graphing. For every Borel set \\(X\\subseteq E\\), the quadruple \\(\\mathcal{G}^X=(J, \\mathcal{B}, X, \\lambda)\\) is a graphing. We denote the partition of \\(J\\) into the connected components of \\(\\mathcal{G}^X\\) by \\(\\mathcal{P}^X\\), we then define \n\\[\n\\rho(X)=\\rho_{\\mathcal{G}}(X)=1-\\mathcal{E}_{\\mathfrak{u}}\\bigg(\\frac{1}{|V(G_{\\mathfrak{u}^X}|)}\\bigg)=1-\\psi(\\mathcal{P}^X), \\text{ where }\\psi(\\mathcal{P})=\\mathcal{E}\\bigg(\\frac{1}{|\\mathcal{P}_{\\mathfrak{u}}|}\\bigg),\n\\] \nfor \\(\\mathfrak{u}\\) chosen from the distribution \\(\\pi\\). \n\nFurthermore, for every Borel set \\(X\\subseteq E\\), we define the edge measure by \n\\[\n\\eta(X)=\\int_J \\deg_X(u)\\ d\\lambda(u).\n\\]\nThe three major results of the paper are summarized as follows: \n\nTheorem 4.2. The set function \\(\\rho\\) defined on the Borel subset of \\(E\\) is increasing and submodular, and it satisfies the inequalities: \n\\[\n\\frac{1}{1+D}\\eta (X)\\le \\rho (X)\\le \\eta(X).\n\\]\nTheorem 4.4. Let \\(\\mathcal{G}\\) be a hyperfinite graphing and \\(\\mathcal{H}=(J,F)\\), a Borel measurable spanning subforest of \\(G\\), then\n\\[\n\\alpha(X)=\\frac{1}{2} \\eta_{\\mathcal{G}}(X\\cap F)\n\\]\ndefines an extremal maximal minorizing measure on the Borel subsets of \\(E\\). \n\nTheorem 4.6. If \\(G_1, G_2, \\dots\\) is a sequence of finite graphs with all degrees bounded by \\(D\\ge 0\\) locally converging to a graphing \\(\\mathcal{G}=(J, \\mathcal{B}, E, \\lambda)\\), then \\(\\bar \\rho(G_n)\\rightarrow \\bar \\rho(\\mathcal{G})\\) as \\(n\\rightarrow \\infty\\).",
+          "msc_codes": [
+            "05B35",
+            "05C07",
+            "52B40"
+          ],
+          "doi": "10.1016/j.jctb.2024.08.001",
+          "source_url": "https://doi.org/10.1016/j.jctb.2024.08.001",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "article_count": 1,
+      "matching_share": 1.0,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.5439,
+      "level_distance": 0,
+      "evidence_msc_prefix": "05C",
+      "score_components": {
+        "primary_msc": 0.28800000000000003,
+        "secondary_msc": 0.0,
+        "lexical": 0.19451654005929994,
+        "semantic": 0.0,
+        "abstract_support": 0.01138351243484765,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.9,
+        "secondary_msc": 0.0,
+        "lexical": 0.4862913501482498,
+        "semantic": 0.0,
+        "abstract_support": 0.227670248696953,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/480",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-3196",
+      "name": "AKCE International Journal of Graphs and Combinatorics",
+      "tier": "broad-field",
+      "matching_codes": [
+        "05"
+      ],
+      "official_url": "https://www.tandfonline.com/loi/uakc20",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 05",
+      "representative_articles": [],
+      "article_count": 752,
+      "matching_share": 0.7949260042283298,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.5372,
+      "level_distance": null,
+      "evidence_msc_prefix": "05",
+      "score_components": {
+        "primary_msc": 0.22399999999999998,
+        "secondary_msc": 0.0,
+        "lexical": 0.2882410162139662,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "technical_depth": 0.015,
+        "audience_breadth": 0.01
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.7,
+        "secondary_msc": 0.0,
+        "lexical": 0.7206025405349155,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/3196",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-8274",
+      "name": "Electronic Journal of Graph Theory and Applications",
+      "tier": "broad-field",
+      "matching_codes": [
+        "05"
+      ],
+      "official_url": "https://www.ejgta.org/index.php/ejgta/issue/archive",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 05",
+      "representative_articles": [],
+      "article_count": 396,
+      "matching_share": 0.8354430379746836,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.5372,
+      "level_distance": null,
+      "evidence_msc_prefix": "05",
+      "score_components": {
+        "primary_msc": 0.22399999999999998,
+        "secondary_msc": 0.0,
+        "lexical": 0.2882410162139662,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "technical_depth": 0.015,
+        "audience_breadth": 0.01
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.7,
+        "secondary_msc": 0.0,
+        "lexical": 0.7206025405349155,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/8274",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-1639",
+      "name": "SIAM Review",
+      "tier": "broad-field",
+      "matching_codes": [
+        "05"
+      ],
+      "official_url": "http://epubs.siam.org/loi/siread",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 65, 00, 35, 90, 34, 68, 92, 60, 15, 76, 62, 37, 49, 91, 93, 05, 74",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-7468746",
+          "title": "Newton's method in mixed precision",
+          "year": 2022,
+          "abstract": "",
+          "msc_codes": [
+            "65H10",
+            "45G10",
+            "65G50"
+          ],
+          "doi": "10.1137/20m1342902",
+          "source_url": "https://doi.org/10.1137/20M1342902",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "article_count": 88,
+      "matching_share": 0.021463414634146343,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.5071,
+      "level_distance": 0,
+      "evidence_msc_prefix": "",
+      "score_components": {
+        "primary_msc": 0.22399999999999998,
+        "secondary_msc": 0.0,
+        "lexical": 0.23313654639970963,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.7,
+        "secondary_msc": 0.0,
+        "lexical": 0.582841365999274,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/1639",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-2730",
+      "name": "Integers",
+      "tier": "subfield",
+      "matching_codes": [
+        "05",
+        "05C"
+      ],
+      "official_url": "https://math.colgate.edu/~integers/",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 11, 05",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-7497802",
+          "title": "Graphical enumeration and stained glass windows. I: Rectangular grids",
+          "year": 2021,
+          "abstract": "Summary: This is a survey of enumeration problems arising from the study of planar graphs formed when the edges of a polygon are marked with evenly spaced points and every pair of points is joined by a line. A few of these problems have been solved, a classical example being the the graph \\(K_n\\) formed when all pairs of vertices of a regular \\(n\\)-gon are joined by chords, which was analyzed by \\textit{B. Poonen} and \\textit{M. Rubinstein} [SIAM J. Discrete Math. 11, No. 1, 135--156 (1998; Zbl 0913.51005)]. Most of these problems are unsolved, however, and this two-part article provides data from a number of such problems as well as colored illustrations, which are often reminiscent of stained glass windows. The polygons considered include rectangles, hollow rectangles (or frames), triangles, pentagons, pentagrams, crosses, etc., as well as figures formed by drawing semicircles joining equally-spaced points on a line. Part 1 discusses planar graphs that are based on rectangular grids.",
+          "msc_codes": [
+            "51M04",
+            "05C10",
+            "05C30"
+          ],
+          "doi": "10.5281/zenodo.10687774",
+          "source_url": "https://doi.org/10.5281/zenodo.10687774",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "article_count": 1,
+      "matching_share": 1.0,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.5051,
+      "level_distance": 0,
+      "evidence_msc_prefix": "05C",
+      "score_components": {
+        "primary_msc": 0.28800000000000003,
+        "secondary_msc": 0.0,
+        "lexical": 0.15568804432462327,
+        "semantic": 0.0,
+        "abstract_support": 0.01138351243484765,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.9,
+        "secondary_msc": 0.0,
+        "lexical": 0.38922011081155816,
+        "semantic": 0.0,
+        "abstract_support": 0.227670248696953,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/2730",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-8774",
+      "name": "Proceedings of the Royal Society of London. A. Mathematical, Physical and Engineering Sciences",
+      "tier": "subfield",
+      "matching_codes": [
+        "05",
+        "05C"
+      ],
+      "official_url": "https://royalsocietypublishing.org/loi/rspa",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 74, 76, 35, 82, 92, 81, 78, 37, 86, 65, 70, 34, 91, 62",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-8045037",
+          "title": "Message passing methods on complex networks",
+          "year": 2023,
+          "abstract": "Summary: Networks and network computations have become a primary mathematical tool for analyzing the structure of many kinds of complex systems, ranging from the Internet and transportation networks to biochemical interactions and social networks. A common task in network analysis is the calculation of quantities that reside on the nodes of a network, such as centrality measures, probabilities or model states. In this perspective article we discuss message passing methods, a family of techniques for performing such calculations, based on the propagation of information between the nodes of a network. We introduce the message passing approach with a series of examples, give some illustrative applications and results and discuss the deep connections between message passing and phase transitions in networks. We also point out some limitations of the message passing approach and describe some recently introduced methods that address these limitations.",
+          "msc_codes": [
+            "90B10",
+            "05C82",
+            "82B20",
+            "90B18",
+            "91D30"
+          ],
+          "doi": "10.1098/rspa.2022.0774",
+          "source_url": "https://doi.org/10.1098/rspa.2022.0774",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        },
+        {
+          "article_id": "zbmath-8032241",
+          "title": "Polynomial and rational convergence rates for Laplace problems on planar domains",
+          "year": 2024,
+          "abstract": "The paper is about solving the Laplace equation on a planar domain \\(\\Omega\\) with boundary condition \\(h\\) on \\(\\Gamma=\\partial\\Omega\\). The solution is \\(u=\\mathrm{Re}(f)\\) where \\(f\\) is analytic satisfying \\(\\mathrm{Re}(f)=h\\) on \\(\\Gamma\\). In practice \\(f\\) is approximated by a polynomial or a rational function obtained by interpolation on the boundary with the AAA-least squares method. Rational approximation converges faster than polynomial approximation since the latter depends on the smoothness and the convexity of \\(\\Gamma\\). To explain this discrepancy, it is shown by numerical experiments that it is caused by the proximity of branch points near \\(\\Gamma\\) that are revealed by the pole locations of the rational approximants of the Schwarz function \\(S\\) associated to \\(\\Gamma\\).\n\nIf \\(\\Phi\\) is the conformal map from \\(z\\in\\overline\\Omega\\) to \\(w\\) in the closed unit disk then the boundary of the convergence region \\(|w|<R\\), \\(R>1\\) in the transform domain is inverse mapped onto the level curve \\(\\Gamma_R\\) of the Green's function of \\(\\Gamma\\) bounding in general the region of analyticity for the solution \\(f\\) and \\(R\\) also defines the rate of polynomial convergence. For the rational approximation, the convergence in the transform domain is an annulus \\(1<|w|<R^*\\), and its inverse map is interpreted as a potential theoretic condenser region and here \\(R^*\\) (normally \\(R^*>R\\)) defines the rate of convergence with rational approximants.\n\nSeveral theorems are proved that formalizing these results or give some refinements. Special attention is given to domains \\(\\Omega\\) with an indentation, and some connections of these results with the solution methods for the Helmholz equation are given.\n\nThe paper is easy to read with informative graphs and the results are linked with the classical results from the literature. All this is illustrated with graphics generated by Chebfun software for a family of domains depending on a continuous parameter that defines its convexity.",
+          "msc_codes": [
+            "41A10",
+            "30B40",
+            "30C35",
+            "30E25",
+            "31A35",
+            "35A35",
+            "35J05",
+            "65N35"
+          ],
+          "doi": "10.1098/rspa.2024.0178",
+          "source_url": "https://doi.org/10.1098/rspa.2024.0178",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "article_count": 1,
+      "matching_share": 0.5,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.5028,
+      "level_distance": 0,
+      "evidence_msc_prefix": "",
+      "score_components": {
+        "primary_msc": 0.28800000000000003,
+        "secondary_msc": 0.0,
+        "lexical": 0.14679501194592826,
+        "semantic": 0.0,
+        "abstract_support": 0.01804244033572651,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.9,
+        "secondary_msc": 0.0,
+        "lexical": 0.36698752986482064,
+        "semantic": 0.0,
+        "abstract_support": 0.3608488067145302,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/8774",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-3352",
+      "name": "SIGMA. Symmetry, Integrability and Geometry: Methods and Applications",
+      "tier": "broad-field",
+      "matching_codes": [
+        "05"
+      ],
+      "official_url": "https://sigma-journal.com/",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 81, 53, 37, 33, 17, 14, 35, 58, 34, 70, 16, 05, 82, 83, 22, 46, 20, 39",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-7962305",
+          "title": "The Wehrheim-Woodward category of linear canonical relations between \\(G\\)-spaces",
+          "year": 2024,
+          "abstract": "The problem of making canonical relations between symplectic manifolds into the morphisms of a category was settled in a seminal paper by \\textit{K. Wehrheim} and \\textit{C. T. Woodward} [Quantum Topol. 1, No. 2, 129--170 (2010; Zbl 1206.53088)], an abstract version of which was given by \\textit{D. Li-Bland} and the author [SIGMA, Symmetry Integrability Geom. Methods Appl. 10, Paper 100, 31 p. (2014; Zbl 1325.53116)], showing that the morphisms in the WW-category of linear canonical relations between finite-dimensional symplectic vector spaces could be identified with the pairs \\(\\left( L,k\\right) \\) consisting of a linear canonical relation and a nonnegative integer, called indexed canonical relations.\n\nThis paper aims to extend the result to the situation where a compact group \\(G\\) is acting on the linear symplectic spaces, and the linear canonical relations are equivariant, in which case the nonnegative integer \\(k\\) is replaced by an arbitrary isomorphism class \\(\\mathcal{E}\\) of finite-dimensional \\(G\\)-spaces without symplectic structure involved. The author extends to all highly selective categories \\(\\boldsymbol{C}\\) the main result of \\textit{A. Weinstein} [J. Geom. Mech. 3, No. 4, 507--515 (2011; Zbl 1257.53111)] to the effect, in the special case where  there is a certain highly selective category of relations between symplectic manifolds, with morphisms the smooth canonical relations, that every morphism \\(Y\\rightarrow X\\) in \\(\\mathrm{WW}\\left( \\boldsymbol{C}\\right) \\) may be represented by a composition \\(Y\\rightarrowtail Q\\twoheadrightarrow X\\) of just two suave morphisms in \\(\\boldsymbol{C}\\), where the decorations on the arrows mean that \\(Q\\twoheadrightarrow X\\) is a reduction and \\(Y\\rightarrowtail Q\\) is a coreduction.",
+          "msc_codes": [
+            "53D30",
+            "18A40",
+            "53D20"
+          ],
+          "doi": "10.3842/sigma.2024.101",
+          "source_url": "https://doi.org/10.3842/SIGMA.2024.101",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        },
+        {
+          "article_id": "zbmath-7897506",
+          "title": "Knots, perturbative series and quantum modularity",
+          "year": 2024,
+          "abstract": "This is a companion paper of [\\textit{S. Garoufalidis} and \\textit{D. Zagier}, SIGMA, Symmetry Integrability Geom. Methods Appl. 19, Paper 082, 39 p. (2023; Zbl 1532.57004)]. Based on the volume conjecture, the refined quantum modularity conjecture is studied. In this article, the authors introduce a matrix-valued invariant \\(\\mathbf{J}^{(K)}(X)\\) as a generalization of the Kashaev invariant of a knot \\(K\\). The invariant \\(\\mathbf{J}^{(K)}\\) is indexed either in terms of boundary parabolic representations of the fundamental group of \\(S^3\\setminus K\\) or flat connections. They propose the refined quantum modularity conjecture, which states that for \\(\\gamma\\in SL_2(\\mathbf{Z})\\) the invariant \\(\\mathbf{J}^{(K)} (\\gamma X)\\) with \\(X\\in \\mathbb{Q}\\) tending to infinity behaves\n\\[\n\\mathbf{J}^{(K)}(\\gamma X) \\approx \\widetilde{\\mathbf{j}}_\\gamma(X) \\mathbf{J}^{(K)}(X) \\widehat{\\boldsymbol{\\Phi}}^{(K)}_{a/c} \\left( \\frac{2\\pi \\mathrm{i}}{c(cX+d)} \\right),\n\\]\nwhere \\(\\widetilde{\\mathbf{j}}_\\gamma(X)\\) is a diagonal automorphy factor, and \\(\\widehat{\\boldsymbol{\\Phi}}^{(K)}_\\alpha(h)\\) denotes a power series. Also conjectured is that the cocycle\n\\[\nW_\\gamma(x)= \\mathbf{J}(\\gamma x)^{-1} \\widetilde{\\mathbf{j}}_\\gamma(x) \\mathbf{J}(x)\n\\]\nis a \\(C^\\infty\\) function on \\(\\mathbb{R}\\setminus \\{\\gamma^{-1}(\\infty)\\}\\). These are discovered based on numerical computations for \\(K\\) being \\(4_1\\), \\(5_2\\), and \\((-2,3,7)\\)-pretzel. Evidence for these conjectures and other interesting properties is given.",
+          "msc_codes": [
+            "57K30",
+            "57K10",
+            "57K14",
+            "57K16"
+          ],
+          "doi": "10.3842/sigma.2024.055",
+          "source_url": "https://doi.org/10.3842/SIGMA.2024.055",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "article_count": 151,
+      "matching_share": 0.02751959176234737,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.4982,
+      "level_distance": 0,
+      "evidence_msc_prefix": "",
+      "score_components": {
+        "primary_msc": 0.22399999999999998,
+        "secondary_msc": 0.0,
+        "lexical": 0.20613987275400558,
+        "semantic": 0.0,
+        "abstract_support": 0.01804244033572651,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.7,
+        "secondary_msc": 0.0,
+        "lexical": 0.515349681885014,
+        "semantic": 0.0,
+        "abstract_support": 0.3608488067145302,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/3352",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-10410",
+      "name": "Communications of the American Mathematical Society",
+      "tier": "broad-field",
+      "matching_codes": [
+        "05"
+      ],
+      "official_url": "https://www.ams.org/journals/cams/all_issues.html?active=allissues",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 35, 14, 37, 60, 05, 11, 81, 57, 13, 15, 47, 65, 55, 92, 58, 53, 46, 17, 22",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-7856617",
+          "title": "The convergence of an alternating series of Erdős, assuming the Hardy-Littlewood prime tuples conjecture",
+          "year": 2024,
+          "abstract": "Let \\(p_n\\) be the \\(n\\)th prime. A problem of Erdős (see, e.g., problem E7 in [\\textit{R. K. Guy}, Unsolved problems in number theory. 2nd ed. New York, NY: Springer-Verlag (1994; Zbl 0805.11001)]) asks whether the alternating series \n\\[\n\\sum_{n=1}^{\\infty}\\frac{(-1)^nn}{p_n} \n\\]\nconverges. The author shows that this is indeed the case, assuming the Hardy-Littlewood prime tuples conjecture in a suitably uniform form.\n\nThe proof proceeds by first reducing matters to showing the convergence of \n\\[\n\\sum_{n=2}^{\\infty}\\frac{(-1)^{\\pi(n)}}{n\\log n},\n\\]\nwhere \\(\\pi(\\cdot)\\) is the prime counting function; this is done by elementary comparison arguments. The author then uses the van der Corput trick to reduce to the expectation estimate \n\\[\n\\mathbf{E}(-1)^{\\pi(\\mathbf{n}+\\lambda\\log x)-\\pi(\\mathbf{n})}\\ll \\frac{1}{\\sqrt{\\lambda}} \n\\]\nfor \\(1\\ll \\lambda\\ll (\\log \\log x)^{4.4}\\), where \\(\\mathbf{n}\\) denotes a random integer drawn from \\([x,x+x^{1-\\varepsilon/2}]\\). The author next uses the Bonferroni inequalities and is left with proving a certain estimate for averages of singular series. This estimate goes beyond what \\textit{P. X. Gallagher}'s method [Mathematika 23, 4--9 (1976; Zbl 0346.10024)] can handle in terms of uniformity, and the author instead proceeds to replace this average of singular series with a corresponding average for a random sieve model of the primes, introduced in [\\textit{W. Banks} et al., Invent. Math. 233, No. 3, 1471--1518 (2023; Zbl 1541.11076)]. This random model turns out to be more manageable to handle, and this eventually leads to the stated result.",
+          "msc_codes": [
+            "11N05",
+            "40A05"
+          ],
+          "doi": "10.1090/cams/29",
+          "source_url": "https://doi.org/10.1090/cams/29",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "article_count": 11,
+      "matching_share": 0.06358381502890173,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.4869,
+      "level_distance": 0,
+      "evidence_msc_prefix": "",
+      "score_components": {
+        "primary_msc": 0.22399999999999998,
+        "secondary_msc": 0.0,
+        "lexical": 0.20155241950149252,
+        "semantic": 0.0,
+        "abstract_support": 0.01138351243484765,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.7,
+        "secondary_msc": 0.0,
+        "lexical": 0.5038810487537313,
+        "semantic": 0.0,
+        "abstract_support": 0.227670248696953,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/10410",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-963",
+      "name": "Acta Mathematica Hungarica",
+      "tier": "subfield",
+      "matching_codes": [
+        "05",
+        "05C"
+      ],
+      "official_url": "https://link.springer.com/journal/10474/volumes-and-issues",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 54, 11, 42, 41, 46, 26, 47, 60, 20, 05, 16, 53, 28, 52, 39, 34, 06, 03",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-7254979",
+          "title": "Compact graphings",
+          "year": 2020,
+          "abstract": "A graphing \\(G=(I,\\mathcal{A},E,\\lambda)\\) is a graph on vertex set a standard Borel space \\((I, \\mathcal{A})\\) with \\(\\lambda\\) a probability measure on \\((I,\\mathcal{A})\\). All degrees are assumed bounded by some fixed (and suppressed) number \\(D\\). The edge set \\(E\\subseteq I\\times I\\) is a Borel set avoiding the diagonal and invariant under interchanging the coordinates which has the following additional symmetry property. Defining the edge measure of the graphing for \\(A,B\\in \\mathcal{A}\\) by \\(\\eta(A\\times B)=\\int_{A}\\text{deg}_{B}(x) d\\lambda(x)\\) and extending to Borel sets in the usual way, we have that \\(\\eta(A\\times B)=\\eta(B\\times A)\\). Graphings represent limits of certain graph sequences in a local or local-global sense, and are in a loose sense analogous to graphons, corresponding limit objects for dense graphs. \n\nIn the theory of graphons, an important process is `purification' of a graphon, i.e. converting it into an essentially equivalent graphon which additionally is defined on a compact metric space. The main result of the article under review is to define a compact graphing and to show that every graphing embeds in a well-behaved way in a compact graphing. In detail, if \\(d\\) is a metric such that \\(\\mathcal{A}\\) is the Borel subsets of \\((I,d)\\) we write \\((I,d,E,\\lambda)\\) in lieu of \\((I,\\mathcal{A},E,\\lambda)\\) and say that this graphing is compact if \\((I,d)\\) is a compact metric space and additionally \\(E\\) is a closed subset of \\(I\\times I\\) and for all \\(\\epsilon>0\\) and non-negative integer \\(r\\) there is \\(\\delta>0\\) such that whenever \\(x,y\\in I\\) with \\(d(x,y)<\\delta\\) there is an isomorphism \\(\\phi\\) from \\(B(x,r)\\) to \\(B(y,r)\\) with \\(\\phi(x)=y\\) and such that \\(\\max_{z\\in B(x,r)}d(z,\\phi(z))<\\epsilon\\). \n\nThe appropriate notion of embedding in a nice way is that of being a full subgraphing: graphing \\((I,\\mathcal{A},E,\\lambda)\\) is a full subgraphing of \\((I',\\mathcal{A}', E',\\lambda')\\) if \\(G\\) is a union of connected components of \\(G'\\), \\(I\\) is a Borel subset of \\(I'\\), \\(\\mathcal{A}=\\mathcal{A}' \\cap I\\) and \\(\\lambda '(X)=\\lambda(X\\cap I)\\) for all Borel sets \\(X\\). \n\nThe result is now that every graphing is a full subgraphing of a compact graphing; the proof is quite technical, but the dependence of \\(\\delta\\) on \\(\\epsilon\\) and \\(r\\) is fairly mild. The author notes that in the loosely analogous situation of graphons, there is a ``canonical'' compact graphon locally equivalent to the graphon we started from and asks is an analogous result can be proved here (the argument at present depends on the metric on the underlying set we started with).",
+          "msc_codes": [
+            "05C80",
+            "60B10"
+          ],
+          "doi": "10.1007/s10474-019-01010-8",
+          "source_url": "https://doi.org/10.1007/s10474-019-01010-8",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        },
+        {
+          "article_id": "zbmath-8079172",
+          "title": "Choquet extension of non-monotone submodular setfunctions",
+          "year": 2025,
+          "abstract": "",
+          "msc_codes": [
+            "05C63",
+            "05B35",
+            "28E99",
+            "52B40"
+          ],
+          "doi": "10.1007/s10474-025-01529-z",
+          "source_url": "https://doi.org/10.1007/s10474-025-01529-z",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "article_count": 2,
+      "matching_share": 1.0,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.4788,
+      "level_distance": 0,
+      "evidence_msc_prefix": "05C",
+      "score_components": {
+        "primary_msc": 0.28800000000000003,
+        "secondary_msc": 0.0,
+        "lexical": 0.1294462789729649,
+        "semantic": 0.0,
+        "abstract_support": 0.01138351243484765,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.9,
+        "secondary_msc": 0.0,
+        "lexical": 0.32361569743241225,
+        "semantic": 0.0,
+        "abstract_support": 0.227670248696953,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/963",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-3047",
+      "name": "MATCH - Communications in Mathematical and in Computer Chemistry",
+      "tier": "subfield",
+      "matching_codes": [
+        "05",
+        "05C"
+      ],
+      "official_url": "http://match.pmf.kg.ac.rs/",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 05",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-7434575",
+          "title": "Geometric approach to degree-based topological indices: Sombor indices",
+          "year": 2021,
+          "abstract": "Summary: An alternative interpretation of vertex-degree-based topological indices is proposed. Based on it, a class of novel graph invariants is considered, of which the simplest is the Sombor index \\(SO\\), defined via the term \\(\\sqrt{\\deg(u)^2+\\deg(v)^2}\\). Basic properties of \\(SO\\) are established.",
+          "msc_codes": [
+            "92E10",
+            "05C09",
+            "05C92"
+          ],
+          "doi": null,
+          "source_url": "https://match.pmf.kg.ac.rs/electronic_versions/Match86/n1/match86n1_11-16.pdf",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "article_count": 1,
+      "matching_share": 1.0,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.4578,
+      "level_distance": 0,
+      "evidence_msc_prefix": "05C",
+      "score_components": {
+        "primary_msc": 0.28800000000000003,
+        "secondary_msc": 0.0,
+        "lexical": 0.10838806114817641,
+        "semantic": 0.0,
+        "abstract_support": 0.01138351243484765,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.9,
+        "secondary_msc": 0.0,
+        "lexical": 0.270970152870441,
+        "semantic": 0.0,
+        "abstract_support": 0.227670248696953,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/3047",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-2064",
+      "name": "The Electronic Journal of Combinatorics",
+      "tier": "subfield",
+      "matching_codes": [
+        "05",
+        "05C"
+      ],
+      "official_url": "http://www.combinatorics.org/ojs/index.php/eljc/issue/archive",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 05, 11, 52, 20, 68, 06",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-7402037",
+          "title": "Discrete quantitative nodal theorem",
+          "year": 2021,
+          "abstract": "Summary: We prove a theorem that can be thought of as a common generalization of the Discrete Nodal Theorem and (one direction of) Cheeger's Inequality for graphs. A special case of this result will assert that if the second and third eigenvalues of the Laplacian are at least \\(\\varepsilon\\) apart, then the subgraphs induced by the positive and negative supports of the eigenvector belonging to \\(\\lambda_2\\) are not only connected, but edge-expanders (in a weighted sense, with expansion depending on \\(\\varepsilon)\\).",
+          "msc_codes": [
+            "05C50",
+            "05C40",
+            "15A18"
+          ],
+          "doi": "10.37236/9944",
+          "source_url": "https://doi.org/10.37236/9944",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "article_count": 1,
+      "matching_share": 1.0,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.4272,
+      "level_distance": 0,
+      "evidence_msc_prefix": "05C",
+      "score_components": {
+        "primary_msc": 0.28800000000000003,
+        "secondary_msc": 0.0,
+        "lexical": 0.07781644786869285,
+        "semantic": 0.0,
+        "abstract_support": 0.01138351243484765,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.9,
+        "secondary_msc": 0.0,
+        "lexical": 0.19454111967173213,
+        "semantic": 0.0,
+        "abstract_support": 0.227670248696953,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/2064",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-9743",
+      "name": "Probability, Uncertainty and Quantitative Risk",
+      "tier": "text-match",
+      "matching_codes": [],
+      "official_url": "https://www.aimsciences.org/PUQR",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 60, 91, 93",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-7617806",
+          "title": "The value does not exist! A motivation for extremal analysis",
+          "year": 2022,
+          "abstract": "",
+          "msc_codes": [
+            "91B02",
+            "54H99"
+          ],
+          "doi": "10.3934/puqr.2022013",
+          "source_url": "https://doi.org/10.3934/puqr.2022013",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "article_count": 0,
+      "matching_share": 0.0,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.4162,
+      "level_distance": 0,
+      "evidence_msc_prefix": "",
+      "score_components": {
+        "primary_msc": 0.0,
+        "secondary_msc": 0.0,
+        "lexical": 0.3662102113777076,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.0,
+        "secondary_msc": 0.0,
+        "lexical": 0.9155255284442689,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/9743",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-2096",
+      "name": "Serdica Mathematical Journal",
+      "tier": "broad-field",
+      "matching_codes": [
+        "05"
+      ],
+      "official_url": "https://serdica.math.bas.bg/index.php/serdica/issue/archive",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 47, 16, 46, 54, 35, 14, 20, 49, 30, 60, 34, 05, 65, 17, 53, 15, 26, 62, 11, 90, 41, 13, 37, 58",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-8019408",
+          "title": "Metric regularity properties of monotone mappings",
+          "year": 2023,
+          "abstract": "Summary: The theory of metric regularity deals with properties of set-valued mappings that provide estimates useful in solving inverse problems and generalized equations. Maximal monotone mappings, which dominate applications related to convex optimization, have valuable special features in this respect that have not previously been recorded. Here it is shown that the property of strong metric subregularity is generic in an almost everywhere sense. Metric regularity not only coincides with strong metric regularity but also implies local single-valuedness of the inverse, rather than just of a graphical localization of the inverse. Consequences are given for the solution mapping associated with a monotone generalized equation.",
+          "msc_codes": [
+            "49J53",
+            "49J40",
+            "49N45",
+            "90C25"
+          ],
+          "doi": "10.55630/serdica.2023.49.1-8",
+          "source_url": "https://doi.org/10.55630/serdica.2023.49.1-8",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "article_count": 42,
+      "matching_share": 0.03346613545816733,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.3516,
+      "level_distance": 0,
+      "evidence_msc_prefix": "",
+      "score_components": {
+        "primary_msc": 0.22399999999999998,
+        "secondary_msc": 0.0,
+        "lexical": 0.0661701783693485,
+        "semantic": 0.0,
+        "abstract_support": 0.01138351243484765,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.7,
+        "secondary_msc": 0.0,
+        "lexical": 0.16542544592337124,
+        "semantic": 0.0,
+        "abstract_support": 0.227670248696953,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/2096",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-115",
+      "name": "Israel Journal of Mathematics",
+      "tier": "broad-field",
+      "matching_codes": [
+        "05"
+      ],
+      "official_url": "https://link.springer.com/journal/11856/volumes-and-issues",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 20, 46, 11, 03, 37, 16, 05, 28, 47, 60, 14, 22, 52, 54, 53, 30, 57, 35",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-7639111",
+          "title": "\\textit{IP}-systems and recurrence in ergodic theory: an update",
+          "year": 2022,
+          "abstract": "This is an overview and update of Benjamin Weiss' remarkably fruitful concept of \\(IP\\)-systems in notions of recurrence in ergodic theory. An \\(IP\\)-system in a semigroup \\(S\\) is obtained by choosing a sequence \\((s_n)_{n\\in\\mathbb{N}}\\) of elements and then forming all possible products \\(s_{i_1}s_{i_2}\\cdots s_{i_k}\\) with \\(i_1<i_2<\\cdots<i_k\\). Thus the elements of the \\(IP\\)-system can be indexed by the set \\(\\mathcal{F}\\) of finite subsets of \\(\\mathbb{N}\\) using the order relation on \\(\\mathbb{N}\\). An \\(\\mathcal{F}\\)-sequence (a sequence of elements in \\(S\\) indexed by \\(\\mathcal{F}\\)) is said to be an \\(IP\\)-system if \\(\\prod_{i\\in\\alpha\\cup\\beta}s_i =\\prod_{i\\in\\alpha}s_i\\prod_{i\\in\\beta}s_i\\) whenever every element of \\(\\alpha\\in\\mathcal{F}\\) is less than every elements of \\(\\beta\\). In the case \\(S=\\mathbb{N}\\) an \\(IP\\)-system comprises the fundamental notion of an \\(IP\\)-set, and for an \\(IP\\)-set \\(\\{n_{\\alpha}\\}\\) and a map \\(T\\colon X\\to X\\) there is an \\(IP\\)-system of transformations \\(\\{T^{n_{\\alpha}}\\}\\). These starting notions are used here to describe the main ideas in recurrence, starting with the ergodic Szemerédi theorem and Hindman's theorem and then outlining the Furstenberg correspondence principle which shows how recurrence phenomena in ergodic theory relates to results in combinatorial number theory. Recurrence phenomena in the setting of topological dynamics is then discussed, and the colouristic theorems in combinatorial number theory shown by the author and their collaborators are described. The algebraic approach to recurrence using the Ellis semigroup is outlined, and the route to dynamical proofs of things like the Hales-Jewett theorem is described.",
+          "msc_codes": [
+            "37A44",
+            "11B75",
+            "37A30",
+            "37B20",
+            "37E15"
+          ],
+          "doi": "10.1007/s11856-022-2435-y",
+          "source_url": "https://doi.org/10.1007/s11856-022-2435-y",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "article_count": 502,
+      "matching_share": 0.049312377210216106,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.3475,
+      "level_distance": 0,
+      "evidence_msc_prefix": "",
+      "score_components": {
+        "primary_msc": 0.22399999999999998,
+        "secondary_msc": 0.0,
+        "lexical": 0.06210895235029101,
+        "semantic": 0.0,
+        "abstract_support": 0.01138351243484765,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.7,
+        "secondary_msc": 0.0,
+        "lexical": 0.15527238087572753,
+        "semantic": 0.0,
+        "abstract_support": 0.227670248696953,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "msc",
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/115",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    },
+    {
+      "journal_id": "zbmath-serial-6354",
+      "name": "Analysis & PDE",
+      "tier": "text-match",
+      "matching_codes": [],
+      "official_url": "http://msp.org/apde",
+      "scope_summary": "Indexed mathematics journal. Main MSC2020 fields: 35, 58, 42, 53, 47, 46, 76, 37, 81, 32, 49, 28",
+      "representative_articles": [
+        {
+          "article_id": "zbmath-7807514",
+          "title": "On a family of fully nonlinear integrodifferential operators: from fractional Laplacian to nonlocal Monge-Ampère",
+          "year": 2024,
+          "abstract": "",
+          "msc_codes": [
+            "35J60",
+            "35J96",
+            "35R11",
+            "45K05"
+          ],
+          "doi": "10.2140/apde.2024.17.243",
+          "source_url": "https://doi.org/10.2140/apde.2024.17.243",
+          "article_type": "research article",
+          "introduction": "",
+          "central_results": [],
+          "authors": [],
+          "license": "",
+          "license_url": ""
+        }
+      ],
+      "article_count": 0,
+      "matching_share": 0.0,
+      "technical_level": "unknown",
+      "audience_breadth": "unknown",
+      "match_score": 0.3401,
+      "level_distance": 0,
+      "evidence_msc_prefix": "",
+      "score_components": {
+        "primary_msc": 0.0,
+        "secondary_msc": 0.0,
+        "lexical": 0.2900817369237723,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "technical_depth": 0.03,
+        "audience_breadth": 0.02
+      },
+      "retrieval_scores": {
+        "primary_msc": 0.0,
+        "secondary_msc": 0.0,
+        "lexical": 0.7252043423094308,
+        "semantic": 0.0,
+        "abstract_support": 0.0,
+        "semantic_available": 0.0
+      },
+      "retrieval_sources": [
+        "lexical"
+      ],
+      "scope_url": "https://zbmath.org/serials/6354",
+      "scope_breadth": "unknown",
+      "editorial_evidence": []
+    }
+  ]
+}

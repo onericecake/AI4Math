@@ -1,9 +1,11 @@
 # Learning from public publication records
 
+[Home](../README.md) · [Collection manifest](../data/broad-training-2026-09-07/README.md) · [Measured results](../benchmarks/broad-training-2026-09-07/REPORT.md)
+
 The `train-venues` and `recommend-venues` commands provide a trained, offline
 title/abstract matcher. The September 2026 experiment collected **10,973 articles
-from 50 journals** using OpenAlex. It does not require reviewer data or an API key
-for model training or prediction. The original `analyze` workflow remains available
+from 50 journals** using OpenAlex. Training and prediction run locally without
+reviewer data or an API key. The original `analyze` workflow remains available
 and its defaults are unchanged.
 
 The model learns **observed publication venues**. Another journal may also have
@@ -13,12 +15,17 @@ candidate list contains 50 journals, not all 1,516 journals in the example regis
 
 ## Collect and train
 
+**The training corpus and model weights are not included.** The repository ships
+collection manifests and frozen benchmark results. Run collection and training
+below to build your own model; recollecting a live service can change the data
+and will not guarantee the published metrics.
+
 Run from `demo2`, with this package installed in your Python environment:
 
 ```sh
 python -m pip install -e '.[training,dev]'
-journal-match catalog harvest-openalex data/broad-training-2026-09-07/collection-plan.json --output-dir ../output/journal-training-2026-09-07/collection
-journal-match train-venues ../output/journal-training-2026-09-07/collection/catalog.json --exclude data/broad-training-2026-09-07/previous-benchmark-exclusions.json --output-dir ../output/journal-training-2026-09-07/experiment
+journal-match catalog harvest-openalex data/broad-training-2026-09-07/collection-plan.json --output-dir results/venue-training/collection
+journal-match train-venues results/venue-training/collection/catalog.json --exclude data/broad-training-2026-09-07/previous-benchmark-exclusions.json --output-dir results/venue-training/experiment
 ```
 
 The collector is resumable and caches source pages. A changed collection plan
@@ -59,7 +66,7 @@ boilerplate are removed from both training and query text.
 ## Recommend three journals
 
 ```sh
-journal-match recommend-venues examples/manuscript.tex --venue-model ../output/journal-training-2026-09-07/experiment/model --output ../output/journal-training-2026-09-07/recommendations.json
+journal-match recommend-venues examples/manuscript.tex --venue-model results/venue-training/experiment/model --output results/venue-training/recommendations.json
 ```
 
 A JSON input with `title` and `abstract` also works. No LLM call is made.
@@ -72,14 +79,15 @@ list in `model/model.json` when working outside the sampled mathematical fields.
 Models use checksummed JSON and numeric NPZ arrays, loaded with
 `allow_pickle=False`. Install the `training` extra to load them. The saved model
 does not contain training abstracts. Raw metadata caches and the frozen local
-snapshot remain under `output/`; abstract rights remain with their original
-rights holders, distinct from OpenAlex's metadata license.
+snapshot are generated under `results/venue-training/` by the commands above.
+Abstract rights remain with their original rights holders, distinct from
+OpenAlex's metadata license.
 
 The experiment also writes `training-catalog.json`, containing only the selected
 training references, for optional import into the existing hybrid matcher:
 
 ```sh
-journal-match catalog import-json data/catalog.example.json ../output/journal-training-2026-09-07/experiment/training-catalog.json --database ../output/journal-training-2026-09-07/hybrid.sqlite
+journal-match catalog import-json data/catalog.example.json results/venue-training/experiment/training-catalog.json --database results/venue-training/hybrid.sqlite
 ```
 
 This is a separate experiment: trained-model results do not establish an
@@ -109,4 +117,4 @@ Balanced quotas reduce volume imbalance but cannot remove missing-abstract,
 publisher, language or convenience-sampling biases. Descriptive confidence
 intervals do not establish performance across all mathematical fields.
 
-Results are recorded in the [benchmark report](benchmarks/broad-training-2026-09-07/REPORT.md).
+Results are recorded in the [benchmark report](../benchmarks/broad-training-2026-09-07/REPORT.md).

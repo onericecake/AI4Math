@@ -1,155 +1,110 @@
 # Mathematics Journal Matcher
 
-This is a small working model for matching an unpublished mathematics article
-to journals. It extracts a LaTeX manuscript, proposes the central result,
-classifies the article with MSC2020, describes contribution and technical
-level, and recommends three journals from a field-local catalog.
+Match a mathematics manuscript to potential journals using MSC2020 subject
+classification, article evidence and journal profiles. This Python research demo
+provides an interactive manuscript analysis workflow and a separate trainable
+title/abstract model.
 
-It assumes mathematical correctness. Its heuristic scores describe subject and
-audience fit; they do not establish novelty, editorial significance, or acceptance
-probability. See [REVIEW.md](REVIEW.md) for the code review and proposed evaluation
-design.
+The matcher assumes mathematical correctness. Its scores describe subject and
+audience fit; they do not establish novelty, editorial significance or acceptance
+probability. Offline examples demonstrate the software, not recommendation accuracy.
 
-## Install
+## Choose a workflow
 
-```bash
+| Goal | Command | Requirements |
+| --- | --- | --- |
+| Try the complete workflow locally | `analyze --offline --yes` | Bundled data; no API key |
+| Analyze a manuscript with model explanations | `analyze` | Catalog, MSC taxonomy and `OPENAI_API_KEY` |
+| Learn publication-venue affinity | `train-venues`, then `recommend-venues` | Collected abstracts and the `training` extra |
+| Measure retrieval or score saved rankings | `benchmark` or `evaluate` | Manuscript inputs and separate labels |
+
+`analyze` uses hybrid MSC and BM25 retrieval by default. The trained venue model
+is opt-in and covers the journals in its training corpus. It does not replace
+the default matcher. See [usage and options](docs/usage.md).
+
+## Quick start
+
+Use Python 3.9 or newer. From the repository root, enter `demo2` before installing
+or running commands; this directory is its own Python project.
+
+```sh
+cd demo2
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install --upgrade pip
 python -m pip install -e '.[dev]'
-```
 
-With an API key, the matcher uses the OpenAI model configured by
-`OPENAI_MODEL` (default `gpt-5.5`). The deterministic `--offline` mode is
-available for local smoke tests and CI.
-
-## Import the all-field catalog
-
-The bundled fixtures contain the complete 6,603-entry MSC2020 hierarchy and
-1,516 active mathematics journal records spanning all 63 broad MSC fields.
-They also include recent MSC-tagged article metadata and journal-level field
-statistics. The catalog is a testing snapshot, not a live editorial database.
-Only 163 example articles across 115 journals are bundled, and only 61 have
-abstracts. Most scope summaries are generated from MSC coverage. Broad registry
-coverage therefore does not imply enough evidence to judge every journal's
-editorial expectations.
-
-```bash
 journal-match catalog import-json data/catalog.example.json \
-  --database /tmp/journal-catalog.sqlite
-```
-
-Multiple normalized source files can be merged in one import. Journals are
-deduplicated by ISSN-L and articles by DOI when those identifiers are present:
-
-```bash
-journal-match catalog import-json path/to/zbmath.json path/to/openalex.json \
-  --database /tmp/journal-catalog.sqlite
-```
-
-Keep the source notices in `data/MSC2020-LICENSE.txt` and
-`data/JOURNAL-CATALOG-NOTICE.txt` with the fixtures.
-
-## Analyze an article
-
-The matcher accepts LaTeX source (`.tex` or `.latex`), including local
-`\\input`/`\\include` files. It retains section and proof evidence and ranks
-journals using subject, audience, technical-level, and evidence signals. It
-intentionally does not require a full TeX compiler.
-
-```bash
+  --database results/catalog.sqlite
 journal-match analyze examples/manuscript.tex \
-  --msc data/msc2020.json \
-  --catalog /tmp/journal-catalog.sqlite \
-  --offline --yes \
-  --output-dir results
+  --msc data/msc2020.json --catalog results/catalog.sqlite \
+  --offline --yes --output-dir results/smoke
 ```
 
-Without `--yes`, the tool asks the author to confirm the proposed central
-result and MSC classification. For substantive model analysis, omit
-`--offline` and set `OPENAI_API_KEY`.
+Open `results/smoke/report.md` for the readable report or
+`results/smoke/report.json` for classifications, recommendations, evidence and
+the final candidate shortlist. A [saved example](examples/README.md) is included.
 
-## Reproduce the linked-paper smoke test
+For model analysis, configure `OPENAI_API_KEY` in your environment, omit
+`--offline` and supply your manuscript path. Without `--yes`, the CLI asks you
+to confirm the central result and MSC classification. `--model` overrides
+`OPENAI_MODEL`; the code's fallback model is `gpt-5.5`.
 
-Download the arXiv source archive corresponding to
-[arXiv:2608.18255](https://arxiv.org/abs/2608.18255), then run:
+## Data and measured results
 
-```bash
-journal-match catalog import-json data/catalog.example.json \
-  --database /tmp/journal-catalog.sqlite
-journal-match analyze /path/to/ruling_polynomial_26.tex \
-  --msc data/msc2020.json \
-  --catalog /tmp/journal-catalog.sqlite \
-  --offline --yes \
-  --output-dir results/arxiv-2608.18255
+The bundled registry contains **1,516 journals**, the **6,603-entry MSC2020
+taxonomy** and **163 example articles**, of which **61 have abstracts**. It spans
+all 63 broad MSC fields, but most journal scope summaries are registry-derived.
+Registry coverage is much broader than the available article evidence.
+
+Additional datasets and experiments are explicitly separated:
+
+| Resource | Status and interpretation |
+| --- | --- |
+| [Public evidence](data/public-evidence-2026-09-07/README.md) | 60 importable publisher abstracts and six scope profiles; measured gains and regressions |
+| [Venue training](docs/training.md) | Historical collection of 10,973 articles across 50 journals; manifests included, corpus and weights generated locally |
+| [Venue-model benchmark](benchmarks/broad-training-2026-09-07/REPORT.md) | 595/991 historical venues in the top three (60.0%), versus 46.1% for BM25, within a fixed 50-journal set |
+| [Focused retrieval experiment](benchmarks/focused-2026-09-07/REPORT.md) | Improved the development pilot but regressed on fixture validation; remains experimental |
+
+These experiments use different candidate sets and protocols, so their scores
+are not directly comparable. Start with the [benchmark index](benchmarks/README.md)
+for the datasets, reproduction commands and limitations. Source attribution and
+license notices are documented in the [data inventory](data/README.md).
+
+## Project map
+
+```text
+demo2/
+├── README.md             # Start here
+├── pyproject.toml        # Package, dependencies and CLI entry point
+├── docs/                 # Usage, catalogs, evaluation, training, development
+├── src/journal_matcher/  # Implementation
+├── tests/                # Offline regression tests
+├── data/                 # Canonical fixtures, evidence and collection manifests
+├── examples/             # Small inputs and a reproducible offline report
+├── benchmarks/           # Frozen experiment inputs, reports and audit artifacts
+└── scripts/              # Collection and historical benchmark helpers
 ```
 
-The included smoke-test output is in
-`examples/arxiv-2608.18255.report.md` and
-`examples/arxiv-2608.18255.report.json`.
+Generated databases, caches, models and new reports belong in the ignored
+`results/` directory. Keep published benchmark snapshots separate from new runs.
+
+## Documentation
+
+- [Use the matcher](docs/usage.md): inputs, configuration, retrieval and reports.
+- [Prepare catalogs](docs/catalog.md): imports, collection, identity and provenance.
+- [Evaluate and train an expert reranker](docs/evaluation.md): labels, splits and metrics.
+- [Train a publication-venue model](docs/training.md): collect, train and recommend.
+- [Develop the project](docs/development.md): module map, tests and known limitations.
+- [Run helper scripts](scripts/README.md): current entry points and legacy reproduction.
 
 ## Tests
 
-```bash
-PYTHONPATH=src python -m pytest -q
+From `demo2`, after installing the `dev` extra:
+
+```sh
+python -m pytest
 ```
 
-Run these commands from `demo2`. The pytest configuration explicitly selects
-this directory's `src`, avoiding the separate package copy in the parent repo.
-
-## Retrieval and evidence safeguards
-
-- Broad MSC matches remain broad even when an ancestor appears explicitly in
-  the query. The full matching pool is scored before selecting up to 24 journals
-  for model profiling and up to 12 for the final explanation prompt.
-- Each local article is counted once per MSC prefix. Imported aggregate
-  statistics are preserved when additional small article samples are merged.
-  Statistics in legacy databases have unknown provenance and are preserved as
-  imported; use a fresh import to reconstruct local derived statistics.
-- Journal profile caches depend on model identity, prompt, and supplied evidence.
-  Offline profiles are not reused as live model profiles.
-- Recommendations can cite only articles supplied for that journal. Reports
-  include their titles and source links, the weighted score components, and the
-  final candidate shortlist in JSON (`ranked_candidates`).
-- A recommendation without valid article citations is labeled `insufficient
-  information`. Weak field-profile evidence cannot justify `strong match` or
-  `closely aligned`. These are evidence checks, not calibrated quality judgments.
-- MSC codes must exist in the loaded taxonomy; author corrections update broad
-  fields so old classifications do not continue contributing candidates.
-
-The ranking weights remain hand-selected. The offline model has deliberately
-limited keyword coverage and fixed demonstration profiles; use it only to test
-the workflow. It cannot demonstrate editorial matching accuracy.
-
-## Evaluate saved rankings
-
-Create a JSON object with a `cases` list. Each case needs a unique `paper_id`,
-`relevant_journal_ids` supplied independently by reviewers, and ordered
-`ranked_journal_ids`. Optional `candidate_journal_ids` measure retrieval recall.
-Allow multiple relevant journals for one manuscript. An empty ranking is an
-abstention and counts as a miss for a paper with suitable labeled venues.
-
-```bash
-PYTHONPATH=src python -m journal_matcher evaluate \
-  examples/evaluation.example.json --k 3 --output results/metrics.json
-```
-
-This computes top-k hit rate, recall, MRR, binary nDCG, recommendation coverage,
-and candidate recall where supplied. The example is entirely synthetic and
-validates metric calculations only. The evaluator scores saved rankings; it does
-not run the matcher, create relevance labels, or enforce separation between
-training and evaluation data. When scoring final recommendations, omit entries
-labeled `insufficient information` from `ranked_journal_ids` and report that
-filtering rule with the results. The report's `ranked_candidates` field can supply
-the final shortlist IDs for candidate recall; it is not the full retrieval pool.
-
-## Training across more mathematical fields
-
-The [public-data training workflow](BROAD_TRAINING.md) collects OpenAlex abstracts
-for 50 journals, freezes later-year holdouts and compares nested training sizes.
-`train-venues` learns title/abstract publication-venue affinity; `recommend-venues`
-returns three journals using the saved model without an LLM call. The completed
-collection contains 10,973 articles; 8,967 remain for training after exclusions.
-See the [measured results](benchmarks/broad-training-2026-09-07/REPORT.md).
-This opt-in model has a 50-journal candidate set. It is separate from the graded
-expert-judgment workflow and does not change the default matching behavior.
+The suite uses local fixtures and fake model/HTTP adapters. Install
+`'.[dev,training]'` to include the optional scikit-learn training tests.
+Pytest explicitly selects `demo2/src` so another installed copy cannot shadow it.
