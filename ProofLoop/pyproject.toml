@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "proofloop-math"
+version = "0.1.0"
+description = "Bounded mathematical exploration with durable proof routes and independent model checking"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["openai>=1.66.0"]
+
+[project.scripts]
+proof-loop = "proof_loop.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+proof_loop = ["*.mjs"]
