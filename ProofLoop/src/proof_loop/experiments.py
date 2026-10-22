@@ -12,14 +12,14 @@ import time
 from pathlib import Path
 
 
-TOOLS = {"python", "sage", "lean"}
+TOOLS = {"matching", "python", "sage", "lean"}
 
 
 def runtime(tool: str) -> tuple[list[str], list[Path], str]:
     if tool == "python":
         executable = Path(sys.executable).absolute()
         return [str(executable), "-I"], [Path(sys.prefix), Path(sys.base_prefix)], ".py"
-    if tool not in TOOLS:
+    if tool not in TOOLS or tool == "matching":
         raise ValueError("unknown computation tool")
     executable = os.environ.get("PROOF_LOOP_" + tool.upper()) or shutil.which(tool)
     if not executable:
@@ -64,6 +64,15 @@ def sandbox(command: list[str], roots: list[Path], scratch: Path, source: Path, 
 def execute(tool: str, code: str, directory: Path, seconds: float) -> dict:
     """The caller journals intent before calling and stores the returned receipt."""
     directory = directory.resolve()
+    if tool == "matching":
+        from .finite_matching import check_matching
+        directory.mkdir(parents=True, exist_ok=True)
+        with (directory / "source.json").open("x", encoding="utf-8") as handle:
+            handle.write(code)
+        result = check_matching(code, seconds)
+        with (directory / "output.txt").open("x", encoding="utf-8") as handle:
+            handle.write(result["output"])
+        return result
     command, roots, suffix = runtime(tool)
     directory.mkdir(parents=True, exist_ok=True)
     scratch = directory / "scratch"

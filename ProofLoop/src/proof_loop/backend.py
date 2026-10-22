@@ -26,8 +26,13 @@ further work. Complete candidates are always checked. A weaker target is a label
 outcome, never a replacement for the original problem. A counterexample candidate must
 refute the original target, with all hypotheses checked.
 Use experiments only when enabled, with one small computation per response and a stated
-purpose. Python supports exact arithmetic and installed symbolic libraries; Sage and Lean
-may be available. Tool output is evidence, not a proof of the original target. Do not
+purpose. The matching tool accepts JSON {"instances":[{"name":"case","left":["a"],
+"right":["x"],"edges":[["a","x"]]}]} in experiment.code and returns an exact maximum
+bipartite matching or a Hall witness. Use it before spending rounds on hand enumeration.
+For a family, supply each explicit instance or use an enabled sandboxed code tool to
+generate it; checking one instance never proves a universal claim. Python supports exact
+arithmetic and installed symbolic libraries; Sage and Lean may be available. Tool output
+is evidence, not a proof of the original target. Do not
 request tools forbidden by the problem. No network access is available to computations.
 Keep research.technique identical within a route; use switch_route for a major pivot.
 Use empty strings for unused review and experiment fields, and an empty outcomes list

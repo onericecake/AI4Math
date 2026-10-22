@@ -7,7 +7,7 @@ A checker pass is labeled **model checked**. It means the checker found no gap i
 ## How the workflow runs
 
 1. **Fix the target.** A Markdown problem file supplies the statement, definitions, permitted assumptions, and what would count as a solution. ProofLoop keeps that target unchanged. A weaker result is recorded as a partial result with its extra assumptions.
-2. **Explore a route.** Each solver round either submits a complete candidate or records an exact subgoal, an argument attempt, a blocker, and a concrete next test. One route is active at a time by default. A new route must use a genuinely different technique.
+2. **Explore a route.** Each solver round either submits a complete candidate or records an exact subgoal, an argument attempt, a blocker, and a concrete next test. One route is active at a time by default. A new route must use a genuinely different technique. Two rounds without decisive progress trigger a route pivot by default.
 3. **Reuse recorded work.** Obligations have IDs; different arguments for the same statement remain separate versions. Later calls receive a small index and the arguments relevant to the current obligation. Full saved artifacts can be requested when needed.
 4. **Check selectively.** A complete candidate always gets an independent checker call. The solver may request review of a pivotal intermediate claim; the round-6 checkpoint can also select one. A gap or counterexample becomes a targeted repair or a route decision; a failed attempt alone does not disprove its statement.
 5. **Stop with a usable record.** The run ends on a checked candidate, a budget or route limit, a lack of progress, or a request for human input. The report retains the strongest partial results and unresolved obligations.
@@ -38,9 +38,17 @@ proof-loop examples/problem.md \
   --backend api --model MODEL_ID
 ```
 
-The ordinary budget is **8 solver rounds**, up to **2 routes**, a **2-hour route clock**, a **30-minute call timeout**, and **one repair round per route** after a rejected complete candidate. Change these independently with `--max-rounds`, `--max-routes`, `--route-hours`, `--max-call-minutes`, and `--max-repairs-per-route`.
+The ordinary budget is **8 solver rounds**, up to **2 routes**, a **2-hour route clock**, a **30-minute call timeout**, and **one repair round per route** after a rejected complete candidate. Change these independently with `--max-rounds`, `--max-routes`, `--route-hours`, `--max-call-minutes`, and `--max-repairs-per-route`. `--pivot-after N` changes the low-progress gate; `--pivot-after 0` disables it. A new narrow lemma alone does not reset the gate. A new reusable reduction, a claim addressing the current focused obligation, a new complete candidate, a passed intermediate check, or a requested finite test does. Rewriting an already recorded claim on the same route does not reset it.
 
-Add `--parallel-routes` to try a bounded second route after the first route records a concrete blocker and next test. ProofLoop runs one solver call for each route concurrently, saves both receipts, then compares their recorded progress and continues the selected route. Both calls count against the same global round cap. A complete candidate still goes to the checker; the other route remains in the saved graph and can resume if the selected route later stops. This option may reduce elapsed time when the backend accepts concurrent calls, but it can use more tokens than continuing only the first route. It requires at least two routes and three rounds.
+Add `--parallel-routes` to try a bounded second route after the first route records a concrete blocker and next test. ProofLoop runs one solver call for each route concurrently, saves both receipts, then compares their recorded progress and continues the selected route. A checked claim or new reusable reduction helps select a route; a tie retains the first. Both calls count against the same global round cap. A complete candidate still goes to the checker; the other route remains in the saved graph and can resume if the selected route later stops. This option may reduce elapsed time when the backend accepts concurrent calls, but it can use more tokens than continuing only the first route. It requires at least two routes and three rounds.
+
+For problems that allow computation, `--tools matching` enables a built-in finite bipartite matching check. The solver supplies explicit source and target labels and eligible edges as JSON; the checker returns a maximum matching certificate and, when it cannot cover the left side, a Hall witness. It accepts batches of at most 32 bounded graphs and never executes model-supplied code. For example, the experiment's `code` field can contain:
+
+```json
+{"instances":[{"name":"small-case","left":["a","b"],"right":["x"],"edges":[["a","x"],["b","x"]]}]}
+```
+
+This example yields a Hall witness with two source vertices and one neighbor. The tool checks only the supplied finite graphs; a universal claim needs a justified exhaustive generator or a separate proof. `--tools python` remains available for opt-in sandboxed enumeration when the problem permits it.
 
 For a difficult open problem, write its exact statement in your own Markdown file and add `--open-problem`:
 
@@ -72,6 +80,6 @@ To share leads across different problems, give each run a separate output direct
 
 ## Cost and proof status
 
-`state.json` reports fresh input, cached input, cache writes, visible output, and reasoning output where the backend supplies them. The runner puts stable instructions and the exact problem before changing context to make repeated input eligible for caching, but actual cache use depends on the provider. Missing usage is reported as unavailable.
+`state.json` reports fresh input, cached input, cache writes, visible output, and reasoning output where the backend supplies them. The Pi backend keeps instructions, the exact problem, and route-frozen context ahead of changing obligation indexes and requests short cache retention. This makes repeated input eligible for caching; it does not guarantee cache hits, which depend on the provider and prefix length. Missing usage is reported as unavailable.
 
-Optional local computations are enabled with `--tools python`, `--tools sage`, or `--tools lean`. They run in an OS sandbox without network access and are saved as evidence. A successful computation or intermediate review does not solve the original target. ProofLoop does not automatically search the literature or formalize a complete proof.
+Optional code computations are enabled with `--tools python`, `--tools sage`, or `--tools lean`. They run in an OS sandbox without network access and are saved as evidence. The built-in `matching` tool parses data without executing code. A successful computation or intermediate review does not solve the original target. ProofLoop does not automatically search the literature or formalize a complete proof.

@@ -37,6 +37,7 @@ try {
     toolChoice: "required",
     maxRetries: 0,
     sessionId: request.session_id,
+    cacheRetention: "short",
   });
   if (response.stopReason !== "toolUse") throw new Error(`Pi ended with ${response.stopReason}: ${response.errorMessage ?? "no structured result"}`);
   const calls = response.content.filter((block) => block.type === "toolCall" && block.name === "submit_result");

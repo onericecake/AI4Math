@@ -36,6 +36,7 @@ class Config:
     parallel_routes: bool = False
     checkpoint_round: int = 0
     max_repairs_per_route: int = 1
+    pivot_after: int = 2
     max_output_tokens: int = 25000
     library_limit: int = 5
     exploration_share: float = 0.85
@@ -59,12 +60,14 @@ class Config:
             raise ValueError("checkpoint round must be zero or below the round limit")
         if self.max_repairs_per_route < 0:
             raise ValueError("repair limit cannot be negative")
+        if self.pivot_after < 0:
+            raise ValueError("pivot-after must be nonnegative")
         if self.library_limit < 0:
             raise ValueError("library limit cannot be negative")
         if not 0.5 <= self.exploration_share <= 1 or self.max_lemma_checks < 0:
             raise ValueError("exploration share must be between 0.5 and 1; lemma check limit must be nonnegative")
         if set(filter(None, self.tools.split(","))) - TOOLS:
-            raise ValueError("tools must be a comma-separated subset of python,sage,lean")
+            raise ValueError("tools must be a comma-separated subset of matching,python,sage,lean")
         if self.max_experiments < 0 or not 0 < self.experiment_seconds <= 300:
             raise ValueError("experiment count must be nonnegative and duration in (0, 300] seconds")
 
@@ -145,7 +148,7 @@ class Runner:
                 raise ValueError("unsupported checkpoint schema")
             self.state["config"].setdefault("backend", "api")
             self.state["config"].setdefault("max_repairs_per_route", 1)
-            for key in ("exploration_share", "max_lemma_checks", "tools", "max_experiments", "experiment_seconds", "checkpoint_round", "parallel_routes"):
+            for key in ("exploration_share", "max_lemma_checks", "tools", "max_experiments", "experiment_seconds", "checkpoint_round", "parallel_routes", "pivot_after"):
                 self.state["config"].setdefault(key, asdict(Config(model=config.model))[key])
             for route in self.state["routes"]:
                 if "repair_rounds" not in route:
@@ -167,6 +170,8 @@ class Runner:
                 route.setdefault("blocker", None)
                 route.setdefault("research_status", "ready_for_review" if route["status"] == "completed" else "exploring" if route["status"] == "active" else "abandoned")
                 route.setdefault("last_blocker_key", "")
+                route.setdefault("low_progress_rounds", 0)
+                route.setdefault("last_decisive_progress", False)
             prior_claim_obligations = {c["id"]: c.get("obligation_id") for c in self.state["claims"]}
             for claim in self.state["claims"]:
                 claim.setdefault("artifact_id", self._artifact_id("claim", claim["argument"]))
@@ -463,6 +468,8 @@ class Runner:
         lines += ["", "## Routes", ""]
         for route in state["routes"]:
             lines.append(f"- Route {route['id']} ({route['research_status']}; {route['status']}, {route['elapsed_seconds']:.1f}s, repairs {route['repair_rounds']}/{self.config.max_repairs_per_route}): {route['title'] or 'untitled'} — {route['summary']}")
+            if self.config.pivot_after:
+                lines.append(f"  - Low-yield rounds: {route['low_progress_rounds']}/{self.config.pivot_after}")
             if route["obstruction"]:
                 lines.append(f"  - Obstruction: {route['obstruction']}")
             if route["obligation_ids"]:
@@ -568,6 +575,8 @@ class Runner:
             "human_notes": [],
             "blocker": None,
             "last_blocker_key": "",
+            "low_progress_rounds": 0,
+            "last_decisive_progress": False,
             "research_status": "exploring",
             "technique": "", "difference_from_prior": "", "discriminating_test": "", "next_task": "explore",
             "candidate_proof": "",
@@ -898,11 +907,11 @@ class Runner:
             task = "Close the focused obligation (or the original target if none is selected) using explicit assumptions and relevant supporting arguments. If blocked, state the precise missing implication and the cheapest way to test it."
         return {
             "stable_context": {"route_id": route["id"], "prior_routes_to_avoid": route["prior_routes"],
-                               "obligation_index": [{"id": o["id"], "statement": o["statement"], "assumptions": o["assumptions"], "status": o["status"]} for o in self.state["obligations"] if o["id"] in route["obligation_ids"]],
-                               "shared_obligation_index": [{"id": o["id"], "statement": o["statement"], "assumptions": o["assumptions"], "status": o["status"]} for o in self.state["obligations"] if o["id"] not in route["obligation_ids"]][-12:],
                                "prior_problem_index": [{"id": "record:" + r["id"], "statement": r["statement"], "assumptions": r["assumptions"], "status": r["status"]} for r in self.state["library_imports"]]},
             "working_context": {
                 "task": task,
+                "obligation_index": [{"id": o["id"], "statement": o["statement"], "assumptions": o["assumptions"], "status": o["status"]} for o in self.state["obligations"] if o["id"] in route["obligation_ids"]],
+                "shared_obligation_index": [{"id": o["id"], "statement": o["statement"], "assumptions": o["assumptions"], "status": o["status"]} for o in self.state["obligations"] if o["id"] not in route["obligation_ids"]][-12:],
                 "research_state": self._research_brief(),
                 "technique": route["technique"],
                 "assignment_kind": assignment,
@@ -985,6 +994,9 @@ class Runner:
         self.state["findings"].append(finding)
         if target_claim:
             target_claim["review_status"] = "model_checked" if verdict == "pass" else "unverified"
+            if verdict == "pass":
+                route["low_progress_rounds"] = 0
+                route["last_decisive_progress"] = True
             self.state["reviewed_claim_ids"].append(claim_id)
             self.state["pending_review"] = None
             checkpoint = self.state["round_checkpoint"]
@@ -1017,6 +1029,11 @@ class Runner:
     def _apply_solver_result(self, route: dict[str, Any], result: dict[str, Any], repairing: bool, reserved: bool = False) -> bool:
         route_id = route["id"]
         checkpoint = copy.deepcopy(self.state)
+        previous_focus_id = route["focus_obligation_id"]
+        previous_claim_count = len(self.state["claims"])
+        previous_experiment_count = len(self.state["experiments"])
+        previous_route_claims = {(c["obligation_id"], c["kind"]) for c in self.state["claims"] if c["route_id"] == route_id}
+        previously_checked_candidates = set(self.state["checked_candidate_hashes"])
         try:
             if result.get("status") not in {"candidate", "progress", "stalled"}:
                 raise ValueError("invalid solver status")
@@ -1068,6 +1085,17 @@ class Runner:
         if new_evidence:
             route["seen_evidence_keys"].append(evidence_key)
         changed_blocker = bool(blocker and blocker_key != old_blocker_key and new_evidence and blocker["next_test"].strip())
+        fresh_claims = self.state["claims"][previous_claim_count:]
+        new_candidate = (result["status"] == "candidate" and
+                         _digest(result["candidate_proof"].strip()) not in previously_checked_candidates)
+        decisive = (new_candidate or any(
+            (c["obligation_id"], c["kind"]) not in previous_route_claims and
+            (c["kind"] in {"reduction", "counterexample", "conditional_theorem"} or
+             (previous_focus_id and c["obligation_id"] == previous_focus_id))
+            for c in fresh_claims))
+        pending_test = len(self.state["experiments"]) > previous_experiment_count or self.state["pending_review"] is not None
+        route["last_decisive_progress"] = bool(decisive)
+        route["low_progress_rounds"] = 0 if decisive or pending_test else route["low_progress_rounds"] + 1
         route["last_material_progress"] = bool(new_claims or new_obligations or new_route_links or changed_blocker)
         route["last_progress"] = bool(route["last_material_progress"] or new_request or research_progress)
         route["research_status"] = "promising" if route["last_progress"] else "blocked"
@@ -1119,6 +1147,11 @@ class Runner:
             route["status"] = "stalled"
             route["research_status"] = "blocked"
             self._decide(route, "switch_route", "No new obligation, argument, candidate finding, or evidence for the same blocker.", blocker_key)
+        elif self.config.pivot_after and route["low_progress_rounds"] >= self.config.pivot_after:
+            route["status"] = "stalled"
+            route["research_status"] = "blocked"
+            self._decide(route, "pivot_low_yield",
+                         f"{route['low_progress_rounds']} rounds added no focused proof, reusable reduction, checked claim, or finite test; switch routes or stop.")
         self._sync_library()
         self._save()
         return True
@@ -1225,15 +1258,16 @@ class Runner:
             self._save()
             return
         obligation_status = {o["id"]: o["status"] for o in self.state["obligations"]}
-        def score(route: dict[str, Any]) -> tuple[int, int, int, int, int, int, int]:
+        def score(route: dict[str, Any]) -> tuple[int, int, int, int, int, int, int, int]:
             checked = sum(c["route_id"] == route["id"] and c.get("review_status") == "model_checked" for c in self.state["claims"])
             route_claims = [c for c in self.state["claims"] if c["route_id"] == route["id"]]
             new_claims = route_claims[trial["baseline_claims"][str(route["id"])]:]
             claims = sum(not c.get("stale_reason") for c in new_claims)
+            reductions = sum(c["kind"] == "reduction" and not c.get("stale_reason") for c in new_claims)
             new_obligations = route["obligation_ids"][trial["baseline_obligations"][str(route["id"])]:]
             obligations = sum(obligation_status.get(o) != "disputed" for o in new_obligations)
             disputed = sum(obligation_status.get(o) == "disputed" for o in route["obligation_ids"])
-            return (int(route["status"] == "active"), -disputed, checked, int(bool(route["next_test"].strip())),
+            return (int(route["status"] == "active"), -disputed, checked, min(reductions, 1), int(bool(route["next_test"].strip())),
                     int(route["last_material_progress"]), min(claims, 2), min(obligations, 2))
         winner = max(routes, key=score)  # On a tie, retain the original primary route.
         loser = next(r for r in routes if r["id"] != winner["id"])
@@ -1244,7 +1278,7 @@ class Runner:
         if self.state["status"] == "needs_human_input" and winner["status"] == "active":
             self.state["status"] = "running"
         reason = (f"Route {winner['id']} remains active; scores {winning_score} versus {losing_score} "
-                  "(actionable, negative disputed obligations, checked claims, next test, material progress, new claims, new obligations). "
+                  "(actionable, negative disputed obligations, checked claims, reusable reduction, next test, material progress, new claims, new obligations). "
                   "The other route is saved for review.")
         trial.update(status="complete", winner_route_id=winner["id"], reason=reason)
         self._decide(winner, "parallel_select", reason)

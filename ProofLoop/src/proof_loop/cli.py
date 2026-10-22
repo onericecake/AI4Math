@@ -29,12 +29,13 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--max-rounds", type=int, help="Solver round cap (default: 8, or 10 with --open-problem)")
     parser.add_argument("--open-problem", action="store_true", help="Use a 10-round cap and a review checkpoint after round 6")
     parser.add_argument("--max-repairs-per-route", type=int, default=1, help="Solver revisions after a checker rejection on each route (default: 1)")
+    parser.add_argument("--pivot-after", type=int, default=2, help="Switch routes after this many solver rounds without decisive progress; 0 disables the gate")
     parser.add_argument("--max-output-tokens", type=int, default=25000)
     parser.add_argument("--library-dir", type=Path, help="Optional shared file library for reuse across problems")
     parser.add_argument("--library-limit", type=int, default=5, help="Maximum relevant records imported at run start")
     parser.add_argument("--exploration-share", type=float, default=0.85, help="Soft solver share of output tokens for admitting optional lemma checks; final checks always run")
     parser.add_argument("--max-lemma-checks", type=int, default=2, help="Maximum optional pivotal-lemma reviews")
-    parser.add_argument("--tools", default="", help="Opt-in computations: comma-separated python,sage,lean; requires an OS sandbox")
+    parser.add_argument("--tools", default="", help="Opt-in computations: comma-separated matching,python,sage,lean; code tools require an OS sandbox")
     parser.add_argument("--max-experiments", type=int, default=8)
     parser.add_argument("--experiment-seconds", type=float, default=30, help="Wall cap per local computation (at most 300)")
     parser.add_argument("--resume", action="store_true", help="Continue a checkpoint with the same problem and settings")
@@ -58,6 +59,7 @@ def main(argv: list[str] | None = None) -> int:
         max_rounds=max_rounds,
         checkpoint_round=6 if args.open_problem else 0,
         max_repairs_per_route=args.max_repairs_per_route,
+        pivot_after=args.pivot_after,
         max_output_tokens=args.max_output_tokens,
         library_limit=args.library_limit,
         exploration_share=args.exploration_share,
