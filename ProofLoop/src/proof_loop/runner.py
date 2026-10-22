@@ -18,7 +18,7 @@ from .experiments import TOOLS, execute
 
 
 class Backend(Protocol):
-    def call(self, role: str, problem: str, context: dict[str, Any], timeout_seconds: float) -> tuple[dict[str, Any], dict[str, int | None]]: ...
+    def call(self, role: str, problem: str, context: dict[str, Any], timeout_seconds: float | None) -> tuple[dict[str, Any], dict[str, int | None]]: ...
 
 
 @dataclass(frozen=True)
@@ -32,6 +32,7 @@ class Config:
     max_call_minutes: float = 30.0
     max_routes: int = 2
     max_rounds: int = 8
+    checkpoint_round: int = 0
     max_repairs_per_route: int = 1
     max_output_tokens: int = 25000
     library_limit: int = 5
@@ -46,10 +47,12 @@ class Config:
             raise ValueError("model is required")
         if self.backend not in {"api", "codex", "codex-cli"}:
             raise ValueError("backend must be api, codex, or codex-cli")
-        if min(self.route_hours, self.max_call_minutes) <= 0 or self.extension_minutes < 0:
-            raise ValueError("time limits must be positive; extension may be zero")
+        if min(self.route_hours, self.max_call_minutes, self.extension_minutes) < 0:
+            raise ValueError("time limits cannot be negative; zero disables a route or call limit")
         if min(self.max_routes, self.max_rounds, self.max_output_tokens) <= 0:
             raise ValueError("route, round, and output limits must be positive")
+        if self.checkpoint_round < 0 or self.checkpoint_round >= self.max_rounds:
+            raise ValueError("checkpoint round must be zero or below the round limit")
         if self.max_repairs_per_route < 0:
             raise ValueError("repair limit cannot be negative")
         if self.library_limit < 0:
@@ -138,7 +141,7 @@ class Runner:
                 raise ValueError("unsupported checkpoint schema")
             self.state["config"].setdefault("backend", "api")
             self.state["config"].setdefault("max_repairs_per_route", 1)
-            for key in ("exploration_share", "max_lemma_checks", "tools", "max_experiments", "experiment_seconds"):
+            for key in ("exploration_share", "max_lemma_checks", "tools", "max_experiments", "experiment_seconds", "checkpoint_round"):
                 self.state["config"].setdefault(key, asdict(Config(model=config.model))[key])
             for route in self.state["routes"]:
                 if "repair_rounds" not in route:
@@ -241,6 +244,7 @@ class Runner:
             }
         self.state.setdefault("experiments", [])
         self.state.setdefault("pending_review", None)
+        self.state.setdefault("round_checkpoint", None)
         self.state.setdefault("reviewed_claim_ids", [])
         self.state.setdefault("candidate_kind", "proof")
         self.state.setdefault("accepted_kind", "proof" if self.state["accepted_proof"] else "")
@@ -434,6 +438,11 @@ class Runner:
         call_states = [f"{status}={sum(c['status'] == status for c in state['calls'])}" for status in
                        ("pending", "received", "applied", "failed", "execution_unknown")]
         lines.append(f"- call states: {', '.join(call_states)}")
+        checkpoint = state.get("round_checkpoint")
+        if checkpoint:
+            lines += ["", "## Round checkpoint", "",
+                      f"- Round {checkpoint['round']}: {checkpoint['decision']}; next test: {checkpoint['next_test'] or 'none'}",
+                      f"- Intermediate review: {checkpoint['review_claim_id'] or 'none'} ({checkpoint['review_verdict']})"]
         lines += ["", "## Routes", ""]
         for route in state["routes"]:
             lines.append(f"- Route {route['id']} ({route['research_status']}; {route['status']}, {route['elapsed_seconds']:.1f}s, repairs {route['repair_rounds']}/{self.config.max_repairs_per_route}): {route['title'] or 'untitled'} — {route['summary']}")
@@ -550,12 +559,14 @@ class Runner:
         return route
 
     def _remaining(self, route: dict[str, Any]) -> float:
+        if self.config.route_hours == 0:
+            return float("inf")
         allowance = self.config.route_hours * 3600
         if route["extended"]:
             allowance += self.config.extension_minutes * 60
         return allowance - route["elapsed_seconds"]
 
-    def _call(self, role: str, route: dict[str, Any], context: dict[str, Any], timeout: float) -> dict[str, Any]:
+    def _call(self, role: str, route: dict[str, Any], context: dict[str, Any], timeout: float | None) -> dict[str, Any]:
         existing = next((c for c in self.state["calls"] if c["status"] == "received"), None)
         if existing is not None:
             if existing["role"] != role or existing["route_id"] != route["id"]:
@@ -568,7 +579,7 @@ class Runner:
         self._save()
         started = time.monotonic()
         try:
-            result, usage = self.backend.call(role, self.problem, context, max(1.0, timeout))
+            result, usage = self.backend.call(role, self.problem, context, max(1.0, timeout) if timeout is not None else None)
             if not isinstance(result, dict):
                 raise ValueError(f"{role} returned a non-object")
             elapsed = time.monotonic() - started
@@ -616,6 +627,36 @@ class Runner:
                 checker_tokens += amount
         allowance = int(solver_tokens * (1 - self.config.exploration_share) / self.config.exploration_share) - checker_tokens
         return min(allowance, self.config.max_output_tokens) if allowance >= 1024 else 0
+
+    def _round_checkpoint(self) -> None:
+        """Record the open-problem decision before buying another solver round."""
+        route = self._active_route()
+        checkpoint = {"round": self.state["rounds"], "route_id": route["id"] if route else None,
+                      "next_test": route["next_test"] if route else "", "review_claim_id": "",
+                      "review_verdict": "not_requested", "decision": "continue"}
+        self.state["round_checkpoint"] = checkpoint
+        if route is None:
+            checkpoint["decision"] = "switch_route"
+            self._save()
+            return
+        if not route["last_material_progress"] or not route["next_test"].strip():
+            checkpoint["decision"] = "stop"
+            self.state["status"] = "checkpoint_stopped"
+            self._decide(route, "checkpoint_stop", "Round checkpoint found no material progress with a specific next test.")
+            self._save()
+            return
+        self._decide(route, "checkpoint_continue", f"Material progress; next test: {route['next_test']}")
+        if len(self.state["reviewed_claim_ids"]) < self.config.max_lemma_checks and self.state["pending_review"] is None:
+            candidates = [c for c in self.state["claims"] if c["route_id"] == route["id"] and
+                          c["id"] not in self.state["reviewed_claim_ids"] and c.get("review_status") != "model_checked"]
+            if candidates:
+                claim = next((c for c in reversed(candidates) if c["obligation_id"] == route["focus_obligation_id"]), candidates[-1])
+                checkpoint["review_claim_id"] = claim["id"]
+                checkpoint["review_verdict"] = "pending"
+                budget = min(self.config.max_output_tokens, max(2048, self._review_budget()))
+                self.state["pending_review"] = {"claim_id": claim["id"], "route_id": route["id"], "output_limit": budget}
+                self._decide(route, "checkpoint_review", f"Review pivotal claim {claim['id']} before round {self.state['rounds'] + 1}.")
+        self._save()
 
     def _accept_research(self, result: dict[str, Any], route: dict[str, Any]) -> bool:
         raw = result.get("research")
@@ -866,8 +907,8 @@ class Runner:
                 "latest_human_note": route["human_notes"][-1] if route["human_notes"] else "",
                 "latest_checker_finding": findings[-1] if findings else None,
                 "latest_candidate_proof": self.state["candidate_proof"] if findings else "",
-                "checkpoint_due": route["elapsed_seconds"] >= self.config.route_hours * 1800 and not route["checkpoint_sent"],
-                "seconds_remaining": round(self._remaining(route)),
+                "checkpoint_due": self.config.route_hours > 0 and route["elapsed_seconds"] >= self.config.route_hours * 1800 and not route["checkpoint_sent"],
+                "seconds_remaining": round(self._remaining(route)) if self.config.route_hours > 0 else None,
                 "instruction": "Prior-problem records are leads with explicit assumptions and status. Check applicability; unverified records are not established facts. A candidate must justify every material imported premise. Use existing claim IDs in claims.depends_on and existing obligation IDs in obligations.depends_on. New obligations are for exact subgoals. To load older text next round, request up to two IDs from other_attempts or prior_problem_index. A candidate_proof must be complete when status=candidate. Keep summaries concise. Report a precise blocker and action for unfinished work. If checkpoint_due, state the strongest result and cheapest next test.",
             },
         }
@@ -889,7 +930,7 @@ class Runner:
                            review_target=target_claim, review_output_limit=output_limit)
         elif self.state["candidate_kind"] == "counterexample":
             context["task"] = "Check this claimed refutation of the exact original conjecture. Verify the witness meets every hypothesis and violates its conclusion. A counterexample to an auxiliary lemma is insufficient."
-        result = self._call("checker", route, context, self.config.max_call_minutes * 60)
+        result = self._call("checker", route, context, self.config.max_call_minutes * 60 if self.config.max_call_minutes > 0 else None)
         verdict = result.get("verdict")
         premises = result.get("unverified_premises")
         if verdict not in {"pass", "gap", "counterexample", "uncertain"} or not isinstance(result.get("finding"), str) or not result["finding"].strip() or not isinstance(result.get("repair_hint"), str) or not isinstance(premises, list) or not all(isinstance(p, str) for p in premises):
@@ -928,6 +969,14 @@ class Runner:
             target_claim["review_status"] = "model_checked" if verdict == "pass" else "unverified"
             self.state["reviewed_claim_ids"].append(claim_id)
             self.state["pending_review"] = None
+            checkpoint = self.state["round_checkpoint"]
+            if checkpoint and checkpoint["review_claim_id"] == claim_id and checkpoint["review_verdict"] == "pending":
+                checkpoint["review_verdict"] = verdict
+                if verdict != "pass" and result.get("repair_hint", "").strip():
+                    route["focus_obligation_id"] = target_claim["obligation_id"]
+                    route["next_task"] = "prove"
+                    route["next_test"] = result["repair_hint"]
+                    checkpoint["next_test"] = route["next_test"]
             self._decide(route, "lemma_reviewed", f"{claim_id}: {verdict}. {result['finding']}")
         else:
             self.state["checked_candidate_hashes"].append(finding["candidate_sha256"])
@@ -947,7 +996,7 @@ class Runner:
         return verdict == "pass" and not target_claim
 
     def run(self) -> dict[str, Any]:
-        if self.state["status"] in {"model_checked", "unsolved", "round_limit", "needs_human_input"}:
+        if self.state["status"] in {"model_checked", "unsolved", "round_limit", "checkpoint_stopped", "needs_human_input"}:
             if self.state["status"] == "model_checked":
                 route = self._active_route()
                 if route is not None:
@@ -989,6 +1038,12 @@ class Runner:
                     break
                 route["last_progress"] = True
                 route["last_material_progress"] = True
+            if (self.config.checkpoint_round and self.state["rounds"] >= self.config.checkpoint_round
+                    and self.state["round_checkpoint"] is None):
+                self._round_checkpoint()
+                if self.state["status"] != "running":
+                    break
+                continue
             if self.state["rounds"] >= self.config.max_rounds:
                 self.state["status"] = "round_limit"
                 break
@@ -1019,7 +1074,7 @@ class Runner:
             repairing = context["working_context"]["repairs_remaining"] is not None
             if context["working_context"]["checkpoint_due"]:
                 route["checkpoint_sent"] = True
-            timeout = min(self._remaining(route), self.config.max_call_minutes * 60)
+            timeout = min(self._remaining(route), self.config.max_call_minutes * 60) if self.config.max_call_minutes > 0 else (self._remaining(route) if self.config.route_hours > 0 else None)
             try:
                 result = self._call("solver", route, context, timeout)
             except Exception as error:

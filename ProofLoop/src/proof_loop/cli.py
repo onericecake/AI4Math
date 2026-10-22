@@ -21,11 +21,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--backend", choices=("api", "codex", "codex-cli"), default="api", help="Model runtime; codex uses Pi requests (default: api)")
     parser.add_argument("--solver-effort", default="high")
     parser.add_argument("--checker-effort", default="high")
-    parser.add_argument("--route-hours", type=float, default=2.0)
+    parser.add_argument("--route-hours", type=float, default=2.0, help="Route time budget; 0 disables it")
     parser.add_argument("--extension-minutes", type=float, default=30.0)
-    parser.add_argument("--max-call-minutes", type=float, default=30.0)
+    parser.add_argument("--max-call-minutes", type=float, default=30.0, help="Per-model-call timeout; 0 disables it")
     parser.add_argument("--max-routes", type=int, default=2)
-    parser.add_argument("--max-rounds", type=int, default=8)
+    parser.add_argument("--max-rounds", type=int, help="Solver round cap (default: 8, or 10 with --open-problem)")
+    parser.add_argument("--open-problem", action="store_true", help="Use a 10-round cap and a review checkpoint after round 6")
     parser.add_argument("--max-repairs-per-route", type=int, default=1, help="Solver revisions after a checker rejection on each route (default: 1)")
     parser.add_argument("--max-output-tokens", type=int, default=25000)
     parser.add_argument("--library-dir", type=Path, help="Optional shared file library for reuse across problems")
@@ -40,6 +41,9 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     if args.human_note and not args.resume:
         parser.error("--human-note requires --resume")
+    max_rounds = args.max_rounds if args.max_rounds is not None else (10 if args.open_problem else 8)
+    if args.open_problem and max_rounds <= 6:
+        parser.error("--open-problem requires --max-rounds greater than 6")
     config = Config(
         model=args.model,
         backend=args.backend,
@@ -49,7 +53,8 @@ def main(argv: list[str] | None = None) -> int:
         extension_minutes=args.extension_minutes,
         max_call_minutes=args.max_call_minutes,
         max_routes=args.max_routes,
-        max_rounds=args.max_rounds,
+        max_rounds=max_rounds,
+        checkpoint_round=6 if args.open_problem else 0,
         max_repairs_per_route=args.max_repairs_per_route,
         max_output_tokens=args.max_output_tokens,
         library_limit=args.library_limit,

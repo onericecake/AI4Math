@@ -73,7 +73,7 @@ class PiBackend:
         self.max_output_tokens = max_output_tokens
         self.bridge = Path(__file__).with_name("pi_bridge.mjs")
 
-    def call(self, role: str, problem: str, context: dict[str, Any], timeout_seconds: float) -> tuple[dict[str, Any], dict[str, int | None]]:
+    def call(self, role: str, problem: str, context: dict[str, Any], timeout_seconds: float | None) -> tuple[dict[str, Any], dict[str, int | None]]:
         if role not in self.efforts:
             raise ValueError(f"Unknown role: {role}")
         token = _access_token()
@@ -83,7 +83,7 @@ class PiBackend:
             "model": self.model,
             "effort": self.efforts[role],
             "max_output_tokens": min(self.max_output_tokens, context.get("review_output_limit", self.max_output_tokens)),
-            "timeout_ms": max(1000, int(timeout_seconds * 1000) - 2000),
+            "timeout_ms": max(1000, int(timeout_seconds * 1000) - 2000) if timeout_seconds is not None else 0,
             "session_id": "proof-loop-" + hashlib.sha256(f"{self.model}\n{role}\n{problem}".encode("utf-8")).hexdigest()[:32],
             "instructions": SOLVER_INSTRUCTIONS if role == "solver" else CHECKER_INSTRUCTIONS,
             "schema": SOLVER_SCHEMA if role == "solver" else CHECKER_SCHEMA,

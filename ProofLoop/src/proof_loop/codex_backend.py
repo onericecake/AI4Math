@@ -1,4 +1,4 @@
-"""Codex CLI adapter for local runs and same-runtime comparisons."""
+"""Codex CLI adapter for local solver and checker calls."""
 
 from __future__ import annotations
 
@@ -66,7 +66,7 @@ class CodexCLIBackend:
         self.workdir.mkdir(parents=True, exist_ok=True)
         self.call_number = len(list(self.workdir.glob("call-*.jsonl")))
 
-    def call(self, role: str, problem: str, context: dict[str, Any], timeout_seconds: float) -> tuple[dict[str, Any], dict[str, int | None]]:
+    def call(self, role: str, problem: str, context: dict[str, Any], timeout_seconds: float | None) -> tuple[dict[str, Any], dict[str, int | None]]:
         if role not in self.efforts:
             raise ValueError(f"unknown role: {role}")
         self.call_number += 1

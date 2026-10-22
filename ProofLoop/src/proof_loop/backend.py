@@ -1,4 +1,4 @@
-"""OpenAI Responses adapter. The runner also accepts a fake backend for tests."""
+"""OpenAI Responses adapter for structured solver and checker calls."""
 
 from __future__ import annotations
 
@@ -188,7 +188,7 @@ class OpenAIBackend:
         self.efforts = {"solver": solver_effort, "checker": checker_effort}
         self.max_output_tokens = max_output_tokens
 
-    def call(self, role: str, problem: str, context: dict[str, Any], timeout_seconds: float) -> tuple[dict[str, Any], dict[str, int | None]]:
+    def call(self, role: str, problem: str, context: dict[str, Any], timeout_seconds: float | None) -> tuple[dict[str, Any], dict[str, int | None]]:
         if role not in self.efforts:
             raise ValueError(f"Unknown role: {role}")
         instructions = SOLVER_INSTRUCTIONS if role == "solver" else CHECKER_INSTRUCTIONS

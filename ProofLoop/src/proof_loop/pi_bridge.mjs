@@ -32,7 +32,7 @@ try {
     apiKey: token,
     reasoningEffort: request.effort,
     maxTokens: request.max_output_tokens,
-    timeoutMs: request.timeout_ms,
+    ...(request.timeout_ms > 0 ? { timeoutMs: request.timeout_ms } : {}),
     transport: "sse",
     toolChoice: "required",
     maxRetries: 0,
