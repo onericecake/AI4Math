@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import shutil
 import subprocess
+import threading
 from pathlib import Path
 from typing import Any
 
@@ -65,12 +66,14 @@ class CodexCLIBackend:
         self.workdir = workdir.resolve()
         self.workdir.mkdir(parents=True, exist_ok=True)
         self.call_number = len(list(self.workdir.glob("call-*.jsonl")))
+        self._call_lock = threading.Lock()
 
     def call(self, role: str, problem: str, context: dict[str, Any], timeout_seconds: float | None) -> tuple[dict[str, Any], dict[str, int | None]]:
         if role not in self.efforts:
             raise ValueError(f"unknown role: {role}")
-        self.call_number += 1
-        stem = f"call-{self.call_number:03d}-{role}"
+        with self._call_lock:
+            self.call_number += 1
+            stem = f"call-{self.call_number:03d}-{role}"
         schema = SOLVER_SCHEMA if role == "solver" else CHECKER_SCHEMA
         instructions = SOLVER_INSTRUCTIONS if role == "solver" else CHECKER_INSTRUCTIONS
         schema_path = self.workdir / f"{stem}-schema.json"

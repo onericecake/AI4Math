@@ -9,6 +9,7 @@ import os
 import re
 import tempfile
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Protocol
@@ -32,6 +33,7 @@ class Config:
     max_call_minutes: float = 30.0
     max_routes: int = 2
     max_rounds: int = 8
+    parallel_routes: bool = False
     checkpoint_round: int = 0
     max_repairs_per_route: int = 1
     max_output_tokens: int = 25000
@@ -51,6 +53,8 @@ class Config:
             raise ValueError("time limits cannot be negative; zero disables a route or call limit")
         if min(self.max_routes, self.max_rounds, self.max_output_tokens) <= 0:
             raise ValueError("route, round, and output limits must be positive")
+        if self.parallel_routes and (self.max_routes < 2 or self.max_rounds < 3):
+            raise ValueError("parallel routes require at least two routes and three solver rounds")
         if self.checkpoint_round < 0 or self.checkpoint_round >= self.max_rounds:
             raise ValueError("checkpoint round must be zero or below the round limit")
         if self.max_repairs_per_route < 0:
@@ -141,7 +145,7 @@ class Runner:
                 raise ValueError("unsupported checkpoint schema")
             self.state["config"].setdefault("backend", "api")
             self.state["config"].setdefault("max_repairs_per_route", 1)
-            for key in ("exploration_share", "max_lemma_checks", "tools", "max_experiments", "experiment_seconds", "checkpoint_round"):
+            for key in ("exploration_share", "max_lemma_checks", "tools", "max_experiments", "experiment_seconds", "checkpoint_round", "parallel_routes"):
                 self.state["config"].setdefault(key, asdict(Config(model=config.model))[key])
             for route in self.state["routes"]:
                 if "repair_rounds" not in route:
@@ -247,12 +251,19 @@ class Runner:
         self.state.setdefault("round_checkpoint", None)
         self.state.setdefault("reviewed_claim_ids", [])
         self.state.setdefault("candidate_kind", "proof")
+        self.state.setdefault("candidate_route_id", None)
         self.state.setdefault("accepted_kind", "proof" if self.state["accepted_proof"] else "")
+        self.state.setdefault("parallel_trial", None)
+        if self.state["candidate_proof"] and self.state["candidate_route_id"] is None:
+            candidate_route = next((r for r in reversed(self.state["routes"]) if r["status"] in {"active", "completed"}), None)
+            if candidate_route is not None:
+                self.state["candidate_route_id"] = candidate_route["id"]
         for route in self.state["routes"]:
             route.setdefault("technique", "")
             route.setdefault("difference_from_prior", "")
             route.setdefault("discriminating_test", "")
             route.setdefault("next_task", "explore")
+            route.setdefault("candidate_proof", self.state["candidate_proof"] if route["id"] == self.state["candidate_route_id"] else "")
         for job in self.state["experiments"]:
             if job["status"] == "pending":
                 receipt = self.output_dir / "experiments" / job["id"] / "receipt.json"
@@ -418,7 +429,8 @@ class Runner:
     def resume_with_human_note(self, note: str) -> None:
         if self.state["status"] != "needs_human_input" or not note.strip():
             raise ValueError("a nonempty human note requires a run waiting for human input")
-        route = self.state["routes"][-1]
+        route = next((r for r in reversed(self.state["routes"]) if r.get("blocker") and
+                      r["blocker"].get("proposed_action") == "request_human_input"), self.state["routes"][-1])
         route["human_notes"].append(note.strip())
         route["status"] = "active"
         route["research_status"] = "exploring"
@@ -436,8 +448,13 @@ class Runner:
         if unknown_calls:
             lines.append(f"- {unknown_calls} call(s) have unavailable usage; the totals may undercount cost.")
         call_states = [f"{status}={sum(c['status'] == status for c in state['calls'])}" for status in
-                       ("pending", "received", "applied", "failed", "execution_unknown")]
+                       ("pending", "received", "applied", "unused", "failed", "execution_unknown")]
         lines.append(f"- call states: {', '.join(call_states)}")
+        trial = state.get("parallel_trial")
+        if trial:
+            lines += ["", "## Two-route trial", "",
+                      f"- Status: {trial['status']}; routes: {', '.join(map(str, trial['route_ids']))}; initially selected route: {trial['winner_route_id'] or 'none'}",
+                      f"- Decision: {trial['reason'] or 'pending'}"]
         checkpoint = state.get("round_checkpoint")
         if checkpoint:
             lines += ["", "## Round checkpoint", "",
@@ -553,6 +570,7 @@ class Runner:
             "last_blocker_key": "",
             "research_status": "exploring",
             "technique": "", "difference_from_prior": "", "discriminating_test": "", "next_task": "explore",
+            "candidate_proof": "",
         }
         self.state["routes"].append(route)
         self._save()
@@ -567,10 +585,9 @@ class Runner:
         return allowance - route["elapsed_seconds"]
 
     def _call(self, role: str, route: dict[str, Any], context: dict[str, Any], timeout: float | None) -> dict[str, Any]:
-        existing = next((c for c in self.state["calls"] if c["status"] == "received"), None)
+        existing = next((c for c in self.state["calls"] if c["status"] == "received" and
+                         c["role"] == role and c["route_id"] == route["id"]), None)
         if existing is not None:
-            if existing["role"] != role or existing["route_id"] != route["id"]:
-                raise ValueError(f"unapplied {existing['role']} receipt on route {existing['route_id']}")
             self._current_call_id = existing["id"]
             return self._read_receipt(existing)["result"]
         call = {"id": len(self.state["calls"]) + 1, "role": role, "route_id": route["id"],
@@ -715,7 +732,7 @@ class Runner:
             if claim is None or not raw["review_reason"].strip():
                 raise ValueError("pivotal review needs a known claim ID and a reason")
             budget = self._review_budget()
-            if target_id in self.state["reviewed_claim_ids"] or not budget:
+            if target_id in self.state["reviewed_claim_ids"] or not budget or self.state["pending_review"] is not None:
                 self._decide(route, "defer_review", "Pivotal claim already reviewed or optional-check budget unavailable; continue exploration.")
             else:
                 self.state["pending_review"] = {"claim_id": target_id, "route_id": route["id"], "output_limit": budget}
@@ -906,7 +923,7 @@ class Runner:
                 "latest_blocker": route["blocker"],
                 "latest_human_note": route["human_notes"][-1] if route["human_notes"] else "",
                 "latest_checker_finding": findings[-1] if findings else None,
-                "latest_candidate_proof": self.state["candidate_proof"] if findings else "",
+                "latest_candidate_proof": route["candidate_proof"] if findings else "",
                 "checkpoint_due": self.config.route_hours > 0 and route["elapsed_seconds"] >= self.config.route_hours * 1800 and not route["checkpoint_sent"],
                 "seconds_remaining": round(self._remaining(route)) if self.config.route_hours > 0 else None,
                 "instruction": "Prior-problem records are leads with explicit assumptions and status. Check applicability; unverified records are not established facts. A candidate must justify every material imported premise. Use existing claim IDs in claims.depends_on and existing obligation IDs in obligations.depends_on. New obligations are for exact subgoals. To load older text next round, request up to two IDs from other_attempts or prior_problem_index. A candidate_proof must be complete when status=candidate. Keep summaries concise. Report a precise blocker and action for unfinished work. If checkpoint_due, state the strongest result and cheapest next test.",
@@ -917,7 +934,8 @@ class Runner:
         target_claim = next((c for c in self.state["claims"] if c["id"] == claim_id), None)
         if claim_id and target_claim is None:
             raise ValueError("review target is unavailable")
-        context = {"task": "Independently check this candidate against the exact problem. Prior-run status is provenance, not acceptance authority; check the hypotheses and justification of every imported result used.",
+        context = {"route_id": route["id"],
+                   "task": "Independently check this candidate against the exact problem. Prior-run status is provenance, not acceptance authority; check the hypotheses and justification of every imported result used.",
                    "scope": "intermediate" if target_claim else "candidate",
                    "candidate_kind": self.state["candidate_kind"],
                    "candidate_proof": proof, "recorded_claims": self._relevant_claims(None, claim_id + " " + proof),
@@ -984,6 +1002,7 @@ class Runner:
             self.state["accepted_proof"] = proof
             self.state["accepted_kind"] = self.state["candidate_kind"]
             self.state["status"] = "model_checked"
+            self.state["pending_review"] = None
             route["research_status"] = "ready_for_review"
             self._decide(route, "review", "Independent model checker found no gap in the complete candidate.")
         elif not target_claim:
@@ -995,10 +1014,264 @@ class Runner:
         self._save()
         return verdict == "pass" and not target_claim
 
+    def _apply_solver_result(self, route: dict[str, Any], result: dict[str, Any], repairing: bool, reserved: bool = False) -> bool:
+        route_id = route["id"]
+        checkpoint = copy.deepcopy(self.state)
+        try:
+            if result.get("status") not in {"candidate", "progress", "stalled"}:
+                raise ValueError("invalid solver status")
+            for key in ("route_title", "summary", "candidate_proof", "obstruction", "next_test"):
+                if not isinstance(result.get(key), str):
+                    raise ValueError(f"invalid solver field: {key}")
+            if not reserved:
+                self.state["rounds"] += 1
+                route["rounds"] += 1
+            if repairing:
+                route["repair_rounds"] += 1
+            before_links = len(route["obligation_ids"])
+            new_obligations = self._add_obligations(result.get("obligations", []), route["id"])
+            new_claims = self._add_claims(result.get("claims"), route["id"])
+            focus_id = result.get("focus_obligation_id", "")
+            if not isinstance(focus_id, str) or focus_id and focus_id not in {o["id"] for o in self.state["obligations"]}:
+                raise ValueError("invalid focus obligation ID")
+            if focus_id:
+                if focus_id not in route["obligation_ids"]:
+                    route["obligation_ids"].append(focus_id)
+                route["focus_obligation_id"] = focus_id
+            new_route_links = len(route["obligation_ids"]) > before_links
+            requests = self._validate_requested(result.get("request_artifact_ids", []))
+            new_request = any(item not in route["seen_requested_artifact_ids"] for item in requests)
+            route["seen_requested_artifact_ids"].extend(item for item in requests if item not in route["seen_requested_artifact_ids"])
+            route["requested_artifact_ids"] = requests
+            blocker = self._parse_blocker(result, route)
+            before_research_claims = len(self.state["claims"])
+            research_progress = self._accept_research(result, route)
+            new_claims += len(self.state["claims"]) - before_research_claims
+        except ValueError as error:
+            self.state = checkpoint
+            route = next(r for r in self.state["routes"] if r["id"] == route_id)
+            self._finish_call(False)
+            self.state["status"] = "blocked"
+            self.state["error"] = f"invalid solver result: {error}"
+            self._save()
+            return False
+        route["title"] = result["route_title"] or route["title"]
+        route["summary"] = result["summary"]
+        route["obstruction"] = result["obstruction"]
+        route["next_test"] = blocker["next_test"] if blocker else result["next_test"]
+        old_blocker_key = route["last_blocker_key"]
+        blocker_key = _blocker_key(blocker) if blocker else ""
+        route["blocker"] = blocker
+        route["last_blocker_key"] = blocker_key
+        evidence_key = _digest(_normalized(blocker["evidence"])) if blocker and blocker["evidence"].strip() else ""
+        new_evidence = bool(evidence_key and evidence_key not in route["seen_evidence_keys"])
+        if new_evidence:
+            route["seen_evidence_keys"].append(evidence_key)
+        changed_blocker = bool(blocker and blocker_key != old_blocker_key and new_evidence and blocker["next_test"].strip())
+        route["last_material_progress"] = bool(new_claims or new_obligations or new_route_links or changed_blocker)
+        route["last_progress"] = bool(route["last_material_progress"] or new_request or research_progress)
+        route["research_status"] = "promising" if route["last_progress"] else "blocked"
+        if blocker and blocker["proposed_action"] != "none":
+            self._decide(route, blocker["proposed_action"], blocker["reason"] or blocker["failure_point"], blocker_key)
+        self._finish_call()
+        if route["status"] == "duplicate_route":
+            route["research_status"] = "abandoned"
+            self._sync_library()
+            self._save()
+            return True
+        if result["status"] == "candidate":
+            proof = result["candidate_proof"].strip()
+            if not proof:
+                self.state["status"] = "blocked"
+                self.state["error"] = "candidate response had no proof"
+                self._save()
+                return False
+            proof_digest = _digest(proof)
+            self.state["candidate_proof"] = proof
+            route["candidate_proof"] = proof
+            self.state["candidate_route_id"] = route["id"]
+            self.state["candidate_sha256"] = proof_digest
+            self.state["candidate_artifact_id"] = self._write_artifact("candidate", proof)
+            if self.state["candidate_artifact_id"] not in self.state["candidate_artifact_ids"]:
+                self.state["candidate_artifact_ids"].append(self.state["candidate_artifact_id"])
+            self._save()
+            if proof_digest not in self.state["checked_candidate_hashes"]:
+                try:
+                    if self._verify(route, proof):
+                        route["status"] = "completed"
+                        return False
+                except Exception as error:
+                    self.state["status"] = "blocked"
+                    self.state["error"] = f"checker validation failed: {type(error).__name__}: {error}"
+                    return False
+                route["last_progress"] = True  # A new checker finding creates a repair opportunity.
+                route["last_material_progress"] = True
+            else:
+                route["last_progress"] = bool(new_claims or new_obligations)
+        if blocker and blocker["proposed_action"] == "request_human_input":
+            route["status"] = "stalled"
+            route["research_status"] = "blocked"
+            self.state["status"] = "needs_human_input"
+        elif blocker and blocker["proposed_action"] == "switch_route" and result["status"] != "candidate":
+            route["status"] = "stalled"
+            route["research_status"] = "abandoned"
+        elif result["status"] == "stalled" or not route["last_progress"]:
+            route["status"] = "stalled"
+            route["research_status"] = "blocked"
+            self._decide(route, "switch_route", "No new obligation, argument, candidate finding, or evidence for the same blocker.", blocker_key)
+        self._sync_library()
+        self._save()
+        return True
+
+    def _parallel_worker(self, call_id: int, context: dict[str, Any], timeout: float | None) -> dict[str, Any]:
+        """Workers write distinct receipts; only the coordinator changes graph state."""
+        started = time.monotonic()
+        try:
+            result, usage = self.backend.call("solver", self.problem, context, max(1.0, timeout) if timeout is not None else None)
+            if not isinstance(result, dict):
+                raise ValueError("solver returned a non-object")
+            elapsed = time.monotonic() - started
+            receipt_text = json.dumps({"result": result, "usage": usage, "seconds": elapsed}, ensure_ascii=False, sort_keys=True)
+            path = self._receipt_path(call_id)
+            _atomic_text(path, receipt_text)
+            return {"status": "received", "seconds": elapsed, "usage": usage,
+                    "receipt": str(path.relative_to(self.output_dir)), "receipt_sha256": _digest(receipt_text)}
+        except Exception as error:
+            return {"status": "failed", "seconds": time.monotonic() - started,
+                    "error": f"{type(error).__name__}: {error}"}
+
+    def _start_parallel_trial(self, primary: dict[str, Any]) -> None:
+        alternative = self._open_route()
+        primary_context = self._solver_context(primary)
+        alternative_context = self._solver_context(alternative)
+        alternative_context["working_context"]["task"] = (
+            "Probe a genuinely different proof route toward the exact target. Contrast it with "
+            f"route {primary['id']} and test this blocker if useful: {primary['blocker']['failure_point']}. "
+            "Record a decisive result or a precise next test; do not merely restate the first route."
+        )
+        contexts = [primary_context, alternative_context]
+        routes = [primary, alternative]
+        trial = {"status": "running", "route_ids": [r["id"] for r in routes], "call_ids": [],
+                 "winner_route_id": None, "reason": "",
+                 "baseline_claims": {str(r["id"]): sum(c["route_id"] == r["id"] for c in self.state["claims"]) for r in routes},
+                 "baseline_obligations": {str(r["id"]): len(r["obligation_ids"]) for r in routes}}
+        self.state["parallel_trial"] = trial
+        jobs = []
+        for route, context in zip(routes, contexts):
+            call_id = len(self.state["calls"]) + 1
+            self.state["calls"].append({"id": call_id, "role": "solver", "route_id": route["id"],
+                                        "status": "pending", "seconds": 0.0, "usage": None,
+                                        "receipt": "", "scope": "solver"})
+            trial["call_ids"].append(call_id)
+            self.state["rounds"] += 1
+            route["rounds"] += 1
+            if context["working_context"]["checkpoint_due"]:
+                route["checkpoint_sent"] = True
+            timeout = min(self._remaining(route), self.config.max_call_minutes * 60) if self.config.max_call_minutes > 0 else (
+                self._remaining(route) if self.config.route_hours > 0 else None)
+            jobs.append((call_id, context, timeout))
+        self._decide(primary, "parallel_trial", f"One concurrent solver call for routes {primary['id']} and {alternative['id']}; both count against the shared round cap.")
+        self._save()
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            futures = {pool.submit(self._parallel_worker, *job): job[0] for job in jobs}
+            for future in as_completed(futures):
+                call_id = futures[future]
+                outcome = future.result()
+                call = next(c for c in self.state["calls"] if c["id"] == call_id)
+                call.update(outcome)
+                route = next(r for r in routes if r["id"] == call["route_id"])
+                route["elapsed_seconds"] += outcome["seconds"]
+                self._save()
+
+    def _finish_parallel_trial(self) -> None:
+        trial = self.state["parallel_trial"]
+        calls = [next(c for c in self.state["calls"] if c["id"] == call_id) for call_id in trial["call_ids"]]
+        # Commit paid-for partial results before checking any complete candidate.
+        calls.sort(key=lambda call: self._read_receipt(call)["result"].get("status") == "candidate"
+                   if call["status"] == "received" else False)
+        for call in calls:
+            route = next(r for r in self.state["routes"] if r["id"] == call["route_id"])
+            if call["status"] == "received":
+                self._current_call_id = call["id"]
+                if not self._apply_solver_result(route, self._read_receipt(call)["result"], False, reserved=True):
+                    if self.state["status"] == "model_checked":
+                        self._close_parallel_after_proof()
+                        self._save()
+                    return
+            elif call["status"] in {"failed", "execution_unknown", "pending"}:
+                if call["status"] == "pending":
+                    call["status"] = "execution_unknown"
+                route["status"] = "stalled"
+                route["research_status"] = "blocked"
+                self._decide(route, "parallel_call_failed", call.get("error", call["status"]))
+                self._save()
+        routes = [next(r for r in self.state["routes"] if r["id"] == route_id) for route_id in trial["route_ids"]]
+        review = self.state["pending_review"]
+        if review and self.state["status"] == "running":
+            review_route = next(r for r in routes if r["id"] == review["route_id"])
+            claim = next(c for c in self.state["claims"] if c["id"] == review["claim_id"])
+            try:
+                self._verify(review_route, claim["argument"], claim["id"], review["output_limit"])
+            except Exception as error:
+                self.state["status"] = "blocked"
+                self.state["error"] = f"parallel trial review failed: {type(error).__name__}: {error}"
+                self._save()
+                return
+        if all(r["status"] != "active" for r in routes):
+            trial.update(status="complete", reason="Neither route remained actionable.")
+            if all(c["status"] in {"failed", "execution_unknown"} for c in calls):
+                self.state["status"] = "blocked"
+                self.state["error"] = "Both parallel solver calls failed or have unknown execution status."
+            self._save()
+            return
+        obligation_status = {o["id"]: o["status"] for o in self.state["obligations"]}
+        def score(route: dict[str, Any]) -> tuple[int, int, int, int, int, int, int]:
+            checked = sum(c["route_id"] == route["id"] and c.get("review_status") == "model_checked" for c in self.state["claims"])
+            route_claims = [c for c in self.state["claims"] if c["route_id"] == route["id"]]
+            new_claims = route_claims[trial["baseline_claims"][str(route["id"])]:]
+            claims = sum(not c.get("stale_reason") for c in new_claims)
+            new_obligations = route["obligation_ids"][trial["baseline_obligations"][str(route["id"])]:]
+            obligations = sum(obligation_status.get(o) != "disputed" for o in new_obligations)
+            disputed = sum(obligation_status.get(o) == "disputed" for o in route["obligation_ids"])
+            return (int(route["status"] == "active"), -disputed, checked, int(bool(route["next_test"].strip())),
+                    int(route["last_material_progress"]), min(claims, 2), min(obligations, 2))
+        winner = max(routes, key=score)  # On a tie, retain the original primary route.
+        loser = next(r for r in routes if r["id"] != winner["id"])
+        winning_score, losing_score = score(winner), score(loser)
+        if loser["status"] == "active":
+            loser["status"] = "parked"
+            loser["research_status"] = "promising" if loser["last_material_progress"] else "blocked"
+        if self.state["status"] == "needs_human_input" and winner["status"] == "active":
+            self.state["status"] = "running"
+        reason = (f"Route {winner['id']} remains active; scores {winning_score} versus {losing_score} "
+                  "(actionable, negative disputed obligations, checked claims, next test, material progress, new claims, new obligations). "
+                  "The other route is saved for review.")
+        trial.update(status="complete", winner_route_id=winner["id"], reason=reason)
+        self._decide(winner, "parallel_select", reason)
+        self._save()
+
+    def _close_parallel_after_proof(self) -> None:
+        trial = self.state["parallel_trial"]
+        if not trial or trial["status"] != "running" or self.state["status"] != "model_checked":
+            return
+        for call in self.state["calls"]:
+            if call["id"] in trial["call_ids"] and call["status"] == "received":
+                call["status"] = "unused"
+        for route in self.state["routes"]:
+            if route["id"] != self.state["candidate_route_id"] and route["status"] == "active":
+                route["status"] = "parked"
+        trial.update(status="complete", winner_route_id=self.state["candidate_route_id"],
+                     reason="Complete candidate passed the model checker.")
+
     def run(self) -> dict[str, Any]:
+        trial = self.state["parallel_trial"]
+        if trial and trial["status"] == "running" and self.state["status"] == "model_checked":
+            self._close_parallel_after_proof()
+        elif trial and trial["status"] == "running" and self.state["status"] == "needs_human_input":
+            self.state["status"] = "running"  # Apply the other paid-for route before requesting input.
         if self.state["status"] in {"model_checked", "unsolved", "round_limit", "checkpoint_stopped", "needs_human_input"}:
             if self.state["status"] == "model_checked":
-                route = self._active_route()
+                route = next((r for r in self.state["routes"] if r["id"] == self.state["candidate_route_id"]), None) if self.state["candidate_route_id"] else self._active_route()
                 if route is not None:
                     route["status"] = "completed"
                     route["research_status"] = "ready_for_review"
@@ -1023,7 +1296,7 @@ class Runner:
             # resumed run, check that candidate before buying another solver call.
             pending = self.state["candidate_proof"]
             if pending and self.state["candidate_sha256"] not in self.state["checked_candidate_hashes"]:
-                route = self._active_route()
+                route = next((r for r in self.state["routes"] if r["id"] == self.state["candidate_route_id"]), None) if self.state["candidate_route_id"] else self._active_route()
                 if route is None:
                     self.state["status"] = "blocked"
                     self.state["error"] = "pending candidate has no active route"
@@ -1038,6 +1311,11 @@ class Runner:
                     break
                 route["last_progress"] = True
                 route["last_material_progress"] = True
+            if self.state["parallel_trial"] and self.state["parallel_trial"]["status"] == "running":
+                self._finish_parallel_trial()
+                if self.state["status"] != "running":
+                    break
+                continue
             if (self.config.checkpoint_round and self.state["rounds"] >= self.config.checkpoint_round
                     and self.state["round_checkpoint"] is None):
                 self._round_checkpoint()
@@ -1055,6 +1333,13 @@ class Runner:
                 self._save()
                 continue
             if route is None:
+                parked = next((r for r in self.state["routes"] if r["status"] == "parked" and r["next_test"].strip()), None)
+                if parked is not None:
+                    parked["status"] = "active"
+                    parked["research_status"] = "exploring"
+                    self._decide(parked, "resume_alternative", "The selected route stopped; continue the saved alternative's next test.")
+                    self._save()
+                    continue
                 if len(self.state["routes"]) >= self.config.max_routes:
                     self.state["status"] = "unsolved"
                     break
@@ -1070,6 +1355,17 @@ class Runner:
                     self._decide(route, "switch_route", "Route time budget exhausted without a justified extension.")
                     self._save()
                     continue
+            if (self.config.parallel_routes and self.state["parallel_trial"] is None and
+                    len(self.state["routes"]) == 1 and route["rounds"] >= 1 and
+                    route["blocker"] and route["next_test"].strip() and
+                    self.state["rounds"] + 2 <= self.config.max_rounds and
+                    (not self.config.checkpoint_round or self.state["rounds"] >= self.config.checkpoint_round or
+                     self.state["rounds"] + 2 <= self.config.checkpoint_round) and
+                    not self.state["pending_review"] and
+                    not any(j["status"] == "queued" for j in self.state["experiments"]) and
+                    not any(f["route_id"] == route["id"] and f.get("scope", "candidate") == "candidate" for f in self.state["findings"])):
+                self._start_parallel_trial(route)
+                continue
             context = self._solver_context(route)
             repairing = context["working_context"]["repairs_remaining"] is not None
             if context["working_context"]["checkpoint_due"]:
@@ -1082,108 +1378,9 @@ class Runner:
                     self.state["status"] = "blocked"
                     self.state["error"] = f"solver receipt failed: {type(error).__name__}: {error}"
                 break
-            checkpoint = copy.deepcopy(self.state)
-            try:
-                if result.get("status") not in {"candidate", "progress", "stalled"}:
-                    raise ValueError("invalid solver status")
-                for key in ("route_title", "summary", "candidate_proof", "obstruction", "next_test"):
-                    if not isinstance(result.get(key), str):
-                        raise ValueError(f"invalid solver field: {key}")
-                self.state["rounds"] += 1
-                route["rounds"] += 1
-                if repairing:
-                    route["repair_rounds"] += 1
-                before_links = len(route["obligation_ids"])
-                new_obligations = self._add_obligations(result.get("obligations", []), route["id"])
-                new_claims = self._add_claims(result.get("claims"), route["id"])
-                focus_id = result.get("focus_obligation_id", "")
-                if not isinstance(focus_id, str) or focus_id and focus_id not in {o["id"] for o in self.state["obligations"]}:
-                    raise ValueError("invalid focus obligation ID")
-                if focus_id:
-                    if focus_id not in route["obligation_ids"]:
-                        route["obligation_ids"].append(focus_id)
-                    route["focus_obligation_id"] = focus_id
-                new_route_links = len(route["obligation_ids"]) > before_links
-                requests = self._validate_requested(result.get("request_artifact_ids", []))
-                new_request = any(item not in route["seen_requested_artifact_ids"] for item in requests)
-                route["seen_requested_artifact_ids"].extend(item for item in requests if item not in route["seen_requested_artifact_ids"])
-                route["requested_artifact_ids"] = requests
-                blocker = self._parse_blocker(result, route)
-                before_research_claims = len(self.state["claims"])
-                research_progress = self._accept_research(result, route)
-                new_claims += len(self.state["claims"]) - before_research_claims
-            except ValueError as error:
-                self.state = checkpoint
-                route = self._active_route()
-                self._finish_call(False)
-                self.state["status"] = "blocked"
-                self.state["error"] = f"invalid solver result: {error}"
-                self._save()
+            if not self._apply_solver_result(route, result, repairing):
                 break
-            route["title"] = result["route_title"] or route["title"]
-            route["summary"] = result["summary"]
-            route["obstruction"] = result["obstruction"]
-            route["next_test"] = blocker["next_test"] if blocker else result["next_test"]
-            old_blocker_key = route["last_blocker_key"]
-            blocker_key = _blocker_key(blocker) if blocker else ""
-            route["blocker"] = blocker
-            route["last_blocker_key"] = blocker_key
-            evidence_key = _digest(_normalized(blocker["evidence"])) if blocker and blocker["evidence"].strip() else ""
-            new_evidence = bool(evidence_key and evidence_key not in route["seen_evidence_keys"])
-            if new_evidence:
-                route["seen_evidence_keys"].append(evidence_key)
-            changed_blocker = bool(blocker and blocker_key != old_blocker_key and new_evidence and blocker["next_test"].strip())
-            route["last_material_progress"] = bool(new_claims or new_obligations or new_route_links or changed_blocker)
-            route["last_progress"] = bool(route["last_material_progress"] or new_request or research_progress)
-            route["research_status"] = "promising" if route["last_progress"] else "blocked"
-            if blocker and blocker["proposed_action"] != "none":
-                self._decide(route, blocker["proposed_action"], blocker["reason"] or blocker["failure_point"], blocker_key)
-            self._finish_call()
-            if route["status"] == "duplicate_route":
-                route["research_status"] = "abandoned"
-                self._sync_library()
-                self._save()
-                continue
-            if result["status"] == "candidate":
-                proof = result["candidate_proof"].strip()
-                if not proof:
-                    self.state["status"] = "blocked"
-                    self.state["error"] = "candidate response had no proof"
-                    self._save()
-                    break
-                proof_digest = _digest(proof)
-                self.state["candidate_proof"] = proof
-                self.state["candidate_sha256"] = proof_digest
-                self.state["candidate_artifact_id"] = self._write_artifact("candidate", proof)
-                if self.state["candidate_artifact_id"] not in self.state["candidate_artifact_ids"]:
-                    self.state["candidate_artifact_ids"].append(self.state["candidate_artifact_id"])
-                self._save()
-                if proof_digest not in self.state["checked_candidate_hashes"]:
-                    try:
-                        if self._verify(route, proof):
-                            route["status"] = "completed"
-                            break
-                    except Exception as error:
-                        self.state["status"] = "blocked"
-                        self.state["error"] = f"checker validation failed: {type(error).__name__}: {error}"
-                        break
-                    route["last_progress"] = True  # A new checker finding creates a repair opportunity.
-                    route["last_material_progress"] = True
-                else:
-                    route["last_progress"] = bool(new_claims or new_obligations)
-            if blocker and blocker["proposed_action"] == "request_human_input":
-                route["status"] = "stalled"
-                route["research_status"] = "blocked"
-                self.state["status"] = "needs_human_input"
-            elif blocker and blocker["proposed_action"] == "switch_route" and result["status"] != "candidate":
-                route["status"] = "stalled"
-                route["research_status"] = "abandoned"
-            elif result["status"] == "stalled" or not route["last_progress"]:
-                route["status"] = "stalled"
-                route["research_status"] = "blocked"
-                self._decide(route, "switch_route", "No new obligation, argument, candidate finding, or evidence for the same blocker.", blocker_key)
-            self._sync_library()
-            self._save()
+        self._close_parallel_after_proof()
         self._sync_library()
         self._save()
         return self.state

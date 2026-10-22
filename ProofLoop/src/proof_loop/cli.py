@@ -25,6 +25,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--extension-minutes", type=float, default=30.0)
     parser.add_argument("--max-call-minutes", type=float, default=30.0, help="Per-model-call timeout; 0 disables it")
     parser.add_argument("--max-routes", type=int, default=2)
+    parser.add_argument("--parallel-routes", action="store_true", help="After a concrete blocker, try two distinct routes concurrently for one solver call each")
     parser.add_argument("--max-rounds", type=int, help="Solver round cap (default: 8, or 10 with --open-problem)")
     parser.add_argument("--open-problem", action="store_true", help="Use a 10-round cap and a review checkpoint after round 6")
     parser.add_argument("--max-repairs-per-route", type=int, default=1, help="Solver revisions after a checker rejection on each route (default: 1)")
@@ -53,6 +54,7 @@ def main(argv: list[str] | None = None) -> int:
         extension_minutes=args.extension_minutes,
         max_call_minutes=args.max_call_minutes,
         max_routes=args.max_routes,
+        parallel_routes=args.parallel_routes,
         max_rounds=max_rounds,
         checkpoint_round=6 if args.open_problem else 0,
         max_repairs_per_route=args.max_repairs_per_route,

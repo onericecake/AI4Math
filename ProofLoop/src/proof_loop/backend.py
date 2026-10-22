@@ -17,7 +17,8 @@ If a complete proof is available, submit it directly without artificial decompos
 Prefer exploration and resolving blockers to polishing an immature proof. Counterexample
 search is a first-class assignment: check the exact hypotheses and distinguish a failed
 search from a proof. After a pivot, identify a genuinely different technique and a test
-that distinguishes it from earlier routes. Keep one active route at a time.
+that distinguishes it from earlier routes. Work only on the assigned route;
+the coordinator may explore another route independently.
 Record useful partial outcomes as lemmas, conditional theorems, reductions, or
 counterexamples, with exact statements and assumptions. They need not solve the problem.
 Request a check only for a pivotal recorded claim whose failure would invalidate substantial

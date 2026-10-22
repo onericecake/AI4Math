@@ -1,13 +1,13 @@
 # ProofLoop
 
-ProofLoop is a local agent for sustained work on mathematical problems. It asks a solver to pursue one proof route at a time, records exact obligations and partial arguments, and sends complete candidates to a separate model checker. Its purpose is to make each call build on recorded work and to give unsuccessful routes a clear reason to continue, change direction, or stop.
+ProofLoop is a local agent for sustained work on mathematical problems. It normally asks a solver to pursue one proof route at a time, records exact obligations and partial arguments, and sends complete candidates to a separate model checker. Its purpose is to make each call build on recorded work and to give unsuccessful routes a clear reason to continue, change direction, or stop.
 
 A checker pass is labeled **model checked**. It means the checker found no gap in an informal argument; it is not a formal proof certificate. Human mathematical review remains necessary.
 
 ## How the workflow runs
 
 1. **Fix the target.** A Markdown problem file supplies the statement, definitions, permitted assumptions, and what would count as a solution. ProofLoop keeps that target unchanged. A weaker result is recorded as a partial result with its extra assumptions.
-2. **Explore a route.** Each solver round either submits a complete candidate or records an exact subgoal, an argument attempt, a blocker, and a concrete next test. One route is active at a time. A new route must use a genuinely different technique.
+2. **Explore a route.** Each solver round either submits a complete candidate or records an exact subgoal, an argument attempt, a blocker, and a concrete next test. One route is active at a time by default. A new route must use a genuinely different technique.
 3. **Reuse recorded work.** Obligations have IDs; different arguments for the same statement remain separate versions. Later calls receive a small index and the arguments relevant to the current obligation. Full saved artifacts can be requested when needed.
 4. **Check selectively.** A complete candidate always gets an independent checker call. The solver may request review of a pivotal intermediate claim; the round-6 checkpoint can also select one. A gap or counterexample becomes a targeted repair or a route decision; a failed attempt alone does not disprove its statement.
 5. **Stop with a usable record.** The run ends on a checked candidate, a budget or route limit, a lack of progress, or a request for human input. The report retains the strongest partial results and unresolved obligations.
@@ -40,6 +40,8 @@ proof-loop examples/problem.md \
 
 The ordinary budget is **8 solver rounds**, up to **2 routes**, a **2-hour route clock**, a **30-minute call timeout**, and **one repair round per route** after a rejected complete candidate. Change these independently with `--max-rounds`, `--max-routes`, `--route-hours`, `--max-call-minutes`, and `--max-repairs-per-route`.
 
+Add `--parallel-routes` to try a bounded second route after the first route records a concrete blocker and next test. ProofLoop runs one solver call for each route concurrently, saves both receipts, then compares their recorded progress and continues the selected route. Both calls count against the same global round cap. A complete candidate still goes to the checker; the other route remains in the saved graph and can resume if the selected route later stops. This option may reduce elapsed time when the backend accepts concurrent calls, but it can use more tokens than continuing only the first route. It requires at least two routes and three rounds.
+
 For a difficult open problem, write its exact statement in your own Markdown file and add `--open-problem`:
 
 ```bash
@@ -64,7 +66,7 @@ Each output directory contains:
 | `research-state.md` and `research-state.json` | Short navigation summaries regenerated from state. |
 | `artifacts/` | Immutable argument, candidate, and call artifacts. |
 
-Use the same command with `--resume` after interruption. The problem text and settings must match the saved run. A received response is applied without repeating its model call. If a call was interrupted before its receipt was saved, it is marked `execution_unknown`; its token cost may be unavailable.
+Use the same command with `--resume` after interruption. The problem text and settings must match the saved run. A received response, including either side of a two-route trial, is applied without repeating its model call. If a call was interrupted before its receipt was saved, it is marked `execution_unknown`; its token cost may be unavailable.
 
 To share leads across different problems, give each run a separate output directory and pass the same `--library-dir runs/shared-library`. Imported statements retain their assumptions, argument, dependencies, and source. They remain leads until checked for the new problem.
 
