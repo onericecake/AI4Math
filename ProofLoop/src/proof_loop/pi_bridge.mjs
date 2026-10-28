@@ -31,6 +31,7 @@ try {
   const response = await models.complete(model, context, {
     apiKey: token,
     reasoningEffort: request.effort,
+    // Advisory for the installed Codex provider: its request builder omits this field.
     maxTokens: request.max_output_tokens,
     ...(request.timeout_ms > 0 ? { timeoutMs: request.timeout_ms } : {}),
     transport: "sse",

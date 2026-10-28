@@ -82,7 +82,7 @@ class PiBackend:
             "token": token,
             "model": self.model,
             "effort": self.efforts[role],
-            "max_output_tokens": min(self.max_output_tokens, context.get("review_output_limit", self.max_output_tokens)),
+            "max_output_tokens": min(self.max_output_tokens, context.get("solver_output_limit" if role == "solver" else "review_output_limit", self.max_output_tokens)),
             "timeout_ms": max(1000, int(timeout_seconds * 1000) - 2000) if timeout_seconds is not None else 0,
             "session_id": "proof-loop-" + hashlib.sha256(f"{self.model}\n{role}\n{problem}\n{context.get('stable_context', {}).get('route_id', context.get('route_id', ''))}".encode("utf-8")).hexdigest()[:32],
             "instructions": SOLVER_INSTRUCTIONS if role == "solver" else CHECKER_INSTRUCTIONS,

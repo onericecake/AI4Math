@@ -38,6 +38,7 @@ class Config:
     max_repairs_per_route: int = 1
     pivot_after: int = 2
     max_output_tokens: int = 25000
+    initial_round_tokens: int = 8000
     library_limit: int = 5
     exploration_share: float = 0.85
     max_lemma_checks: int = 2
@@ -62,6 +63,8 @@ class Config:
             raise ValueError("repair limit cannot be negative")
         if self.pivot_after < 0:
             raise ValueError("pivot-after must be nonnegative")
+        if self.initial_round_tokens < 0:
+            raise ValueError("initial round token allowance must be nonnegative")
         if self.library_limit < 0:
             raise ValueError("library limit cannot be negative")
         if not 0.5 <= self.exploration_share <= 1 or self.max_lemma_checks < 0:
@@ -148,7 +151,7 @@ class Runner:
                 raise ValueError("unsupported checkpoint schema")
             self.state["config"].setdefault("backend", "api")
             self.state["config"].setdefault("max_repairs_per_route", 1)
-            for key in ("exploration_share", "max_lemma_checks", "tools", "max_experiments", "experiment_seconds", "checkpoint_round", "parallel_routes", "pivot_after"):
+            for key in ("exploration_share", "max_lemma_checks", "tools", "max_experiments", "experiment_seconds", "checkpoint_round", "parallel_routes", "pivot_after", "initial_round_tokens"):
                 self.state["config"].setdefault(key, asdict(Config(model=config.model))[key])
             for route in self.state["routes"]:
                 if "repair_rounds" not in route:
@@ -172,6 +175,11 @@ class Runner:
                 route.setdefault("last_blocker_key", "")
                 route.setdefault("low_progress_rounds", 0)
                 route.setdefault("last_decisive_progress", False)
+                route.setdefault("last_assignment", None)
+                route.setdefault("last_progress_evidence", None)
+                route.setdefault("credited_experiment_keys", [])
+                route.setdefault("next_obligation_id", None)
+                route.setdefault("last_reused_claim_ids", [])
             prior_claim_obligations = {c["id"]: c.get("obligation_id") for c in self.state["claims"]}
             for claim in self.state["claims"]:
                 claim.setdefault("artifact_id", self._artifact_id("claim", claim["argument"]))
@@ -213,6 +221,8 @@ class Runner:
                     else:
                         call["status"] = "execution_unknown"
             self.state["schema_version"] = 4
+            for obligation in self.state["obligations"]:
+                obligation.setdefault("reported_resolution_claim_ids", [])
             if self.state["problem_sha256"] != _digest(self.problem) or self.state["config"] != asdict(config):
                 raise ValueError("problem or configuration changed since the checkpoint")
             if self.state.get("library_dir") != self.library_path:
@@ -330,7 +340,8 @@ class Runner:
             obligation = {"id": f"o{len(self.state['obligations']) + 1}", "key": key,
                           "statement": statement.strip(), "assumptions": assumptions,
                           "depends_on": list(depends_on), "dependency_sets": [list(depends_on)],
-                          "status": "open", "attempt_ids": [], "evidence_ids": []}
+                          "status": "open", "attempt_ids": [], "evidence_ids": [],
+                          "reported_resolution_claim_ids": []}
             self.state["obligations"].append(obligation)
         elif depends_on not in obligation["dependency_sets"]:
             obligation["dependency_sets"].append(list(depends_on))
@@ -357,6 +368,26 @@ class Runner:
             self._ensure_obligation(item["statement"], assumptions, route_id, dependencies)
             added += int(len(route["obligation_ids"]) > before)
         return added
+
+    def _next_target_id(self, result: dict[str, Any]) -> str | None:
+        """Resolve an explicit next target after submitted obligations are saved."""
+        raw = result.get("next_target")
+        if raw is None:  # Older saved receipts retain their original assignment behavior.
+            return None
+        if not isinstance(raw, dict) or not isinstance(raw.get("id"), str) or type(raw.get("obligation_index")) is not int:
+            raise ValueError("invalid next target")
+        target_id, index = raw["id"], raw["obligation_index"]
+        if index < -1 or target_id == "target" or (target_id and index >= 0):
+            raise ValueError("next target must name one existing or submitted obligation")
+        if index >= 0:
+            submitted = result.get("obligations", [])
+            if index >= len(submitted):
+                raise ValueError("next target obligation index is unavailable")
+            key = _statement_key(submitted[index]["statement"], submitted[index]["assumptions"])
+            return next(o["id"] for o in self.state["obligations"] if o["key"] == key)
+        if target_id and target_id not in {o["id"] for o in self.state["obligations"]}:
+            raise ValueError("next target obligation ID is unavailable")
+        return target_id or "target"
 
     def _sync_library(self) -> None:
         if self.library is None:
@@ -455,6 +486,13 @@ class Runner:
         call_states = [f"{status}={sum(c['status'] == status for c in state['calls'])}" for status in
                        ("pending", "received", "applied", "unused", "failed", "execution_unknown")]
         lines.append(f"- call states: {', '.join(call_states)}")
+        repeated_calls = [c for c in state["calls"] if c.get("repeated_claim_ids")]
+        repeated_outputs = [c["usage"].get("output_tokens") for c in repeated_calls if c.get("usage")]
+        lines.append(f"- solver calls repeating an exact statement and assumptions: {len(repeated_calls)}")
+        if repeated_calls:
+            lines.append(f"- reported output on those calls: {sum(n for n in repeated_outputs if n is not None)} tokens across {len(repeated_outputs)} available receipts; each response may also contain other work")
+        lines.append(f"- cross-route claim reuse events: {sum(d['action'] == 'reuse_claim' for d in state['decisions'])}")
+        lines.append(f"- exact reviewed assignments skipped: {sum(d['action'] == 'reuse_checked_claim' for d in state['decisions'])}")
         trial = state.get("parallel_trial")
         if trial:
             lines += ["", "## Two-route trial", "",
@@ -470,6 +508,15 @@ class Runner:
             lines.append(f"- Route {route['id']} ({route['research_status']}; {route['status']}, {route['elapsed_seconds']:.1f}s, repairs {route['repair_rounds']}/{self.config.max_repairs_per_route}): {route['title'] or 'untitled'} — {route['summary']}")
             if self.config.pivot_after:
                 lines.append(f"  - Low-yield rounds: {route['low_progress_rounds']}/{self.config.pivot_after}")
+            if route["last_assignment"]:
+                lines.append(f"  - Last assignment ({route['last_assignment']['output_tokens']} output tokens): {route['last_assignment']['question']}")
+            if route["last_progress_evidence"]:
+                lines.append(f"  - Progress credited: {route['last_progress_evidence']['credited']}. {route['last_progress_evidence']['reason']}")
+                lines.append(f"  - Reported resolution: {route['last_progress_evidence'].get('resolution', 'unknown')}")
+            if route.get("next_obligation_id"):
+                lines.append(f"  - Next target: {route['next_obligation_id']}")
+            if route.get("last_reused_claim_ids"):
+                lines.append(f"  - Reused claims: {', '.join(route['last_reused_claim_ids'])}")
             if route["obstruction"]:
                 lines.append(f"  - Obstruction: {route['obstruction']}")
             if route["obligation_ids"]:
@@ -485,6 +532,8 @@ class Runner:
             lines.append(f"- **{obligation['id']}** ({obligation['status']}): {obligation['statement']}")
             dependency_text = " or ".join("{" + ", ".join(group) + "}" for group in obligation["dependency_sets"])
             lines.append(f"  - Assumptions: {'; '.join(obligation['assumptions']) or 'None stated'}; dependency options: {dependency_text}; argument attempts: {', '.join(obligation['attempt_ids']) or 'None'}")
+            if obligation.get("reported_resolution_claim_ids"):
+                lines.append(f"  - Solver reported resolution: {', '.join(obligation['reported_resolution_claim_ids'])}; review its exact argument and status before relying on it.")
         if not state["obligations"]:
             lines.append("No obligations recorded; a direct complete proof may need none.")
         lines += ["", "## Decisions", ""]
@@ -568,6 +617,8 @@ class Runner:
             "prior_routes": prior_routes,
             "obligation_ids": [],
             "focus_obligation_id": "",
+            "next_obligation_id": None,
+            "last_reused_claim_ids": [],
             "requested_artifact_ids": [],
             "seen_requested_artifact_ids": [],
             "seen_evidence_keys": [],
@@ -577,6 +628,9 @@ class Runner:
             "last_blocker_key": "",
             "low_progress_rounds": 0,
             "last_decisive_progress": False,
+            "last_assignment": None,
+            "last_progress_evidence": None,
+            "credited_experiment_keys": [],
             "research_status": "exploring",
             "technique": "", "difference_from_prior": "", "discriminating_test": "", "next_task": "explore",
             "candidate_proof": "",
@@ -600,7 +654,8 @@ class Runner:
             self._current_call_id = existing["id"]
             return self._read_receipt(existing)["result"]
         call = {"id": len(self.state["calls"]) + 1, "role": role, "route_id": route["id"],
-                "status": "pending", "seconds": 0.0, "usage": None, "receipt": "", "scope": context.get("scope", role)}
+                "status": "pending", "seconds": 0.0, "usage": None, "receipt": "", "scope": context.get("scope", role),
+                "assignment": copy.deepcopy(context.get("working_context", {}).get("assignment"))}
         self.state["calls"].append(call)
         self._save()
         started = time.monotonic()
@@ -636,6 +691,16 @@ class Runner:
     def _decide(self, route: dict[str, Any], action: str, reason: str, blocker_key: str = "") -> None:
         self.state["decisions"].append({"route_id": route["id"], "round": self.state["rounds"],
                                         "action": action, "reason": reason, "blocker_key": blocker_key})
+
+    def _pivot_if_needed(self, route: dict[str, Any]) -> None:
+        review = self.state["pending_review"]
+        if (route["status"] == "active" and self.config.pivot_after and
+                route["low_progress_rounds"] >= self.config.pivot_after and
+                not (review and review["route_id"] == route["id"])):
+            route["status"] = "stalled"
+            route["research_status"] = "blocked"
+            self._decide(route, "pivot_low_yield",
+                         f"{route['low_progress_rounds']} rounds added no new evidence linked to the assigned question; switch routes or stop.")
 
     def _review_budget(self) -> int:
         """Soft output-token allocation for optional checks; final checks are mandatory."""
@@ -832,10 +897,71 @@ class Runner:
 
     def _focus_obligation(self, route: dict[str, Any]) -> dict[str, Any] | None:
         by_id = {o["id"]: o for o in self.state["obligations"]}
-        chosen = by_id.get(route["focus_obligation_id"])
+        requested = route.get("next_obligation_id")
+        if requested == "target":
+            return None
+        chosen = by_id.get(requested or route["focus_obligation_id"])
         if chosen and chosen["id"] in route["obligation_ids"] and chosen["status"] != "disputed":
             return chosen
-        return next((by_id[i] for i in route["obligation_ids"] if by_id[i]["status"] != "disputed"), None)
+        return next((by_id[i] for i in route["obligation_ids"] if by_id[i]["status"] == "open"), None)
+
+    def _shared_evidence(self, route: dict[str, Any], focus: dict[str, Any] | None, question: str) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+        """A small cross-route index; similarity proposes leads, never equivalence."""
+        common = {"the", "a", "an", "and", "or", "of", "to", "for", "in", "on", "with", "that", "this", "is", "are", "every", "any"}
+        def terms(value: str) -> set[str]:
+            return set(re.findall(r"[^\W_]+", value.casefold())) - common
+        query = terms(question + " " + (focus["statement"] if focus else ""))
+        target_id = focus["id"] if focus else "target"
+        candidates = []
+        for claim in self.state["claims"]:
+            if claim["route_id"] == route["id"] or not self._usable_progress_claim(claim):
+                continue
+            source = next(r for r in self.state["routes"] if r["id"] == claim["route_id"])
+            overlap = len(query & terms(claim["statement"])) / max(1, len(query))
+            route_overlap = len(query & terms(source["summary"])) / max(1, len(query))
+            direct = claim["obligation_id"] == target_id or claim.get("progress_target_id") == target_id
+            score = (int(direct), overlap + route_overlap / 5, int(claim.get("review_status") == "model_checked"), int(claim["id"][1:]))
+            if direct or overlap >= 0.10 or route_overlap >= 0.20:
+                candidates.append((score, claim))
+        candidates.sort(key=lambda pair: pair[0], reverse=True)
+        results = []
+        for _, claim in candidates[:2]:
+            item = {k: claim[k] for k in ("id", "route_id", "statement", "assumptions", "artifact_id")}
+            item["review_status"] = claim.get("review_status", "unverified")
+            item["reported_resolution_of"] = claim.get("reported_resolution_of", "")
+            if len(claim["argument"]) <= 6000:
+                item["argument"] = claim["argument"]
+            results.append(item)
+        blockers = []
+        for other in reversed(self.state["routes"]):
+            if other["id"] == route["id"] or not other.get("blocker"):
+                continue
+            blocker = other["blocker"]
+            if len(query & terms(blocker["failure_point"] + " " + blocker["next_test"])) >= 2:
+                blockers.append({"route_id": other["id"], **blocker})
+            if blockers:
+                break
+        return results, blockers
+
+    def _reuse_checked_exact(self, route: dict[str, Any]) -> bool:
+        """Advance past an exactly matching, previously reviewed cross-route claim."""
+        focus = self._focus_obligation(route)
+        if focus is None or any(f["route_id"] == route["id"] and f.get("scope", "candidate") == "candidate" for f in self.state["findings"]):
+            return False
+        claim = next((c for c in reversed(self.state["claims"]) if c["route_id"] != route["id"] and
+                      c["obligation_id"] == focus["id"] and c.get("review_status") == "model_checked" and
+                      self._usable_progress_claim(c)), None)
+        if claim is None:
+            return False
+        route["last_reused_claim_ids"] = [claim["id"]]
+        route["next_obligation_id"] = "target"
+        route["focus_obligation_id"] = ""
+        route["next_test"] = f"Use reviewed claim {claim['id']} for its exact statement. Identify the next unresolved obligation toward the original target."
+        route["blocker"] = None
+        route["last_decisive_progress"] = False
+        self._decide(route, "reuse_checked_claim", f"Skipped repeated work on {focus['id']}; use {claim['id']} with its exact assumptions.")
+        self._save()
+        return True
 
     def _relevant_claims(self, obligation: dict[str, Any] | None, proof: str = "") -> list[dict[str, Any]]:
         by_id = {c["id"]: c for c in self.state["claims"]}
@@ -905,11 +1031,30 @@ class Runner:
             task = "Try to falsify the focused obligation or the exact original conjecture. Check all hypotheses on each witness. A failed search proves nothing; report search bounds, evidence and the next discriminating test."
         elif assignment == "prove":
             task = "Close the focused obligation (or the original target if none is selected) using explicit assumptions and relevant supporting arguments. If blocked, state the precise missing implication and the cheapest way to test it."
+        target_id = "target" if repairing or focus is None else focus["id"]
+        question = (findings[-1]["repair_hint"].strip() or findings[-1]["finding"]) if repairing else (
+            route["next_test"].strip() or
+            (f"Can you establish or refute this obligation under its stated assumptions: {focus['statement']}" if focus else
+             "What decisive obligation can you settle on one route toward the original target?"))
+        shared_results, shared_blockers = self._shared_evidence(route, focus, question)
+        base_limit = min(self.config.initial_round_tokens or self.config.max_output_tokens, self.config.max_output_tokens)
+        previous = route["last_assignment"]
+        extended = bool(previous and previous["target_obligation_id"] == target_id and
+                        route["last_decisive_progress"] and route["next_test"].strip())
+        output_limit = min(self.config.max_output_tokens, previous["output_tokens"] * 2) if extended else base_limit
+        bounded_assignment = {"target_obligation_id": target_id, "question": question,
+                              "output_tokens": output_limit,
+                              "budget_reason": "Linked progress and a concrete next question on this target." if extended else "Initial allowance for one focused question.",
+                              "return_when": "Answer this question with evidence, or preserve the useful partial result and the precise remaining blocker. Reserve room for the structured response; a complete original-target proof may be submitted when available."}
         return {
+            "solver_output_limit": output_limit,
             "stable_context": {"route_id": route["id"], "prior_routes_to_avoid": route["prior_routes"],
                                "prior_problem_index": [{"id": "record:" + r["id"], "statement": r["statement"], "assumptions": r["assumptions"], "status": r["status"]} for r in self.state["library_imports"]]},
             "working_context": {
                 "task": task,
+                "assignment": bounded_assignment,
+                "last_progress_evidence": route["last_progress_evidence"],
+                "low_progress_rounds": route["low_progress_rounds"],
                 "obligation_index": [{"id": o["id"], "statement": o["statement"], "assumptions": o["assumptions"], "status": o["status"]} for o in self.state["obligations"] if o["id"] in route["obligation_ids"]],
                 "shared_obligation_index": [{"id": o["id"], "statement": o["statement"], "assumptions": o["assumptions"], "status": o["status"]} for o in self.state["obligations"] if o["id"] not in route["obligation_ids"]][-12:],
                 "research_state": self._research_brief(),
@@ -924,6 +1069,9 @@ class Runner:
                 "latest_intermediate_review": next((f for f in reversed(self.state["findings"]) if f.get("scope") == "intermediate"), None),
                 "focus_obligation": focus,
                 "relevant_claims": selected_claims,
+                "shared_results": shared_results,
+                "shared_blockers": shared_blockers,
+                "last_reused_claim_ids": route["last_reused_claim_ids"],
                 "other_attempts": [{"id": c["id"], "obligation_id": c["obligation_id"], "artifact_id": c["artifact_id"]} for c in self.state["claims"] if c["obligation_id"] in route["obligation_ids"] and c not in selected_claims][-12:],
                 "requested_artifacts": self._requested_artifacts(route),
                 "selected_prior_records": selected_imports,
@@ -935,7 +1083,7 @@ class Runner:
                 "latest_candidate_proof": route["candidate_proof"] if findings else "",
                 "checkpoint_due": self.config.route_hours > 0 and route["elapsed_seconds"] >= self.config.route_hours * 1800 and not route["checkpoint_sent"],
                 "seconds_remaining": round(self._remaining(route)) if self.config.route_hours > 0 else None,
-                "instruction": "Prior-problem records are leads with explicit assumptions and status. Check applicability; unverified records are not established facts. A candidate must justify every material imported premise. Use existing claim IDs in claims.depends_on and existing obligation IDs in obligations.depends_on. New obligations are for exact subgoals. To load older text next round, request up to two IDs from other_attempts or prior_problem_index. A candidate_proof must be complete when status=candidate. Keep summaries concise. Report a precise blocker and action for unfinished work. If checkpoint_due, state the strongest result and cheapest next test.",
+                "instruction": "Inspect shared_results and shared_blockers before repeating work. Exact statements, assumptions and arguments are authoritative; similarity is only a lead. Cite reused claim IDs, then work on the remaining gap. Use existing claim IDs in claims.depends_on and existing obligation IDs in obligations.depends_on. Give a changed next question its own next_target obligation. Prior-problem records are leads with explicit assumptions and status. Check applicability; unverified records are not established facts. A candidate must justify every material imported premise. New obligations are for exact subgoals. To load older text next round, request up to two IDs from other_attempts or prior_problem_index. A candidate_proof must be complete when status=candidate. Keep summaries concise. Report a precise blocker and action for unfinished work. If checkpoint_due, state the strongest result and cheapest next test.",
             },
         }
 
@@ -989,14 +1137,28 @@ class Runner:
                 if claim["id"] in invalid:
                     claim["review_status"] = "unverified"
                     claim["stale_reason"] = f"Argument or dependency disputed by a counterexample to {target_id}."
-            affected = [r["id"] for r in self.state["routes"] if target_id in r["obligation_ids"]]
+            affected = [r["id"] for r in self.state["routes"] if target_id in r["obligation_ids"] or
+                        any(c["id"] in invalid and c["route_id"] == r["id"] for c in self.state["claims"])]
+            for affected_route in self.state["routes"]:
+                if affected_route["id"] in affected:
+                    affected_route["last_decisive_progress"] = False
+                    affected_route["last_material_progress"] = False
             finding["affected_route_ids"] = affected
         self.state["findings"].append(finding)
         if target_claim:
+            already_checked = target_claim.get("review_status") == "model_checked"
             target_claim["review_status"] = "model_checked" if verdict == "pass" else "unverified"
-            if verdict == "pass":
+            assignment = route["last_assignment"]
+            relevant = assignment and assignment["target_obligation_id"] in {
+                target_claim["obligation_id"], target_claim.get("progress_target_id")}
+            if verdict == "pass" and not already_checked and relevant and self._usable_progress_claim(target_claim):
                 route["low_progress_rounds"] = 0
                 route["last_decisive_progress"] = True
+                route["last_material_progress"] = True
+                route["last_progress_evidence"] = {"credited": True,
+                    "target_obligation_id": assignment["target_obligation_id"],
+                    "evidence_ids": [f"finding:{len(self.state['findings'])}"],
+                    "explanation": result["finding"], "reason": "A relevant intermediate claim passed its first model check."}
             self.state["reviewed_claim_ids"].append(claim_id)
             self.state["pending_review"] = None
             checkpoint = self.state["round_checkpoint"]
@@ -1004,10 +1166,12 @@ class Runner:
                 checkpoint["review_verdict"] = verdict
                 if verdict != "pass" and result.get("repair_hint", "").strip():
                     route["focus_obligation_id"] = target_claim["obligation_id"]
+                    route["next_obligation_id"] = target_claim["obligation_id"]
                     route["next_task"] = "prove"
                     route["next_test"] = result["repair_hint"]
                     checkpoint["next_test"] = route["next_test"]
             self._decide(route, "lemma_reviewed", f"{claim_id}: {verdict}. {result['finding']}")
+            self._pivot_if_needed(route)
         else:
             self.state["checked_candidate_hashes"].append(finding["candidate_sha256"])
         if verdict == "pass" and not target_claim:
@@ -1026,14 +1190,77 @@ class Runner:
         self._save()
         return verdict == "pass" and not target_claim
 
+    def _usable_progress_claim(self, claim: dict[str, Any]) -> bool:
+        claims = {c["id"]: c for c in self.state["claims"]}
+        disputed = {o["id"] for o in self.state["obligations"] if o["status"] == "disputed"}
+        pending, seen = [claim["id"]], set()
+        while pending:
+            claim_id = pending.pop()
+            if claim_id in seen:
+                continue
+            seen.add(claim_id)
+            current = claims[claim_id]
+            if current.get("stale_reason") or current["obligation_id"] in disputed:
+                return False
+            pending.extend(current["depends_on"])
+        return True
+
+    def _assess_progress(self, route: dict[str, Any], result: dict[str, Any], assignment: dict[str, Any],
+                         previous_claim_count: int, previous_global_claims: set[str]) -> dict[str, Any]:
+        """Check evidence references and novelty; this does not certify mathematics."""
+        raw = result.get("progress")
+        if raw is not None and (not isinstance(raw, dict) or
+                any(not isinstance(raw.get(k), str) for k in ("target_obligation_id", "experiment_id", "explanation")) or
+                type(raw.get("claim_index")) is not int or raw["claim_index"] < -1 or
+                raw.get("resolution", "partial") not in {"none", "partial", "resolved", "blocked"}):
+            raise ValueError("invalid progress report")
+        progress = {"credited": False, "target_obligation_id": assignment["target_obligation_id"],
+                    "evidence_ids": [], "explanation": raw["explanation"].strip() if raw else "",
+                    "resolution": raw.get("resolution", "partial") if raw else "none",
+                    "reason": "No new evidence linked to the assigned question."}
+        if result["status"] == "candidate" and result["candidate_proof"].strip() and _digest(result["candidate_proof"].strip()) not in self.state["checked_candidate_hashes"]:
+            return {**progress, "credited": True, "target_obligation_id": "target",
+                    "evidence_ids": [self._artifact_id("candidate", result["candidate_proof"].strip())],
+                    "reason": "A new complete candidate is ready for mandatory review."}
+        if not raw or not raw["explanation"].strip():
+            return progress
+        if raw["target_obligation_id"] != assignment["target_obligation_id"]:
+            return {**progress, "reason": "The reported advance does not address the assigned target."}
+        submitted = result["claims"] + (result.get("research") or {}).get("outcomes", [])
+        if 0 <= raw["claim_index"] < len(submitted):
+            cited = submitted[raw["claim_index"]]
+            claim = next((c for c in self.state["claims"][previous_claim_count:]
+                          if _statement_key(c["statement"], c["assumptions"]) == _statement_key(cited["statement"], cited["assumptions"])
+                          and c["argument"] == cited["argument"] and c["depends_on"] == cited["depends_on"]), None)
+            if claim is not None and claim["obligation_id"] not in previous_global_claims and self._usable_progress_claim(claim):
+                claim["progress_target_id"] = assignment["target_obligation_id"]
+                claim["progress_explanation"] = raw["explanation"].strip()
+                progress["evidence_ids"].append(claim["id"])
+                if progress["resolution"] == "resolved":
+                    claim["reported_resolution_of"] = assignment["target_obligation_id"]
+                    obligation = next((o for o in self.state["obligations"] if o["id"] == assignment["target_obligation_id"]), None)
+                    if obligation is not None:
+                        obligation["reported_resolution_claim_ids"].append(claim["id"])
+            elif claim is not None and claim["obligation_id"] in previous_global_claims:
+                progress["reason"] = "This exact statement and assumptions were already recorded in this run."
+        job = next((j for j in self.state["experiments"] if j["id"] == raw["experiment_id"]), None)
+        if job and job["status"] == "completed" and job.get("result_artifact_id") and job["key"] not in route["credited_experiment_keys"]:
+            progress["evidence_ids"].append(job["id"])
+            route["credited_experiment_keys"].append(job["key"])
+        if progress["evidence_ids"]:
+            if progress["resolution"] == "resolved" and not any(i.startswith("c") for i in progress["evidence_ids"]):
+                progress["resolution"] = "partial"
+            progress.update(credited=True, reason="New evidence explicitly linked to the assigned question; mathematical validity remains unverified.")
+        return progress
+
     def _apply_solver_result(self, route: dict[str, Any], result: dict[str, Any], repairing: bool, reserved: bool = False) -> bool:
         route_id = route["id"]
         checkpoint = copy.deepcopy(self.state)
-        previous_focus_id = route["focus_obligation_id"]
         previous_claim_count = len(self.state["claims"])
-        previous_experiment_count = len(self.state["experiments"])
-        previous_route_claims = {(c["obligation_id"], c["kind"]) for c in self.state["claims"] if c["route_id"] == route_id}
-        previously_checked_candidates = set(self.state["checked_candidate_hashes"])
+        previous_global_claims = {c["obligation_id"] for c in self.state["claims"]}
+        previous_claim_ids = {c["id"]: c for c in self.state["claims"]}
+        call = next(c for c in self.state["calls"] if c["id"] == self._current_call_id)
+        assignment = call.get("assignment") or self._solver_context(route)["working_context"]["assignment"]
         try:
             if result.get("status") not in {"candidate", "progress", "stalled"}:
                 raise ValueError("invalid solver status")
@@ -1048,6 +1275,11 @@ class Runner:
             before_links = len(route["obligation_ids"])
             new_obligations = self._add_obligations(result.get("obligations", []), route["id"])
             new_claims = self._add_claims(result.get("claims"), route["id"])
+            next_target_id = self._next_target_id(result)
+            reused_claim_ids = result.get("reused_claim_ids", [])
+            if not isinstance(reused_claim_ids, list) or not all(isinstance(i, str) and i in previous_claim_ids and
+                    self._usable_progress_claim(previous_claim_ids[i]) for i in reused_claim_ids):
+                raise ValueError("reused_claim_ids must contain previously recorded claim IDs")
             focus_id = result.get("focus_obligation_id", "")
             if not isinstance(focus_id, str) or focus_id and focus_id not in {o["id"] for o in self.state["obligations"]}:
                 raise ValueError("invalid focus obligation ID")
@@ -1064,6 +1296,7 @@ class Runner:
             before_research_claims = len(self.state["claims"])
             research_progress = self._accept_research(result, route)
             new_claims += len(self.state["claims"]) - before_research_claims
+            progress = self._assess_progress(route, result, assignment, previous_claim_count, previous_global_claims)
         except ValueError as error:
             self.state = checkpoint
             route = next(r for r in self.state["routes"] if r["id"] == route_id)
@@ -1073,9 +1306,19 @@ class Runner:
             self._save()
             return False
         route["title"] = result["route_title"] or route["title"]
+        call["repeated_claim_ids"] = [c["id"] for c in self.state["claims"][previous_claim_count:]
+                                      if c["obligation_id"] in previous_global_claims]
         route["summary"] = result["summary"]
         route["obstruction"] = result["obstruction"]
         route["next_test"] = blocker["next_test"] if blocker else result["next_test"]
+        if next_target_id is not None:
+            route["next_obligation_id"] = next_target_id
+            route["focus_obligation_id"] = "" if next_target_id == "target" else next_target_id
+            if next_target_id != "target" and next_target_id not in route["obligation_ids"]:
+                route["obligation_ids"].append(next_target_id)
+        route["last_reused_claim_ids"] = list(dict.fromkeys(reused_claim_ids))
+        if reused_claim_ids:
+            self._decide(route, "reuse_claim", "Referenced prior claim(s): " + ", ".join(route["last_reused_claim_ids"]))
         old_blocker_key = route["last_blocker_key"]
         blocker_key = _blocker_key(blocker) if blocker else ""
         route["blocker"] = blocker
@@ -1085,20 +1328,14 @@ class Runner:
         if new_evidence:
             route["seen_evidence_keys"].append(evidence_key)
         changed_blocker = bool(blocker and blocker_key != old_blocker_key and new_evidence and blocker["next_test"].strip())
-        fresh_claims = self.state["claims"][previous_claim_count:]
-        new_candidate = (result["status"] == "candidate" and
-                         _digest(result["candidate_proof"].strip()) not in previously_checked_candidates)
-        decisive = (new_candidate or any(
-            (c["obligation_id"], c["kind"]) not in previous_route_claims and
-            (c["kind"] in {"reduction", "counterexample", "conditional_theorem"} or
-             (previous_focus_id and c["obligation_id"] == previous_focus_id))
-            for c in fresh_claims))
-        pending_test = len(self.state["experiments"]) > previous_experiment_count or self.state["pending_review"] is not None
-        route["last_decisive_progress"] = bool(decisive)
-        route["low_progress_rounds"] = 0 if decisive or pending_test else route["low_progress_rounds"] + 1
-        route["last_material_progress"] = bool(new_claims or new_obligations or new_route_links or changed_blocker)
-        route["last_progress"] = bool(route["last_material_progress"] or new_request or research_progress)
-        route["research_status"] = "promising" if route["last_progress"] else "blocked"
+        route["last_assignment"] = copy.deepcopy(assignment)
+        route["last_progress_evidence"] = progress
+        route["last_decisive_progress"] = progress["credited"]
+        route["low_progress_rounds"] = 0 if progress["credited"] else route["low_progress_rounds"] + 1
+        route["last_material_progress"] = progress["credited"]
+        route["last_progress"] = bool(progress["credited"] or new_claims or new_obligations or new_route_links or changed_blocker or new_request or research_progress)
+        self._decide(route, "progress_credited" if progress["credited"] else "progress_not_credited", progress["reason"])
+        route["research_status"] = "promising" if progress["credited"] else "exploring" if route["last_progress"] else "blocked"
         if blocker and blocker["proposed_action"] != "none":
             self._decide(route, blocker["proposed_action"], blocker["reason"] or blocker["failure_point"], blocker_key)
         self._finish_call()
@@ -1147,11 +1384,7 @@ class Runner:
             route["status"] = "stalled"
             route["research_status"] = "blocked"
             self._decide(route, "switch_route", "No new obligation, argument, candidate finding, or evidence for the same blocker.", blocker_key)
-        elif self.config.pivot_after and route["low_progress_rounds"] >= self.config.pivot_after:
-            route["status"] = "stalled"
-            route["research_status"] = "blocked"
-            self._decide(route, "pivot_low_yield",
-                         f"{route['low_progress_rounds']} rounds added no focused proof, reusable reduction, checked claim, or finite test; switch routes or stop.")
+        self._pivot_if_needed(route)
         self._sync_library()
         self._save()
         return True
@@ -1182,6 +1415,14 @@ class Runner:
             f"route {primary['id']} and test this blocker if useful: {primary['blocker']['failure_point']}. "
             "Record a decisive result or a precise next test; do not merely restate the first route."
         )
+        alternative_context["working_context"]["assignment"]["question"] = (
+            f"Can a different technique resolve this blocker: {primary['blocker']['failure_point']}?"
+        )
+        alternate_focus = self._focus_obligation(alternative)
+        shared, blockers = self._shared_evidence(alternative, alternate_focus,
+                                                 alternative_context["working_context"]["assignment"]["question"])
+        alternative_context["working_context"]["shared_results"] = shared
+        alternative_context["working_context"]["shared_blockers"] = blockers
         contexts = [primary_context, alternative_context]
         routes = [primary, alternative]
         trial = {"status": "running", "route_ids": [r["id"] for r in routes], "call_ids": [],
@@ -1194,7 +1435,8 @@ class Runner:
             call_id = len(self.state["calls"]) + 1
             self.state["calls"].append({"id": call_id, "role": "solver", "route_id": route["id"],
                                         "status": "pending", "seconds": 0.0, "usage": None,
-                                        "receipt": "", "scope": "solver"})
+                                        "receipt": "", "scope": "solver",
+                                        "assignment": copy.deepcopy(context["working_context"]["assignment"])})
             trial["call_ids"].append(call_id)
             self.state["rounds"] += 1
             route["rounds"] += 1
@@ -1239,6 +1481,10 @@ class Runner:
                 self._decide(route, "parallel_call_failed", call.get("error", call["status"]))
                 self._save()
         routes = [next(r for r in self.state["routes"] if r["id"] == route_id) for route_id in trial["route_ids"]]
+        trial["shared_result_ids"] = {}
+        for candidate_route in routes:
+            shared, _ = self._shared_evidence(candidate_route, self._focus_obligation(candidate_route), candidate_route["next_test"])
+            trial["shared_result_ids"][str(candidate_route["id"])] = [item["id"] for item in shared]
         review = self.state["pending_review"]
         if review and self.state["status"] == "running":
             review_route = next(r for r in routes if r["id"] == review["route_id"])
@@ -1258,17 +1504,13 @@ class Runner:
             self._save()
             return
         obligation_status = {o["id"]: o["status"] for o in self.state["obligations"]}
-        def score(route: dict[str, Any]) -> tuple[int, int, int, int, int, int, int, int]:
+        def score(route: dict[str, Any]) -> tuple[int, int, int, int, int, int]:
             checked = sum(c["route_id"] == route["id"] and c.get("review_status") == "model_checked" for c in self.state["claims"])
-            route_claims = [c for c in self.state["claims"] if c["route_id"] == route["id"]]
-            new_claims = route_claims[trial["baseline_claims"][str(route["id"])]:]
-            claims = sum(not c.get("stale_reason") for c in new_claims)
-            reductions = sum(c["kind"] == "reduction" and not c.get("stale_reason") for c in new_claims)
-            new_obligations = route["obligation_ids"][trial["baseline_obligations"][str(route["id"])]:]
-            obligations = sum(obligation_status.get(o) != "disputed" for o in new_obligations)
             disputed = sum(obligation_status.get(o) == "disputed" for o in route["obligation_ids"])
-            return (int(route["status"] == "active"), -disputed, checked, min(reductions, 1), int(bool(route["next_test"].strip())),
-                    int(route["last_material_progress"]), min(claims, 2), min(obligations, 2))
+            resolved = bool(route.get("last_progress_evidence") and route["last_progress_evidence"].get("credited") and
+                            route["last_progress_evidence"].get("resolution") == "resolved")
+            return (int(route["status"] == "active"), -disputed, checked, int(resolved),
+                    int(route["last_decisive_progress"]), int(bool(route["next_test"].strip())))
         winner = max(routes, key=score)  # On a tie, retain the original primary route.
         loser = next(r for r in routes if r["id"] != winner["id"])
         winning_score, losing_score = score(winner), score(loser)
@@ -1278,8 +1520,8 @@ class Runner:
         if self.state["status"] == "needs_human_input" and winner["status"] == "active":
             self.state["status"] = "running"
         reason = (f"Route {winner['id']} remains active; scores {winning_score} versus {losing_score} "
-                  "(actionable, negative disputed obligations, checked claims, reusable reduction, next test, material progress, new claims, new obligations). "
-                  "The other route is saved for review.")
+                  "(actionable, negative disputed obligations, checked claims, reported resolution, linked progress, next test). "
+                  f"Shared result leads: {trial['shared_result_ids']}. The other route is saved for review.")
         trial.update(status="complete", winner_route_id=winner["id"], reason=reason)
         self._decide(winner, "parallel_select", reason)
         self._save()
@@ -1388,6 +1630,9 @@ class Runner:
                     route["research_status"] = "abandoned"
                     self._decide(route, "switch_route", "Route time budget exhausted without a justified extension.")
                     self._save()
+                    continue
+            if not any(c["role"] == "solver" and c["route_id"] == route["id"] and c["status"] == "received" for c in self.state["calls"]):
+                if self._reuse_checked_exact(route):
                     continue
             if (self.config.parallel_routes and self.state["parallel_trial"] is None and
                     len(self.state["routes"]) == 1 and route["rounds"] >= 1 and

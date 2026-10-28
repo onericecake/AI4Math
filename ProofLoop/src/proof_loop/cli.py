@@ -31,6 +31,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--max-repairs-per-route", type=int, default=1, help="Solver revisions after a checker rejection on each route (default: 1)")
     parser.add_argument("--pivot-after", type=int, default=2, help="Switch routes after this many solver rounds without decisive progress; 0 disables the gate")
     parser.add_argument("--max-output-tokens", type=int, default=25000)
+    parser.add_argument("--initial-round-tokens", type=int, default=8000, help="Initial solver output allowance; useful progress can double it up to --max-output-tokens; 0 uses the full allowance")
     parser.add_argument("--library-dir", type=Path, help="Optional shared file library for reuse across problems")
     parser.add_argument("--library-limit", type=int, default=5, help="Maximum relevant records imported at run start")
     parser.add_argument("--exploration-share", type=float, default=0.85, help="Soft solver share of output tokens for admitting optional lemma checks; final checks always run")
@@ -61,6 +62,7 @@ def main(argv: list[str] | None = None) -> int:
         max_repairs_per_route=args.max_repairs_per_route,
         pivot_after=args.pivot_after,
         max_output_tokens=args.max_output_tokens,
+        initial_round_tokens=args.initial_round_tokens,
         library_limit=args.library_limit,
         exploration_share=args.exploration_share,
         max_lemma_checks=args.max_lemma_checks,

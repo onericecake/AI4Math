@@ -19,6 +19,33 @@ search is a first-class assignment: check the exact hypotheses and distinguish a
 search from a proof. After a pivot, identify a genuinely different technique and a test
 that distinguishes it from earlier routes. Work only on the assigned route;
 the coordinator may explore another route independently.
+Work on the single question in working_context.assignment. Use its output-token
+allowance for this task, reserving room for a structured result. Return a useful
+partial result and a precise next question when the assignment remains unresolved.
+To claim progress, name the assigned target_obligation_id ("target" means the original
+problem), explain what uncertainty the evidence resolves, and cite a claim_index or
+a completed experiment_id. claim_index is zero-based in claims followed by
+research.outcomes; use -1 when no claim is cited. An experiment request is not evidence;
+interpret a recorded completed result. Rewriting or relabeling a claim is not new progress.
+Set progress.resolution to resolved only when the cited argument closes the assigned
+obligation under its exact assumptions; use partial for a useful step and blocked
+when reporting a blocker. A self-reported resolution is a lead until reviewed.
+For the next question, set next_target.id to an existing stored obligation ID, or
+next_target.obligation_index to the zero-based index in this response's obligations.
+Use id="" and obligation_index=-1 when the next question concerns the original
+problem. If the next question changes scope, create or select its own obligation;
+do not keep an old obligation ID merely because the route continues.
+Read shared_results and shared_blockers before repeating a proof step. Cite any
+applicable prior claim in reused_claim_ids and state the remaining gap. An exact
+statement with different assumptions is a separate obligation. An unverified claim
+is a lead, not a proof certificate. A deliberate second proof should say what it
+checks or improves. Reusing a claim alone is not new discovery.
+The reserved label "target" is valid only in progress.target_obligation_id; it is not
+a stored obligation ID. For the original problem, use empty strings in
+focus_obligation_id and blocker.obligation_id. Dependency arrays may contain only
+supplied stored IDs; use [] when none apply, including on the first round.
+When no supported advance is available, use empty strings for the other progress
+fields, claim_index=-1, and resolution="none" (or "blocked" for a specific blocker).
 Record useful partial outcomes as lemmas, conditional theorems, reductions, or
 counterexamples, with exact statements and assumptions. They need not solve the problem.
 Request a check only for a pivotal recorded claim whose failure would invalidate substantial
@@ -77,7 +104,8 @@ OBLIGATION_SCHEMA = {
     "properties": {
         "statement": {"type": "string"},
         "assumptions": {"type": "array", "items": {"type": "string"}},
-        "depends_on": {"type": "array", "items": {"type": "string"}},
+        "depends_on": {"type": "array", "items": {"type": "string"},
+                       "description": "Supplied stored obligation IDs only; never target. Use [] if none apply."},
     },
     "required": ["statement", "assumptions", "depends_on"],
     "additionalProperties": False,
@@ -86,7 +114,7 @@ OBLIGATION_SCHEMA = {
 BLOCKER_SCHEMA = {
     "type": "object",
     "properties": {
-        "obligation_id": {"type": "string"},
+        "obligation_id": {"type": "string", "description": "A stored obligation ID on this route, or an empty string for the original problem; never target."},
         "attempted_technique": {"type": "string"},
         "failure_point": {"type": "string"},
         "evidence": {"type": "string"},
@@ -137,15 +165,38 @@ SOLVER_SCHEMA = {
         "summary": {"type": "string"},
         "claims": {"type": "array", "items": CLAIM_SCHEMA},
         "obligations": {"type": "array", "items": OBLIGATION_SCHEMA},
-        "focus_obligation_id": {"type": "string"},
+        "focus_obligation_id": {"type": "string", "description": "A stored obligation ID, or an empty string for the original problem; never target."},
+        "next_target": {
+            "type": "object",
+            "properties": {
+                "id": {"type": "string", "description": "Existing stored obligation ID, or empty for the original problem or a submitted obligation."},
+                "obligation_index": {"type": "integer", "minimum": -1,
+                                     "description": "Zero-based index in this response's obligations for a new next target, or -1."},
+            },
+            "required": ["id", "obligation_index"],
+            "additionalProperties": False,
+        },
+        "reused_claim_ids": {"type": "array", "items": {"type": "string"}},
         "request_artifact_ids": {"type": "array", "items": {"type": "string"}},
         "blocker": BLOCKER_SCHEMA,
         "candidate_proof": {"type": "string"},
         "obstruction": {"type": "string"},
         "next_test": {"type": "string"},
         "research": RESEARCH_SCHEMA,
+        "progress": {
+            "type": "object",
+            "properties": {
+                "target_obligation_id": {"type": "string"},
+                "claim_index": {"type": "integer", "minimum": -1},
+                "experiment_id": {"type": "string"},
+                "explanation": {"type": "string"},
+                "resolution": {"type": "string", "enum": ["none", "partial", "resolved", "blocked"]},
+            },
+            "required": ["target_obligation_id", "claim_index", "experiment_id", "explanation", "resolution"],
+            "additionalProperties": False,
+        },
     },
-    "required": ["status", "route_title", "summary", "claims", "obligations", "focus_obligation_id", "request_artifact_ids", "blocker", "candidate_proof", "obstruction", "next_test", "research"],
+    "required": ["status", "route_title", "summary", "claims", "obligations", "focus_obligation_id", "next_target", "reused_claim_ids", "request_artifact_ids", "blocker", "candidate_proof", "obstruction", "next_test", "research", "progress"],
     "additionalProperties": False,
 }
 
@@ -213,7 +264,7 @@ class OpenAIBackend:
         response = self.client.with_options(timeout=timeout_seconds).responses.create(
             model=self.model,
             reasoning={"effort": self.efforts[role]},
-            max_output_tokens=min(self.max_output_tokens, context.get("review_output_limit", self.max_output_tokens)),
+            max_output_tokens=min(self.max_output_tokens, context.get("solver_output_limit" if role == "solver" else "review_output_limit", self.max_output_tokens)),
             store=False,
             input=input_messages,
             text={"format": {"type": "json_schema", "name": f"proof_loop_{role}", "strict": True, "schema": schema}},
